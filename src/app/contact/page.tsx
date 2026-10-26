@@ -31,32 +31,59 @@ export default async function ContactPage({ searchParams }: Props) {
           <dl className="mt-12 space-y-6">
             <div>
               <dt className={dt}>Email</dt>
-              <dd className="text-step-1"><a className="hover:text-gold" href={`mailto:${site.email}`}>{site.email}</a></dd>
+              <dd className="text-step-1">
+                <a className="hover:text-gold" href={`mailto:${site.email}`}>
+                  {site.email}
+                </a>
+              </dd>
             </div>
             <div>
               <dt className={dt}>Phone and WhatsApp</dt>
-              <dd className="text-step-1"><a className="hover:text-gold" href={`tel:${site.phone.tel}`}>{site.phone.display}</a></dd>
-              <dd><a className="font-bold text-navy underline underline-offset-4" href={`https://wa.me/${site.whatsapp}`}>Message us on WhatsApp</a></dd>
+              <dd className="text-step-1">
+                <a className="hover:text-gold" href={`tel:${site.phone.tel}`}>
+                  {site.phone.display}
+                </a>
+              </dd>
+              <dd>
+                <a className="font-bold text-navy underline underline-offset-4" href={`https://wa.me/${site.whatsapp}`}>
+                  Message us on WhatsApp
+                </a>
+              </dd>
             </div>
             <div>
               <dt className={dt}>Office</dt>
               <dd>
-                <address className="not-italic">{site.address.street}, {site.address.suburb}<br />{site.address.city}, {site.address.country}</address>
-                <a className="font-bold text-navy underline underline-offset-4" target="_blank" rel="noopener" href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`}>
+                <address className="not-italic">
+                  {site.address.street}, {site.address.suburb}
+                  <br />
+                  {site.address.city}, {site.address.country}
+                </address>
+                <a
+                  className="font-bold text-navy underline underline-offset-4"
+                  target="_blank"
+                  rel="noopener"
+                  href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`}
+                >
                   Open in Google Maps
                 </a>
               </dd>
             </div>
             <div>
               <dt className={dt}>Hours (Tanzania time)</dt>
-              {site.hours.map((h) => <dd key={h.days}>{h.days}: {h.time}</dd>)}
+              {site.hours.map((h) => (
+                <dd key={h.days}>
+                  {h.days}: {h.time}
+                </dd>
+              ))}
             </div>
           </dl>
         </div>
 
         <div id="enquire" className="scroll-mt-8 bg-salt-deep p-6 sm:p-10">
           <h2 className="text-step-3 text-navy">Send an enquiry</h2>
-          <div className="mt-8"><EnquiryForm tours={tours} preselect={tour} /></div>
+          <div className="mt-8">
+            <EnquiryForm tours={tours} preselect={tour} />
+          </div>
         </div>
       </section>
     </>

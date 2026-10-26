@@ -1,12 +1,62 @@
 [
-  { "id": "best-time", "topic": "Planning", "question": "When is the best time to visit Tanzania?", "answer": "June to October is the long dry season and the easiest time for game viewing. January to March brings the wildebeest calving season in the southern Serengeti. The long rains fall from late March to May, when some camps close but prices are lower. Tanzania is a year-round destination, so we plan around what you most want to see." },
-  { "id": "migration", "topic": "Planning", "question": "Where is the Great Migration each month?", "answer": "Roughly: December to March on the southern Serengeti and Ndutu plains (calving in February), April to June moving through the central and western Serengeti, and July to October in the northern Serengeti, where the herds cross the Mara River. Rain shifts the timing each year, so we choose camps close to where the herds are expected." },
-  { "id": "custom", "topic": "Planning", "question": "Can you change the itineraries on the site?", "answer": "Yes. Every itinerary is a starting point. We can change the route, length, pace, accommodation and activities, add Kilimanjaro or Zanzibar, or design a trip from scratch." },
-  { "id": "how-long", "topic": "Planning", "question": "How many days do I need?", "answer": "Six to eight days covers the northern circuit (Tarangire, Ngorongoro and the Serengeti) comfortably by road. Add three or four nights for Zanzibar, and seven to nine days for a Kilimanjaro climb." },
-  { "id": "visa", "topic": "Travel", "question": "Do I need a visa?", "answer": "Most visitors need a visa, which can usually be applied for online through Tanzania's official e-visa portal before you travel. Rules depend on your nationality and change from time to time, so check the current requirements before booking. We will remind you of what applies when we confirm your trip." },
-  { "id": "health", "topic": "Travel", "question": "Is malaria a concern? Do I need vaccinations?", "answer": "Malaria is present in most of Tanzania below about 1,800 metres, including the safari parks and Zanzibar. A yellow fever certificate is required if you arrive from, or have recently transited through, a country with yellow fever risk. Speak to a travel health clinic well before you travel." },
-  { "id": "kids", "topic": "On safari", "question": "Are your safaris suitable for children?", "answer": "Yes. Private vehicles and family-friendly camps make Tanzania a good choice for families, and Zanzibar is an easy beach add-on. Some camps set minimum ages for walking safaris and other activities, which we take into account when planning. Kilimanjaro's minimum age is 10." },
-  { "id": "kilimanjaro", "topic": "On safari", "question": "Do I need climbing experience for Kilimanjaro?", "answer": "No technical experience is needed, but you should be in good health and comfortable walking for several hours a day. The biggest challenge is altitude, so we recommend routes of seven days or more to allow time to acclimatise." },
-  { "id": "medical", "topic": "On safari", "question": "What medical support is available?", "answer": "Our guides carry first-aid kits and our vehicles are in radio and phone contact with the Arusha office. We strongly recommend travel insurance that includes medical evacuation, and for Kilimanjaro, cover for high-altitude trekking." },
-  { "id": "how-book", "topic": "Booking", "question": "How do I book?", "answer": "Send us an enquiry with your dates, group size and interests. A travel consultant replies with a proposal and a detailed itinerary, and we confirm once you are happy with it." }
+  {
+    "id": "best-time",
+    "topic": "Planning",
+    "question": "When is the best time to visit Tanzania?",
+    "answer": "June to October is the long dry season and the easiest time for game viewing. January to March brings the wildebeest calving season in the southern Serengeti. The long rains fall from late March to May, when some camps close but prices are lower. Tanzania is a year-round destination, so we plan around what you most want to see."
+  },
+  {
+    "id": "migration",
+    "topic": "Planning",
+    "question": "Where is the Great Migration each month?",
+    "answer": "Roughly: December to March on the southern Serengeti and Ndutu plains (calving in February), April to June moving through the central and western Serengeti, and July to October in the northern Serengeti, where the herds cross the Mara River. Rain shifts the timing each year, so we choose camps close to where the herds are expected."
+  },
+  {
+    "id": "custom",
+    "topic": "Planning",
+    "question": "Can you change the itineraries on the site?",
+    "answer": "Yes. Every itinerary is a starting point. We can change the route, length, pace, accommodation and activities, add Kilimanjaro or Zanzibar, or design a trip from scratch."
+  },
+  {
+    "id": "how-long",
+    "topic": "Planning",
+    "question": "How many days do I need?",
+    "answer": "Six to eight days covers the northern circuit (Tarangire, Ngorongoro and the Serengeti) comfortably by road. Add three or four nights for Zanzibar, and seven to nine days for a Kilimanjaro climb."
+  },
+  {
+    "id": "visa",
+    "topic": "Travel",
+    "question": "Do I need a visa?",
+    "answer": "Most visitors need a visa, which can usually be applied for online through Tanzania's official e-visa portal before you travel. Rules depend on your nationality and change from time to time, so check the current requirements before booking. We will remind you of what applies when we confirm your trip."
+  },
+  {
+    "id": "health",
+    "topic": "Travel",
+    "question": "Is malaria a concern? Do I need vaccinations?",
+    "answer": "Malaria is present in most of Tanzania below about 1,800 metres, including the safari parks and Zanzibar. A yellow fever certificate is required if you arrive from, or have recently transited through, a country with yellow fever risk. Speak to a travel health clinic well before you travel."
+  },
+  {
+    "id": "kids",
+    "topic": "On safari",
+    "question": "Are your safaris suitable for children?",
+    "answer": "Yes. Private vehicles and family-friendly camps make Tanzania a good choice for families, and Zanzibar is an easy beach add-on. Some camps set minimum ages for walking safaris and other activities, which we take into account when planning. Kilimanjaro's minimum age is 10."
+  },
+  {
+    "id": "kilimanjaro",
+    "topic": "On safari",
+    "question": "Do I need climbing experience for Kilimanjaro?",
+    "answer": "No technical experience is needed, but you should be in good health and comfortable walking for several hours a day. The biggest challenge is altitude, so we recommend routes of seven days or more to allow time to acclimatise."
+  },
+  {
+    "id": "medical",
+    "topic": "On safari",
+    "question": "What medical support is available?",
+    "answer": "Our guides carry first-aid kits and our vehicles are in radio and phone contact with the Arusha office. We strongly recommend travel insurance that includes medical evacuation, and for Kilimanjaro, cover for high-altitude trekking."
+  },
+  {
+    "id": "how-book",
+    "topic": "Booking",
+    "question": "How do I book?",
+    "answer": "Send us an enquiry with your dates, group size and interests. A travel consultant replies with a proposal and a detailed itinerary, and we confirm once you are happy with it."
+  }
 ]

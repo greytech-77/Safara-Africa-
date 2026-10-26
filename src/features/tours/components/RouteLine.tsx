@@ -4,7 +4,10 @@ import type { Stop } from '@/types/content';
 export default function RouteLine({ route, tone = 'dark', size = 'sm' }: { route: Stop[]; tone?: 'dark' | 'light'; size?: 'sm' | 'lg' }) {
   const light = tone === 'light';
   return (
-    <ol aria-label="Route" className={`flex flex-wrap gap-y-4 ${size === 'lg' ? 'text-step-0' : 'text-step--1'} ${light ? 'text-[#f4f5f0]' : 'text-ink'}`}>
+    <ol
+      aria-label="Route"
+      className={`flex flex-wrap gap-y-4 ${size === 'lg' ? 'text-step-0' : 'text-step--1'} ${light ? 'text-[#f4f5f0]' : 'text-ink'}`}
+    >
       {route.map((stop, i) => (
         <li key={`${stop.place}-${i}`} className="flex items-start">
           <span className="flex flex-col">
@@ -17,7 +20,10 @@ export default function RouteLine({ route, tone = 'dark', size = 'sm' }: { route
             </span>
           </span>
           {i < route.length - 1 && (
-            <span aria-hidden="true" className={`mx-3 mt-[0.65rem] h-px ${size === 'lg' ? 'w-14' : 'w-6'} ${light ? 'bg-white/50' : 'bg-navy/35'}`} />
+            <span
+              aria-hidden="true"
+              className={`mx-3 mt-[0.65rem] h-px ${size === 'lg' ? 'w-14' : 'w-6'} ${light ? 'bg-white/50' : 'bg-navy/35'}`}
+            />
           )}
         </li>
       ))}

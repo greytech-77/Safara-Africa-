@@ -2,7 +2,13 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { POST } from '@/app/api/enquiry/route';
 
 const post = (body: unknown) =>
-  POST(new Request('http://localhost/api/enquiry', { method: 'POST', body: JSON.stringify(body), headers: { 'Content-Type': 'application/json' } }));
+  POST(
+    new Request('http://localhost/api/enquiry', {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: { 'Content-Type': 'application/json' },
+    }),
+  );
 
 describe('POST /api/enquiry', () => {
   afterEach(() => vi.unstubAllEnvs());

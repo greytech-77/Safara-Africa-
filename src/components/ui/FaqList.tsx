@@ -15,7 +15,9 @@ export default function FaqList({ faqs }: { faqs: { q: string; a: string }[] }) 
           <details key={f.q} className="group py-5">
             <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-step-1 font-semibold">
               {f.q}
-              <span aria-hidden="true" className="mt-1 text-gold transition-transform group-open:rotate-45">+</span>
+              <span aria-hidden="true" className="mt-1 text-gold transition-transform group-open:rotate-45">
+                +
+              </span>
             </summary>
             <p className="measure mt-3 text-ink/85">{f.a}</p>
           </details>

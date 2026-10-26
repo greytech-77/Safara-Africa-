@@ -84,5 +84,4 @@ export const getPost = (slug: string) => getPosts().find((p) => p.slug === slug)
 
 export const getFaqs = () => faqsJson as Faq[];
 
-export const formatDate = (d: Date) =>
-  new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).format(d);
+export const formatDate = (d: Date) => new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).format(d);

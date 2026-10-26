@@ -29,7 +29,11 @@ export default function FaqsPage() {
         <div>
           <h1 className="text-step-5 text-navy">Questions</h1>
           <p className="mt-4 text-slate">
-            Something not covered? <Link href="/contact#enquire" className="font-bold text-navy underline underline-offset-4">Ask a consultant</Link>.
+            Something not covered?{' '}
+            <Link href="/contact#enquire" className="font-bold text-navy underline underline-offset-4">
+              Ask a consultant
+            </Link>
+            .
           </p>
         </div>
         <div className="space-y-14">
@@ -44,7 +48,9 @@ export default function FaqsPage() {
                     <details key={f.id} className="group py-5">
                       <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-step-1 font-semibold">
                         {f.question}
-                        <span aria-hidden="true" className="mt-1 text-gold transition-transform group-open:rotate-45">+</span>
+                        <span aria-hidden="true" className="mt-1 text-gold transition-transform group-open:rotate-45">
+                          +
+                        </span>
                       </summary>
                       <p className="measure mt-3 text-ink/85">{f.answer}</p>
                     </details>

@@ -43,18 +43,26 @@ export default async function JourneyTypePage({ params }: Props) {
 
       <section className="wrap pt-16">
         <div className="prose-safara">
-          {j.intro.map((p) => <p key={p.slice(0, 40)}>{p}</p>)}
+          {j.intro.map((p) => (
+            <p key={p.slice(0, 40)}>{p}</p>
+          ))}
         </div>
       </section>
 
       <section className="wrap mt-20" aria-labelledby="tours-heading">
-        <h2 id="tours-heading" className="text-step-4 text-navy">{j.name} tours</h2>
-        <p className="measure mt-3 text-slate">Every itinerary can be changed. Use these as a starting point, or ask us to design one from scratch.</p>
+        <h2 id="tours-heading" className="text-step-4 text-navy">
+          {j.name} tours
+        </h2>
+        <p className="measure mt-3 text-slate">
+          Every itinerary can be changed. Use these as a starting point, or ask us to design one from scratch.
+        </p>
         <div className="mt-8">
           {tours.length > 0 ? (
             <TourGrid tours={tours} />
           ) : (
-            <p className="text-ink/85">We are adding itineraries for this safari type. Tell us what you have in mind and we will design one for you.</p>
+            <p className="text-ink/85">
+              We are adding itineraries for this safari type. Tell us what you have in mind and we will design one for you.
+            </p>
           )}
         </div>
       </section>

@@ -18,7 +18,6 @@ export type TravelStyle = {
 const unsplash = (id: string) => `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=2000&q=80`;
 
 export const travelStyles: TravelStyle[] = [
-
   {
     slug: 'private-luxury',
     name: 'Private luxury',
@@ -79,7 +78,6 @@ export const travelStyles: TravelStyle[] = [
     tours: ['tanzania-classic', 'tanzania-luxury'],
     image: { src: unsplash('1710077539513-6d0b9cf273e2'), alt: 'A group of people on the back of a safari vehicle' },
   },
-
 
   {
     slug: 'kilimanjaro-climbs',

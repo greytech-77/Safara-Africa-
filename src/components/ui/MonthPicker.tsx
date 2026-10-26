@@ -31,7 +31,9 @@ export default function MonthPicker({ months }: { months: { text: string; tags: 
         <p className="measure mt-2 text-ink/85">{m.text}</p>
         <ul className="mt-4 flex flex-wrap gap-2">
           {m.tags.map((t) => (
-            <li key={t} className="rounded-full bg-salt-deep px-3 py-1 text-step--1 font-semibold text-navy">{t}</li>
+            <li key={t} className="rounded-full bg-salt-deep px-3 py-1 text-step--1 font-semibold text-navy">
+              {t}
+            </li>
           ))}
         </ul>
       </div>

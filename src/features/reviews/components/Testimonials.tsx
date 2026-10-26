@@ -19,7 +19,11 @@ export default function Testimonials({ items }: { items: Testimonial[] }) {
       aria-label={label}
       className="group/arrow grid size-11 shrink-0 cursor-pointer place-items-center rounded-full border border-ink text-ink transition-colors duration-300 hover:bg-ink hover:text-salt sm:size-12"
     >
-      <svg aria-hidden="true" viewBox="0 0 20 20" className={`size-5 transition-transform duration-300 ${step < 0 ? 'group-hover/arrow:-translate-x-1' : 'group-hover/arrow:translate-x-1'}`}>
+      <svg
+        aria-hidden="true"
+        viewBox="0 0 20 20"
+        className={`size-5 transition-transform duration-300 ${step < 0 ? 'group-hover/arrow:-translate-x-1' : 'group-hover/arrow:translate-x-1'}`}
+      >
         <path d={d} fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     </button>
@@ -66,7 +70,10 @@ export default function Testimonials({ items }: { items: Testimonial[] }) {
         <div className="hidden sm:block">{next}</div>
       </div>
       {/* Phones: arrows sit under the card. */}
-      <div className="mt-5 flex justify-center gap-4 sm:hidden">{prev}{next}</div>
+      <div className="mt-5 flex justify-center gap-4 sm:hidden">
+        {prev}
+        {next}
+      </div>
     </div>
   );
 }

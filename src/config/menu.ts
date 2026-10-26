@@ -114,7 +114,14 @@ export function getMenu(): MenuItem[] {
           links: travelStyles.map((s) => ({ label: s.name, href: `/travel-styles/${s.slug}`, note: s.teaser })),
         },
       ],
-      cards: [{ title: `${honeymoons.name} in Tanzania`, href: `/travel-styles/${honeymoons.slug}`, cta: 'Discover more', image: honeymoons.image }],
+      cards: [
+        {
+          title: `${honeymoons.name} in Tanzania`,
+          href: `/travel-styles/${honeymoons.slug}`,
+          cta: 'Discover more',
+          image: honeymoons.image,
+        },
+      ],
     },
     {
       id: 'about',

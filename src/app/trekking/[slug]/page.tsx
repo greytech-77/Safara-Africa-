@@ -52,10 +52,14 @@ export default async function TrekPage({ params }: Props) {
 
       <div className="wrap grid gap-16 pt-16 lg:grid-cols-[1fr_22rem]">
         <div className="prose-safara">
-          {t.intro.map((p) => <p key={p.slice(0, 40)}>{p}</p>)}
+          {t.intro.map((p) => (
+            <p key={p.slice(0, 40)}>{p}</p>
+          ))}
         </div>
         <aside aria-labelledby="facts-heading" className="h-fit bg-white p-6 shadow-[0_4px_3px_rgb(0_0_0/.08)]">
-          <h2 id="facts-heading" className="font-sans text-step-0 font-bold uppercase tracking-[0.08em] text-slate">Quick facts</h2>
+          <h2 id="facts-heading" className="font-sans text-step-0 font-bold uppercase tracking-[0.08em] text-slate">
+            Quick facts
+          </h2>
           <dl className="mt-4 divide-y divide-navy/10">
             {facts.map(([k, v]) => (
               <div key={k} className="py-3">
@@ -64,12 +68,16 @@ export default async function TrekPage({ params }: Props) {
               </div>
             ))}
           </dl>
-          <Link href="/contact#enquire" className="btn btn-primary mt-4 w-full">Plan your trek</Link>
+          <Link href="/contact#enquire" className="btn btn-primary mt-4 w-full">
+            Plan your trek
+          </Link>
         </aside>
       </div>
 
       <section className="wrap mt-20" aria-labelledby="routes-heading">
-        <h2 id="routes-heading" className="text-step-4 text-navy">Routes and trek options</h2>
+        <h2 id="routes-heading" className="text-step-4 text-navy">
+          Routes and trek options
+        </h2>
         <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {t.routes.map((r) => (
             <li key={r.name} className="bg-white p-6 shadow-[0_4px_3px_rgb(0_0_0/.08)]">
@@ -83,14 +91,20 @@ export default async function TrekPage({ params }: Props) {
 
       {tours.length > 0 && (
         <section className="wrap mt-20" aria-labelledby="tours-heading">
-          <h2 id="tours-heading" className="text-step-4 text-navy">{t.name} tours</h2>
-          <div className="mt-8"><TourGrid tours={tours} /></div>
+          <h2 id="tours-heading" className="text-step-4 text-navy">
+            {t.name} tours
+          </h2>
+          <div className="mt-8">
+            <TourGrid tours={tours} />
+          </div>
         </section>
       )}
 
       <div className="wrap mt-20 grid gap-16 lg:grid-cols-[22rem_1fr]">
         <section aria-labelledby="pack-heading">
-          <h2 id="pack-heading" className="text-step-3 text-navy">What to pack</h2>
+          <h2 id="pack-heading" className="text-step-3 text-navy">
+            What to pack
+          </h2>
           <ul className="mt-6 space-y-2">
             {t.pack.map((p) => (
               <li key={p} className="flex gap-3 text-ink/85">
@@ -100,12 +114,18 @@ export default async function TrekPage({ params }: Props) {
             ))}
           </ul>
           {t.guide && (
-            <Link href={t.guide.href} className="mt-6 inline-block font-bold text-navy underline underline-offset-4">Read: {t.guide.title}</Link>
+            <Link href={t.guide.href} className="mt-6 inline-block font-bold text-navy underline underline-offset-4">
+              Read: {t.guide.title}
+            </Link>
           )}
         </section>
         <section aria-labelledby="faq-heading">
-          <h2 id="faq-heading" className="text-step-3 text-navy">Questions</h2>
-          <div className="mt-6"><FaqList faqs={t.faqs} /></div>
+          <h2 id="faq-heading" className="text-step-3 text-navy">
+            Questions
+          </h2>
+          <div className="mt-6">
+            <FaqList faqs={t.faqs} />
+          </div>
         </section>
       </div>
 

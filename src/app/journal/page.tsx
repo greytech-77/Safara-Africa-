@@ -26,7 +26,9 @@ export default function JournalPage() {
                     <Image src={p.cover.src} alt={p.cover.alt} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
                   </div>
                 )}
-                <time dateTime={p.date.toISOString()} className="mt-4 block text-step--1 text-slate">{formatDate(p.date)}</time>
+                <time dateTime={p.date.toISOString()} className="mt-4 block text-step--1 text-slate">
+                  {formatDate(p.date)}
+                </time>
                 <h2 className="mt-1 text-step-2 text-navy group-hover:text-gold">{p.title}</h2>
                 <p className="mt-2 text-ink/80">{p.excerpt}</p>
               </Link>

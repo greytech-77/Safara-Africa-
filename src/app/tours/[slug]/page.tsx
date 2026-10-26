@@ -31,7 +31,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function TourPage({ params }: Props) {
   const tour = getTour((await params).slug);
   if (!tour) notFound();
-  const others = getTours().filter((t) => t.slug !== tour.slug && t.country === tour.country).slice(0, 3);
+  const others = getTours()
+    .filter((t) => t.slug !== tour.slug && t.country === tour.country)
+    .slice(0, 3);
 
   const ld = {
     '@context': 'https://schema.org',
@@ -56,9 +58,13 @@ export default async function TourPage({ params }: Props) {
         <Image src={tour.hero.src} alt={tour.hero.alt} fill priority sizes="100vw" className="-z-10 object-cover" />
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-t from-navy-deep/90 via-navy/30 to-navy/30" />
         <div className="wrap pb-14 pt-40">
-          <p className="font-semibold text-[#dce2e6]">{tour.days} days, {tour.style.toLowerCase()}</p>
+          <p className="font-semibold text-[#dce2e6]">
+            {tour.days} days, {tour.style.toLowerCase()}
+          </p>
           <h1 className="mt-3 max-w-[14ch] text-step-6">{tour.title}</h1>
-          <div className="mt-10"><RouteLine route={tour.route} tone="light" size="lg" /></div>
+          <div className="mt-10">
+            <RouteLine route={tour.route} tone="light" size="lg" />
+          </div>
         </div>
       </section>
 
@@ -82,19 +88,29 @@ export default async function TourPage({ params }: Props) {
           {tour.idealFor.length > 0 && (
             <div>
               <h2 className="font-sans text-step-0 font-bold text-navy">Who it suits</h2>
-              <ul className="mt-3 space-y-2 text-ink/85">{tour.idealFor.map((x) => <li key={x}>{x}</li>)}</ul>
+              <ul className="mt-3 space-y-2 text-ink/85">
+                {tour.idealFor.map((x) => (
+                  <li key={x}>{x}</li>
+                ))}
+              </ul>
             </div>
           )}
           {tour.included.length > 0 && (
             <div>
               <h2 className="font-sans text-step-0 font-bold text-navy">Included</h2>
-              <ul className="mt-3 space-y-2 text-ink/85">{tour.included.map((x) => <li key={x}>{x}</li>)}</ul>
+              <ul className="mt-3 space-y-2 text-ink/85">
+                {tour.included.map((x) => (
+                  <li key={x}>{x}</li>
+                ))}
+              </ul>
             </div>
           )}
           <div className="bg-navy p-6 text-[#f4f5f0]">
             {tour.priceFrom && <p className="text-step--1 text-[#c7d0d8]">From {tour.priceFrom} per person</p>}
             <p className="font-display text-step-2">Make this journey yours</p>
-            <Link href={`/contact?tour=${tour.slug}#enquire`} className="btn btn-primary mt-5 w-full">Enquire about this trip</Link>
+            <Link href={`/contact?tour=${tour.slug}#enquire`} className="btn btn-primary mt-5 w-full">
+              Enquire about this trip
+            </Link>
             {tour.itineraryUrl && (
               <a href={tour.itineraryUrl} target="_blank" rel="noopener" className="btn btn-outline-light mt-3 w-full">
                 View day-by-day itinerary
@@ -106,8 +122,12 @@ export default async function TourPage({ params }: Props) {
 
       {others.length > 0 && (
         <section className="wrap mt-24" aria-labelledby="more">
-          <h2 id="more" className="text-step-3 text-navy">Other journeys</h2>
-          <div className="mt-8"><TourGrid tours={others} /></div>
+          <h2 id="more" className="text-step-3 text-navy">
+            Other journeys
+          </h2>
+          <div className="mt-8">
+            <TourGrid tours={others} />
+          </div>
         </section>
       )}
     </>

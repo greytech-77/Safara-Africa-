@@ -4,11 +4,18 @@ const FIELDS = ['name', 'email', 'phone', 'country', 'dates', 'travellers', 'tou
 type Enquiry = Record<(typeof FIELDS)[number], string>;
 
 const LABELS: Record<keyof Enquiry, string> = {
-  name: 'Name', email: 'Email', phone: 'Phone', country: 'Country', dates: 'Travel dates',
-  travellers: 'Travellers', tour: 'Journey', message: 'Message',
+  name: 'Name',
+  email: 'Email',
+  phone: 'Phone',
+  country: 'Country',
+  dates: 'Travel dates',
+  travellers: 'Travellers',
+  tour: 'Journey',
+  message: 'Message',
 };
 
-const escapeHtml = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
+const escapeHtml = (s: string) =>
+  s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
 
 export async function POST(req: Request) {
   let raw: Record<string, unknown>;
@@ -21,12 +28,21 @@ export async function POST(req: Request) {
   // Honeypot filled → pretend success so bots learn nothing.
   if (typeof raw.company === 'string' && raw.company.trim() !== '') return NextResponse.json({ ok: true });
 
-  const e = Object.fromEntries(FIELDS.map((f) => [f, String(raw[f] ?? '').trim().slice(0, 4000)])) as Enquiry;
+  const e = Object.fromEntries(
+    FIELDS.map((f) => [
+      f,
+      String(raw[f] ?? '')
+        .trim()
+        .slice(0, 4000),
+    ]),
+  ) as Enquiry;
 
   if (!e.name) return NextResponse.json({ error: 'Add your name.' }, { status: 400 });
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.email)) return NextResponse.json({ error: 'Add a valid email address.' }, { status: 400 });
 
-  const text = FIELDS.filter((f) => e[f]).map((f) => `${LABELS[f]}: ${e[f]}`).join('\n');
+  const text = FIELDS.filter((f) => e[f])
+    .map((f) => `${LABELS[f]}: ${e[f]}`)
+    .join('\n');
 
   try {
     if (process.env.RESEND_API_KEY) {

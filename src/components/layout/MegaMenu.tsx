@@ -136,12 +136,16 @@ function Panel({ item }: { item: MenuItem }) {
         <div className="grid auto-cols-fr grid-flow-col gap-10">
           {item.groups.map((group, i) => (
             <div key={group.heading ?? i}>
-              {group.heading && <h2 className="mb-4 font-sans text-step--1 font-bold uppercase tracking-[0.12em] text-slate">{group.heading}</h2>}
+              {group.heading && (
+                <h2 className="mb-4 font-sans text-step--1 font-bold uppercase tracking-[0.12em] text-slate">{group.heading}</h2>
+              )}
               <ul className="space-y-3">
                 {group.links.map((link) => (
                   <li key={link.href + link.label}>
                     <Link href={link.href} className="sub-link group/link block">
-                      <span className="font-display text-step-1 text-navy transition-colors duration-300 group-hover/link:text-gold">{link.label}</span>
+                      <span className="font-display text-step-1 text-navy transition-colors duration-300 group-hover/link:text-gold">
+                        {link.label}
+                      </span>
                       {link.note && <span className="block text-step--1 font-normal text-slate">{link.note}</span>}
                     </Link>
                   </li>
@@ -167,7 +171,9 @@ function Panel({ item }: { item: MenuItem }) {
                   />
                 </div>
                 <p className="mt-3 font-display text-step-1 text-navy group-hover/card:text-gold">{card.title}</p>
-                <p className="text-step--1 font-bold text-gold">{card.cta} <span className="arrow group-hover/card:translate-x-1">→</span></p>
+                <p className="text-step--1 font-bold text-gold">
+                  {card.cta} <span className="arrow group-hover/card:translate-x-1">→</span>
+                </p>
               </Link>
             </li>
           ))}
@@ -186,7 +192,9 @@ function TilesPanel({ tiles }: { tiles: NonNullable<MenuItem['tiles']> }) {
         <ul className="flex gap-6 text-step--1 font-bold">
           {(tiles.links ?? []).map((link) => (
             <li key={link.href}>
-              <Link href={link.href} className="text-gold hover:text-gold-dark">{link.label} <span className="arrow">→</span></Link>
+              <Link href={link.href} className="text-gold hover:text-gold-dark">
+                {link.label} <span className="arrow">→</span>
+              </Link>
             </li>
           ))}
         </ul>
@@ -194,7 +202,10 @@ function TilesPanel({ tiles }: { tiles: NonNullable<MenuItem['tiles']> }) {
       <ul className={`${tiles.heading || tiles.links?.length ? 'mt-6' : ''} grid grid-cols-4 gap-5`}>
         {tiles.items.map((tile) => (
           <li key={tile.href}>
-            <Link href={tile.href} className="group/tile block h-full bg-white p-2.5 shadow-[0_4px_3px_rgb(0_0_0/.12)] transition-shadow hover:shadow-[0_10px_24px_-8px_rgb(31_46_64/.35)]">
+            <Link
+              href={tile.href}
+              className="group/tile block h-full bg-white p-2.5 shadow-[0_4px_3px_rgb(0_0_0/.12)] transition-shadow hover:shadow-[0_10px_24px_-8px_rgb(31_46_64/.35)]"
+            >
               <div className="relative h-[206px] overflow-hidden bg-salt-deep">
                 <Image
                   src={tile.image.src}
@@ -204,7 +215,9 @@ function TilesPanel({ tiles }: { tiles: NonNullable<MenuItem['tiles']> }) {
                   className="object-cover transition-transform duration-800 group-hover/tile:scale-[1.05]"
                 />
               </div>
-              <p className="mt-3 px-1 font-sans text-step--1 font-bold uppercase tracking-[0.06em] text-navy group-hover/tile:text-gold">{tile.title}</p>
+              <p className="mt-3 px-1 font-sans text-step--1 font-bold uppercase tracking-[0.06em] text-navy group-hover/tile:text-gold">
+                {tile.title}
+              </p>
               <p className="px-1 pb-1 text-step--1 text-slate">{tile.cta}</p>
             </Link>
           </li>

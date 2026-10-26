@@ -10,7 +10,19 @@ import { treks } from '@/content/treks';
 import { getPosts, getTours } from '@/lib/content';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const pages = ['', '/tours', '/journey', '/destinations', '/beaches', '/trekking', '/journal', '/faqs', '/about', '/about/team', '/contact'];
+  const pages = [
+    '',
+    '/tours',
+    '/journey',
+    '/destinations',
+    '/beaches',
+    '/trekking',
+    '/journal',
+    '/faqs',
+    '/about',
+    '/about/team',
+    '/contact',
+  ];
   const paths = [
     ...pages,
     ...getTours().map((t) => `/tours/${t.slug}`),

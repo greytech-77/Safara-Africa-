@@ -49,59 +49,89 @@ export default async function ParkPage({ params }: Props) {
     <>
       <Header overlay current={`/destinations/${country.slug}`} />
       <PageHero image={p.image}>
-        <Breadcrumb items={[{ label: 'Destinations', href: '/destinations' }, { label: country.name, href: `/destinations/${country.slug}` }, { label: p.name }]} />
+        <Breadcrumb
+          items={[
+            { label: 'Destinations', href: '/destinations' },
+            { label: country.name, href: `/destinations/${country.slug}` },
+            { label: p.name },
+          ]}
+        />
         <h1 className="mt-4 max-w-[16ch] text-step-6">{p.name}</h1>
         <p className="mt-4 max-w-[46ch] text-step-1 text-[#dce2e6]">{p.teaser}</p>
       </PageHero>
 
       <div className="wrap grid gap-16 pt-16 lg:grid-cols-[1fr_22rem]">
         <section aria-labelledby="explore-heading">
-          <h2 id="explore-heading" className="text-step-4 text-navy">Explore {p.name}</h2>
+          <h2 id="explore-heading" className="text-step-4 text-navy">
+            Explore {p.name}
+          </h2>
           <div className="prose-safara mt-6">
-            {p.intro.map((t) => <p key={t.slice(0, 40)}>{t}</p>)}
+            {p.intro.map((t) => (
+              <p key={t.slice(0, 40)}>{t}</p>
+            ))}
           </div>
         </section>
         <aside aria-labelledby="more-heading" className="h-fit bg-white p-6 shadow-[0_4px_3px_rgb(0_0_0/.08)]">
-          <h2 id="more-heading" className="font-sans text-step-0 font-bold uppercase tracking-[0.08em] text-slate">Explore more</h2>
+          <h2 id="more-heading" className="font-sans text-step-0 font-bold uppercase tracking-[0.08em] text-slate">
+            Explore more
+          </h2>
           <ul className="mt-4 space-y-3">
             {p.highlights.map((h) => (
               <li key={h} className="flex items-start gap-3 font-semibold text-navy">
-                <svg aria-hidden="true" viewBox="0 0 16 16" className="mt-1 size-4 shrink-0 fill-gold"><path d="M6.2 11.6 2.6 8l1.1-1.1 2.5 2.5 6.1-6.1L13.4 4.4z" /></svg>
+                <svg aria-hidden="true" viewBox="0 0 16 16" className="mt-1 size-4 shrink-0 fill-gold">
+                  <path d="M6.2 11.6 2.6 8l1.1-1.1 2.5 2.5 6.1-6.1L13.4 4.4z" />
+                </svg>
                 {h}
               </li>
             ))}
           </ul>
-          <Link href="/contact#enquire" className="btn btn-primary mt-6 w-full">Plan a trip to {p.name}</Link>
+          <Link href="/contact#enquire" className="btn btn-primary mt-6 w-full">
+            Plan a trip to {p.name}
+          </Link>
         </aside>
       </div>
 
       <section className="wrap mt-20" aria-labelledby="when-heading">
         <p className="text-step--1 font-bold uppercase tracking-[0.14em] text-gold">Month-by-month guide</p>
-        <h2 id="when-heading" className="mt-1 text-step-3 text-navy">When to visit</h2>
+        <h2 id="when-heading" className="mt-1 text-step-3 text-navy">
+          When to visit
+        </h2>
         <p className="measure mt-3 text-slate">{p.bestTime}</p>
-        <div className="mt-6"><MonthRow months={p.months} /></div>
+        <div className="mt-6">
+          <MonthRow months={p.months} />
+        </div>
       </section>
 
       {tours.length > 0 && (
         <section className="wrap mt-20" aria-labelledby="tours-heading">
           <p className="text-step--1 font-bold uppercase tracking-[0.14em] text-gold">Sample itineraries</p>
-          <h2 id="tours-heading" className="mt-1 text-step-4 text-navy">Trips to inspire</h2>
-          <div className="mt-8"><TourGrid tours={tours} /></div>
+          <h2 id="tours-heading" className="mt-1 text-step-4 text-navy">
+            Trips to inspire
+          </h2>
+          <div className="mt-8">
+            <TourGrid tours={tours} />
+          </div>
         </section>
       )}
 
       {stays.length > 0 && (
         <section className="wrap mt-20" aria-labelledby="stay-heading">
-          <h2 id="stay-heading" className="text-step-4 text-navy">Where to stay</h2>
+          <h2 id="stay-heading" className="text-step-4 text-navy">
+            Where to stay
+          </h2>
           <div className="mt-8">
-            <ImageCards items={stays.map((a) => ({ title: a.name, meta: a.area, text: a.teaser, image: a.image, href: `/accommodations/${a.slug}` }))} />
+            <ImageCards
+              items={stays.map((a) => ({ title: a.name, meta: a.area, text: a.teaser, image: a.image, href: `/accommodations/${a.slug}` }))}
+            />
           </div>
         </section>
       )}
 
       {related.length > 0 && (
         <section className="wrap mt-20" aria-labelledby="related-heading">
-          <h2 id="related-heading" className="text-step-4 text-navy">Related national parks</h2>
+          <h2 id="related-heading" className="text-step-4 text-navy">
+            Related national parks
+          </h2>
           <div className="mt-8">
             <ImageCards items={related.map((o) => ({ title: o.name, text: o.teaser, image: o.image, href: parkHref(o) }))} />
           </div>

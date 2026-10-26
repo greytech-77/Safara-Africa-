@@ -48,7 +48,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </a>
         <JsonLd data={orgLd} />
         {/* Each page renders its own <Header> so it can sit over a hero photo or on the plain ground. */}
-        <div id="main" className="flex-1">{children}</div>
+        <div id="main" className="flex-1">
+          {children}
+        </div>
         <Footer />
         <FloatingCta />
         <Reveal />

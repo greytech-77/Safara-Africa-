@@ -44,44 +44,72 @@ export default function EnquiryForm({ tours, preselect }: { tours: { slug: strin
       {/* Honeypot: hidden from people, bots fill it */}
       <input type="text" name="company" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
 
-      <label className={label}>Your name
+      <label className={label}>
+        Your name
         <input className={field} name="name" required autoComplete="name" />
       </label>
-      <label className={label}>Email
+      <label className={label}>
+        Email
         <input className={field} name="email" type="email" required autoComplete="email" />
       </label>
-      <label className={label}>Phone or WhatsApp <span className="font-normal text-slate">(optional)</span>
+      <label className={label}>
+        Phone or WhatsApp <span className="font-normal text-slate">(optional)</span>
         <input className={field} name="phone" type="tel" autoComplete="tel" />
       </label>
-      <label className={label}>Country of residence
+      <label className={label}>
+        Country of residence
         <input className={field} name="country" autoComplete="country-name" />
       </label>
-      <label className={label}>Travel dates
+      <label className={label}>
+        Travel dates
         <input className={field} name="dates" placeholder="e.g. late June 2027, 10 days" />
       </label>
-      <label className={label}>Travellers
+      <label className={label}>
+        Travellers
         <input className={field} name="travellers" placeholder="2 adults, 1 child (8)" />
       </label>
-      <label className={`${label} sm:col-span-2`}>Journey you are interested in
+      <label className={`${label} sm:col-span-2`}>
+        Journey you are interested in
         <select className={field} name="tour" defaultValue={initialTour}>
           <option value="">Something tailor-made</option>
-          {tours.map((t) => <option key={t.slug} value={t.label}>{t.label}</option>)}
+          {tours.map((t) => (
+            <option key={t.slug} value={t.label}>
+              {t.label}
+            </option>
+          ))}
         </select>
       </label>
-      <label className={`${label} sm:col-span-2`}>Tell us about your trip
-        <textarea className={field} name="message" rows={5} placeholder="What you'd love to see, how you like to travel, any celebrations or special needs" />
+      <label className={`${label} sm:col-span-2`}>
+        Tell us about your trip
+        <textarea
+          className={field}
+          name="message"
+          rows={5}
+          placeholder="What you'd love to see, how you like to travel, any celebrations or special needs"
+        />
       </label>
 
       <div className="flex flex-wrap items-center gap-4 sm:col-span-2">
         <button type="submit" className="btn btn-primary" disabled={status.kind === 'sending'}>
-          {status.kind === 'sending' ? <><span aria-hidden="true" className="spinner" />Sending…</> : 'Send enquiry'}
+          {status.kind === 'sending' ? (
+            <>
+              <span aria-hidden="true" className="spinner" />
+              Sending…
+            </>
+          ) : (
+            'Send enquiry'
+          )}
         </button>
         <p className="text-step--1 text-slate">A travel consultant replies within one working day.</p>
       </div>
 
       {status.kind === 'error' && (
         <p role="alert" className="rounded-lg bg-white/80 p-4 text-step--1 sm:col-span-2">
-          {status.message} You can also email <a className="font-bold underline" href={`mailto:${site.email}`}>{site.email}</a>.
+          {status.message} You can also email{' '}
+          <a className="font-bold underline" href={`mailto:${site.email}`}>
+            {site.email}
+          </a>
+          .
         </p>
       )}
     </form>

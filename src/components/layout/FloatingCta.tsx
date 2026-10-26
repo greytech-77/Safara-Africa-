@@ -38,8 +38,12 @@ export default function FloatingCta() {
       className="float-cta fixed inset-x-0 bottom-0 z-20 border-t border-navy/10 bg-salt/95 px-4 py-3 backdrop-blur-sm lg:hidden"
     >
       <div className="mx-auto grid max-w-md grid-cols-2 gap-3">
-        <a href={`tel:${site.phone.tel}`} className="btn btn-outline text-navy">Call us</a>
-        <Link href="/contact#enquire" className="btn btn-primary">Enquire</Link>
+        <a href={`tel:${site.phone.tel}`} className="btn btn-outline text-navy">
+          Call us
+        </a>
+        <Link href="/contact#enquire" className="btn btn-primary">
+          Enquire
+        </Link>
       </div>
     </div>
   );

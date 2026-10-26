@@ -38,7 +38,9 @@ export default function TourGrid({ tours, filters = false }: { tours: Tour[]; fi
         </div>
       )}
       <div data-reveal-stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {shown.map((t) => <TourCard key={t.slug} tour={t} />)}
+        {shown.map((t) => (
+          <TourCard key={t.slug} tour={t} />
+        ))}
       </div>
     </>
   );

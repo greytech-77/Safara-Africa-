@@ -16,7 +16,9 @@ export default function ToursPage() {
       <Header current="/tours" />
       <section className="wrap pt-16">
         <h1 className="text-step-5 text-navy">Journeys through Tanzania</h1>
-        <p className="measure mt-4 text-slate">Pick a route to start from. Every one can be lengthened, shortened, upgraded or reshaped entirely.</p>
+        <p className="measure mt-4 text-slate">
+          Pick a route to start from. Every one can be lengthened, shortened, upgraded or reshaped entirely.
+        </p>
       </section>
       <section className="wrap mt-10">
         <TourGrid tours={tours} filters />

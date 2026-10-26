@@ -17,8 +17,14 @@ export type TeamMember = {
 };
 
 export const departments: { name: TeamMember['department']; intro: string }[] = [
-  { name: 'Reservations', intro: 'The people who turn your ideas into a trip that runs smoothly, from the first quote to the last transfer.' },
-  { name: 'Guiding', intro: 'The people who share the bush with you, and make every game drive and every climb something you will talk about for years.' },
+  {
+    name: 'Reservations',
+    intro: 'The people who turn your ideas into a trip that runs smoothly, from the first quote to the last transfer.',
+  },
+  {
+    name: 'Guiding',
+    intro: 'The people who share the bush with you, and make every game drive and every climb something you will talk about for years.',
+  },
   { name: 'Sales', intro: 'Your first conversation with us, and the people who listen hardest to what you are hoping for.' },
   { name: 'Marketing and brand', intro: 'The storytellers who share Tanzania with the world, honestly and with care.' },
 ];

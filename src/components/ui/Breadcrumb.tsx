@@ -10,7 +10,12 @@ export default function Breadcrumb({ items, tone = 'light' }: { items: Crumb[]; 
   const ld = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
-    itemListElement: all.map((c, i) => ({ '@type': 'ListItem', position: i + 1, name: c.label, ...(c.href ? { item: `${site.url}${c.href}` } : {}) })),
+    itemListElement: all.map((c, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: c.label,
+      ...(c.href ? { item: `${site.url}${c.href}` } : {}),
+    })),
   };
   const muted = tone === 'light' ? 'text-[#dce2e6]' : 'text-slate';
 
@@ -22,7 +27,9 @@ export default function Breadcrumb({ items, tone = 'light' }: { items: Crumb[]; 
           <li key={c.label} className="flex items-center gap-2">
             {i > 0 && <span aria-hidden="true">›</span>}
             {c.href && i < all.length - 1 ? (
-              <Link href={c.href} className="underline underline-offset-4 hover:no-underline">{c.label}</Link>
+              <Link href={c.href} className="underline underline-offset-4 hover:no-underline">
+                {c.label}
+              </Link>
             ) : (
               <span aria-current="page">{c.label}</span>
             )}

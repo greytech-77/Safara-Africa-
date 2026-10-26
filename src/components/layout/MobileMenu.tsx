@@ -103,21 +103,28 @@ export default function MobileMenu({ items, overlay }: { items: MenuItem[]; over
                       className="flex w-full cursor-pointer items-center justify-between py-4 text-left font-display text-step-2 text-navy"
                     >
                       {item.label}
-                      <span aria-hidden="true" className="arrow text-gold">→</span>
+                      <span aria-hidden="true" className="arrow text-gold">
+                        →
+                      </span>
                     </button>
                   </li>
                 ))}
               </ul>
             ) : (
               <>
-                <button type="button" onClick={() => setLevelId(null)} className="cursor-pointer py-2 text-step--1 font-bold text-navy"><span aria-hidden="true" className="arrow arrow-back">←</span>
-                  {' '}Back
+                <button type="button" onClick={() => setLevelId(null)} className="cursor-pointer py-2 text-step--1 font-bold text-navy">
+                  <span aria-hidden="true" className="arrow arrow-back">
+                    ←
+                  </span>{' '}
+                  Back
                 </button>
                 <h2 className="mt-3 text-step-3 text-navy">{level.label}</h2>
 
                 {level.groups.map((group, i) => (
                   <div key={group.heading ?? i} className="mt-6">
-                    {group.heading && <h3 className="font-sans text-step--1 font-bold uppercase tracking-[0.12em] text-slate">{group.heading}</h3>}
+                    {group.heading && (
+                      <h3 className="font-sans text-step--1 font-bold uppercase tracking-[0.12em] text-slate">{group.heading}</h3>
+                    )}
                     <ul className="mt-2 divide-y divide-navy/10">
                       {group.links.map((link) => (
                         <li key={link.href + link.label}>
@@ -151,9 +158,15 @@ export default function MobileMenu({ items, overlay }: { items: MenuItem[]; over
           </div>
 
           <div className="wrap grid gap-3 border-t border-navy/10 py-6 sm:grid-cols-3">
-            <a href={`tel:${site.phone.tel}`} className="btn btn-outline text-navy">Call {site.phone.display}</a>
-            <a href={`https://wa.me/${site.whatsapp}`} className="btn btn-outline text-navy">WhatsApp</a>
-            <Link href="/contact#enquire" className="btn btn-primary">Plan your trip</Link>
+            <a href={`tel:${site.phone.tel}`} className="btn btn-outline text-navy">
+              Call {site.phone.display}
+            </a>
+            <a href={`https://wa.me/${site.whatsapp}`} className="btn btn-outline text-navy">
+              WhatsApp
+            </a>
+            <Link href="/contact#enquire" className="btn btn-primary">
+              Plan your trip
+            </Link>
           </div>
         </div>
       )}

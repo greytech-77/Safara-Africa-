@@ -22,13 +22,23 @@ export default function ImageCards({ items, columns = 3 }: { items: ImageCardIte
               />
             </div>
             {item.meta && <p className="mt-4 text-step--1 font-semibold uppercase tracking-[0.08em] text-slate">{item.meta}</p>}
-            <h3 className={`${item.meta ? 'mt-1' : 'mt-4'} text-step-2 text-navy ${item.href ? 'transition-colors duration-300 group-hover:text-gold' : ''}`}>{item.title}</h3>
+            <h3
+              className={`${item.meta ? 'mt-1' : 'mt-4'} text-step-2 text-navy ${item.href ? 'transition-colors duration-300 group-hover:text-gold' : ''}`}
+            >
+              {item.title}
+            </h3>
             {item.text && <p className="mt-1 text-ink/80">{item.text}</p>}
           </>
         );
         return (
           <li key={item.title}>
-            {item.href ? <Link href={item.href} className="group block">{body}</Link> : <div className="group">{body}</div>}
+            {item.href ? (
+              <Link href={item.href} className="group block">
+                {body}
+              </Link>
+            ) : (
+              <div className="group">{body}</div>
+            )}
           </li>
         );
       })}

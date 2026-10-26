@@ -47,7 +47,9 @@ export default async function TravelStylePage({ params }: Props) {
 
       <section className="wrap pt-16">
         <div className="prose-safara">
-          {s.intro.map((p) => <p key={p}>{p}</p>)}
+          {s.intro.map((p) => (
+            <p key={p}>{p}</p>
+          ))}
         </div>
         <ul className="mt-12 grid gap-x-10 gap-y-8 md:grid-cols-3">
           {s.points.map((p) => (
@@ -57,13 +59,19 @@ export default async function TravelStylePage({ params }: Props) {
             </li>
           ))}
         </ul>
-        <Link href="/contact#enquire" className="btn btn-primary mt-12">Plan your trip</Link>
+        <Link href="/contact#enquire" className="btn btn-primary mt-12">
+          Plan your trip
+        </Link>
       </section>
 
       {tours.length > 0 && (
         <section className="wrap mt-24" aria-labelledby="journeys">
-          <h2 id="journeys" className="text-step-3 text-navy">Journeys that suit</h2>
-          <div className="mt-8"><TourGrid tours={tours} /></div>
+          <h2 id="journeys" className="text-step-3 text-navy">
+            Journeys that suit
+          </h2>
+          <div className="mt-8">
+            <TourGrid tours={tours} />
+          </div>
         </section>
       )}
     </>
