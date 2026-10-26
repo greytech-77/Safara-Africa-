@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Gloock, Karla } from 'next/font/google';
+import Analytics from '@/components/layout/Analytics';
 import FloatingCta from '@/components/layout/FloatingCta';
 import Footer from '@/components/layout/Footer';
 import JsonLd from '@/components/ui/JsonLd';
@@ -54,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <FloatingCta />
         <Reveal />
+        <Analytics />
       </body>
     </html>
   );

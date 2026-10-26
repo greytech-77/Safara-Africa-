@@ -1,5 +1,6 @@
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { POST } from '@/app/api/enquiry/route';
+import { isRateLimited, resetRateLimit } from '@/lib/spam-guard';
 
 const post = (body: unknown) =>
   POST(
@@ -11,7 +12,12 @@ const post = (body: unknown) =>
   );
 
 describe('POST /api/enquiry', () => {
-  afterEach(() => vi.unstubAllEnvs());
+  beforeEach(() => resetRateLimit());
+  afterEach(() => {
+    vi.unstubAllEnvs();
+    vi.unstubAllGlobals();
+    vi.restoreAllMocks();
+  });
 
   it('rejects a missing name', async () => {
     const res = await post({ email: 'a@b.co' });
@@ -44,5 +50,32 @@ describe('POST /api/enquiry', () => {
     vi.spyOn(console, 'warn').mockImplementation(() => {});
     const res = await post({ name: 'Asha', email: 'asha@example.com' });
     expect(res.status).toBe(503);
+  });
+
+  it('rejects a missing Turnstile token when a secret is configured', async () => {
+    vi.stubEnv('TURNSTILE_SECRET_KEY', 'test-secret');
+    const res = await post({ name: 'Asha', email: 'asha@example.com' });
+    expect(res.status).toBe(400);
+  });
+
+  it('accepts a token that Turnstile verifies', async () => {
+    vi.stubEnv('TURNSTILE_SECRET_KEY', 'test-secret');
+    vi.stubEnv('NODE_ENV', 'development');
+    vi.stubEnv('RESEND_API_KEY', '');
+    vi.stubEnv('ENQUIRY_WEBHOOK_URL', '');
+    vi.spyOn(console, 'warn').mockImplementation(() => {});
+    const fetchMock = vi.fn().mockResolvedValue(new Response(JSON.stringify({ success: true })));
+    vi.stubGlobal('fetch', fetchMock);
+    const res = await post({ name: 'Asha', email: 'asha@example.com', 'cf-turnstile-response': 'token' });
+    expect(res.status).toBe(200);
+    expect(fetchMock).toHaveBeenCalledWith('https://challenges.cloudflare.com/turnstile/v0/siteverify', expect.anything());
+  });
+
+  it('limits repeated enquiries from one address', async () => {
+    vi.spyOn(console, 'warn').mockImplementation(() => {});
+    for (let i = 0; i < 5; i++) expect(isRateLimited('203.0.113.9', 1000 + i)).toBe(false);
+    expect(isRateLimited('203.0.113.9', 2000)).toBe(true);
+    // The window slides: ten minutes later the address is free again.
+    expect(isRateLimited('203.0.113.9', 2000 + 10 * 60 * 1000 + 1)).toBe(false);
   });
 });

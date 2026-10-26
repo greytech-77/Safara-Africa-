@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { clientIp, isRateLimited, verifyTurnstile } from '@/lib/spam-guard';
 
 const FIELDS = ['name', 'email', 'phone', 'country', 'dates', 'travellers', 'tour', 'message'] as const;
 type Enquiry = Record<(typeof FIELDS)[number], string>;
@@ -27,6 +28,14 @@ export async function POST(req: Request) {
 
   // Honeypot filled → pretend success so bots learn nothing.
   if (typeof raw.company === 'string' && raw.company.trim() !== '') return NextResponse.json({ ok: true });
+
+  const ip = clientIp(req);
+  if (isRateLimited(ip)) {
+    return NextResponse.json({ error: 'Too many enquiries from this connection. Please try again later.' }, { status: 429 });
+  }
+  if (!(await verifyTurnstile(raw['cf-turnstile-response'], ip))) {
+    return NextResponse.json({ error: 'The spam check failed. Please reload the page and try again.' }, { status: 400 });
+  }
 
   const e = Object.fromEntries(
     FIELDS.map((f) => [

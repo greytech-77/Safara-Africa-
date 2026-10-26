@@ -74,7 +74,7 @@ export default function HomePage() {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           aria-hidden="true"
           className="absolute inset-0 -z-10 size-full object-cover motion-reduce:hidden"
         >

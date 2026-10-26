@@ -1,8 +1,13 @@
 'use client';
 
 import Link from 'next/link';
+import Script from 'next/script';
 import { useState } from 'react';
 import { site } from '@/config/site';
+import { trackEvent } from '@/lib/analytics';
+
+// Cloudflare Turnstile spam check, shown only when a site key is configured.
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 type Status = { kind: 'idle' } | { kind: 'sending' } | { kind: 'sent' } | { kind: 'error'; message: string };
 
@@ -22,6 +27,7 @@ export default function EnquiryForm({ tours, preselect }: { tours: { slug: strin
       });
       const data = (await res.json().catch(() => ({}))) as { error?: string };
       if (!res.ok) throw new Error(data.error ?? 'The enquiry could not be sent.');
+      trackEvent('generate_lead', { form: 'enquiry', tour: String(body.tour ?? '') || 'tailor-made' });
       setStatus({ kind: 'sent' });
     } catch (err) {
       setStatus({ kind: 'error', message: err instanceof Error ? err.message : 'The enquiry could not be sent.' });
@@ -89,6 +95,13 @@ export default function EnquiryForm({ tours, preselect }: { tours: { slug: strin
           placeholder="What you'd love to see, how you like to travel, any celebrations or special needs"
         />
       </label>
+
+      {TURNSTILE_SITE_KEY && (
+        <div className="sm:col-span-2">
+          <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" strategy="lazyOnload" />
+          <div className="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} />
+        </div>
+      )}
 
       <div className="flex flex-wrap items-center gap-4 sm:col-span-2">
         <button type="submit" className="btn btn-primary" disabled={status.kind === 'sending'}>
