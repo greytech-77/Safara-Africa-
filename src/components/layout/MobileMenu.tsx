@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import Logo from './Logo';
 import type { MenuItem } from '@/config/menu';
 import { site } from '@/config/site';
+import { whatsappLink, whatsappMessage } from '@/lib/whatsapp';
 
 const FOCUSABLE = 'a[href], button:not([disabled])';
 
@@ -161,7 +162,7 @@ export default function MobileMenu({ items, overlay }: { items: MenuItem[]; over
             <a href={`tel:${site.phone.tel}`} className="btn btn-outline text-navy">
               Call {site.phone.display}
             </a>
-            <a href={`https://wa.me/${site.whatsapp}`} className="btn btn-outline text-navy">
+            <a href={whatsappLink(whatsappMessage())} className="btn btn-outline text-navy">
               WhatsApp
             </a>
             <Link href="/contact#enquire" className="btn btn-primary">

@@ -119,7 +119,7 @@ export default async function BeachPage({ params }: Props) {
         </div>
       </section>
 
-      <CtaBlock title="Ready to plan your beach escape?" />
+      <CtaBlock title="Ready to plan your beach escape?" topic={b.name} />
     </>
   );
 }

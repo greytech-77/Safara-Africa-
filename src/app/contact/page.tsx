@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Header from '@/components/layout/Header';
 import EnquiryForm from '@/features/enquiry/components/EnquiryForm';
 import { site } from '@/config/site';
+import { whatsappLink, whatsappMessage } from '@/lib/whatsapp';
 import { getTours } from '@/lib/content';
 
 export const metadata: Metadata = {
@@ -45,7 +46,7 @@ export default async function ContactPage({ searchParams }: Props) {
                 </a>
               </dd>
               <dd>
-                <a className="font-bold text-navy underline underline-offset-4" href={`https://wa.me/${site.whatsapp}`}>
+                <a className="font-bold text-navy underline underline-offset-4" href={whatsappLink(whatsappMessage())}>
                   Message us on WhatsApp
                 </a>
               </dd>

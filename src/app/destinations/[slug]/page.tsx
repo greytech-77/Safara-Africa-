@@ -199,7 +199,7 @@ export default async function CountryPage({ params }: Props) {
         </div>
       </section>
 
-      <CtaBlock />
+      <CtaBlock topic={`${c.name} safari`} />
     </>
   );
 }

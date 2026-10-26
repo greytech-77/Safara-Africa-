@@ -158,7 +158,7 @@ export default async function AccommodationPage({ params }: Props) {
         </section>
       )}
 
-      <CtaBlock title={`Ready to plan your ${country.name} safari?`} />
+      <CtaBlock title={`Ready to plan your ${country.name} safari?`} topic={`a stay at ${a.name}`} />
     </>
   );
 }

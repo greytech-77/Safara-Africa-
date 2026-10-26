@@ -67,7 +67,7 @@ export default async function JourneyTypePage({ params }: Props) {
         </div>
       </section>
 
-      <CtaBlock />
+      <CtaBlock topic={`${j.name} safari`} />
     </>
   );
 }

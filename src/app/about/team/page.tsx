@@ -72,7 +72,10 @@ function MemberCard({ m }: { m: TeamMember }) {
             </li>
           )}
           <li>
-            <a href={`https://wa.me/${whatsapp}`} className="flex items-center gap-2 hover:text-gold">
+            <a
+              href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(`Hello ${m.name ?? `${site.name} ${m.role}`}, I'd like help planning a trip.`)}`}
+              className="flex items-center gap-2 hover:text-gold"
+            >
               <Icon d={CHAT} />
               WhatsApp
             </a>

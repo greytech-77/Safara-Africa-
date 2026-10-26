@@ -1,5 +1,6 @@
 import Logo from './Logo';
 import { site } from '@/config/site';
+import { whatsappLink, whatsappMessage } from '@/lib/whatsapp';
 
 export default function Footer() {
   return (
@@ -37,7 +38,7 @@ export default function Footer() {
               </a>
             </li>
             <li>
-              <a className="hover:text-white" href={`https://wa.me/${site.whatsapp}`}>
+              <a className="hover:text-white" href={whatsappLink(whatsappMessage())}>
                 WhatsApp
               </a>
             </li>

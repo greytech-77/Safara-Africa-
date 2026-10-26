@@ -138,7 +138,7 @@ export default async function ParkPage({ params }: Props) {
         </section>
       )}
 
-      <CtaBlock title={`Ready to plan your ${country.name} safari?`} />
+      <CtaBlock title={`Ready to plan your ${country.name} safari?`} topic={p.name} />
     </>
   );
 }

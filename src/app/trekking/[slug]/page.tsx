@@ -129,7 +129,7 @@ export default async function TrekPage({ params }: Props) {
         </section>
       </div>
 
-      <CtaBlock title="Ready to plan your trek?" />
+      <CtaBlock title="Ready to plan your trek?" topic={t.name} />
     </>
   );
 }
