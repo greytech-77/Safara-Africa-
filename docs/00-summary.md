@@ -107,6 +107,6 @@ Each is planned in `04-feature-roadmap.md` with files, data changes and acceptan
 | 6 | German, French and Spanish, plus a currency switcher | translator, final English copy |
 
 **Also open:**
-- **Lint warnings:** refactor the six React Compiler warnings (menu, month picker, listing filter effects).
+- **Lint warnings:** refactor the six React Compiler warnings (MegaMenu, MobileMenu, MonthPicker effects).
 - **Hero video:** compress it to about 1.5 MB (it still weighs 6.3 MB on disk).
 - **Logo:** replace the PNG logo with an SVG.
