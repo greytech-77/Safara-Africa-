@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import { Gloock, Karla } from 'next/font/google';
-import FloatingCta from '@/components/FloatingCta';
-import Footer from '@/components/Footer';
-import JsonLd from '@/components/JsonLd';
-import Reveal from '@/components/Reveal';
+import FloatingCta from '@/components/layout/FloatingCta';
+import Footer from '@/components/layout/Footer';
+import JsonLd from '@/components/ui/JsonLd';
+import Reveal from '@/components/ui/Reveal';
 import { site } from '@/config/site';
-import './globals.css';
+import '@/styles/globals.css';
 
 const gloock = Gloock({ subsets: ['latin'], weight: '400', variable: '--font-gloock', display: 'swap' });
 const karla = Karla({ subsets: ['latin'], variable: '--font-karla', display: 'swap' });
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     siteName: site.name,
-    images: ['/logo-navy.png'],
+    images: ['/images/brand/logo-navy.png'],
   },
   twitter: { card: 'summary_large_image' },
 };
@@ -27,7 +27,7 @@ const orgLd = {
   '@type': 'TravelAgency',
   name: site.legalName,
   url: site.url,
-  logo: `${site.url}/logo-navy.png`,
+  logo: `${site.url}/images/brand/logo-navy.png`,
   email: site.email,
   telephone: site.phone.tel,
   address: {

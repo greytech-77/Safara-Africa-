@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import Header from '@/components/Header';
-import EnquiryForm from '@/components/EnquiryForm';
+import Header from '@/components/layout/Header';
+import EnquiryForm from '@/features/enquiry/components/EnquiryForm';
 import { site } from '@/config/site';
 import { getTours } from '@/lib/content';
 

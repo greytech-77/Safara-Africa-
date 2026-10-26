@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import Header from '@/components/Header';
-import TourGrid from '@/components/TourGrid';
+import Header from '@/components/layout/Header';
+import TourGrid from '@/features/tours/components/TourGrid';
 import { getTravelStyle, travelStyles } from '@/content/travel-styles';
 import { getTours } from '@/lib/content';
 

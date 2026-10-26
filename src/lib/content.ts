@@ -4,52 +4,9 @@ import path from 'node:path';
 import matter from 'gray-matter';
 import { marked } from 'marked';
 import faqsJson from '@/content/faqs.json';
+import type { Faq, Post, Tour } from '@/types/content';
 
 const CONTENT = path.join(process.cwd(), 'src', 'content');
-
-export type Img = { src: string; alt: string };
-export type Stop = { place: string; nights: number };
-
-export type Tour = {
-  slug: string;
-  title: string;
-  summary: string;
-  days: number;
-  style: 'Private luxury' | 'Fly-in' | 'Guided' | 'Trekking' | 'Beach';
-  // Country slug (content/countries.ts), comfort tier, and the journey/beach/trek slugs this tour belongs to.
-  country: string;
-  tier?: 'Budget' | 'Mid Range' | 'Luxury';
-  tags: string[];
-  order: number;
-  route: Stop[];
-  idealFor: string[];
-  included: string[];
-  hero: Img;
-  gallery: Img[];
-  itineraryUrl?: string;
-  priceFrom?: string;
-  draft: boolean;
-  html: string;
-};
-
-export type Post = {
-  slug: string;
-  title: string;
-  excerpt: string;
-  date: Date;
-  cover?: Img;
-  // Country slugs the article is relevant to.
-  tags: string[];
-  draft: boolean;
-  html: string;
-};
-
-export type Faq = {
-  id: string;
-  question: string;
-  answer: string;
-  topic: 'Planning' | 'Travel' | 'On safari' | 'Booking';
-};
 
 // Fail the build loudly if a content file is missing a required field.
 function need<T>(file: string, key: string, value: T | undefined | null): T {

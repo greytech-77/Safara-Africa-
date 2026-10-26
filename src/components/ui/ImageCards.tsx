@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import type { Img } from '@/lib/content';
+import type { Img } from '@/types/content';
 
 export type ImageCardItem = { title: string; text?: string; meta?: string; image: Img; href?: string };
 

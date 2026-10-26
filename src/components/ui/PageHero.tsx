@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import type { Img } from '@/lib/content';
+import type { Img } from '@/types/content';
 
 // Full-bleed photo hero with a dark fade. Pair with <Header overlay>.
 export default function PageHero({ image, children, short = false }: { image: Img; children: React.ReactNode; short?: boolean }) {

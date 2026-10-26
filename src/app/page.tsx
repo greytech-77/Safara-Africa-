@@ -1,17 +1,17 @@
 import { DM_Sans, Fraunces } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
-import Header from '@/components/Header';
-import Logo from '@/components/Logo';
-import PillarArt, { type PillarArtName } from '@/components/PillarArt';
-import Testimonials from '@/components/Testimonials';
-import TourGrid from '@/components/TourGrid';
+import Header from '@/components/layout/Header';
+import Logo from '@/components/layout/Logo';
+import PillarArt, { type PillarArtName } from '@/components/ui/PillarArt';
+import Testimonials from '@/features/reviews/components/Testimonials';
+import TourGrid from '@/features/tours/components/TourGrid';
 import { testimonials } from '@/content/testimonials';
 import { travelStyles } from '@/content/travel-styles';
 import { formatDate, getPosts, getTours } from '@/lib/content';
 
 const HERO = 'https://images.unsplash.com/photo-1564101160531-4838e8a5f4e7?auto=format&fit=crop&w=2000&q=80';
-const HERO_VIDEO = '/VQpxbxXqeeRh.mp4';
+const HERO_VIDEO = '/videos/hero-migration.mp4';
 // Hero statement only: free stand-ins for Jacada's licensed New Spirit Condensed and CircularXX.
 const heroSerif = Fraunces({ subsets: ['latin'], weight: ['500'], display: 'swap' });
 const heroSans = DM_Sans({ subsets: ['latin'], weight: ['300'], display: 'swap' });
@@ -55,9 +55,9 @@ export default function HomePage() {
 
       {/* Acknowledgement */}
       <section className="relative isolate overflow-hidden py-12 sm:py-14" aria-labelledby="thanks-heading">
-        {/* The wildebeest alone, cut out of the logo artwork (public/wildebeest-navy.png), as a faint watermark. */}
+        {/* The wildebeest alone, cut out of the logo artwork (public/images/brand/wildebeest-navy.png), as a faint watermark. */}
         <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/2 -z-10 w-[min(92vw,820px)] -translate-x-1/2 -translate-y-1/2 opacity-[0.07]">
-          <Image src="/wildebeest-navy.png" alt="" width={662} height={417} className="h-auto w-full" />
+          <Image src="/images/brand/wildebeest-navy.png" alt="" width={662} height={417} className="h-auto w-full" />
         </div>
 
         <div data-reveal className="wrap flex flex-col items-center text-center">

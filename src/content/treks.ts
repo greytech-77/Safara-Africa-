@@ -1,5 +1,5 @@
-import type { Img } from '@/lib/content';
-import { unsplash } from './unsplash';
+import type { Img } from '@/types/content';
+import { unsplash } from '@/lib/unsplash';
 
 // Mountains: the Trekking menu, /trekking and /trekking/[slug].
 // Tours appear on a page when their `tags` include the trek's slug.

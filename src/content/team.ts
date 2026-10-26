@@ -1,4 +1,4 @@
-import type { Img } from '@/lib/content';
+import type { Img } from '@/types/content';
 
 // The team on /about/team, grouped by department in the order listed.
 // TO COMPLETE: add each person's real name and photo (put photos in /public/images/team/).

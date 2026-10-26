@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import type { Tour } from '@/lib/content';
+import type { Tour } from '@/types/content';
 
 // Photo card: duration badge top left, title, price and travel style over a dark fade.
 // On hover the text lifts and a "View trip" line fades in; touch screens always show it.

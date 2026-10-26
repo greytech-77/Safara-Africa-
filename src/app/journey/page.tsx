@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
-import Breadcrumb from '@/components/Breadcrumb';
-import CtaBlock from '@/components/CtaBlock';
-import Header from '@/components/Header';
-import ImageCards from '@/components/ImageCards';
+import Breadcrumb from '@/components/ui/Breadcrumb';
+import CtaBlock from '@/components/ui/CtaBlock';
+import Header from '@/components/layout/Header';
+import ImageCards from '@/components/ui/ImageCards';
 import { journeyTypes } from '@/content/journeys';
 
 export const metadata: Metadata = {

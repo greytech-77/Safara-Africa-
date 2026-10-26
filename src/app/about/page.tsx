@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Header from '@/components/Header';
+import Header from '@/components/layout/Header';
 import { site } from '@/config/site';
 
 export const metadata: Metadata = {

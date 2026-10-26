@@ -1,5 +1,5 @@
-import type { Img } from '@/lib/content';
-import { unsplash } from './unsplash';
+import type { Img } from '@/types/content';
+import { unsplash } from '@/lib/unsplash';
 
 // Safari types: the Journey menu, /journey and /journey/[slug].
 // Tours appear on a page when their `tags` include the type's slug.

@@ -1,5 +1,5 @@
-import type { Img } from '@/lib/content';
-import { unsplash } from './unsplash';
+import type { Img } from '@/types/content';
+import { unsplash } from '@/lib/unsplash';
 
 // Lodges and camps: /accommodations/[slug], listed on their country and park pages.
 // STARTER COPY: confirm these are properties you book, check room types and amenities with each lodge,

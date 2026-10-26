@@ -1,4 +1,4 @@
-import type { MonthRating } from '@/content/beaches';
+import type { MonthRating } from '@/types/content';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const STYLE: Record<MonthRating, { label: string; cls: string }> = {

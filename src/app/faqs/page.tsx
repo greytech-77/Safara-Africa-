@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import Header from '@/components/Header';
-import JsonLd from '@/components/JsonLd';
-import { getFaqs, type Faq } from '@/lib/content';
+import Header from '@/components/layout/Header';
+import JsonLd from '@/components/ui/JsonLd';
+import { getFaqs } from '@/lib/content';
+import type { Faq } from '@/types/content';
 
 export const metadata: Metadata = {
   title: 'Frequently asked questions',

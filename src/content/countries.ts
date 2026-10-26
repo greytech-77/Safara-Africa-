@@ -1,5 +1,5 @@
-import type { Img } from '@/lib/content';
-import { unsplash } from './unsplash';
+import type { Img } from '@/types/content';
+import { unsplash } from '@/lib/unsplash';
 
 // Countries: the Destinations menu, /destinations and /destinations/[slug].
 // Tours appear on a country page when their `country` matches the slug; parks and lodges come from

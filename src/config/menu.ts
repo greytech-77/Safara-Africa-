@@ -4,7 +4,7 @@ import { countries } from '@/content/countries';
 import { journeyTypes } from '@/content/journeys';
 import { travelStyles } from '@/content/travel-styles';
 import { treks } from '@/content/treks';
-import type { Img } from '@/lib/content';
+import type { Img } from '@/types/content';
 
 // The main menu. Header passes this to MegaMenu (desktop) and MobileMenu (phones).
 // Journey, Destinations, Beaches, Trekking and Travel styles are generated from their content files.

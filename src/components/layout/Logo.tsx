@@ -6,7 +6,7 @@ export default function Logo({ tone = 'navy', height = 64, priority = false }: {
   const width = Math.round((height * 1688) / 513);
   return (
     <Image
-      src={tone === 'white' ? '/logo-white.png' : '/logo-navy.png'}
+      src={tone === 'white' ? '/images/brand/logo-white.png' : '/images/brand/logo-navy.png'}
       alt={site.legalName}
       width={width}
       height={height}

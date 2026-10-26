@@ -1,6 +1,5 @@
-import type { Img } from '@/lib/content';
-import type { MonthRating } from './beaches';
-import { unsplash } from './unsplash';
+import type { Img, MonthRating } from '@/types/content';
+import { unsplash } from '@/lib/unsplash';
 
 // National parks and reserves. Each gets a page at /parks/[slug] unless `link` points elsewhere,
 // and appears on its country's page in the order listed here.

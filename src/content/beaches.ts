@@ -1,11 +1,10 @@
-import type { Img } from '@/lib/content';
-import { unsplash } from './unsplash';
+import type { Img, MonthRating } from '@/types/content';
+import { unsplash } from '@/lib/unsplash';
 
 // Islands: the Beaches menu, /beaches and /beaches/[slug].
 // Tours appear on a page when their `tags` include the island's slug.
 // STARTER COPY: have the Safara team review before launch.
 
-export type MonthRating = 'best' | 'good' | 'mixed';
 
 export type Beach = {
   slug: string;

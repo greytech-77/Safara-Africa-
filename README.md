@@ -8,7 +8,7 @@ See [`docs/REBUILD-NOTES.md`](docs/REBUILD-NOTES.md) for how the current site is
 
 ## Run it
 
-Requires Node.js 20.9 or newer (22 LTS recommended).
+Requires Node.js 20.9 or newer (22 LTS recommended, see `.nvmrc`).
 
 ```bash
 npm install
@@ -17,28 +17,44 @@ npm run dev                  # http://localhost:3000
 npm run build && npm start   # production build
 ```
 
+| Script | What it does |
+|---|---|
+| `npm run typecheck` | TypeScript, no output |
+| `npm run lint` | ESLint (Next.js core-web-vitals + TypeScript rules) |
+| `npm run format` / `format:check` | Prettier |
+| `npm test` | Vitest: content integrity and the enquiry API |
+| `npm run check` | all of the above; run before every commit or deploy |
+
 ## Where things live
 
 ```
 src/
-  config/site.ts            business details: name, phone, email, address, hours, nav  ← edit here first
+  app/                      routes only (App Router); URLs follow the folders
+    api/enquiry/route.ts    receives the enquiry form
+    sitemap.ts, robots.ts   SEO files
+  components/
+    layout/                 Header, MegaMenu, MobileMenu, Footer, FloatingCta, Logo
+    ui/                     shared building blocks: Breadcrumb, PageHero, ImageCards, FaqList, JsonLd, month strips…
+  features/
+    tours/components/       TourCard, TourGrid, RouteLine
+    enquiry/components/     EnquiryForm
+    reviews/components/     Testimonials
+  config/
+    site.ts                 business details: name, phone, email, address, hours  ← edit here first
+    menu.ts                 main menu, generated from the content files
   content/
     tours/*.md              one file per journey (route, days, inclusions, photos, body text)
     posts/*.md              journal articles
     faqs.json               FAQ entries grouped by topic
-  lib/content.ts            reads the content files; build fails with a clear message if a field is missing
-  components/               Header, Footer, Logo, TourCard, RouteLine, EnquiryForm, JsonLd
-  app/
-    page.tsx                homepage
-    tours/                  /tours and /tours/[slug]
-    journal/                /journal and /journal/[slug]
-    faqs/, contact/         FAQs, contact + enquiry form
-    api/enquiry/route.ts    receives the enquiry form
-    sitemap.ts, robots.ts   SEO files
-    globals.css             brand colours and type scale
+    *.ts                    countries, parks, lodges, beaches, treks, travel styles, team, testimonials
+  lib/                      content loaders (build fails with a clear message if a field is missing), helpers
+  styles/globals.css        brand colours and type scale
+  types/                    shared TypeScript types
 public/
-  logo-white.png            logo for dark/photo backgrounds
-  logo-navy.png             logo for light backgrounds
+  images/brand/             logos (navy for light backgrounds, white for photos)
+  videos/                   homepage hero video
+tests/                      Vitest tests
+docs/                       audit, restructure report, research and roadmap
 ```
 
 ### Adding a tour

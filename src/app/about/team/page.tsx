@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import Breadcrumb from '@/components/Breadcrumb';
-import Header from '@/components/Header';
-import PageHero from '@/components/PageHero';
+import Breadcrumb from '@/components/ui/Breadcrumb';
+import Header from '@/components/layout/Header';
+import PageHero from '@/components/ui/PageHero';
 import { site } from '@/config/site';
-import { unsplash } from '@/content/unsplash';
+import { unsplash } from '@/lib/unsplash';
 import { departments, team, type TeamMember } from '@/content/team';
 
 export const metadata: Metadata = {

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import Header from '@/components/Header';
-import TourGrid from '@/components/TourGrid';
+import Header from '@/components/layout/Header';
+import TourGrid from '@/features/tours/components/TourGrid';
 import { getTours } from '@/lib/content';
 
 export const metadata: Metadata = {

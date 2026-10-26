@@ -1,4 +1,4 @@
-import type { Img } from '@/lib/content';
+import type { Img } from '@/types/content';
 
 // Placeholder photos from Unsplash. Replace with your own images before launch.
 export const unsplash = (id: string, alt: string): Img => ({

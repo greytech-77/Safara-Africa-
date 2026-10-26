@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import Breadcrumb from '@/components/Breadcrumb';
-import CtaBlock from '@/components/CtaBlock';
-import FaqList from '@/components/FaqList';
-import Header from '@/components/Header';
-import PageHero from '@/components/PageHero';
-import TourGrid from '@/components/TourGrid';
+import Breadcrumb from '@/components/ui/Breadcrumb';
+import CtaBlock from '@/components/ui/CtaBlock';
+import FaqList from '@/components/ui/FaqList';
+import Header from '@/components/layout/Header';
+import PageHero from '@/components/ui/PageHero';
+import TourGrid from '@/features/tours/components/TourGrid';
 import { getTrek, treks } from '@/content/treks';
 import { getTours } from '@/lib/content';
 

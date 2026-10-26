@@ -1,4 +1,4 @@
-import type { Img } from '@/lib/content';
+import type { Img } from '@/types/content';
 
 // Ways to travel, shown in the menu and on /travel-styles/[slug].
 // `tours` lists tour slugs (file names in content/tours) that suit the style.

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import TourCard from './TourCard';
-import type { Tour } from '@/lib/content';
+import type { Tour } from '@/types/content';
 
 const label = (slug: string) => slug.charAt(0).toUpperCase() + slug.slice(1);
 

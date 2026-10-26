@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Breadcrumb from '@/components/Breadcrumb';
-import CtaBlock from '@/components/CtaBlock';
-import Header from '@/components/Header';
-import ImageCards from '@/components/ImageCards';
-import MonthRow from '@/components/MonthRow';
-import PageHero from '@/components/PageHero';
-import TourGrid from '@/components/TourGrid';
+import Breadcrumb from '@/components/ui/Breadcrumb';
+import CtaBlock from '@/components/ui/CtaBlock';
+import Header from '@/components/layout/Header';
+import ImageCards from '@/components/ui/ImageCards';
+import MonthRow from '@/components/ui/MonthRow';
+import PageHero from '@/components/ui/PageHero';
+import TourGrid from '@/features/tours/components/TourGrid';
 import { beaches, getBeach } from '@/content/beaches';
 import { getTours } from '@/lib/content';
 

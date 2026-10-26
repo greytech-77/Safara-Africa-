@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import Header from '@/components/Header';
-import JsonLd from '@/components/JsonLd';
-import RouteLine from '@/components/RouteLine';
-import TourGrid from '@/components/TourGrid';
+import Header from '@/components/layout/Header';
+import JsonLd from '@/components/ui/JsonLd';
+import RouteLine from '@/features/tours/components/RouteLine';
+import TourGrid from '@/features/tours/components/TourGrid';
 import { site } from '@/config/site';
 import { getTour, getTours } from '@/lib/content';
 

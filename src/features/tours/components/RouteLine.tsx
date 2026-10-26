@@ -1,4 +1,4 @@
-import type { Stop } from '@/lib/content';
+import type { Stop } from '@/types/content';
 
 // A journey's stops in travel order — the site's signature element.
 export default function RouteLine({ route, tone = 'dark', size = 'sm' }: { route: Stop[]; tone?: 'dark' | 'light'; size?: 'sm' | 'lg' }) {
