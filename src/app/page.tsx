@@ -6,7 +6,7 @@ import Logo from '@/components/layout/Logo';
 import PillarArt, { type PillarArtName } from '@/components/ui/PillarArt';
 import Testimonials from '@/features/reviews/components/Testimonials';
 import TourGrid from '@/features/tours/components/TourGrid';
-import { testimonials } from '@/content/testimonials';
+import { publishedTestimonials } from '@/content/testimonials';
 import { travelStyles } from '@/content/travel-styles';
 import { formatDate, getPosts, getTours } from '@/lib/content';
 
@@ -171,17 +171,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="mt-12 bg-salt-deep sm:mt-14" aria-labelledby="reviews-heading">
-        <div className="wrap py-12 sm:py-14">
-          <h2 data-reveal id="reviews-heading" className="text-center text-step-4 text-ink">
-            Don&apos;t take our word for it
-          </h2>
-          <div data-reveal className="mx-auto mt-8 max-w-5xl">
-            <Testimonials items={testimonials} />
+      {/* Testimonials: hidden until there is at least one real review */}
+      {publishedTestimonials.length > 0 && (
+        <section className="mt-12 bg-salt-deep sm:mt-14" aria-labelledby="reviews-heading">
+          <div className="wrap py-12 sm:py-14">
+            <h2 data-reveal id="reviews-heading" className="text-center text-step-4 text-ink">
+              Don&apos;t take our word for it
+            </h2>
+            <div data-reveal className="mx-auto mt-8 max-w-5xl">
+              <Testimonials items={publishedTestimonials} />
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Ways to travel: the Travel styles menu as a photo mosaic */}
       <section className="wrap pt-12 sm:pt-14" aria-labelledby="styles-heading">
