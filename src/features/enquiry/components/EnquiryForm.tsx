@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
 import { site } from '@/config/site';
 
@@ -101,6 +102,13 @@ export default function EnquiryForm({ tours, preselect }: { tours: { slug: strin
           )}
         </button>
         <p className="text-step--1 text-slate">A travel consultant replies within one working day.</p>
+        <p className="w-full text-step--1 text-slate">
+          We use your details only to plan your trip. See our{' '}
+          <Link href="/privacy" className="font-semibold text-navy underline underline-offset-4">
+            privacy policy
+          </Link>
+          .
+        </p>
       </div>
 
       {status.kind === 'error' && (

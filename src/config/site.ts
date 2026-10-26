@@ -29,6 +29,30 @@ export const site = {
     { days: 'Sunday', time: 'Closed' },
   ],
 
+  // CONFIRM: licence and memberships. An empty value hides that line in the footer and on /about.
+  licences: {
+    // Tanzania Tourism Licensing Authority (TALA) tour operator licence number.
+    tala: '',
+    // Tanzania Association of Tour Operators membership number.
+    tato: '',
+    // Kilimanjaro Porters Assistance Project partner (porter welfare on Kilimanjaro).
+    kpap: false as boolean,
+  },
+
+  // CONFIRM: booking terms shown on /terms. Placeholders until the owner sets them.
+  booking: {
+    depositPercent: 30,
+    balanceDueDays: 60,
+    // Days before departure → share of the trip price retained on cancellation.
+    cancellation: [
+      { daysBefore: 90, retainedPercent: 0, note: 'deposit refunded minus bank charges' },
+      { daysBefore: 60, retainedPercent: 30, note: 'deposit retained' },
+      { daysBefore: 30, retainedPercent: 50, note: '' },
+      { daysBefore: 0, retainedPercent: 100, note: '' },
+    ],
+    isPlaceholder: true as boolean,
+  },
+
   // Add real profiles; an empty list hides the row.
   social: [] as { label: string; href: string }[],
 

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Logo from './Logo';
 import { site } from '@/config/site';
 import { whatsappLink, whatsappMessage } from '@/lib/whatsapp';
@@ -11,6 +12,7 @@ export default function Footer() {
           <p className="mt-5 max-w-xs text-[#b7c2cb]">
             A licensed tour operator in Arusha, planning private safaris, climbs and beach stays across Tanzania.
           </p>
+          <TrustLines />
         </div>
 
         <div>
@@ -64,6 +66,18 @@ export default function Footer() {
           <p>
             © {new Date().getFullYear()} {site.legalName}. All rights reserved.
           </p>
+          <ul className="flex flex-wrap gap-5">
+            <li>
+              <Link className="hover:text-white" href="/privacy">
+                Privacy
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:text-white" href="/terms">
+                Booking terms
+              </Link>
+            </li>
+          </ul>
           {site.social.length > 0 && (
             <ul className="flex gap-5">
               {site.social.map((s) => (
@@ -78,5 +92,25 @@ export default function Footer() {
         </div>
       </div>
     </footer>
+  );
+}
+
+// Licence and memberships from site.licences; each line appears only once it is filled in.
+function TrustLines() {
+  const { tala, tato, kpap } = site.licences;
+  if (!tala && !tato && !kpap) return null;
+  return (
+    <ul className="mt-5 space-y-1 text-step--1 text-[#b7c2cb]">
+      {tala && <li>TALA tour operator licence no. {tala}</li>}
+      {tato && (
+        <li>
+          <a className="underline underline-offset-4 hover:text-white" href="https://www.tatotz.org/" target="_blank" rel="noopener">
+            TATO member
+          </a>{' '}
+          no. {tato}
+        </li>
+      )}
+      {kpap && <li>KPAP partner for porter welfare on Kilimanjaro</li>}
+    </ul>
   );
 }

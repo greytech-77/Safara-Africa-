@@ -22,6 +22,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/about',
     '/about/team',
     '/contact',
+    '/privacy',
+    '/terms',
   ];
   const paths = [
     ...pages,
