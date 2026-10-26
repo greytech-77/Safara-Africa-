@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import type { Tour } from '@/types/content';
+import type { TourCardData } from '@/types/content';
 
 // Photo card: duration badge top left, title, price and travel style over a dark fade.
 // On hover the text lifts and a "View trip" line fades in; touch screens always show it.
-export default function TourCard({ tour }: { tour: Tour }) {
+export default function TourCard({ tour }: { tour: TourCardData }) {
   return (
     <article className="group relative has-focus-visible:outline-2 has-focus-visible:outline-offset-3 has-focus-visible:outline-sun h-[28rem] overflow-hidden rounded-2xl bg-navy text-[#f4f5f0] shadow-[0_4px_3px_rgb(0_0_0/.12)]">
       <Image src={tour.hero.src} alt="" fill sizes="(min-width: 768px) 50vw, 100vw" className="zoom object-cover" />
@@ -24,7 +24,7 @@ export default function TourCard({ tour }: { tour: Tour }) {
             {tour.title}
           </Link>
         </h3>
-        <p className="mt-2 text-step--1 text-[#dce2e6]">{tour.route.map((s) => s.place).join(' · ')}</p>
+        <p className="mt-2 text-step--1 text-[#dce2e6]">{overnightStops(tour).join(' · ')}</p>
         <div className="mt-4 flex flex-wrap items-center justify-between gap-x-6 gap-y-2 border-t border-white/20 pt-4">
           <p className="font-bold">
             {tour.priceFrom ? (
@@ -32,6 +32,14 @@ export default function TourCard({ tour }: { tour: Tour }) {
                 <span className="text-step--1 font-normal text-[#dce2e6]">from </span>
                 {tour.priceFrom}
                 <span className="text-step--1 font-normal text-[#dce2e6]"> p.p</span>
+                {tour.priceIsPlaceholder && (
+                  <span
+                    className="ml-2 rounded bg-white/15 px-1.5 py-0.5 text-step--1 font-semibold text-[#f4f5f0]"
+                    title="Placeholder price: to be confirmed"
+                  >
+                    TBC
+                  </span>
+                )}
               </>
             ) : (
               'Price on request'
@@ -50,4 +58,10 @@ export default function TourCard({ tour }: { tour: Tour }) {
       </div>
     </article>
   );
+}
+
+// Places where the trip spends nights; day trips fall back to every stop.
+function overnightStops(tour: TourCardData) {
+  const nights = tour.route.filter((s) => s.nights > 0).map((s) => s.place);
+  return nights.length > 0 ? nights : [...new Set(tour.route.map((s) => s.place))];
 }

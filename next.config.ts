@@ -23,6 +23,12 @@ const nextConfig: NextConfig = {
       // Park pages moved from /destinations to /parks when /destinations became countries.
       r('/destinations/:park(serengeti|ngorongoro|tarangire|lake-manyara|ruaha)', '/parks/:park'),
       r('/destinations/kilimanjaro', '/trekking/kilimanjaro'),
+
+      // Tours replaced by day-by-day itineraries in Phase 5 (old Markdown files are in _archive/).
+      r('/tours/tanzania-classic', '/tours/northern-circuit-classic-7-days'),
+      r('/tours/kilimanjaro-machame', '/tours/kilimanjaro-machame-7-days'),
+      r('/tours/kilimanjaro-lemosho', '/tours/kilimanjaro-lemosho-8-days'),
+      r('/tours/mount-meru-trek', '/tours/mount-meru-4-days'),
       r('/destinations/zanzibar', '/beaches/zanzibar'),
     ];
   },

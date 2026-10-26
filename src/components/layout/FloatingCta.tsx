@@ -1,13 +1,15 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { site } from '@/config/site';
 
 // Phones and tablets: a Call / Enquire bar that appears once the visitor scrolls past the first screen
-// and steps aside again when the footer comes into view.
+// and steps aside again when the footer comes into view. Trip pages have their own quote bar, so it hides there.
 export default function FloatingCta() {
   const [show, setShow] = useState(false);
+  const onTripPage = (usePathname() ?? '').startsWith('/tours/');
 
   useEffect(() => {
     let pastHero = false;
@@ -30,6 +32,8 @@ export default function FloatingCta() {
       io.disconnect();
     };
   }, []);
+
+  if (onTripPage) return null;
 
   return (
     <div

@@ -4,7 +4,7 @@ import path from 'node:path';
 import matter from 'gray-matter';
 import { marked } from 'marked';
 import faqsJson from '@/content/faqs.json';
-import type { Faq, Post, Tour } from '@/types/content';
+import type { Faq, Post } from '@/types/content';
 
 const CONTENT = path.join(process.cwd(), 'src', 'content');
 
@@ -28,37 +28,8 @@ function readDir(dir: string) {
     });
 }
 
-let toursCache: Tour[] | null = null;
-export function getTours(): Tour[] {
-  if (!toursCache) {
-    toursCache = readDir('tours')
-      .map(({ file, slug, data, html }) => ({
-        slug,
-        html,
-        title: need(file, 'title', data.title),
-        summary: need(file, 'summary', data.summary),
-        days: need(file, 'days', data.days),
-        style: need(file, 'style', data.style),
-        country: need(file, 'country', data.country),
-        tier: data.tier,
-        tags: data.tags ?? [],
-        order: data.order ?? 99,
-        route: need(file, 'route', data.route),
-        idealFor: data.idealFor ?? [],
-        included: data.included ?? [],
-        hero: need(file, 'hero', data.hero),
-        gallery: data.gallery ?? [],
-        itineraryUrl: data.itineraryUrl,
-        priceFrom: data.priceFrom,
-        draft: data.draft ?? false,
-      }))
-      .filter((t) => !t.draft)
-      .sort((a, b) => a.order - b.order);
-  }
-  return toursCache;
-}
-
-export const getTour = (slug: string) => getTours().find((t) => t.slug === slug);
+// Tours come from the itinerary catalogue (src/content/itineraries), validated in src/features/itineraries/data.ts.
+export { getTour, getTours } from '@/features/itineraries/data';
 
 let postsCache: Post[] | null = null;
 export function getPosts(): Post[] {

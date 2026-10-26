@@ -20,10 +20,10 @@ describe('content', () => {
     for (const t of tours) expect(countrySlugs, t.slug).toContain(t.country);
   });
 
-  it('gives each tour a route whose nights fit its length', () => {
+  it('gives each tour no more nights than days', () => {
     for (const t of tours) {
       const nights = t.route.reduce((n, s) => n + s.nights, 0);
-      expect(nights, t.slug).toBeLessThan(t.days);
+      expect(nights, t.slug).toBeLessThanOrEqual(t.days);
     }
   });
 

@@ -75,7 +75,7 @@ export const travelStyles: TravelStyle[] = [
       { title: 'Family-friendly camps', body: 'Family tents, pools and activities for younger travellers.' },
       { title: 'Varied days', body: 'Crater, plains, Maasai villages and the beach keep every day different.' },
     ],
-    tours: ['tanzania-classic', 'tanzania-luxury'],
+    tours: ['northern-circuit-classic-7-days', 'tanzania-luxury'],
     image: { src: unsplash('1710077539513-6d0b9cf273e2'), alt: 'A group of people on the back of a safari vehicle' },
   },
 
@@ -91,7 +91,7 @@ export const travelStyles: TravelStyle[] = [
       { title: 'Experienced crews', body: 'Qualified guides, fair pay for porters and daily health checks.' },
       { title: 'Safari afterwards', body: 'Recover on a safari or on Zanzibar once you are down.' },
     ],
-    tours: ['kilimanjaro-machame'],
+    tours: ['kilimanjaro-machame-7-days'],
     image: { src: unsplash('1631646109248-a7264aae1790'), alt: 'A giraffe standing in a field with a mountain behind' },
   },
 ];

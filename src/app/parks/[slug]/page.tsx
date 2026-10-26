@@ -37,9 +37,8 @@ export default async function ParkPage({ params }: Props) {
   const p = getPark((await params).slug);
   if (!p) notFound();
   const country = getCountry(p.country)!;
-  const place = p.place ?? p.name;
   const all = getTours();
-  const own = all.filter((t) => t.route.some((s) => s.place === place));
+  const own = all.filter((t) => t.parks.includes(p.slug));
   // When no itinerary visits this park yet, suggest trips in the same country.
   const tours = (own.length > 0 ? own : all.filter((t) => t.country === p.country)).slice(0, 4);
   const stays = accommodations.filter((a) => a.park === p.slug);

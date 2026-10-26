@@ -9,6 +9,7 @@ import TourGrid from '@/features/tours/components/TourGrid';
 import { accommodations, getAccommodation } from '@/content/accommodations';
 import { getCountry } from '@/content/countries';
 import { parks } from '@/content/parks';
+import { getToursStayingAt } from '@/features/itineraries/data';
 import { getTours } from '@/lib/content';
 
 type Props = { params: Promise<{ slug: string }> };
@@ -43,9 +44,11 @@ export default async function AccommodationPage({ params }: Props) {
   if (!a) notFound();
   const country = getCountry(a.country)!;
   const park = parks.find((p) => p.slug === a.park);
-  const place = park ? (park.place ?? park.name) : undefined;
   const all = getTours();
-  const own = place ? all.filter((t) => t.route.some((s) => s.place === place)) : [];
+  // Trips that stay at this lodge first, then other trips through the same park.
+  const staying = getToursStayingAt(a.slug);
+  const inPark = park ? all.filter((t) => t.parks.includes(park.slug) && !staying.includes(t)) : [];
+  const own = [...staying, ...inPark];
   const tours = (own.length > 0 ? own : all.filter((t) => t.country === a.country)).slice(0, 4);
   const card = 'bg-white p-6 shadow-[0_4px_3px_rgb(0_0_0/.08)]';
 

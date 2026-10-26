@@ -16,7 +16,13 @@ export default function RouteLine({ route, tone = 'dark', size = 'sm' }: { route
               {stop.place}
             </span>
             <span className={`pl-[1.15rem] ${light ? 'text-[#dce2e6]' : 'text-slate'}`}>
-              {stop.nights === 0 ? 'Arrival' : `${stop.nights} night${stop.nights > 1 ? 's' : ''}`}
+              {stop.nights > 0
+                ? `${stop.nights} night${stop.nights > 1 ? 's' : ''}`
+                : i === 0
+                  ? 'Start'
+                  : i === route.length - 1
+                    ? 'End'
+                    : 'Visit'}
             </span>
           </span>
           {i < route.length - 1 && (
