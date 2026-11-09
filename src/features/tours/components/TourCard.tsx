@@ -11,7 +11,7 @@ export default function TourCard({ tour }: { tour: TourCardData }) {
       <Image src={tour.hero.src} alt="" fill sizes="(min-width: 768px) 50vw, 100vw" className="zoom object-cover" />
       <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(1_47_54/0)_40%,rgb(1_47_54/.94)_72%)]" />
 
-      <p className="absolute left-6 top-6 rounded-full bg-gold px-4 py-1.5 text-step--1 font-bold text-on-gold">{tour.days} Days</p>
+      <p className="absolute left-6 top-6 rounded-full bg-badge px-4 py-1.5 text-step--1 font-bold text-on-badge">{tour.days} Days</p>
       {tour.tier && (
         <p className="absolute right-6 top-6 rounded-full bg-teal-deep/75 px-4 py-1.5 text-step--1 font-semibold text-white backdrop-blur-sm">
           {tierLabel[tour.tier]}

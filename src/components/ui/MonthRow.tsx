@@ -2,7 +2,7 @@ import type { MonthRating } from '@/types/content';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const STYLE: Record<MonthRating, { label: string; cls: string }> = {
-  best: { label: 'Best', cls: 'bg-gold text-on-gold' },
+  best: { label: 'Best', cls: 'bg-badge text-on-badge' },
   good: { label: 'Good', cls: 'bg-gold/35 text-ink' },
   mixed: { label: 'Mixed', cls: 'bg-white text-slate ring-1 ring-deep-teal/15' },
 };

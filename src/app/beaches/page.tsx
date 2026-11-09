@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function BeachesIndexPage() {
   return (
-    <>
+    <div data-theme="beaches" className="contents">
       <Header overlay current="/beaches" />
       <Hero
         image={beaches[0].image}
@@ -37,6 +37,6 @@ export default function BeachesIndexPage() {
         </div>
       </section>
       <CtaBlock title="Ready to plan your beach escape?" />
-    </>
+    </div>
   );
 }

@@ -15,7 +15,8 @@
   gold        decoration only: badges, stars, map pins, nav underline, links on dark. Never text on light grounds.
   gold-ink    gold-family text and small icons on light grounds (5.3:1 on cream)
   on-gold     text on gold
-  Section themes ([data-theme] below) override only these accent tokens.
+  badge       day/duration badges, meal and "best month" chips (gold by default), with on-badge text
+  Section themes ([data-theme] below) override only the accent tokens.
 */
 @theme {
   --color-cream: #f7f1e6;
@@ -31,6 +32,8 @@
   --color-gold: #e9a23b;
   --color-gold-ink: #8a5a10;
   --color-on-gold: #1a1a1a;
+  --color-badge: #e9a23b;
+  --color-on-badge: #1a1a1a;
 
   /* Modular scale, ratio 1.25 */
   --text-step--1: 0.875rem;
@@ -45,6 +48,27 @@
   /* Section rhythm: sections touch edge to edge; padding and alternating grounds separate them. */
   --spacing-section: 4rem;
   --spacing-section-tight: 3rem;
+}
+
+/*
+  Section themes, set with data-theme on a page wrapper (display: contents). Only accent tokens change;
+  bright gold stays for stars and map pins, and the footer (outside the wrapper) stays teal.
+  beaches   turquoise labels and badges, coral booking buttons with dark navy text, navy darks
+  trekking  volcanic labels and badges; booking buttons stay ember
+*/
+[data-theme='beaches'] {
+  --color-deep-teal: #0b2a3c;
+  --color-gold-ink: #0a6870;
+  --color-badge: #0e7c86;
+  --color-on-badge: #ffffff;
+  --color-ember: #ff6f59;
+  --color-ember-hover: #ff8a78;
+  --color-on-ember: #0b2a3c;
+}
+[data-theme='trekking'] {
+  --color-gold-ink: #8c3b22;
+  --color-badge: #8c3b22;
+  --color-on-badge: #ffffff;
 }
 
 @theme inline {
@@ -162,7 +186,7 @@
   .btn-primary {
     background: var(--color-ember);
     color: var(--color-on-ember);
-    box-shadow: 0 4px 14px rgb(200 70 26 / 0.28);
+    box-shadow: 0 4px 14px color-mix(in srgb, var(--color-ember) 28%, transparent);
   }
   .btn-primary:hover {
     background: var(--color-ember-hover);

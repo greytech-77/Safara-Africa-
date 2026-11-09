@@ -117,7 +117,7 @@ export default function DayByDay({ days, stays, places, images }: Props) {
                         <li
                           key={key}
                           title={long}
-                          className={`grid size-8 place-items-center rounded-full text-step--1 font-bold ${d.meals[key] ? 'bg-gold text-on-gold' : 'bg-sand text-slate line-through'}`}
+                          className={`grid size-8 place-items-center rounded-full text-step--1 font-bold ${d.meals[key] ? 'bg-badge text-on-badge' : 'bg-sand text-slate line-through'}`}
                         >
                           <span aria-hidden="true">{short}</span>
                           <span className="sr-only">
