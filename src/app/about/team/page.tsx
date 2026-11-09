@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import Breadcrumb from '@/components/ui/Breadcrumb';
 import Header from '@/components/layout/Header';
-import PageHero from '@/components/ui/PageHero';
+import Hero from '@/components/ui/Hero';
 import { site } from '@/config/site';
 import { unsplash } from '@/lib/unsplash';
+import { pageHeroes } from '@/content/page-heroes';
 import { departments, team, type TeamMember } from '@/content/team';
 
 export const metadata: Metadata = {
@@ -14,8 +14,7 @@ export const metadata: Metadata = {
   alternates: { canonical: '/about/team' },
 };
 
-// Placeholder photos. Replace with a photo of your team and vehicles.
-const banner = unsplash('1580145575237-75fec2a0320b', 'A large herd of wildebeest grazing on grassy plains with safari vehicles nearby');
+// Placeholder photo. Replace with a photo of your team and vehicles.
 const introPhoto = unsplash('1765706730020-561a6432abbd', 'Travellers on safari watching a buffalo on a dirt road');
 
 const initials = (text: string) =>
@@ -44,7 +43,7 @@ function MemberCard({ m }: { m: TeamMember }) {
   const whatsapp = m.whatsapp ?? site.whatsapp;
   return (
     <li className="group flex flex-col overflow-hidden bg-white shadow-[0_4px_3px_rgb(0_0_0/.08)]">
-      <div className="relative aspect-[4/5] overflow-hidden bg-navy">
+      <div className="relative aspect-[4/5] overflow-hidden bg-deep-teal">
         {m.photo ? (
           <Image
             src={m.photo.src}
@@ -60,9 +59,9 @@ function MemberCard({ m }: { m: TeamMember }) {
         )}
       </div>
       <div className="flex flex-1 flex-col p-6">
-        <h3 className="text-step-2 text-navy">{title}</h3>
-        <p className="mt-2 text-step--1 text-ink/80">{m.bio}</p>
-        <ul className="mt-5 space-y-2 border-t border-navy/10 pt-4 text-step--1 font-semibold text-navy">
+        <h3 className="text-step-2 text-ink">{title}</h3>
+        <p className="mt-2 text-step--1 text-ink">{m.bio}</p>
+        <ul className="mt-5 space-y-2 border-t border-deep-teal/10 pt-4 text-step--1 font-semibold text-deep-teal">
           {m.phone && (
             <li>
               <a href={`tel:${m.phone.replace(/\s/g, '')}`} className="flex items-center gap-2 hover:text-gold">
@@ -93,25 +92,32 @@ function MemberCard({ m }: { m: TeamMember }) {
 }
 
 export default function TeamPage() {
+  // Departments with nobody listed are skipped.
+  const staffed = departments
+    .map((d) => ({ d, members: team.filter((m) => m.department === d.name) }))
+    .filter(({ members }) => members.length > 0);
   return (
     <>
       <Header overlay current="/about" />
-      <PageHero image={banner} short>
-        <Breadcrumb items={[{ label: 'About Us', href: '/about' }, { label: 'Meet the team' }]} />
-        <h1 className="mt-4 text-step-6">Our team</h1>
-      </PageHero>
+      <Hero
+        size="md"
+        image={pageHeroes.team.image}
+        title="Our"
+        titleAccent="team"
+        breadcrumbs={[{ label: 'About Us', href: '/about' }, { label: 'Meet the team' }]}
+      />
 
-      <section className="bg-salt-deep" aria-labelledby="intro-heading">
-        <div className="wrap grid gap-12 py-20 md:grid-cols-[2fr_3fr] md:items-center">
+      <section className="band" aria-labelledby="intro-heading">
+        <div className="wrap grid gap-12 md:grid-cols-[2fr_3fr] md:items-center">
           <div className="relative aspect-[4/3] overflow-hidden">
             <Image src={introPhoto.src} alt={introPhoto.alt} fill sizes="(min-width: 768px) 40vw, 100vw" className="object-cover" />
           </div>
           <div>
             <p className="text-step--1 font-bold uppercase tracking-[0.14em] text-gold">Our team</p>
-            <h2 id="intro-heading" className="mt-2 text-step-4 text-navy">
+            <h2 id="intro-heading" className="mt-3 text-step-4 text-ink">
               The people behind your journey
             </h2>
-            <div className="prose-safara mt-6">
+            <div className="prose-safara mt-3">
               <p>
                 <strong>We live in the places we send you.</strong> Behind every {site.name} journey is a small team in {site.address.city}:
                 reservation specialists, professional safari and mountain guides, travel consultants and storytellers, all sharing one goal,
@@ -126,30 +132,30 @@ export default function TeamPage() {
         </div>
       </section>
 
-      {departments.map((d) => {
-        const members = team.filter((m) => m.department === d.name);
-        if (members.length === 0) return null;
+      {staffed.map(({ d, members }) => {
         const id = d.name.toLowerCase().replace(/\W+/g, '-');
         return (
-          <section key={d.name} className="wrap mt-20" aria-labelledby={id}>
-            <div className="flex items-center gap-4">
-              <h2 id={id} className="shrink-0 font-sans text-step-0 font-bold uppercase tracking-[0.14em] text-navy">
-                {d.name}
-              </h2>
-              <span aria-hidden="true" className="h-px flex-1 bg-navy/20" />
+          <section key={d.name} className="band" aria-labelledby={id}>
+            <div className="wrap">
+              <div className="flex items-center gap-4">
+                <h2 id={id} className="shrink-0 font-sans text-step-0 font-bold uppercase tracking-[0.14em] text-ink">
+                  {d.name}
+                </h2>
+                <span aria-hidden="true" className="h-px flex-1 bg-deep-teal/20" />
+              </div>
+              <p className="measure mt-3 text-ink">{d.intro}</p>
+              <ul className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                {members.map((m) => (
+                  <MemberCard key={m.role} m={m} />
+                ))}
+              </ul>
             </div>
-            <p className="measure mt-3 text-slate">{d.intro}</p>
-            <ul className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {members.map((m) => (
-                <MemberCard key={m.role} m={m} />
-              ))}
-            </ul>
           </section>
         );
       })}
 
-      <section className="mt-24 bg-navy text-[#f4f5f0]" aria-labelledby="thanks-heading">
-        <div className="wrap flex flex-col items-center py-24 text-center">
+      <section className="band bg-deep-teal text-[#f4f5f0]" aria-labelledby="thanks-heading">
+        <div className="wrap flex flex-col items-center text-center">
           <h2 id="thanks-heading" className="text-step-4">
             With gratitude
           </h2>
@@ -186,7 +192,7 @@ export default function TeamPage() {
               <br />
               with your time, your celebrations,
               <br />
-              your once in a lifetime.
+              your milestones.
               <br />
               Come as our guest. Leave as family.
             </p>

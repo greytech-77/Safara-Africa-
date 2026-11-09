@@ -31,7 +31,7 @@ export function getMenu(): MenuItem[] {
   return [
     {
       id: 'journey',
-      label: 'Journey',
+      label: 'Journeys',
       match: ['/journey', '/tours'],
       groups: [
         {
@@ -50,10 +50,7 @@ export function getMenu(): MenuItem[] {
       tiles: {
         heading: 'East Africa Safaris',
         items: journeyTypes.map((j) => ({ title: j.name, href: `/journey/${j.slug}`, cta: j.teaser, image: j.image })),
-        links: [
-          { label: 'Tailor-made trip', href: '/contact#enquire' },
-          { label: 'All journeys', href: '/tours' },
-        ],
+        links: [{ label: 'All journeys', href: '/tours' }],
       },
     },
     {

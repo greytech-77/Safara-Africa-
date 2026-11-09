@@ -1,10 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import Breadcrumb from '@/components/ui/Breadcrumb';
 import CtaBlock from '@/components/ui/CtaBlock';
 import Header from '@/components/layout/Header';
-import PageHero from '@/components/ui/PageHero';
+import Hero from '@/components/ui/Hero';
 import TourGrid from '@/features/tours/components/TourGrid';
 import { accommodations, getAccommodation } from '@/content/accommodations';
 import { getCountry } from '@/content/countries';
@@ -55,108 +54,124 @@ export default async function AccommodationPage({ params }: Props) {
   return (
     <>
       <Header overlay current={`/destinations/${country.slug}`} />
-      <PageHero image={a.image} short>
-        <Breadcrumb
-          items={[
-            { label: 'Destinations', href: '/destinations' },
-            { label: country.name, href: `/destinations/${country.slug}#accommodations` },
-            { label: a.name },
-          ]}
-        />
-        <p className="mt-6 text-step--1 font-bold uppercase tracking-[0.14em] text-sun">{a.area}</p>
-        <h1 className="mt-2 max-w-[20ch] text-step-6">{a.name}</h1>
-        <p className="mt-4 max-w-[46ch] text-step-1 text-[#dce2e6]">{a.teaser}</p>
-      </PageHero>
+      <Hero
+        image={a.image}
+        eyebrow={a.area}
+        title={a.name}
+        cta={{ label: 'Ask about this lodge', href: '/contact#enquire' }}
+        breadcrumbs={[
+          { label: 'Destinations', href: '/destinations' },
+          { label: country.name, href: `/destinations/${country.slug}#accommodations` },
+          { label: a.name },
+        ]}
+      />
+      {a.image.credit && (
+        <p className="wrap pt-3 text-right text-[0.75rem] text-slate">
+          Photo:{' '}
+          <a href={a.image.credit.source} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-ink">
+            {a.image.credit.author}
+          </a>
+          , {a.image.credit.licence}
+        </p>
+      )}
 
-      <div className="wrap grid gap-16 pt-16 lg:grid-cols-[1fr_22rem]">
-        <section aria-labelledby="overview-heading">
-          <h2 id="overview-heading" className="text-step-4 text-navy">
-            Overview of {a.name}
-          </h2>
-          <div className="prose-safara mt-6">
-            {a.overview.map((t) => (
-              <p key={t.slice(0, 40)}>{t}</p>
-            ))}
-          </div>
-        </section>
-        <aside className={`h-fit ${card}`} aria-label="At a glance">
-          <dl className="divide-y divide-navy/10">
-            <div className="pb-3">
-              <dt className="text-step--1 font-semibold text-slate">Location</dt>
-              <dd className="font-semibold text-navy">
-                {a.area}, {country.name}
-              </dd>
+      <div className="band">
+        <div className="wrap grid gap-16 lg:grid-cols-[1fr_22rem]">
+          <section aria-labelledby="overview-heading">
+            <h2 id="overview-heading" className="text-step-4 text-ink">
+              Overview of {a.name}
+            </h2>
+            <div className="prose-safara mt-6">
+              {a.overview.map((t) => (
+                <p key={t.slice(0, 40)}>{t}</p>
+              ))}
             </div>
-            {park && (
-              <div className="py-3">
-                <dt className="text-step--1 font-semibold text-slate">Park</dt>
-                <dd>
-                  <Link href={park.link ?? `/parks/${park.slug}`} className="font-semibold text-navy underline underline-offset-4">
-                    {park.name}
-                  </Link>
+          </section>
+          <aside className={`h-fit ${card}`} aria-label="At a glance">
+            <dl className="divide-y divide-deep-teal/10">
+              <div className="pb-3">
+                <dt className="text-step--1 font-semibold text-slate">Location</dt>
+                <dd className="font-semibold text-deep-teal">
+                  {a.area}, {country.name}
                 </dd>
               </div>
-            )}
-          </dl>
-          <Link href="/contact#enquire" className="btn btn-primary mt-4 w-full">
-            Ask about this lodge
-          </Link>
-        </aside>
+              {park && (
+                <div className="py-3">
+                  <dt className="text-step--1 font-semibold text-slate">Park</dt>
+                  <dd>
+                    <Link href={park.link ?? `/parks/${park.slug}`} className="font-semibold text-deep-teal underline underline-offset-4">
+                      {park.name}
+                    </Link>
+                  </dd>
+                </div>
+              )}
+            </dl>
+            <Link href="/contact#enquire" className="btn btn-primary mt-4 w-full">
+              Ask about this lodge
+            </Link>
+          </aside>
+        </div>
       </div>
 
-      <section className="wrap mt-20" aria-labelledby="rooms-heading">
-        <p className="text-step--1 font-bold uppercase tracking-[0.14em] text-gold">Unwind and relax</p>
-        <h2 id="rooms-heading" className="mt-1 text-step-4 text-navy">
-          Rooms at {a.name}
-        </h2>
-        <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {a.rooms.map((r) => (
-            <li key={r.name} className={card}>
-              <h3 className="text-step-2 text-navy">{r.name}</h3>
-              <p className="mt-2 text-ink/85">{r.text}</p>
-            </li>
-          ))}
-        </ul>
+      <section className="band" aria-labelledby="rooms-heading">
+        <div className="wrap">
+          <p className="text-step--1 font-bold uppercase tracking-[0.14em] text-gold">Unwind and relax</p>
+          <h2 id="rooms-heading" className="mt-1 text-step-4 text-ink">
+            Rooms at {a.name}
+          </h2>
+          <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {a.rooms.map((r) => (
+              <li key={r.name} className={card}>
+                <h3 className="text-step-2 text-ink">{r.name}</h3>
+                <p className="mt-2 text-ink">{r.text}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
-      <section className="wrap mt-20" aria-labelledby="offer-heading">
-        <h2 id="offer-heading" className="text-step-4 text-navy">
-          Activities and amenities
-        </h2>
-        <div className="mt-8 grid gap-6 md:grid-cols-2">
-          <div className={card}>
-            <h3 className="font-sans text-step-0 font-bold uppercase tracking-[0.08em] text-slate">Activities</h3>
-            <ul className="mt-4 space-y-3">
-              {a.activities.map((x) => (
-                <li key={x} className="flex items-start gap-3 font-semibold text-navy">
-                  <Tick />
-                  {x}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className={card}>
-            <h3 className="font-sans text-step-0 font-bold uppercase tracking-[0.08em] text-slate">Amenities</h3>
-            <ul className="mt-4 space-y-3">
-              {a.amenities.map((x) => (
-                <li key={x} className="flex items-start gap-3 font-semibold text-navy">
-                  <Tick />
-                  {x}
-                </li>
-              ))}
-            </ul>
+      <section className="band" aria-labelledby="offer-heading">
+        <div className="wrap">
+          <h2 id="offer-heading" className="text-step-4 text-ink">
+            Activities and amenities
+          </h2>
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            <div className={card}>
+              <h3 className="font-sans text-step-0 font-bold uppercase tracking-[0.08em] text-ink">Activities</h3>
+              <ul className="mt-4 space-y-3">
+                {a.activities.map((x) => (
+                  <li key={x} className="flex items-start gap-3 font-semibold text-deep-teal">
+                    <Tick />
+                    {x}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className={card}>
+              <h3 className="font-sans text-step-0 font-bold uppercase tracking-[0.08em] text-ink">Amenities</h3>
+              <ul className="mt-4 space-y-3">
+                {a.amenities.map((x) => (
+                  <li key={x} className="flex items-start gap-3 font-semibold text-deep-teal">
+                    <Tick />
+                    {x}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </section>
 
       {tours.length > 0 && (
-        <section className="wrap mt-20" aria-labelledby="tours-heading">
-          <h2 id="tours-heading" className="text-step-4 text-navy">
-            Related tours
-          </h2>
-          <p className="measure mt-3 text-slate">We can include {a.name} in any of these itineraries, or build a trip around it.</p>
-          <div className="mt-8">
-            <TourGrid tours={tours} />
+        <section className="band" aria-labelledby="tours-heading">
+          <div className="wrap">
+            <h2 id="tours-heading" className="text-step-4 text-ink">
+              Related tours
+            </h2>
+            <p className="measure mt-3 text-ink">We can include {a.name} in any of these itineraries, or build a trip around it.</p>
+            <div className="mt-8">
+              <TourGrid tours={tours} />
+            </div>
           </div>
         </section>
       )}

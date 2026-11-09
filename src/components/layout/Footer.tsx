@@ -5,8 +5,8 @@ import { whatsappLink, whatsappMessage } from '@/lib/whatsapp';
 
 export default function Footer() {
   return (
-    <footer className="mt-24 bg-navy-deep text-[#e8ecee]">
-      <div className="wrap grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
+    <footer className="bg-deep-teal text-[#e8ecee]">
+      <div className="wrap grid gap-10 pb-8 pt-10 md:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
         <div>
           <Logo tone="white" height={72} />
           <p className="mt-5 max-w-xs text-[#b7c2cb]">
@@ -57,12 +57,12 @@ export default function Footer() {
               </div>
             ))}
           </dl>
-          <p className="mt-2 text-step--1 text-[#9aa7b1]">Tanzania time (EAT)</p>
+          <p className="mt-2 text-step--1 text-[#b7c2cb]">Tanzania time (EAT)</p>
         </div>
       </div>
 
       <div className="border-t border-white/10">
-        <div className="wrap flex flex-wrap justify-between gap-4 py-6 text-step--1 text-[#9aa7b1]">
+        <div className="wrap flex flex-wrap justify-between gap-6 pb-10 pt-8 text-step--1 text-[#b7c2cb]">
           <p>
             © {new Date().getFullYear()} {site.legalName}. All rights reserved.
           </p>

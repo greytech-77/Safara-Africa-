@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 import Header from '@/components/layout/Header';
+import Hero from '@/components/ui/Hero';
 import { beaches } from '@/content/beaches';
 import { countries } from '@/content/countries';
 import { journeyTypes } from '@/content/journeys';
+import { pageHeroes } from '@/content/page-heroes';
 import { parks } from '@/content/parks';
 import { treks } from '@/content/treks';
 import ItineraryBrowser, { type FilterOptions } from '@/features/itineraries/components/ItineraryBrowser';
@@ -36,16 +38,20 @@ export default function ToursPage() {
 
   return (
     <>
-      <Header current="/tours" />
-      <section className="wrap pt-16">
-        <h1 className="text-step-5 text-navy">Journeys</h1>
-        <p className="measure mt-4 text-slate">
-          Sample trips with a day-by-day plan and prices. Start from one and we will change the dates, lodges and length to suit you, or
-          design something new.
-        </p>
+      <Header overlay current="/tours" />
+      <Hero size="md" image={pageHeroes.tours.image} title="Our" titleAccent="journeys" breadcrumbs={[{ label: 'Journeys' }]} />
+      <section className="band">
+        <div className="wrap">
+          <p className="measure mx-auto text-center text-ink">
+            Sample trips with a day-by-day plan and prices. Start from one and we will change the dates, lodges and length to suit you, or
+            design something new.
+          </p>
+        </div>
       </section>
-      <section className="wrap mt-10" aria-label="All journeys">
-        <ItineraryBrowser tours={tours.map(toCard)} options={options} />
+      <section className="band" aria-label="All journeys">
+        <div className="wrap">
+          <ItineraryBrowser tours={tours.map(toCard)} options={options} />
+        </div>
       </section>
     </>
   );

@@ -24,11 +24,16 @@ export default function AltitudeProfile({ days }: { days: ItineraryDay[] }) {
 
   return (
     <figure>
-      <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={summary} className="h-auto w-full rounded-xl bg-white">
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        role="img"
+        aria-label={summary}
+        className="h-auto w-full rounded-xl border border-deep-teal/15 bg-white"
+      >
         <title>{summary}</title>
         {ticks.map((t) => (
           <g key={t}>
-            <line x1={L} x2={W - R} y1={y(t)} y2={y(t)} stroke="var(--color-navy)" strokeOpacity="0.12" />
+            <line x1={L} x2={W - R} y1={y(t)} y2={y(t)} stroke="var(--color-deep-teal)" strokeOpacity="0.12" />
             <text x={L - 8} y={y(t) + 5} textAnchor="end" fontSize="13" fill="var(--color-slate)">
               {t.toLocaleString('en-GB')}
             </text>
@@ -53,12 +58,12 @@ export default function AltitudeProfile({ days }: { days: ItineraryDay[] }) {
         <polyline
           points={stages.map((d, i) => `${x(i)},${y(d.trek!.sleepAltM)}`).join(' ')}
           fill="none"
-          stroke="var(--color-navy)"
+          stroke="var(--color-deep-teal)"
           strokeWidth="2.5"
           strokeLinejoin="round"
         />
         {stages.map((d, i) => (
-          <circle key={d.day} cx={x(i)} cy={y(d.trek!.sleepAltM)} r="4.5" fill="var(--color-navy)" />
+          <circle key={d.day} cx={x(i)} cy={y(d.trek!.sleepAltM)} r="4.5" fill="var(--color-deep-teal)" />
         ))}
         <text
           x={x(stages.indexOf(highest))}
@@ -73,7 +78,7 @@ export default function AltitudeProfile({ days }: { days: ItineraryDay[] }) {
       </svg>
       <figcaption className="mt-2 flex flex-wrap gap-x-5 gap-y-1 text-step--1 text-slate">
         <span>
-          <span aria-hidden="true" className="mr-1.5 inline-block h-0.5 w-5 align-middle bg-navy" />
+          <span aria-hidden="true" className="mr-1.5 inline-block h-0.5 w-5 align-middle bg-deep-teal" />
           Altitude where you sleep (m)
         </span>
         <span>

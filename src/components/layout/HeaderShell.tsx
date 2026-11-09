@@ -1,49 +1,54 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-// Scroll behaviour for the site header.
-// Over a hero it starts transparent; elsewhere it starts solid.
-// Scrolling down past the top hides it, scrolling up brings it back solid.
-export default function HeaderShell({ overlay, children }: { overlay: boolean; children: React.ReactNode }) {
-  const ref = useRef<HTMLElement>(null);
-  const [state, setState] = useState({ hidden: false, solid: !overlay });
+// Scroll behaviour for the site header: it stays pinned to the top of the window.
+// Over a hero it starts transparent and turns solid once the page scrolls; elsewhere it is always solid.
+// pinAfterHero (home page): the header scrolls away with the hero, then drops in pinned and solid once the hero has passed.
+export default function HeaderShell({
+  overlay,
+  pinAfterHero = false,
+  children,
+}: {
+  overlay: boolean;
+  pinAfterHero?: boolean;
+  children: React.ReactNode;
+}) {
+  const [solid, setSolid] = useState(!overlay);
+  const [pinned, setPinned] = useState(!pinAfterHero);
 
   useEffect(() => {
-    let lastY = window.scrollY;
+    if (!overlay) return;
     let frame = 0;
     const update = () => {
       frame = 0;
       const y = window.scrollY;
-      // Keep it in place while a mega-menu panel is open.
-      const menuOpen = !!ref.current?.querySelector('[aria-expanded="true"]');
-      let hidden: boolean;
-      if (y < 50) hidden = false;
-      else if (Math.abs(y - lastY) < 4) {
-        lastY = y;
-        return;
-      } else hidden = y > lastY && !menuOpen;
-      const solid = !overlay || (y >= 50 && !hidden) || (y >= 50 && menuOpen);
-      lastY = y;
-      setState((s) => (s.hidden === hidden && s.solid === solid ? s : { hidden, solid }));
+      if (pinAfterHero) {
+        const hero = document.querySelector<HTMLElement>('.hero');
+        const pin = y >= (hero ? hero.offsetTop + hero.offsetHeight : 0);
+        setPinned(pin);
+        setSolid(pin);
+      } else setSolid(y >= 50);
     };
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);
     };
     update();
     window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
     return () => {
       window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
       cancelAnimationFrame(frame);
     };
-  }, [overlay]);
+  }, [overlay, pinAfterHero]);
 
+  const position = overlay ? (pinned ? 'fixed' : 'absolute') : 'sticky';
   return (
     <header
-      ref={ref}
-      data-hidden={state.hidden || undefined}
-      data-solid={state.solid || undefined}
-      className={`site-header inset-x-0 top-0 z-30 data-solid:bg-salt data-solid:text-navy ${overlay ? 'fixed text-[#f4f5f0]' : 'sticky text-navy'}`}
+      data-solid={solid || undefined}
+      data-dropped={(pinAfterHero && pinned) || undefined}
+      className={`site-header inset-x-0 top-0 z-30 data-solid:bg-white data-solid:text-deep-teal ${position} ${overlay ? 'text-white' : 'text-deep-teal'}`}
     >
       {children}
     </header>

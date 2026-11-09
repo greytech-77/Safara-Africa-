@@ -10,7 +10,7 @@ export default function FaqList({ faqs }: { faqs: { q: string; a: string }[] }) 
   return (
     <>
       <JsonLd data={ld} />
-      <div className="divide-y divide-navy/15 border-y border-navy/15">
+      <div className="divide-y divide-deep-teal/15 border-y border-deep-teal/15">
         {faqs.map((f) => (
           <details key={f.q} className="group py-5">
             <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-step-1 font-semibold">
@@ -19,7 +19,7 @@ export default function FaqList({ faqs }: { faqs: { q: string; a: string }[] }) 
                 +
               </span>
             </summary>
-            <p className="measure mt-3 text-ink/85">{f.a}</p>
+            <p className="measure mt-3 text-ink">{f.a}</p>
           </details>
         ))}
       </div>

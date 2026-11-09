@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Breadcrumb from '@/components/ui/Breadcrumb';
 import CtaBlock from '@/components/ui/CtaBlock';
 import Header from '@/components/layout/Header';
-import PageHero from '@/components/ui/PageHero';
+import Hero from '@/components/ui/Hero';
 import TourGrid from '@/features/tours/components/TourGrid';
 import { getJourneyType, journeyTypes } from '@/content/journeys';
 import { getTours } from '@/lib/content';
@@ -27,6 +26,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+// "Honeymoon Safari" → Honeymoon *safari*; "Great Migration" → Great Migration *safaris*.
+function heroTitle(name: string) {
+  const m = name.match(/^(.+) (safaris?|trekking)$/i);
+  if (m) return { title: m[1], titleAccent: m[2].toLowerCase() };
+  return /safari/i.test(name) ? { title: name } : { title: name, titleAccent: 'safaris' };
+}
+
 export default async function JourneyTypePage({ params }: Props) {
   const j = getJourneyType((await params).slug);
   if (!j) notFound();
@@ -35,35 +41,35 @@ export default async function JourneyTypePage({ params }: Props) {
   return (
     <>
       <Header overlay current={`/journey/${j.slug}`} />
-      <PageHero image={j.image}>
-        <Breadcrumb items={[{ label: 'Journey', href: '/journey' }, { label: j.name }]} />
-        <h1 className="mt-4 max-w-[16ch] text-step-6">{j.name}</h1>
-        <p className="mt-4 max-w-[46ch] text-step-1 text-[#dce2e6]">{j.teaser}</p>
-      </PageHero>
+      <Hero image={j.image} {...heroTitle(j.name)} breadcrumbs={[{ label: 'Journeys', href: '/journey' }, { label: j.name }]} />
 
-      <section className="wrap pt-16">
-        <div className="prose-safara">
-          {j.intro.map((p) => (
-            <p key={p.slice(0, 40)}>{p}</p>
-          ))}
+      <section className="band">
+        <div className="wrap">
+          <div className="prose-safara mx-auto text-center">
+            {j.intro.map((p) => (
+              <p key={p.slice(0, 40)}>{p}</p>
+            ))}
+          </div>
         </div>
       </section>
 
-      <section className="wrap mt-20" aria-labelledby="tours-heading">
-        <h2 id="tours-heading" className="text-step-4 text-navy">
-          {j.name} tours
-        </h2>
-        <p className="measure mt-3 text-slate">
-          Every itinerary can be changed. Use these as a starting point, or ask us to design one from scratch.
-        </p>
-        <div className="mt-8">
-          {tours.length > 0 ? (
-            <TourGrid tours={tours} />
-          ) : (
-            <p className="text-ink/85">
-              We are adding itineraries for this safari type. Tell us what you have in mind and we will design one for you.
-            </p>
-          )}
+      <section className="band" aria-labelledby="tours-heading">
+        <div className="wrap">
+          <h2 id="tours-heading" className="text-step-4 text-ink">
+            {j.name} tours
+          </h2>
+          <p className="measure mt-3 text-ink">
+            Every itinerary can be changed. Use these as a starting point, or ask us to design one from scratch.
+          </p>
+          <div className="mt-8">
+            {tours.length > 0 ? (
+              <TourGrid tours={tours} />
+            ) : (
+              <p className="text-ink">
+                We are adding itineraries for this safari type. Tell us what you have in mind and we will design one for you.
+              </p>
+            )}
+          </div>
         </div>
       </section>
 

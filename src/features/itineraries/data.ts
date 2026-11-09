@@ -10,7 +10,7 @@ import { places as placeData } from '@/content/places';
 import { parkFees } from '@/content/pricing/park-fees';
 import { stays as stayData } from '@/content/stays';
 import { treks } from '@/content/treks';
-import type { Stop, Tour, TourCardData } from '@/types/content';
+import type { Img, Stop, Tour, TourCardData } from '@/types/content';
 import { fromPrice, formatUsd } from './pricing';
 import { addOnSchema, itinerarySchema, placeSchema, staySchema, type AddOn, type Itinerary, type Place, type Stay } from './schema';
 
@@ -110,6 +110,20 @@ export const getStay = (slug: string) => loadCatalogue().stays.get(slug);
 export const getAddOn = (slug: string) => loadCatalogue().addOns.get(slug);
 export const getStays = () => loadCatalogue().stays;
 
+// The photo for a day in the day-by-day: its own, else the lodge's, else the last park visited, else the trip's hero.
+export function dayImage(it: Itinerary, day: Itinerary['itinerary'][number]): Img {
+  if (day.image) return day.image;
+  const { places, stays } = loadCatalogue();
+  const lodge = day.stay ? stays.get(day.stay)?.accommodation : undefined;
+  const lodgeImage = lodge && accommodations.find((a) => a.slug === lodge)?.image;
+  if (lodgeImage) return lodgeImage;
+  const park = day.places
+    .map((p) => places.get(p)?.park)
+    .filter(Boolean)
+    .at(-1);
+  return parks.find((p) => p.slug === park)?.image ?? it.hero;
+}
+
 // Stops in travel order with nights per stop. Consecutive days in the same place merge into one stop;
 // places passed through during the day appear with 0 nights.
 export function routeStops(it: Itinerary): Stop[] {
@@ -130,6 +144,23 @@ export function routeStops(it: Itinerary): Stop[] {
     }
   }
   return stops;
+}
+
+// Places in travel order, and the index of the place each day ends at. Feeds the scroll-driven route map.
+export function routePath(it: Itinerary) {
+  const { places, stays } = loadCatalogue();
+  const points: Pick<Place, 'slug' | 'name' | 'lat' | 'lng'>[] = [];
+  const dayEnds: number[] = [];
+  for (const day of it.itinerary) {
+    const stay = day.stay ? stays.get(day.stay) : undefined;
+    for (const slug of [...day.places, ...(stay ? [stay.place] : [])]) {
+      if (points.at(-1)?.slug === slug) continue;
+      const { name, lat, lng } = places.get(slug)!;
+      points.push({ slug, name, lat, lng });
+    }
+    dayEnds.push(points.length - 1);
+  }
+  return { points, dayEnds };
 }
 
 // Park pages (content/parks.ts slugs) this itinerary visits.

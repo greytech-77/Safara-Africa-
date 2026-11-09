@@ -20,7 +20,7 @@ export const MONTH_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Au
 
 export const levelLabel: Record<Stay['level'], string> = {
   mountain: 'Mountain camp',
-  budget: 'Budget',
+  budget: 'Affordable',
   mid: 'Mid-range',
   luxury: 'Luxury',
 };
@@ -56,3 +56,10 @@ export function monthRanges(months: number[]) {
     })
     .join(', ');
 }
+
+// Trip price levels as shown to visitors: described as choices, never ranked (see the brand writing guidelines).
+export const tierLabel: Record<'Budget' | 'Mid Range' | 'Luxury', string> = {
+  Budget: 'Affordable',
+  'Mid Range': 'Mid-range',
+  Luxury: 'Luxury',
+};

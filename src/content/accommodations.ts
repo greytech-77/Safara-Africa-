@@ -1,9 +1,11 @@
 import type { Img } from '@/types/content';
 import { unsplash } from '@/lib/unsplash';
+import { countries } from '@/content/countries';
 
 // Lodges and camps: /accommodations/[slug], listed on their country and park pages.
 // STARTER COPY: confirm these are properties you book, check room types and amenities with each lodge,
 // and replace the placeholder photos with images you have permission to use.
+// Real photos so far are in public/images/lodges/, each with its licence credit in `image.credit`.
 
 export type Accommodation = {
   slug: string;
@@ -88,7 +90,15 @@ export const accommodations: Accommodation[] = [
       'Maasai community visits',
     ],
     amenities: ['Swimming pool', 'Raised treehouse decks', 'Lounge and dining area overlooking the bush', 'Sundowner spots'],
-    image: tent,
+    image: {
+      src: '/images/lodges/tarangire-treetops.jpg',
+      alt: 'A raised tented room with a thatched roof beside a giant baobab tree',
+      credit: {
+        author: 'Richard Mortel',
+        licence: 'CC BY 2.0',
+        source: 'https://commons.wikimedia.org/wiki/File:Tarangire_Treetops_Lodge_(28715784605).jpg',
+      },
+    },
   },
   {
     slug: 'gibbs-farm',
@@ -178,7 +188,15 @@ export const accommodations: Accommodation[] = [
       'Nairobi National Park half-day safari',
     ],
     amenities: ['Historic manor house', 'Gardens', 'All meals included', 'Close to Nairobi airports'],
-    image: lodge,
+    image: {
+      src: '/images/lodges/giraffe-manor.jpg',
+      alt: 'A giraffe looking in through an arched window of the dining room',
+      credit: {
+        author: 'Jason Zhao',
+        licence: 'Unsplash License',
+        source: 'https://unsplash.com/photos/giraffe-on-window-during-daytime-UwrdquEfJd4',
+      },
+    },
   },
   {
     slug: 'saruni-samburu',
@@ -234,7 +252,15 @@ export const accommodations: Accommodation[] = [
     rooms: [{ name: 'Bandas', text: 'Private cottages with verandas facing the forest.' }],
     activities: ['Gorilla trekking from Buhoma', 'Village and community walks', 'Forest waterfall hikes', 'Birdwatching'],
     amenities: ['Forest views', 'Lounge and bar', 'Short walk to the trekking start', 'Full board'],
-    image: lodge,
+    image: {
+      src: '/images/lodges/bwindi-lodge.jpg',
+      alt: 'Thatched cottages among tall trees on a forested hillside',
+      credit: {
+        author: 'Esme Stewart',
+        licence: 'CC BY-SA 4.0',
+        source: 'https://commons.wikimedia.org/wiki/File:2-Bwindi_Lodge-DJI_0771.jpg',
+      },
+    },
   },
   {
     slug: 'kyambura-gorge-lodge',
@@ -250,7 +276,15 @@ export const accommodations: Accommodation[] = [
     rooms: [{ name: 'Bandas', text: 'Private cottages with views over the savanna.' }],
     activities: ['Chimpanzee tracking in Kyambura Gorge', 'Kazinga Channel boat trip', 'Game drives', 'Community coffee project visit'],
     amenities: ['Swimming pool', 'Savanna views', 'Lounge and bar', 'Full board'],
-    image: lodge,
+    image: {
+      src: '/images/lodges/kyambura-gorge-lodge.jpg',
+      alt: 'A round thatched lodge building among trees, with hills at sunrise behind',
+      credit: {
+        author: 'Esme Stewart',
+        licence: 'CC BY-SA 4.0',
+        source: 'https://commons.wikimedia.org/wiki/File:1-Kyambura_Gorge_Lodge-HDR_0002-4.jpg',
+      },
+    },
   },
   {
     slug: 'primate-lodge-kibale',
@@ -344,3 +378,16 @@ export const accommodations: Accommodation[] = [
 ];
 
 export const getAccommodation = (slug: string) => accommodations.find((a) => a.slug === slug);
+
+// Tiles for the lodge grid (home page and /accommodations), and the countries that have at least one lodge.
+export const lodgeTiles = accommodations.map((a) => ({
+  slug: a.slug,
+  name: a.name,
+  area: a.area,
+  country: a.country,
+  countryName: countries.find((c) => c.slug === a.country)?.name ?? '',
+  image: a.image,
+}));
+export const lodgeCountries = countries
+  .filter((c) => accommodations.some((a) => a.country === c.slug))
+  .map((c) => ({ slug: c.slug, name: c.name }));

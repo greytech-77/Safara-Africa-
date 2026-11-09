@@ -67,12 +67,12 @@ export default function ItineraryBrowser({ tours, options }: { tours: TourCardDa
   }
 
   const select = (key: keyof Filters, label: string, anyLabel: string, opts: Option[]) => (
-    <label className="block text-step--1 font-semibold text-navy">
+    <label className="block text-step--1 font-semibold text-deep-teal">
       {label}
       <select
         value={filters[key]}
         onChange={(e) => update(key, e.target.value)}
-        className="mt-1 w-full rounded-lg border border-navy/25 bg-white px-3 py-2.5 font-normal text-ink focus:border-navy focus:outline-none"
+        className="mt-1 w-full rounded-lg border border-deep-teal/25 bg-white px-3 py-2.5 font-normal text-ink focus:border-deep-teal focus:outline-none"
       >
         <option value="">{anyLabel}</option>
         {opts.map((o) => (
@@ -105,7 +105,7 @@ export default function ItineraryBrowser({ tours, options }: { tours: TourCardDa
               type="button"
               onClick={clear}
               disabled={!active}
-              className="btn btn-outline w-full cursor-pointer text-navy disabled:cursor-default disabled:opacity-40"
+              className="btn btn-outline w-full cursor-pointer text-deep-teal disabled:cursor-default disabled:opacity-40"
             >
               Clear filters
             </button>
@@ -113,7 +113,7 @@ export default function ItineraryBrowser({ tours, options }: { tours: TourCardDa
         </div>
       </form>
 
-      <p aria-live="polite" className="mt-6 text-step--1 font-semibold text-slate">
+      <p aria-live="polite" className="mt-6 text-step--1 font-semibold text-ink">
         {shown.length === tours.length ? `${tours.length} journeys` : `${shown.length} of ${tours.length} journeys match`}
       </p>
 
@@ -124,11 +124,11 @@ export default function ItineraryBrowser({ tours, options }: { tours: TourCardDa
           ))}
         </div>
       ) : (
-        <div className="mt-4 rounded-xl border border-navy/15 bg-white p-8 text-center">
-          <p className="text-step-1 font-semibold text-navy">No sample journey matches all of these.</p>
-          <p className="mt-2 text-slate">Every trip is tailor-made, so tell us what you have in mind, or clear a filter.</p>
+        <div className="mt-4 rounded-xl border border-deep-teal/15 bg-white p-8 text-center">
+          <p className="text-step-1 font-semibold text-deep-teal">No sample journey matches all of these.</p>
+          <p className="mt-2 text-ink">Every trip is tailor-made, so tell us what you have in mind, or clear a filter.</p>
           <div className="mt-5 flex flex-wrap justify-center gap-3">
-            <button type="button" onClick={clear} className="btn btn-outline cursor-pointer text-navy">
+            <button type="button" onClick={clear} className="btn btn-outline cursor-pointer text-deep-teal">
               Clear filters
             </button>
             <a href="/contact#enquire" className="btn btn-primary">

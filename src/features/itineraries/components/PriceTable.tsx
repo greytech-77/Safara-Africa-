@@ -13,11 +13,11 @@ export default function PriceTable({ pricing }: { pricing: Pricing }) {
       {pricing.isPlaceholder && (
         <DraftNotice>these prices are placeholders until {site.legalName} confirms them. Please ask for a quote.</DraftNotice>
       )}
-      <div className="mt-6 overflow-x-auto rounded-xl border border-navy/15 bg-white">
+      <div className="mt-6 overflow-x-auto rounded-xl border border-deep-teal/15 bg-white">
         <table className="w-full min-w-[32rem] border-collapse text-left">
           <caption className="sr-only">Price per person in US dollars, by season and number of travellers</caption>
           <thead>
-            <tr className="border-b border-navy/15 text-step--1 text-slate">
+            <tr className="border-b border-deep-teal/15 text-step--1 text-slate">
               <th scope="col" className="sticky left-0 bg-white px-4 py-3 font-semibold">
                 Season
               </th>
@@ -30,8 +30,8 @@ export default function PriceTable({ pricing }: { pricing: Pricing }) {
           </thead>
           <tbody>
             {grid.seasons.map((s) => (
-              <tr key={s.id} className="border-b border-navy/10 last:border-0">
-                <th scope="row" className="sticky left-0 bg-white px-4 py-3 font-semibold text-navy">
+              <tr key={s.id} className="border-b border-deep-teal/10 last:border-0">
+                <th scope="row" className="sticky left-0 bg-white px-4 py-3 font-semibold text-deep-teal">
                   {s.label}
                 </th>
                 {grid.groupSizes.map((n) => {
@@ -57,7 +57,7 @@ export default function PriceTable({ pricing }: { pricing: Pricing }) {
         <li>
           A {site.booking.depositPercent}% deposit confirms your booking; the balance is due {site.booking.balanceDueDays} days before
           travel.{' '}
-          <Link href="/terms" className="font-semibold text-navy underline underline-offset-4">
+          <Link href="/terms" className="font-semibold text-deep-teal underline underline-offset-4">
             Booking terms
           </Link>
         </li>

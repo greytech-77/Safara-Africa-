@@ -61,6 +61,8 @@ export const daySchema = z.object({
   // Null on the last day or when the night is not part of the trip.
   stay: slug.nullable(),
   trek: trekStageSchema.optional(),
+  // Photo shown when the day is opened. Falls back to the lodge, then the park, then the trip's hero photo.
+  image: img.optional(),
 });
 
 export const seasons = ['low', 'shoulder', 'high', 'peak'] as const;

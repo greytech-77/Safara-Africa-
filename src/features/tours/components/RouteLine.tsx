@@ -28,7 +28,7 @@ export default function RouteLine({ route, tone = 'dark', size = 'sm' }: { route
           {i < route.length - 1 && (
             <span
               aria-hidden="true"
-              className={`mx-3 mt-[0.65rem] h-px ${size === 'lg' ? 'w-14' : 'w-6'} ${light ? 'bg-white/50' : 'bg-navy/35'}`}
+              className={`mx-3 mt-[0.65rem] h-px ${size === 'lg' ? 'w-14' : 'w-6'} ${light ? 'bg-white/50' : 'bg-deep-teal/35'}`}
             />
           )}
         </li>

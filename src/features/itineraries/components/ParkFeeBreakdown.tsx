@@ -21,9 +21,9 @@ const UNIT_LABEL: Record<FeeLine['unit'], [string, string]> = {
 export default function ParkFeeBreakdown({ estimate, travellers }: { estimate: FeeEstimate; travellers: number }) {
   if (estimate.lines.length === 0) return null;
   return (
-    <div className="rounded-xl border border-navy/15 bg-white p-5 sm:p-6">
-      <h3 className="text-step-2 text-navy">Park and government fees in this price</h3>
-      <p className="mt-1 text-step--1 text-slate">
+    <div className="rounded-xl border border-deep-teal/15 bg-white p-5 sm:p-6">
+      <h3 className="text-step-2 text-ink">Park and government fees in this price</h3>
+      <p className="mt-1 text-step--1 text-ink">
         Estimate for {travellers} adult non-resident travellers, including VAT. Fees are set by the park authorities and passed on at cost.
       </p>
       <table className="mt-4 w-full border-collapse text-left text-step--1">
@@ -36,9 +36,9 @@ export default function ParkFeeBreakdown({ estimate, travellers }: { estimate: F
         </thead>
         <tbody>
           {estimate.lines.map((l) => (
-            <tr key={`${l.park}:${l.feeType}`} className="border-b border-navy/10">
+            <tr key={`${l.park}:${l.feeType}`} className="border-b border-deep-teal/10">
               <td className="py-2 pr-3">
-                <span className="font-semibold text-navy">{l.parkName}</span>
+                <span className="font-semibold text-deep-teal">{l.parkName}</span>
                 <span className="block text-slate">{FEE_LABEL[l.feeType]}</span>
               </td>
               <td className="py-2 pr-3 whitespace-nowrap text-slate">
@@ -50,7 +50,7 @@ export default function ParkFeeBreakdown({ estimate, travellers }: { estimate: F
         </tbody>
         <tfoot>
           <tr>
-            <th scope="row" className="pt-3 text-left font-bold text-navy">
+            <th scope="row" className="pt-3 text-left font-bold text-deep-teal">
               Total for the group
             </th>
             <td />
@@ -66,7 +66,7 @@ export default function ParkFeeBreakdown({ estimate, travellers }: { estimate: F
         </tfoot>
       </table>
       {estimate.missingParks.length > 0 && (
-        <p className="mt-3 text-step--1 text-slate">Fees for other areas on this route are included in the price but not itemised here.</p>
+        <p className="mt-3 text-step--1 text-ink">Fees for other areas on this route are included in the price but not itemised here.</p>
       )}
       {estimate.isPlaceholder && (
         <p className="mt-3 text-step--1 font-semibold text-gold-dark">

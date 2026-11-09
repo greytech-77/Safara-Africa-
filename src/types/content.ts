@@ -1,6 +1,11 @@
 // Shared content types. Loaders live in src/lib/content.ts; data lives in src/content/.
 
-export type Img = { src: string; alt: string };
+export type Img = {
+  src: string;
+  alt: string;
+  // Required by the photo's licence, e.g. CC BY-SA: shown next to the photo on its detail page.
+  credit?: { author: string; licence: string; source: string };
+};
 // A stop on a trip's route, in travel order. `park` is a content/parks.ts slug when the stop is a park.
 export type Stop = { slug?: string; place: string; nights: number; park?: string };
 

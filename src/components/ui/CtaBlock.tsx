@@ -12,17 +12,20 @@ export default function CtaBlock({
   topic?: string;
 }) {
   return (
-    <section className="wrap mt-24" aria-labelledby="cta-heading">
-      <div className="flex flex-col items-center rounded-2xl bg-navy px-6 py-16 text-center text-[#f4f5f0] sm:px-12">
+    <section className="band" aria-labelledby="cta-heading">
+      <div className="wrap metallic-silver flex flex-col items-center rounded-2xl px-6 py-16 text-center text-deep-teal sm:px-12">
         <h2 id="cta-heading" className="max-w-[22ch] text-step-4">
           {title}
         </h2>
-        <p className="mt-4 max-w-[52ch] text-[#d3dae0]">{text}</p>
+        <p className="mt-3 max-w-[52ch] text-[#26393d]">{text}</p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <Link href="/contact#enquire" className="btn btn-primary">
             Get Free Quote
           </Link>
-          <a href={whatsappLink(whatsappMessage(topic))} className="btn btn-outline-light">
+          <a
+            href={whatsappLink(whatsappMessage(topic))}
+            className="btn btn-outline hover:border-deep-teal hover:bg-deep-teal hover:text-white"
+          >
             WhatsApp us
           </a>
         </div>

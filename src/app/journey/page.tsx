@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
-import Breadcrumb from '@/components/ui/Breadcrumb';
 import CtaBlock from '@/components/ui/CtaBlock';
 import Header from '@/components/layout/Header';
+import Hero from '@/components/ui/Hero';
 import ImageCards from '@/components/ui/ImageCards';
 import { journeyTypes } from '@/content/journeys';
 
@@ -15,18 +15,19 @@ export const metadata: Metadata = {
 export default function JourneyIndexPage() {
   return (
     <>
-      <Header current="/journey" />
-      <section className="wrap pt-12">
-        <Breadcrumb tone="dark" items={[{ label: 'Journey' }]} />
-        <h1 className="mt-4 text-step-5 text-navy">East Africa Safaris</h1>
-        <p className="measure mt-4 text-slate">
-          Choose the kind of safari you are dreaming of. Each one can be combined with others, and every itinerary is fully tailor-made.
-        </p>
-        <div className="mt-12">
-          <ImageCards
-            columns={4}
-            items={journeyTypes.map((j) => ({ title: j.name, text: j.teaser, image: j.image, href: `/journey/${j.slug}` }))}
-          />
+      <Header overlay current="/journey" />
+      <Hero image={journeyTypes[0].image} title="East Africa" titleAccent="safaris" breadcrumbs={[{ label: 'Journeys' }]} />
+      <section className="band">
+        <div className="wrap">
+          <p className="measure mx-auto text-center text-ink">
+            Choose the kind of safari you are dreaming of. Each one can be combined with others, and every itinerary is fully tailor-made.
+          </p>
+          <div className="mt-12">
+            <ImageCards
+              columns={4}
+              items={journeyTypes.map((j) => ({ title: j.name, text: j.teaser, image: j.image, href: `/journey/${j.slug}` }))}
+            />
+          </div>
         </div>
       </section>
       <CtaBlock />

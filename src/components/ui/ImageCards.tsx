@@ -21,13 +21,13 @@ export default function ImageCards({ items, columns = 3 }: { items: ImageCardIte
                 className="zoom object-cover"
               />
             </div>
-            {item.meta && <p className="mt-4 text-step--1 font-semibold uppercase tracking-[0.08em] text-slate">{item.meta}</p>}
+            {item.meta && <p className="mt-4 text-step--1 font-semibold uppercase tracking-[0.08em] text-ink">{item.meta}</p>}
             <h3
-              className={`${item.meta ? 'mt-1' : 'mt-4'} text-step-2 text-navy ${item.href ? 'transition-colors duration-300 group-hover:text-gold' : ''}`}
+              className={`${item.meta ? 'mt-1' : 'mt-4'} text-step-2 text-ink ${item.href ? 'transition-colors duration-300 group-hover:text-gold' : ''}`}
             >
               {item.title}
             </h3>
-            {item.text && <p className="mt-1 text-ink/80">{item.text}</p>}
+            {item.text && <p className="mt-1 text-ink">{item.text}</p>}
           </>
         );
         return (

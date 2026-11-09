@@ -11,8 +11,14 @@ const CLOSE_DELAY = 220;
 
 // Desktop mega menu. Items are disclosure buttons; panels hold ordinary links.
 // The nav itself is not positioned, so panels anchor to the <header> and span its full width.
-export default function MegaMenu({ items, activeId, overlay }: { items: MenuItem[]; activeId?: string; overlay: boolean }) {
+export default function MegaMenu({ items, activeId }: { items: MenuItem[]; activeId?: string }) {
   const [openId, setOpenId] = useState<string | null>(null);
+  // True when one panel replaced another: it skips the slide-down so the menu doesn't flicker.
+  const [swapped, setSwapped] = useState(false);
+  const openPanel = (id: string) => {
+    setSwapped(openId !== null);
+    setOpenId(id);
+  };
   const navRef = useRef<HTMLElement>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const hoverOpenedAt = useRef(0);
@@ -57,7 +63,7 @@ export default function MegaMenu({ items, activeId, overlay }: { items: MenuItem
     if (openId === id) return;
     const open = () => {
       hoverOpenedAt.current = Date.now();
-      setOpenId(id);
+      openPanel(id);
     };
     // Switching between items while a panel is open is instant.
     if (openId) open();
@@ -74,7 +80,7 @@ export default function MegaMenu({ items, activeId, overlay }: { items: MenuItem
     clearTimer();
     // A click straight after hover-open shouldn't immediately close the panel.
     if (openId === id && Date.now() - hoverOpenedAt.current > 400) setOpenId(null);
-    else setOpenId(id);
+    else openPanel(id);
     hoverOpenedAt.current = 0;
   }
 
@@ -90,7 +96,7 @@ export default function MegaMenu({ items, activeId, overlay }: { items: MenuItem
     >
       {/* Soft shade over the page while a panel is open; clicks pass through and close the menu. */}
       {openId && <div aria-hidden="true" className="mega-backdrop pointer-events-none absolute inset-x-0 top-full h-screen bg-black/35" />}
-      <ul className="flex items-center gap-5 text-step--1 font-semibold xl:gap-7">
+      <ul className="flex items-center gap-5 xl:gap-8">
         {items.map((item) => {
           const open = openId === item.id;
           return (
@@ -103,19 +109,26 @@ export default function MegaMenu({ items, activeId, overlay }: { items: MenuItem
                 data-active={activeId === item.id || undefined}
                 onPointerEnter={(e) => hoverItem(e, item.id)}
                 onClick={() => clickItem(item.id)}
-                className="nav-link flex cursor-pointer items-center gap-1.5 py-2"
+                onKeyDown={(e) => {
+                  // ArrowDown opens the menu and moves to its first link.
+                  if (e.key !== 'ArrowDown') return;
+                  e.preventDefault();
+                  openPanel(item.id);
+                  requestAnimationFrame(() => document.querySelector<HTMLElement>(`#mega-panel-${item.id} a`)?.focus());
+                }}
+                className="nav-link flex cursor-pointer items-center py-2"
               >
                 {item.label}
-                <svg aria-hidden="true" viewBox="0 0 10 6" className={`size-2.5 transition-transform ${open ? 'rotate-180' : ''}`}>
-                  <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.5" />
-                </svg>
               </button>
 
               <div
                 id={`mega-panel-${item.id}`}
+                role="region"
+                aria-label={item.label}
                 hidden={!open}
+                data-swap={(open && swapped) || undefined}
                 onClick={(e) => (e.target as HTMLElement).closest('a') && close()}
-                className={`mega-panel absolute inset-x-0 top-full z-10 border-t bg-salt text-ink shadow-[0_24px_40px_-24px_rgb(31_46_64/0.45)] ${overlay ? 'border-white/20' : 'border-navy/10'}`}
+                className="mega-panel glass absolute inset-x-1 top-[calc(100%+4px)] z-10 max-h-[calc(100svh-var(--header-h)-16px)] overflow-y-auto rounded-[20px] text-ink"
               >
                 <Panel item={item} />
               </div>
@@ -131,22 +144,22 @@ function Panel({ item }: { item: MenuItem }) {
   if (item.tiles) return <TilesPanel tiles={item.tiles} />;
   const cardsOnly = item.groups.length === 0;
   return (
-    <div className={`wrap grid gap-12 py-10 ${cardsOnly ? '' : item.cards.length ? 'grid-cols-[1fr_auto]' : ''}`}>
+    <div
+      className={`mx-auto grid w-[min(100%-2rem,1140px)] gap-12 pt-10 pb-12 ${cardsOnly ? '' : item.cards.length ? 'grid-cols-[1fr_auto]' : ''}`}
+    >
       {!cardsOnly && (
         <div className="grid auto-cols-fr grid-flow-col gap-10">
           {item.groups.map((group, i) => (
             <div key={group.heading ?? i}>
-              {group.heading && (
-                <h2 className="mb-4 font-sans text-step--1 font-bold uppercase tracking-[0.12em] text-slate">{group.heading}</h2>
-              )}
+              {group.heading && <h2 className="mb-6 text-step-2 text-ink">{group.heading}</h2>}
               <ul className="space-y-3">
                 {group.links.map((link) => (
                   <li key={link.href + link.label}>
                     <Link href={link.href} className="sub-link group/link block">
-                      <span className="font-display text-step-1 text-navy transition-colors duration-300 group-hover/link:text-gold">
+                      <span className="font-sans text-step--1 font-bold uppercase tracking-[0.06em] text-deep-teal transition-colors duration-300 group-hover/link:text-gold">
                         {link.label}
                       </span>
-                      {link.note && <span className="block text-step--1 font-normal text-slate">{link.note}</span>}
+                      {link.note && <span className="mt-0.5 block text-step--1 font-normal text-ink">{link.note}</span>}
                     </Link>
                   </li>
                 ))}
@@ -160,8 +173,8 @@ function Panel({ item }: { item: MenuItem }) {
         <ul className={`grid gap-6 ${cardsOnly ? 'grid-cols-2 lg:max-w-3xl' : 'w-[22rem]'}`}>
           {item.cards.map((card) => (
             <li key={card.href}>
-              <Link href={card.href} className="group/card block">
-                <div className="relative aspect-[16/10] overflow-hidden bg-salt-deep">
+              <Link href={card.href} className="glass-card group/card block">
+                <div className="relative aspect-[16/10] overflow-hidden rounded-[4px] bg-salt-deep">
                   <Image
                     src={card.image.src}
                     alt=""
@@ -170,8 +183,10 @@ function Panel({ item }: { item: MenuItem }) {
                     className="object-cover transition-transform duration-800 group-hover/card:scale-[1.05]"
                   />
                 </div>
-                <p className="mt-3 font-display text-step-1 text-navy group-hover/card:text-gold">{card.title}</p>
-                <p className="text-step--1 font-bold text-gold">
+                <p className="mt-3 px-1 font-sans text-step--1 font-bold uppercase tracking-[0.06em] text-deep-teal group-hover/card:text-gold">
+                  {card.title}
+                </p>
+                <p className="px-1 pb-1 text-step--1 font-bold text-gold">
                   {card.cta} <span className="arrow group-hover/card:translate-x-1">→</span>
                 </p>
               </Link>
@@ -183,42 +198,94 @@ function Panel({ item }: { item: MenuItem }) {
   );
 }
 
-// Optional heading over a four-column grid of white photo tiles, each labelled underneath.
+// Optional heading over a four-column grid of glass cards: photo, title, then View and Enquire.
+// More than four items (Journeys) switch to compact cards in a single row, so the panel stays short.
 function TilesPanel({ tiles }: { tiles: NonNullable<MenuItem['tiles']> }) {
+  if (tiles.items.length > 4) return <CompactTilesPanel tiles={tiles} />;
   return (
-    <div className="wrap max-h-[calc(100vh-7rem)] overflow-y-auto py-10">
-      <div className={`flex flex-wrap items-baseline gap-4 ${tiles.heading ? 'justify-between' : 'justify-end'}`}>
-        {tiles.heading && <h2 className="text-step-2 text-navy">{tiles.heading}</h2>}
-        <ul className="flex gap-6 text-step--1 font-bold">
-          {(tiles.links ?? []).map((link) => (
-            <li key={link.href}>
-              <Link href={link.href} className="text-gold hover:text-gold-dark">
-                {link.label} <span className="arrow">→</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <ul className={`${tiles.heading || tiles.links?.length ? 'mt-6' : ''} grid grid-cols-4 gap-5`}>
+    <div className="mx-auto w-[min(100%-2rem,1140px)] pt-10 pb-12">
+      <TilesHeader tiles={tiles} />
+      <ul className={`${tiles.heading || tiles.links?.length ? 'mt-6' : ''} grid grid-cols-4 gap-x-5 gap-y-10 xl:gap-x-[30px]`}>
         {tiles.items.map((tile) => (
-          <li key={tile.href}>
+          <li key={tile.href} className="glass-card">
+            {/* The photo repeats the View link, so it is skipped by keyboard and screen readers. */}
             <Link
               href={tile.href}
-              className="group/tile block h-full bg-white p-2.5 shadow-[0_4px_3px_rgb(0_0_0/.12)] transition-shadow hover:shadow-[0_10px_24px_-8px_rgb(31_46_64/.35)]"
+              tabIndex={-1}
+              aria-hidden="true"
+              className="group/tile relative block h-[136px] overflow-hidden rounded-[4px] bg-salt-deep"
             >
-              <div className="relative h-[206px] overflow-hidden bg-salt-deep">
+              <Image
+                src={tile.image.src}
+                alt=""
+                fill
+                sizes="250px"
+                className="object-cover transition-transform duration-800 group-hover/tile:scale-[1.05]"
+              />
+            </Link>
+            <h2 className="mt-3.5 mb-2.5 px-1 text-center font-sans text-step--1 font-bold uppercase tracking-[0.06em] text-deep-teal">
+              {tile.title}
+            </h2>
+            <div className="flex justify-center gap-5 pb-2.5 text-step--1 font-semibold text-ink">
+              <Link href={tile.href} className="glass-card__action" aria-label={`View ${tile.title}`}>
+                View
+              </Link>
+              <Link href="/contact#enquire" className="glass-card__action" aria-label={`Enquire about ${tile.title}`}>
+                Enquire
+              </Link>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+// Small photo cards, four to a row, starting close under the heading so two rows fit without scrolling; each card is one link.
+function CompactTilesPanel({ tiles }: { tiles: NonNullable<MenuItem['tiles']> }) {
+  return (
+    <div className="mx-auto w-[min(100%-2rem,1140px)] pt-4 pb-6">
+      <TilesHeader tiles={tiles} arrows={false} />
+      <ul className={`${tiles.heading || tiles.links?.length ? 'mt-3' : ''} grid grid-cols-4 gap-x-4 gap-y-3`}>
+        {tiles.items.map((tile) => (
+          <li key={tile.href}>
+            <Link href={tile.href} className="glass-card group/tile block h-full">
+              <div className="relative h-[124px] overflow-hidden rounded-[4px] bg-salt-deep">
                 <Image
                   src={tile.image.src}
                   alt=""
                   fill
-                  sizes="300px"
+                  sizes="280px"
                   className="object-cover transition-transform duration-800 group-hover/tile:scale-[1.05]"
                 />
               </div>
-              <p className="mt-3 px-1 font-sans text-step--1 font-bold uppercase tracking-[0.06em] text-navy group-hover/tile:text-gold">
+              <p className="px-1 pt-2 pb-1 text-center font-sans text-[0.75rem] leading-snug font-bold uppercase tracking-[0.06em] text-deep-teal group-hover/tile:text-gold">
                 {tile.title}
               </p>
-              <p className="px-1 pb-1 text-step--1 text-slate">{tile.cta}</p>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+// Panel heading on the left, quick links on the right.
+function TilesHeader({ tiles, arrows = true }: { tiles: NonNullable<MenuItem['tiles']>; arrows?: boolean }) {
+  return (
+    <div className={`flex flex-wrap items-baseline gap-4 ${tiles.heading ? 'justify-between' : 'justify-end'}`}>
+      {tiles.heading && <h2 className="text-step-2 text-ink">{tiles.heading}</h2>}
+      <ul className="flex gap-6 text-step--1 font-bold">
+        {(tiles.links ?? []).map((link) => (
+          <li key={link.href}>
+            <Link href={link.href} className="text-gold hover:text-gold-dark">
+              {link.label}
+              {arrows && (
+                <>
+                  {' '}
+                  <span className="arrow">→</span>
+                </>
+              )}
             </Link>
           </li>
         ))}

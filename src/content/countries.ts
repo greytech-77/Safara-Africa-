@@ -14,7 +14,8 @@ export type Country = {
   tagline: string;
   description: string;
   overview: string[];
-  experiences: { title: string; text: string }[];
+  // Photos are Unsplash placeholders reused from elsewhere on the site; swap in your own before launch.
+  experiences: { title: string; text: string; image: Img }[];
   // January to December.
   months: Month[];
   faqs: { q: string; a: string }[];
@@ -33,12 +34,36 @@ export const countries: Country[] = [
       'The northern circuit, starting from Arusha, links Tarangire, Lake Manyara, Ngorongoro and the Serengeti and can be explored by road in a week. The southern parks, Nyerere and Ruaha, are wilder and quieter, and best reached by light aircraft. Beyond the parks, Tanzania offers Kilimanjaro, Africa’s highest mountain, and the islands of Zanzibar, Pemba and Mafia on the Indian Ocean. That variety makes it easy to combine safari, trekking and beach in a single trip, all planned by our team on the ground in Arusha.',
     ],
     experiences: [
-      { title: 'Great Migration', text: 'Calving in Ndutu or river crossings in the north.' },
-      { title: 'Hot-air balloon', text: 'Sunrise flight over the Serengeti plains.' },
-      { title: 'Kilimanjaro climb', text: 'Walk to the Roof of Africa.' },
-      { title: 'Cultural visits', text: 'Maasai, Hadzabe and Datoga communities.' },
-      { title: 'Walking safaris', text: 'On foot with an armed ranger in Tarangire or Ruaha.' },
-      { title: 'Zanzibar', text: 'Stone Town and white-sand beaches.' },
+      {
+        title: 'Great Migration',
+        text: 'Calving in Ndutu or river crossings in the north.',
+        image: unsplash('1564101160531-4838e8a5f4e7', 'Wildebeest herd crossing a muddy river'),
+      },
+      {
+        title: 'Hot-air balloon',
+        text: 'Sunrise flight over the Serengeti plains.',
+        image: unsplash('1707410436272-1bcc71ecafb3', 'Three hot-air balloons flying over a river'),
+      },
+      {
+        title: 'Kilimanjaro climb',
+        text: 'Walk to the Roof of Africa.',
+        image: unsplash('1489392191049-fc10c97e64b6', 'Snow-capped Kilimanjaro rising above the clouds'),
+      },
+      {
+        title: 'Cultural visits',
+        text: 'Maasai, Hadzabe and Datoga communities.',
+        image: unsplash('1776772838972-ee89adb85561', 'Three men in traditional Maasai clothing'),
+      },
+      {
+        title: 'Walking safaris',
+        text: 'On foot with an armed ranger in Tarangire or Ruaha.',
+        image: unsplash('1787250230779-562abca4ddf5', 'A lone acacia tree on golden savanna under a cloudy sky'),
+      },
+      {
+        title: 'Zanzibar',
+        text: 'Stone Town and white-sand beaches.',
+        image: unsplash('1575999502951-4ab25b5ca889', 'White sand beach with palm trees and a wooden pier in Zanzibar'),
+      },
     ],
     months: [
       {
@@ -125,12 +150,36 @@ export const countries: Country[] = [
       'Beyond the Mara, Amboseli is famous for its elephants walking beneath Kilimanjaro, Samburu in the north has species found nowhere further south, and Lake Nakuru protects black and white rhino. Kenya also pioneered private conservancies, where landowners and camps limit vehicle numbers and allow night drives, walking and off-road viewing. Nairobi is a major flight hub with good connections to the rest of the world, and Kenya combines easily with Tanzania for a two-country safari, or with the beaches of Diani or Zanzibar. We plan Kenya trips with trusted local partners and our own team’s knowledge of the region.',
     ],
     experiences: [
-      { title: 'Migration in the Mara', text: 'River crossings from about July to October.' },
-      { title: 'Private conservancies', text: 'Fewer vehicles, night drives and walks.' },
-      { title: 'Hot-air balloon', text: 'Sunrise flight over the Maasai Mara.' },
-      { title: 'Giraffe Centre', text: 'Meet Rothschild’s giraffes in Nairobi.' },
-      { title: 'Samburu culture', text: 'Visits with Samburu communities in the north.' },
-      { title: 'Beach extension', text: 'Diani Beach or a short flight to Zanzibar.' },
+      {
+        title: 'Migration in the Mara',
+        text: 'River crossings from about July to October.',
+        image: unsplash('1518459384564-ecfd8e80721f', 'A herd of wildebeest running across dry savanna with safari vehicles'),
+      },
+      {
+        title: 'Private conservancies',
+        text: 'Fewer vehicles, night drives and walks.',
+        image: unsplash('1710077539513-6d0b9cf273e2', 'A group of people on the back of a safari vehicle'),
+      },
+      {
+        title: 'Hot-air balloon',
+        text: 'Sunrise flight over the Maasai Mara.',
+        image: unsplash('1707410436230-d4b2fba910e7', 'Two giraffes walking below a hot-air balloon'),
+      },
+      {
+        title: 'Giraffe Centre',
+        text: 'Meet Rothschild’s giraffes in Nairobi.',
+        image: unsplash('1538209647246-bb82d2e4b372', 'Giraffes on an open grass plain'),
+      },
+      {
+        title: 'Samburu culture',
+        text: 'Visits with Samburu communities in the north.',
+        image: unsplash('1635595358293-03620e36be48', 'A herd of zebra on a dry grass field'),
+      },
+      {
+        title: 'Beach extension',
+        text: 'Diani Beach or a short flight to Zanzibar.',
+        image: unsplash('1621583628955-42fbc37bf424', 'Wooden boats anchored in turquoise water off a sandy beach'),
+      },
     ],
     months: [
       {
@@ -190,12 +239,36 @@ export const countries: Country[] = [
       'The country also has classic savanna. Queen Elizabeth National Park is known for boat trips on the Kazinga Channel, with hippos, buffalo and elephants along the banks, and for the tree-climbing lions of the Ishasha sector. Murchison Falls National Park is where the Nile forces its way through a narrow gorge, with game drives and boat trips below the falls. Between the parks are green hills, tea plantations and crater lakes such as Lake Bunyonyi. Uganda is easy to combine with a Tanzania or Kenya safari, adding gorillas and chimpanzees to a trip focused on the plains.',
     ],
     experiences: [
-      { title: 'Gorilla trekking', text: 'One hour with a mountain gorilla family in Bwindi.' },
-      { title: 'Chimpanzee tracking', text: 'Follow habituated chimps in Kibale Forest.' },
-      { title: 'Kazinga Channel', text: 'Boat trip past hippos, buffalo and elephants.' },
-      { title: 'Murchison Falls', text: 'Boat trip to the foot of the falls.' },
-      { title: 'Lake Bunyonyi', text: 'Rest days by a calm, island-dotted lake.' },
-      { title: 'Community visits', text: 'Villages and projects around Bwindi.' },
+      {
+        title: 'Gorilla trekking',
+        text: 'One hour with a mountain gorilla family in Bwindi.',
+        image: unsplash('1762358511314-ac38f03cffbd', 'A large gorilla sitting in a green forest'),
+      },
+      {
+        title: 'Chimpanzee tracking',
+        text: 'Follow habituated chimps in Kibale Forest.',
+        image: unsplash('1742328114761-18b9304e0c95', 'A chimpanzee sitting on a tree branch in the forest'),
+      },
+      {
+        title: 'Kazinga Channel',
+        text: 'Boat trip past hippos, buffalo and elephants.',
+        image: unsplash('1673283961733-244a7879ac2d', 'A large group of hippos in a river'),
+      },
+      {
+        title: 'Murchison Falls',
+        text: 'Boat trip to the foot of the falls.',
+        image: unsplash('1728238054897-05023133fe90', 'A herd of elephants walking across a river'),
+      },
+      {
+        title: 'Lake Bunyonyi',
+        text: 'Rest days by a calm, island-dotted lake.',
+        image: unsplash('1494500764479-0c8f2919a3d8', 'A tree standing in shallow water with mountains behind'),
+      },
+      {
+        title: 'Community visits',
+        text: 'Villages and projects around Bwindi.',
+        image: unsplash('1777310569880-e20082e2c8ea', 'Rolling green hills with scattered trees'),
+      },
     ],
     months: [
       { text: 'Dry and warm. A good month for gorilla trekking, with firmer trails.', tags: ['Dry Season', 'Gorilla Trekking'] },
@@ -249,12 +322,36 @@ export const countries: Country[] = [
       'Rwanda has invested heavily in conservation and high-quality, low-volume tourism. Akagera National Park in the east is now a Big Five park after lions and rhinos were reintroduced, and Nyungwe Forest in the south-west has chimpanzees, colobus monkeys and a canopy walkway above the trees. Lake Kivu offers relaxed days by the water between treks. Kigali is clean, safe and well connected by air, and Rwanda combines easily with a Tanzania or Kenya safari for travellers who want to add gorillas to their trip.',
     ],
     experiences: [
-      { title: 'Gorilla trekking', text: 'One hour with a mountain gorilla family.' },
-      { title: 'Golden monkeys', text: 'Track these rare monkeys in the bamboo.' },
-      { title: 'Dian Fossey’s grave', text: 'A hike to the Karisoke research site.' },
-      { title: 'Nyungwe canopy walk', text: 'A suspension bridge above the forest.' },
-      { title: 'Akagera game drives', text: 'Savanna wildlife, including lion and rhino.' },
-      { title: 'Kigali', text: 'Markets, art galleries and the Genocide Memorial.' },
+      {
+        title: 'Gorilla trekking',
+        text: 'One hour with a mountain gorilla family.',
+        image: unsplash('1773975006646-04184f1eb137', 'A gorilla mother carrying her baby through green foliage'),
+      },
+      {
+        title: 'Golden monkeys',
+        text: 'Track these rare monkeys in the bamboo.',
+        image: unsplash('1642670022167-3df5e498cd8d', 'A view of a mountain with trees in the foreground'),
+      },
+      {
+        title: 'Dian Fossey’s grave',
+        text: 'A hike to the Karisoke research site.',
+        image: unsplash('1567082998395-94ec44aa5568', 'Aerial view of a mountain range'),
+      },
+      {
+        title: 'Nyungwe canopy walk',
+        text: 'A suspension bridge above the forest.',
+        image: unsplash('1777310569880-e20082e2c8ea', 'Rolling green hills with scattered trees'),
+      },
+      {
+        title: 'Akagera game drives',
+        text: 'Savanna wildlife, including lion and rhino.',
+        image: unsplash('1709402606682-400133d92ab2', 'Safari vehicle with passengers watching a lion'),
+      },
+      {
+        title: 'Kigali',
+        text: 'Markets, art galleries and the Genocide Memorial.',
+        image: unsplash('1786795468102-84cd1ac41cd8', 'Aerial view of Nyandungu Eco-Park in Kigali with winding paths and ponds'),
+      },
     ],
     months: [
       {

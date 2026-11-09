@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/destinations',
     '/beaches',
     '/trekking',
+    '/accommodations',
     '/journal',
     '/faqs',
     '/about',

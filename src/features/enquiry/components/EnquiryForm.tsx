@@ -37,13 +37,14 @@ export default function EnquiryForm({ tours, preselect }: { tours: { slug: strin
   if (status.kind === 'sent') {
     return (
       <div role="status" className="rounded-xl bg-white/70 p-6">
-        <p className="font-display text-step-2 text-navy">Enquiry sent</p>
-        <p className="mt-2 text-ink/85">Thank you. A travel consultant will reply within one working day.</p>
+        <p className="font-display text-step-2 text-deep-teal">Enquiry sent</p>
+        <p className="mt-2 text-ink">Thank you. A travel consultant will reply within one working day.</p>
       </div>
     );
   }
 
-  const field = 'mt-1 w-full rounded-lg border border-navy/25 bg-white/80 px-3 py-2.5 font-normal focus:border-navy focus:outline-none';
+  const field =
+    'mt-1 w-full rounded-lg border border-deep-teal/25 bg-white/80 px-3 py-2.5 font-normal focus:border-deep-teal focus:outline-none';
   const label = 'block text-step--1 font-semibold';
 
   return (
@@ -114,10 +115,10 @@ export default function EnquiryForm({ tours, preselect }: { tours: { slug: strin
             'Send enquiry'
           )}
         </button>
-        <p className="text-step--1 text-slate">A travel consultant replies within one working day.</p>
-        <p className="w-full text-step--1 text-slate">
+        <p className="text-step--1 text-ink">A travel consultant replies within one working day.</p>
+        <p className="w-full text-step--1 text-ink">
           We use your details only to plan your trip. See our{' '}
-          <Link href="/privacy" className="font-semibold text-navy underline underline-offset-4">
+          <Link href="/privacy" className="font-semibold text-deep-teal underline underline-offset-4">
             privacy policy
           </Link>
           .

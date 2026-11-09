@@ -1,7 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Header from '@/components/layout/Header';
+import Hero from '@/components/ui/Hero';
 import { site } from '@/config/site';
+import { pageHeroes } from '@/content/page-heroes';
 
 export const metadata: Metadata = {
   title: 'About us',
@@ -25,23 +27,26 @@ const reasons = [
 export default function AboutPage() {
   return (
     <>
-      <Header current="/about" />
-      <section className="wrap pt-16">
-        <h1 className="max-w-[18ch] text-step-5 text-navy">A journey beyond the ordinary</h1>
-        <div className="prose-safara mt-8">
-          <p>
-            {site.legalName} is a licensed tour operator in {site.address.city}. We design private, tailor-made journeys across Tanzania,
-            from the Serengeti and the Ngorongoro Crater to the summit of Kilimanjaro and the beaches of Zanzibar.
-          </p>
-          <p>
-            Because we live here, we plan with first-hand knowledge: where the migration herds are each month, which camp sits closest to
-            the river crossings, which Kilimanjaro route suits you, which guide your children will love.
-          </p>
+      <Header overlay current="/about" />
+      <Hero size="md" image={pageHeroes.about.image} title="About" titleAccent="us" breadcrumbs={[{ label: 'About Us' }]} />
+      <section className="band">
+        <div className="wrap">
+          <h2 className="mx-auto max-w-[18ch] text-center text-step-4 text-ink">A journey beyond the ordinary</h2>
+          <div className="prose-safara mx-auto mt-3 text-center">
+            <p>
+              {site.legalName} is a licensed tour operator in {site.address.city}. We design private, tailor-made journeys across Tanzania,
+              from the Serengeti and the Ngorongoro Crater to the summit of Kilimanjaro and the beaches of Zanzibar.
+            </p>
+            <p>
+              Because we live here, we plan with first-hand knowledge: where the migration herds are each month, which camp sits closest to
+              the river crossings, which Kilimanjaro route suits you, which guide your children will love.
+            </p>
+          </div>
         </div>
       </section>
 
-      <section id="why" className="mt-20 scroll-mt-8 bg-navy text-[#f4f5f0]" aria-labelledby="why-heading">
-        <div className="wrap py-24">
+      <section id="why" className="band scroll-mt-8 bg-deep-teal text-[#f4f5f0]" aria-labelledby="why-heading">
+        <div className="wrap">
           <h2 id="why-heading" className="text-step-4">
             Why travel with us
           </h2>
@@ -56,15 +61,17 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="wrap flex flex-col items-center pt-24 text-center">
-        <h2 className="max-w-[22ch] text-step-4 text-navy">Start planning with a consultant</h2>
-        <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <Link href="/contact#enquire" className="btn btn-primary">
-            Plan your trip
-          </Link>
-          <Link href="/about/team" className="btn btn-outline text-navy">
-            Meet the team
-          </Link>
+      <section className="band">
+        <div className="wrap flex flex-col items-center text-center">
+          <h2 className="max-w-[22ch] text-step-4 text-ink">Talk to our travel team</h2>
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <Link href="/contact#enquire" className="btn btn-primary">
+              Plan your journey
+            </Link>
+            <Link href="/about/team" className="btn btn-outline text-deep-teal">
+              Meet the team
+            </Link>
+          </div>
         </div>
       </section>
     </>
