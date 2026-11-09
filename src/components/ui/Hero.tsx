@@ -29,7 +29,7 @@ type Props = {
 
 const enquire = { label: 'Plan your journey', href: '/contact#enquire' };
 
-// The hero on every page: photo or video, breadcrumb, the page's only <h1> and one outline button.
+// The hero on every page: photo or video, breadcrumb, the page's only <h1> and one solid ember button.
 // Pair with <Header overlay>; styles are in globals.css (.hero).
 export default function Hero({
   title,
@@ -71,7 +71,7 @@ export default function Hero({
         {subtitle && <p className="hero__subtitle">{subtitle}</p>}
         {children}
         {cta && (
-          <Link href={cta.href} className="btn btn-outline-light hero__cta">
+          <Link href={cta.href} className="btn btn-primary hero__cta">
             {cta.label}
           </Link>
         )}

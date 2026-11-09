@@ -536,11 +536,13 @@
     z-index: -1;
     pointer-events: none;
   }
+  /* Each photo hero also gets a dark bottom scrim so the title and the ember button read on bright photos. */
   .hero--overlay-left::before {
-    background: linear-gradient(90deg, rgb(0 0 0 / 0.5) 15%, rgb(0 0 0 / 0) 70%);
+    background:
+      linear-gradient(0deg, rgb(0 0 0 / 0.45) 0%, rgb(0 0 0 / 0) 45%), linear-gradient(90deg, rgb(0 0 0 / 0.55) 15%, rgb(0 0 0 / 0) 70%);
   }
   .hero--overlay-bottom::before {
-    background: linear-gradient(0deg, rgb(0 0 0 / 0.55) 0%, rgb(0 0 0 / 0) 60%);
+    background: linear-gradient(0deg, rgb(0 0 0 / 0.7) 0%, rgb(0 0 0 / 0) 65%);
   }
   .hero--overlay-full::before {
     background: rgb(0 0 0 / 0.35);
@@ -613,18 +615,13 @@
     font-size: var(--text-step-1);
     color: rgb(247 241 230 / 0.88);
   }
+  /* The hero button is a .btn-primary (solid ember pill), a touch larger. */
   .hero__cta {
-    border-color: #fff;
-    color: #fff;
-    padding: 13px 24px;
+    padding: 14px 28px;
     border-radius: 60px;
     font-size: 15px;
-    font-weight: 400;
-  }
-  .hero__cta:hover,
-  .hero__cta:focus-visible {
-    background: #fff;
-    color: var(--color-teal-deep);
+    font-weight: 700;
+    box-shadow: 0 6px 20px rgb(0 0 0 / 0.3);
   }
   .hero__title,
   .hero__cta {
