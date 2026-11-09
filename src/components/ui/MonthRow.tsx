@@ -4,7 +4,7 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 const STYLE: Record<MonthRating, { label: string; cls: string }> = {
   best: { label: 'Best', cls: 'bg-gold text-on-gold' },
   good: { label: 'Good', cls: 'bg-gold/35 text-ink' },
-  mixed: { label: 'Mixed', cls: 'bg-sand text-slate' },
+  mixed: { label: 'Mixed', cls: 'bg-white text-slate ring-1 ring-deep-teal/15' },
 };
 
 // January–December strip rated Best / Good / Mixed, with a legend.

@@ -28,7 +28,7 @@ export default async function AccommodationsPage({ searchParams }: Props) {
         titleAccent="& lodges"
         breadcrumbs={[{ label: 'Camps & lodges' }]}
       />
-      <section className="band bg-[#f8f8f3]" aria-labelledby="lodges-heading">
+      <section className="band" aria-labelledby="lodges-heading">
         <div className="wrap">
           <h2 id="lodges-heading" className="text-step-4 text-ink">
             Hand-picked camps &amp; lodges

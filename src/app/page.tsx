@@ -71,7 +71,7 @@ export default function HomePage() {
       />
 
       {/* Why book with us */}
-      <section className="band bg-[#f8f8f3]" aria-labelledby="why-heading">
+      <section className="band" aria-labelledby="why-heading">
         <div className="wrap">
           <h2 data-reveal id="why-heading" className="text-center text-step-4 text-ink">
             Why book with us?
@@ -89,7 +89,7 @@ export default function HomePage() {
       </section>
 
       {/* Journeys */}
-      <section className="band bg-white" aria-labelledby="journeys">
+      <section className="band" aria-labelledby="journeys">
         <div className="wrap">
           <div data-reveal className="flex flex-wrap items-end justify-between gap-6">
             <div>
@@ -117,7 +117,7 @@ export default function HomePage() {
       </section>
 
       {/* Where to stay: lodges and camps, filtered by country */}
-      <section className="band bg-[#f8f8f3]" aria-labelledby="stays-heading">
+      <section className="band" aria-labelledby="stays-heading">
         <div className="wrap">
           <h2 data-reveal id="stays-heading" className="text-step-4 text-ink">
             Most hand-picked camps &amp; lodges
@@ -131,7 +131,7 @@ export default function HomePage() {
 
       {/* Recommended on: review platforms and licences (samples show on the dev server only) */}
       {(publishedTrustPlatforms.length > 0 || publishedCredentials.length > 0) && (
-        <section data-reveal className="band bg-cream" aria-labelledby="trust-heading">
+        <section data-reveal className="band" aria-labelledby="trust-heading">
           <div className="wrap">
             <TrustPlatforms platforms={publishedTrustPlatforms} credentials={publishedCredentials} />
           </div>
@@ -153,7 +153,7 @@ export default function HomePage() {
       )}
 
       {/* Ways to travel: the Travel styles menu as a photo mosaic */}
-      <section className="band band-tight bg-[#f8f8f3]" aria-labelledby="styles-heading">
+      <section className="band band-tight" aria-labelledby="styles-heading">
         <div className="wrap">
           <div data-reveal>
             <p className="text-step--1 font-bold uppercase tracking-[0.14em] text-gold-ink">Travel styles</p>
@@ -209,7 +209,7 @@ export default function HomePage() {
 
       {/* Journal */}
       {posts.length > 0 && (
-        <section className="band bg-white" aria-labelledby="journal">
+        <section className="band" aria-labelledby="journal">
           <div className="wrap">
             <div data-reveal className="flex flex-wrap items-end justify-between gap-4">
               <h2 id="journal" className="text-step-4 text-ink">

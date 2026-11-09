@@ -69,7 +69,7 @@ export default async function TravelStylePage({ params }: Props) {
       </section>
 
       {tours.length > 0 && (
-        <section className="band bg-white" aria-labelledby="journeys">
+        <section className="band" aria-labelledby="journeys">
           <div className="wrap">
             <h2 id="journeys" className="text-step-3 text-ink">
               Journeys that suit

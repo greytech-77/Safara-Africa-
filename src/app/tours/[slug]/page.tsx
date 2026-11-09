@@ -80,7 +80,7 @@ export default async function ItineraryPage({ params }: Props) {
   const h2 = 'text-step-4 text-ink';
 
   return (
-    <div className="page-white bg-white pb-24 lg:pb-0">
+    <div className="pb-24 lg:pb-0">
       <JsonLd data={ld} />
       <Header overlay current="/tours" />
 

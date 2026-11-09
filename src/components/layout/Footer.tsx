@@ -30,17 +30,17 @@ export default function Footer() {
           <h2 className="mb-3 font-sans text-step-0 font-bold">Talk to us</h2>
           <ul className="space-y-1 text-cream/85">
             <li>
-              <a className="hover:text-white" href={`mailto:${site.email}`}>
+              <a className="transition-colors duration-300 hover:text-gold" href={`mailto:${site.email}`}>
                 {site.email}
               </a>
             </li>
             <li>
-              <a className="hover:text-white" href={`tel:${site.phone.tel}`}>
+              <a className="transition-colors duration-300 hover:text-gold" href={`tel:${site.phone.tel}`}>
                 {site.phone.display}
               </a>
             </li>
             <li>
-              <a className="hover:text-white" href={whatsappLink(whatsappMessage())}>
+              <a className="transition-colors duration-300 hover:text-gold" href={whatsappLink(whatsappMessage())}>
                 WhatsApp
               </a>
             </li>
@@ -68,12 +68,12 @@ export default function Footer() {
           </p>
           <ul className="flex flex-wrap gap-5">
             <li>
-              <Link className="hover:text-white" href="/privacy">
+              <Link className="transition-colors duration-300 hover:text-gold" href="/privacy">
                 Privacy
               </Link>
             </li>
             <li>
-              <Link className="hover:text-white" href="/terms">
+              <Link className="transition-colors duration-300 hover:text-gold" href="/terms">
                 Booking terms
               </Link>
             </li>
@@ -82,7 +82,7 @@ export default function Footer() {
             <ul className="flex gap-5">
               {site.social.map((s) => (
                 <li key={s.href}>
-                  <a className="hover:text-white" href={s.href}>
+                  <a className="transition-colors duration-300 hover:text-gold" href={s.href}>
                     {s.label}
                   </a>
                 </li>
@@ -104,7 +104,12 @@ function TrustLines() {
       {tala && <li>TALA tour operator licence no. {tala}</li>}
       {tato && (
         <li>
-          <a className="underline underline-offset-4 hover:text-white" href="https://www.tatotz.org/" target="_blank" rel="noopener">
+          <a
+            className="underline underline-offset-4 transition-colors duration-300 hover:text-gold"
+            href="https://www.tatotz.org/"
+            target="_blank"
+            rel="noopener"
+          >
             TATO member
           </a>{' '}
           no. {tato}

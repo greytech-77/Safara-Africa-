@@ -122,20 +122,17 @@
 }
 
 @layer components {
-  /* Section rhythm: bands below the hero sit edge to edge, padded, alternating cream and base.
+  /* Section rhythm: bands below the hero sit edge to edge, padded, alternating cream (the page ground) and sand.
      The first band is cream. Sections that only render when they have content keep the order right.
-     A background utility (bg-deep-teal) wins; .page-white keeps every band white. */
+     A background utility (bg-deep-teal) wins. Cards and forms stay white on either ground. */
   .band {
     padding-block: var(--spacing-section);
   }
   .band-tight {
     padding-block: var(--spacing-section-tight);
   }
-  :where(.band:nth-child(odd of .band)) {
+  :where(.band:nth-child(even of .band)) {
     background: var(--color-sand);
-  }
-  :where(.page-white .band) {
-    background: none;
   }
 
   .wrap {

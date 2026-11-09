@@ -85,7 +85,7 @@ export default async function ParkPage({ params }: Props) {
       <SectionNav label={`${p.name} sections`} links={tabs} />
 
       {/* Overview: the story, the key facts, then why to go beside a photo */}
-      <section id="overview" className={`${section} bg-white`} aria-labelledby="overview-heading">
+      <section id="overview" className={section} aria-labelledby="overview-heading">
         <div className="wrap">
           <h2 id="overview-heading" className={`${h2} text-center`}>
             Explore {p.name}
@@ -134,7 +134,7 @@ export default async function ParkPage({ params }: Props) {
         </div>
       </section>
 
-      <section id="when" className={`${section} bg-[#f8f8f3]`} aria-labelledby="when-heading">
+      <section id="when" className={section} aria-labelledby="when-heading">
         <div className="wrap">
           <p className={eyebrow}>Month by month</p>
           <h2 id="when-heading" className={`mt-1 ${h2}`}>
@@ -159,7 +159,7 @@ export default async function ParkPage({ params }: Props) {
       </section>
 
       {hasWildlife && (
-        <section id="wildlife" className={`${section} bg-white`} aria-labelledby="wildlife-heading">
+        <section id="wildlife" className={section} aria-labelledby="wildlife-heading">
           <div className="wrap text-center">
             <h2 id="wildlife-heading" className={h2}>
               Wildlife you may see
@@ -177,7 +177,7 @@ export default async function ParkPage({ params }: Props) {
       )}
 
       {hasActivities && (
-        <section id="things-to-do" className={`${section} bg-[#f8f8f3]`} aria-labelledby="things-heading">
+        <section id="things-to-do" className={section} aria-labelledby="things-heading">
           <div className="wrap">
             <h2 id="things-heading" className={h2}>
               Things to do
@@ -190,7 +190,7 @@ export default async function ParkPage({ params }: Props) {
       )}
 
       {tours.length > 0 && (
-        <section id="journeys" className={`${section} bg-white`} aria-labelledby="tours-heading">
+        <section id="journeys" className={section} aria-labelledby="tours-heading">
           <div className="wrap">
             <h2 id="tours-heading" className={h2}>
               Journeys to inspire you
@@ -203,7 +203,7 @@ export default async function ParkPage({ params }: Props) {
       )}
 
       {hasStay && (
-        <section id="stay" className={`${section} bg-[#f8f8f3]`} aria-labelledby="stay-heading">
+        <section id="stay" className={section} aria-labelledby="stay-heading">
           <div className="wrap">
             <h2 id="stay-heading" className={h2}>
               Where to stay
@@ -227,7 +227,7 @@ export default async function ParkPage({ params }: Props) {
       )}
 
       {guide.drives && guide.drives.length > 0 && (
-        <section id="getting-there" className={`${section} bg-white`} aria-labelledby="getting-heading">
+        <section id="getting-there" className={section} aria-labelledby="getting-heading">
           <div className="wrap">
             <h2 id="getting-heading" className={h2}>
               Getting there
@@ -246,7 +246,7 @@ export default async function ParkPage({ params }: Props) {
       )}
 
       {related.length > 0 && (
-        <section className="band bg-[#f8f8f3]" aria-labelledby="related-heading">
+        <section className="band" aria-labelledby="related-heading">
           <div className="wrap">
             <h2 id="related-heading" className={h2}>
               More places in {country.name}

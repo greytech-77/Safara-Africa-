@@ -110,7 +110,7 @@ export default async function CountryPage({ params }: Props) {
       </section>
 
       {/* Same design as "Why book with us" on the home page, with four pillars. */}
-      <section className="band bg-[#f8f8f3]" aria-labelledby="why-heading">
+      <section className="band" aria-labelledby="why-heading">
         <div className="wrap">
           <h2 data-reveal id="why-heading" className="text-center text-step-4 text-ink">
             Why book with us?
