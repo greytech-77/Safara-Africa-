@@ -84,7 +84,7 @@ export default function MobileMenu({ items, overlay }: { items: MenuItem[]; over
           aria-label="Menu"
           onKeyDown={onKeyDown}
           onClick={(e) => (e.target as HTMLElement).closest('a') && close(false)}
-          className="slide-in fixed inset-0 z-50 flex flex-col overflow-y-auto bg-salt text-ink"
+          className="slide-in fixed inset-0 z-50 flex flex-col overflow-y-auto bg-cream text-ink"
         >
           <div className="wrap flex items-center justify-between gap-4 border-b border-deep-teal/10 py-4">
             <Logo tone="dark" height={48} />
@@ -104,7 +104,7 @@ export default function MobileMenu({ items, overlay }: { items: MenuItem[]; over
                       className="flex w-full cursor-pointer items-center justify-between py-4 text-left font-display text-step-2 text-deep-teal"
                     >
                       {item.label}
-                      <span aria-hidden="true" className="arrow text-gold">
+                      <span aria-hidden="true" className="arrow text-gold-ink">
                         →
                       </span>
                     </button>
@@ -148,11 +148,11 @@ export default function MobileMenu({ items, overlay }: { items: MenuItem[]; over
                     {level.cards.map((card) => (
                       <li key={card.href}>
                         <Link href={card.href} className="block">
-                          <div className="relative aspect-[16/9] overflow-hidden bg-salt-deep">
+                          <div className="relative aspect-[16/9] overflow-hidden bg-sand">
                             <Image src={card.image.src} alt="" fill sizes="(min-width: 640px) 50vw, 100vw" className="object-cover" />
                           </div>
                           <p className="mt-2 font-display text-step-1 text-deep-teal">{card.title}</p>
-                          <p className="text-step--1 font-bold text-gold">{card.cta} →</p>
+                          <p className="text-step--1 font-bold text-gold-ink">{card.cta} →</p>
                         </Link>
                       </li>
                     ))}

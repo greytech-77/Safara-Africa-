@@ -67,7 +67,7 @@ export default async function BeachPage({ params }: Props) {
             <ul className="mt-4 space-y-3">
               {b.activities.map((a) => (
                 <li key={a} className="flex items-start gap-3 font-semibold text-deep-teal">
-                  <svg aria-hidden="true" viewBox="0 0 16 16" className="mt-1 size-4 shrink-0 fill-gold">
+                  <svg aria-hidden="true" viewBox="0 0 16 16" className="mt-1 size-4 shrink-0 fill-gold-ink">
                     <path d="M6.2 11.6 2.6 8l1.1-1.1 2.5 2.5 6.1-6.1L13.4 4.4z" />
                   </svg>
                   {a}
@@ -83,7 +83,7 @@ export default async function BeachPage({ params }: Props) {
           <h2 id="map-heading" className="text-step-3 text-ink">
             Where is {b.name}?
           </h2>
-          <div className="mt-6 aspect-[16/9] overflow-hidden bg-salt-deep sm:aspect-[21/9]">
+          <div className="mt-6 aspect-[16/9] overflow-hidden bg-sand sm:aspect-[21/9]">
             <iframe
               title={`Map of ${b.name}`}
               src={`https://maps.google.com/maps?q=${encodeURIComponent(b.map)}&z=9&output=embed`}

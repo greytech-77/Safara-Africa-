@@ -30,13 +30,10 @@ export default function PhotoRail({ items, label }: { items: PhotoRailItem[]; la
 
   return (
     <div role="region" aria-roledescription="carousel" aria-label={label}>
-      <ul
-        ref={track}
-        className="flex snap-x snap-mandatory gap-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      >
+      <ul ref={track} className="flex snap-x snap-mandatory gap-4 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {items.map((item) => (
           <li key={item.title} className="w-[78%] shrink-0 snap-start sm:w-[calc((100%-2rem)/2.4)] lg:w-[calc((100%-3rem)/3.4)]">
-            <Link href={item.href} className="group relative block aspect-[4/5] overflow-hidden rounded-2xl bg-salt-deep">
+            <Link href={item.href} className="group relative block aspect-[4/5] overflow-hidden rounded-2xl bg-sand">
               <Image
                 src={item.image.src}
                 alt={item.image.alt}
@@ -48,7 +45,7 @@ export default function PhotoRail({ items, label }: { items: PhotoRailItem[]; la
               <span className="absolute inset-x-0 bottom-0 p-6 text-white">
                 <span className="block font-display text-step-3 leading-tight">{item.title}</span>
                 {item.text && <span className="mt-2 block text-step--1 text-white/85">{item.text}</span>}
-                <span className="mt-3 inline-block text-step--1 font-bold text-sun">
+                <span className="mt-3 inline-block text-step--1 font-bold text-gold">
                   Explore <span className="arrow">→</span>
                 </span>
               </span>

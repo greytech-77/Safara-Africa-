@@ -69,7 +69,7 @@ export default function ParkFeeBreakdown({ estimate, travellers }: { estimate: F
         <p className="mt-3 text-step--1 text-ink">Fees for other areas on this route are included in the price but not itemised here.</p>
       )}
       {estimate.isPlaceholder && (
-        <p className="mt-3 text-step--1 font-semibold text-gold-dark">
+        <p className="mt-3 text-step--1 font-semibold text-gold-ink">
           Fee figures are placeholders for the {estimate.validFrom?.slice(0, 4)}/{estimate.validTo?.slice(2, 4)} fee year until confirmed
           against the official tariff.
         </p>

@@ -85,7 +85,7 @@ export default async function TrekPage({ params }: Props) {
           <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {t.routes.map((r) => (
               <li key={r.name} className="bg-white p-6 shadow-[0_4px_3px_rgb(0_0_0/.08)]">
-                <p className="text-step--1 font-bold text-gold">{r.days}</p>
+                <p className="text-step--1 font-bold text-gold-ink">{r.days}</p>
                 <h3 className="mt-1 text-step-2 text-ink">{r.name}</h3>
                 <p className="mt-2 text-ink">{r.text}</p>
               </li>
@@ -116,7 +116,7 @@ export default async function TrekPage({ params }: Props) {
             <ul className="mt-6 space-y-2">
               {t.pack.map((p) => (
                 <li key={p} className="flex gap-3 text-ink/85">
-                  <span aria-hidden="true" className="mt-2.5 size-1.5 shrink-0 rounded-full bg-sun" />
+                  <span aria-hidden="true" className="mt-2.5 size-1.5 shrink-0 rounded-full bg-gold" />
                   {p}
                 </li>
               ))}

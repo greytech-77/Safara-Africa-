@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 const section = 'band scroll-mt-32';
 const h2 = 'text-step-4 text-ink';
-const eyebrow = 'text-step--1 font-bold uppercase tracking-[0.14em] text-gold';
+const eyebrow = 'text-step--1 font-bold uppercase tracking-[0.14em] text-gold-ink';
 
 export default async function ParkPage({ params }: Props) {
   const p = getPark((await params).slug);
@@ -108,7 +108,7 @@ export default async function ParkPage({ params }: Props) {
           )}
 
           <div className="mt-12 grid gap-10 md:grid-cols-2 md:items-center">
-            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-salt-deep">
+            <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-sand">
               <Image src={p.image.src} alt={p.image.alt} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
             </div>
             <div>
@@ -117,7 +117,7 @@ export default async function ParkPage({ params }: Props) {
               <ul className="mt-5 space-y-3">
                 {p.highlights.map((h) => (
                   <li key={h} className="flex items-start gap-3 text-ink">
-                    <svg aria-hidden="true" viewBox="0 0 16 16" className="mt-1 size-4 shrink-0 fill-gold">
+                    <svg aria-hidden="true" viewBox="0 0 16 16" className="mt-1 size-4 shrink-0 fill-gold-ink">
                       <path d="M6.2 11.6 2.6 8l1.1-1.1 2.5 2.5 6.1-6.1L13.4 4.4z" />
                     </svg>
                     {h}
@@ -149,7 +149,7 @@ export default async function ParkPage({ params }: Props) {
               {guide.seasons.map((s) => (
                 <div key={s.name} className="border-t border-deep-teal/20 pt-4">
                   <h3 className="text-step-2 text-ink">{s.name}</h3>
-                  <p className="mt-1 text-step--1 font-bold text-gold">{s.months}</p>
+                  <p className="mt-1 text-step--1 font-bold text-gold-ink">{s.months}</p>
                   <p className="mt-2 text-ink">{s.text}</p>
                 </div>
               ))}

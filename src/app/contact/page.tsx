@@ -43,7 +43,7 @@ export default async function ContactPage({ searchParams }: Props) {
               <div>
                 <dt className={dt}>Email</dt>
                 <dd className="text-step-1">
-                  <a className="hover:text-gold" href={`mailto:${site.email}`}>
+                  <a className="hover:text-gold-ink" href={`mailto:${site.email}`}>
                     {site.email}
                   </a>
                 </dd>
@@ -51,7 +51,7 @@ export default async function ContactPage({ searchParams }: Props) {
               <div>
                 <dt className={dt}>Phone and WhatsApp</dt>
                 <dd className="text-step-1">
-                  <a className="hover:text-gold" href={`tel:${site.phone.tel}`}>
+                  <a className="hover:text-gold-ink" href={`tel:${site.phone.tel}`}>
                     {site.phone.display}
                   </a>
                 </dd>
@@ -90,7 +90,7 @@ export default async function ContactPage({ searchParams }: Props) {
             </dl>
           </div>
 
-          <div id="enquire" className="scroll-mt-8 bg-salt-deep p-6 sm:p-10">
+          <div id="enquire" className="scroll-mt-8 bg-sand p-6 sm:p-10">
             <h2 className="text-step-3 text-ink">Send an enquiry</h2>
             <div className="mt-8">
               <EnquiryForm tours={tours} preselect={tour} />

@@ -92,7 +92,7 @@ function Arrow({ dir, disabled, onClick }: { dir: 1 | -1; disabled: boolean; onC
       onClick={onClick}
       disabled={disabled}
       aria-label={dir < 0 ? 'Previous platforms' : 'Next platforms'}
-      className={`absolute top-1/2 hidden size-9 -translate-y-1/2 cursor-pointer place-items-center rounded-full border border-gold bg-white text-gold transition-opacity duration-200 hover:bg-gold hover:text-white disabled:pointer-events-none disabled:opacity-30 md:grid ${dir < 0 ? 'left-0' : 'right-0'}`}
+      className={`absolute top-1/2 hidden size-9 -translate-y-1/2 cursor-pointer place-items-center rounded-full border border-gold-ink bg-white text-gold-ink transition-opacity duration-200 hover:bg-gold-ink hover:text-white disabled:pointer-events-none disabled:opacity-30 md:grid ${dir < 0 ? 'left-0' : 'right-0'}`}
     >
       <svg aria-hidden="true" viewBox="0 0 16 16" className={`size-4 ${dir < 0 ? 'rotate-180' : ''}`}>
         <path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" strokeWidth="1.6" />
@@ -108,10 +108,10 @@ function TrustBadge({ platform: p }: { platform: TrustPlatform }) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={`Read our reviews on ${p.name}${p.rating ? `, rated ${p.rating} out of 5` : ''} (opens in a new tab)`}
-      className="relative flex h-full flex-col items-center rounded-xl bg-white px-4 py-5 text-center transition duration-200 hover:scale-[1.03] hover:shadow-[0_16px_48px_rgb(0_0_0/0.12)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sun"
+      className="relative flex h-full flex-col items-center rounded-xl bg-white px-4 py-5 text-center transition duration-200 hover:scale-[1.03] hover:shadow-[0_16px_48px_rgb(0_0_0/0.12)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-ink"
     >
       {p.sample && (
-        <span className="absolute right-2 top-2 rounded bg-salt-deep px-1.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.06em] text-slate">
+        <span className="absolute right-2 top-2 rounded bg-sand px-1.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.06em] text-slate">
           Sample
         </span>
       )}
@@ -129,7 +129,7 @@ function TrustBadge({ platform: p }: { platform: TrustPlatform }) {
         </span>
       )}
       {p.reviews !== undefined && <span className="text-step--1 text-slate">{p.reviews.toLocaleString('en-GB')} reviews</span>}
-      <span className="mt-2 text-step--1 font-bold text-gold">
+      <span className="mt-2 text-step--1 font-bold text-gold-ink">
         Read reviews <span className="arrow">→</span>
       </span>
     </a>
@@ -175,7 +175,7 @@ function CredentialItem({ credential: c }: { credential: Credential }) {
     </span>
   );
   return c.href ? (
-    <a href={c.href} target="_blank" rel="noopener noreferrer" className="rounded focus-visible:outline-2 focus-visible:outline-sun">
+    <a href={c.href} target="_blank" rel="noopener noreferrer" className="rounded focus-visible:outline-2 focus-visible:outline-gold-ink">
       {body}
     </a>
   ) : (

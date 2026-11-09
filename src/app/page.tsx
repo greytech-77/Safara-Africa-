@@ -100,7 +100,7 @@ export default function HomePage() {
             </div>
             <Link
               href="/tours"
-              className="font-bold text-deep-teal underline underline-offset-4 transition-colors duration-300 hover:text-gold"
+              className="font-bold text-deep-teal underline underline-offset-4 transition-colors duration-300 hover:text-gold-ink"
             >
               View all journeys <span className="arrow">→</span>
             </Link>
@@ -131,7 +131,7 @@ export default function HomePage() {
 
       {/* Recommended on: review platforms and licences (samples show on the dev server only) */}
       {(publishedTrustPlatforms.length > 0 || publishedCredentials.length > 0) && (
-        <section data-reveal className="band bg-salt" aria-labelledby="trust-heading">
+        <section data-reveal className="band bg-cream" aria-labelledby="trust-heading">
           <div className="wrap">
             <TrustPlatforms platforms={publishedTrustPlatforms} credentials={publishedCredentials} />
           </div>
@@ -156,7 +156,7 @@ export default function HomePage() {
       <section className="band band-tight bg-[#f8f8f3]" aria-labelledby="styles-heading">
         <div className="wrap">
           <div data-reveal>
-            <p className="text-step--1 font-bold uppercase tracking-[0.14em] text-gold">Travel styles</p>
+            <p className="text-step--1 font-bold uppercase tracking-[0.14em] text-gold-ink">Travel styles</p>
             <h2 id="styles-heading" className="mt-3 text-step-4 text-ink">
               Ways to travel
             </h2>
@@ -167,7 +167,7 @@ export default function HomePage() {
               <li key={s.slug} className={i === 0 ? 'sm:col-span-2 lg:col-span-1 lg:row-span-2' : ''}>
                 <Link
                   href={`/travel-styles/${s.slug}`}
-                  className="group relative flex h-full min-h-60 items-end overflow-hidden bg-deep-teal text-[#f4f5f0]"
+                  className="group relative flex h-full min-h-60 items-end overflow-hidden bg-deep-teal text-cream"
                 >
                   <Image
                     src={s.image.src}
@@ -179,8 +179,8 @@ export default function HomePage() {
                   <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-teal-deep/95 via-teal-deep/55 to-teal-deep/5" />
                   <div className="relative p-6 sm:p-8">
                     <h3 className="text-step-3">{s.name}</h3>
-                    <p className="mt-2 max-w-[40ch] text-[#dce2e6]">{s.teaser}</p>
-                    <span className="mt-4 inline-block font-bold text-sun">
+                    <p className="mt-2 max-w-[40ch] text-cream/80">{s.teaser}</p>
+                    <span className="mt-4 inline-block font-bold text-gold">
                       Discover more <span className="arrow">→</span>
                     </span>
                   </div>
@@ -217,7 +217,7 @@ export default function HomePage() {
               </h2>
               <Link
                 href="/journal"
-                className="font-bold text-deep-teal underline underline-offset-4 transition-colors duration-300 hover:text-gold"
+                className="font-bold text-deep-teal underline underline-offset-4 transition-colors duration-300 hover:text-gold-ink"
               >
                 All articles <span className="arrow">→</span>
               </Link>
@@ -227,7 +227,7 @@ export default function HomePage() {
                 <li key={p.slug}>
                   <Link href={`/journal/${p.slug}`} className="group block">
                     {p.cover && (
-                      <div className="relative aspect-[3/2] overflow-hidden bg-salt-deep">
+                      <div className="relative aspect-[3/2] overflow-hidden bg-sand">
                         <Image
                           src={p.cover.src}
                           alt={p.cover.alt}
@@ -240,7 +240,7 @@ export default function HomePage() {
                     <time dateTime={p.date.toISOString()} className="mt-4 block text-step--1 text-slate">
                       {formatDate(p.date)}
                     </time>
-                    <h3 className="mt-1 text-step-1 text-ink transition-colors duration-300 group-hover:text-gold">{p.title}</h3>
+                    <h3 className="mt-1 text-step-1 text-ink transition-colors duration-300 group-hover:text-gold-ink">{p.title}</h3>
                     <p className="mt-1 text-step--1 text-ink">{p.excerpt}</p>
                   </Link>
                 </li>

@@ -1,0 +1,83 @@
+// WCAG AA contrast check for the "Serengeti sunset" palette.
+// Run: npm run check:contrast   (exits 1 if any pair fails)
+// Keep the hex values in step with the @theme block in src/styles/globals.css.
+
+const palette = {
+  cream: '#f7f1e6',
+  sand: '#efe4d0',
+  white: '#ffffff',
+  ink: '#1a1a1a',
+  slate: '#5c5348',
+  teal: '#012f36',
+  tealSoft: '#0a4a52',
+  ember: '#c8461a',
+  emberHover: '#a8380f',
+  gold: '#e9a23b',
+  goldInk: '#8a5a10',
+  // beaches sub-theme
+  beachDark: '#0b2a3c',
+  turquoise: '#0e7c86',
+  turquoiseInk: '#0a6870',
+  coral: '#ff6f59',
+  coralHover: '#ff8a78',
+  // trekking sub-theme
+  volcanic: '#8c3b22',
+};
+
+const rgb = (hex) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
+const toHex = (c) => '#' + c.map((v) => Math.round(v).toString(16).padStart(2, '0')).join('');
+// Text at `alpha` opacity over `bg`: the colour the eye actually sees.
+const over = (fg, alpha, bg) => toHex(rgb(fg).map((v, i) => v * alpha + rgb(bg)[i] * (1 - alpha)));
+const luminance = (hex) =>
+  rgb(hex)
+    .map((v) => v / 255)
+    .map((c) => (c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4))
+    .reduce((sum, c, i) => sum + c * [0.2126, 0.7152, 0.0722][i], 0);
+const ratio = (a, b) => {
+  const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+  return (hi + 0.05) / (lo + 0.05);
+};
+
+const p = palette;
+// [label, text, background, minimum]: 4.5 for normal text, 3 for large/bold text and UI shapes.
+const pairs = [
+  ['White on ember (booking buttons)', p.white, p.ember, 4.5],
+  ['White on ember hover', p.white, p.emberHover, 4.5],
+  ['Ink on gold (day badges, meals)', p.ink, p.gold, 4.5],
+  ['Cream on teal (footer, CTA panels)', p.cream, p.teal, 4.5],
+  ['Cream 85% on teal (footer text)', over(p.cream, 0.85, p.teal), p.teal, 4.5],
+  ['Cream 75% on teal (footer small print)', over(p.cream, 0.75, p.teal), p.teal, 4.5],
+  ['Gold on teal (links on dark cards)', p.gold, p.teal, 4.5],
+  ['Ink on cream (body text)', p.ink, p.cream, 4.5],
+  ['Ink on sand (body text)', p.ink, p.sand, 4.5],
+  ['Ink on white (cards)', p.ink, p.white, 4.5],
+  ['Slate on cream (secondary text)', p.slate, p.cream, 4.5],
+  ['Slate on sand (secondary text)', p.slate, p.sand, 4.5],
+  ['Teal on cream (links, outline buttons)', p.teal, p.cream, 4.5],
+  ['Teal on sand (links, outline buttons)', p.teal, p.sand, 4.5],
+  ['Gold-ink on cream (labels, hovers)', p.goldInk, p.cream, 4.5],
+  ['Gold-ink on sand (labels, hovers)', p.goldInk, p.sand, 4.5],
+  ['Gold-ink on white (menu, cards)', p.goldInk, p.white, 4.5],
+  ['White on gold-ink (arrow button hover)', p.white, p.goldInk, 4.5],
+  ['Gold-ink focus ring on cream', p.goldInk, p.cream, 3],
+  ['Gold focus ring on teal', p.gold, p.teal, 3],
+  ['Beaches: dark on coral (booking buttons)', p.beachDark, p.coral, 4.5],
+  ['Beaches: dark on coral hover', p.beachDark, p.coralHover, 4.5],
+  ['Beaches: white on turquoise (badges)', p.white, p.turquoise, 4.5],
+  ['Beaches: turquoise-ink on cream (labels)', p.turquoiseInk, p.cream, 4.5],
+  ['Beaches: turquoise-ink on sand (labels)', p.turquoiseInk, p.sand, 4.5],
+  ['Beaches: cream on dark', p.cream, p.beachDark, 4.5],
+  ['Trekking: white on volcanic (badges)', p.white, p.volcanic, 4.5],
+  ['Trekking: volcanic on cream (labels)', p.volcanic, p.cream, 4.5],
+  ['Trekking: volcanic on sand (labels)', p.volcanic, p.sand, 4.5],
+];
+
+let failed = 0;
+for (const [label, fg, bg, min] of pairs) {
+  const r = ratio(fg, bg);
+  const ok = r >= min;
+  if (!ok) failed++;
+  console.log(`${ok ? 'PASS' : 'FAIL'}  ${r.toFixed(2).padStart(5)}:1  (needs ${min})  ${label}  ${fg} on ${bg}`);
+}
+console.log(failed ? `\n${failed} pair(s) fail WCAG AA.` : `\nAll ${pairs.length} pairs pass WCAG AA.`);
+process.exit(failed ? 1 : 0);

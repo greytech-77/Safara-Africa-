@@ -9,7 +9,7 @@ export default function PhotoList({ items }: { items: PhotoListItem[] }) {
     <ul data-reveal-stagger className="grid gap-x-16 md:grid-cols-2">
       {items.map((item) => (
         <li key={item.title} className="flex items-center gap-6 border-b border-deep-teal/15 py-6">
-          <div className="relative size-24 shrink-0 overflow-hidden rounded-full bg-salt-deep sm:size-28">
+          <div className="relative size-24 shrink-0 overflow-hidden rounded-full bg-sand sm:size-28">
             <Image src={item.image.src} alt={item.image.alt} fill sizes="112px" className="object-cover" />
           </div>
           <div>

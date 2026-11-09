@@ -39,7 +39,7 @@ export default function FloatingCta() {
     <div
       data-hidden={!show || undefined}
       inert={!show}
-      className="float-cta fixed inset-x-0 bottom-0 z-20 border-t border-deep-teal/10 bg-salt/95 px-4 py-3 backdrop-blur-sm lg:hidden"
+      className="float-cta fixed inset-x-0 bottom-0 z-20 border-t border-deep-teal/10 bg-cream/95 px-4 py-3 backdrop-blur-sm lg:hidden"
     >
       <div className="mx-auto grid max-w-md grid-cols-2 gap-3">
         <a href={`tel:${site.phone.tel}`} className="btn btn-outline text-deep-teal">

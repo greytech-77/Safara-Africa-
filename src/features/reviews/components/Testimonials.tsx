@@ -17,7 +17,7 @@ export default function Testimonials({ items }: { items: Testimonial[] }) {
       type="button"
       onClick={() => go(step)}
       aria-label={label}
-      className="group/arrow grid size-11 shrink-0 cursor-pointer place-items-center rounded-full border border-ink text-ink transition-colors duration-300 hover:bg-ink hover:text-salt sm:size-12"
+      className="group/arrow grid size-11 shrink-0 cursor-pointer place-items-center rounded-full border border-ink text-ink transition-colors duration-300 hover:bg-ink hover:text-cream sm:size-12"
     >
       <svg
         aria-hidden="true"

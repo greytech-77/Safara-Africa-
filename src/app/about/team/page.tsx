@@ -27,7 +27,7 @@ const initials = (text: string) =>
 
 function Icon({ d }: { d: string }) {
   return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" className="size-4 shrink-0 fill-gold">
+    <svg aria-hidden="true" viewBox="0 0 24 24" className="size-4 shrink-0 fill-gold-ink">
       <path d={d} />
     </svg>
   );
@@ -53,7 +53,7 @@ function MemberCard({ m }: { m: TeamMember }) {
             className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
           />
         ) : (
-          <span aria-hidden="true" className="flex size-full items-center justify-center font-display text-[5rem] text-salt/80">
+          <span aria-hidden="true" className="flex size-full items-center justify-center font-display text-[5rem] text-cream/80">
             {initials(m.name ?? m.role)}
           </span>
         )}
@@ -64,7 +64,7 @@ function MemberCard({ m }: { m: TeamMember }) {
         <ul className="mt-5 space-y-2 border-t border-deep-teal/10 pt-4 text-step--1 font-semibold text-deep-teal">
           {m.phone && (
             <li>
-              <a href={`tel:${m.phone.replace(/\s/g, '')}`} className="flex items-center gap-2 hover:text-gold">
+              <a href={`tel:${m.phone.replace(/\s/g, '')}`} className="flex items-center gap-2 hover:text-gold-ink">
                 <Icon d={PHONE} />
                 {m.phone} (phone)
               </a>
@@ -73,14 +73,14 @@ function MemberCard({ m }: { m: TeamMember }) {
           <li>
             <a
               href={`https://wa.me/${whatsapp}?text=${encodeURIComponent(`Hello ${m.name ?? `${site.name} ${m.role}`}, I'd like help planning a trip.`)}`}
-              className="flex items-center gap-2 hover:text-gold"
+              className="flex items-center gap-2 hover:text-gold-ink"
             >
               <Icon d={CHAT} />
               WhatsApp
             </a>
           </li>
           <li>
-            <a href={`mailto:${email}`} className="flex items-center gap-2 break-all hover:text-gold">
+            <a href={`mailto:${email}`} className="flex items-center gap-2 break-all hover:text-gold-ink">
               <Icon d={MAIL} />
               {email}
             </a>
@@ -113,7 +113,7 @@ export default function TeamPage() {
             <Image src={introPhoto.src} alt={introPhoto.alt} fill sizes="(min-width: 768px) 40vw, 100vw" className="object-cover" />
           </div>
           <div>
-            <p className="text-step--1 font-bold uppercase tracking-[0.14em] text-gold">Our team</p>
+            <p className="text-step--1 font-bold uppercase tracking-[0.14em] text-gold-ink">Our team</p>
             <h2 id="intro-heading" className="mt-3 text-step-4 text-ink">
               The people behind your journey
             </h2>
@@ -154,7 +154,7 @@ export default function TeamPage() {
         );
       })}
 
-      <section className="band bg-deep-teal text-[#f4f5f0]" aria-labelledby="thanks-heading">
+      <section className="band bg-deep-teal text-cream" aria-labelledby="thanks-heading">
         <div className="wrap flex flex-col items-center text-center">
           <h2 id="thanks-heading" className="text-step-4">
             With gratitude
@@ -196,9 +196,9 @@ export default function TeamPage() {
               <br />
               Come as our guest. Leave as family.
             </p>
-            <p className="text-step-2 text-sun">Karibu sana.</p>
+            <p className="text-step-2 text-gold">Karibu sana.</p>
           </div>
-          <p className="mt-6 text-step--1 text-[#c7d0d8]">“Karibu sana” is Swahili for “you are very welcome”.</p>
+          <p className="mt-6 text-step--1 text-cream/85">“Karibu sana” is Swahili for “you are very welcome”.</p>
           <Link href="/contact#enquire" className="btn btn-primary mt-10">
             Start your journey with us
           </Link>

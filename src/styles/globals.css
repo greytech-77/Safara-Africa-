@@ -1,30 +1,36 @@
 @import 'tailwindcss';
 
 /*
-  Brand tokens.
-  deep-teal  the one dark: footer, dark bands, links, outline buttons, header text
-  teal-deep  darker teal for photo shades
-  secondary  charcoal
-  ash-silver metallic panels (closing call-to-action box)
-  salt       pale savanna page ground
-  salt-deep  cream surface: every other section
-  ink        body text
-  slate      secondary text (passes 4.5:1 on salt)
-  gold       the one accent: buttons (white text passes 4.5:1)
-  sun        decorative accent: route dots
+  Brand tokens: "Serengeti sunset". Roughly 60% cream/sand, 30% teal, 10% ember.
+  Contrast pairs are checked by scripts/check-contrast.mjs (npm run check:contrast).
+  cream       main page ground
+  sand        every other section
+  ink         body text
+  slate       secondary text, warm grey (6.7:1 on cream)
+  deep-teal   brand dark (the brief's --teal): footer, card overlays, CTA panels, links, outline buttons
+  teal-soft   hover / secondary dark
+  teal-deep   darker teal for photo shades
+  ember       BOOKING ACTIONS ONLY: enquire, quote, send, the main hero button
+  on-ember    text on ember
+  gold        decoration only: badges, stars, map pins, nav underline, links on dark. Never text on light grounds.
+  gold-ink    gold-family text and small icons on light grounds (5.3:1 on cream)
+  on-gold     text on gold
+  Section themes ([data-theme] below) override only these accent tokens.
 */
 @theme {
-  --color-deep-teal: #012f36;
-  --color-teal-deep: #00232a;
-  --color-secondary: #3d4442;
-  --color-ash-silver: #c3c7c9;
-  --color-salt: #edeee8;
-  --color-salt-deep: #e2e4dc;
+  --color-cream: #f7f1e6;
+  --color-sand: #efe4d0;
   --color-ink: #1a1a1a;
-  --color-slate: #56636c;
-  --color-gold: #9a6a17;
-  --color-gold-dark: #7c5511;
-  --color-sun: #c08a2e;
+  --color-slate: #5c5348;
+  --color-deep-teal: #012f36;
+  --color-teal-soft: #0a4a52;
+  --color-teal-deep: #00232a;
+  --color-ember: #c8461a;
+  --color-ember-hover: #a8380f;
+  --color-on-ember: #ffffff;
+  --color-gold: #e9a23b;
+  --color-gold-ink: #8a5a10;
+  --color-on-gold: #1a1a1a;
 
   /* Modular scale, ratio 1.25 */
   --text-step--1: 0.875rem;
@@ -61,7 +67,7 @@
 
 @layer base {
   html {
-    background: var(--color-salt);
+    background: var(--color-cream);
     color: var(--color-ink);
     -webkit-font-smoothing: antialiased;
     scroll-behavior: smooth;
@@ -87,14 +93,20 @@
   h3 {
     line-height: 1.25;
   }
+  /* Focus ring: dark gold on light grounds, bright gold on dark ones (both pass 3:1). */
   :focus-visible {
-    outline: 2px solid var(--color-sun);
+    outline: 2px solid var(--focus-ring, var(--color-gold-ink));
     outline-offset: 3px;
     border-radius: 2px;
   }
+  .hero,
+  footer,
+  .bg-deep-teal {
+    --focus-ring: var(--color-gold);
+  }
   ::selection {
     background: var(--color-deep-teal);
-    color: var(--color-salt);
+    color: var(--color-cream);
   }
   @media (prefers-reduced-motion: reduce) {
     html {
@@ -120,7 +132,7 @@
     padding-block: var(--spacing-section-tight);
   }
   :where(.band:nth-child(odd of .band)) {
-    background: var(--color-salt-deep);
+    background: var(--color-sand);
   }
   :where(.page-white .band) {
     background: none;
@@ -162,14 +174,14 @@
   .btn-outline:hover {
     background: var(--color-deep-teal);
     border-color: var(--color-deep-teal);
-    color: var(--color-salt);
+    color: var(--color-cream);
   }
   .btn-outline-light {
-    border: 1px solid rgb(244 245 240 / 0.7);
-    color: #f4f5f0;
+    border: 1px solid rgb(247 241 230 / 0.7);
+    color: var(--color-cream);
   }
   .btn-outline-light:hover {
-    background: #f4f5f0;
+    background: var(--color-cream);
     color: var(--color-deep-teal);
   }
 
@@ -211,7 +223,7 @@
     transition: color var(--dur) var(--ease);
   }
   .prose-safara a:hover {
-    color: var(--color-gold);
+    color: var(--color-gold-ink);
   }
 
   /* ---------- Header ---------- */
@@ -246,7 +258,7 @@
   }
   .site-header[data-solid] .btn-outline-light:hover {
     background: var(--color-deep-teal);
-    color: var(--color-salt);
+    color: var(--color-cream);
   }
 
   /* Liquid glass: a blurred, tinted pane that takes on the colour of whatever is behind it.
@@ -382,7 +394,7 @@
   }
   .nav-link[data-active]::after {
     transform: scaleX(1);
-    background: var(--color-sun);
+    background: var(--color-gold);
   }
 
   /* The panel fades in with a slight drop. Switching straight to another item (data-swap) shows it at once. */
@@ -594,7 +606,7 @@
     max-width: 40ch;
     margin: -12px 0 32px;
     font-size: var(--text-step-1);
-    color: #dce2e6;
+    color: rgb(247 241 230 / 0.88);
   }
   .hero__cta {
     border-color: #fff;
@@ -643,7 +655,7 @@
     position: sticky;
     top: var(--header-h);
     z-index: 20;
-    background: var(--color-salt);
+    background: var(--color-cream);
     border-bottom: 1px solid rgb(1 47 54 / 0.1);
   }
   .section-nav__list {
@@ -708,7 +720,7 @@
     display: block;
   }
   .lodge-card:focus-visible {
-    outline: 2px solid var(--color-sun);
+    outline: 2px solid var(--color-gold-ink);
     outline-offset: 4px;
   }
   .lodge-card__photo {
@@ -717,7 +729,7 @@
     aspect-ratio: 31 / 40;
     overflow: hidden;
     margin-bottom: 1rem;
-    background: var(--color-salt-deep);
+    background: var(--color-sand);
   }
   .lodge-card__text {
     display: flex;

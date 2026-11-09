@@ -94,14 +94,14 @@ export default async function ItineraryPage({ params }: Props) {
 
       {/* The journey in a few lines, centred, before the detail. */}
       <section aria-labelledby="overview-heading" className="wrap flex flex-col items-center py-section text-center">
-        <h2 id="overview-heading" className="text-step--1 font-bold uppercase tracking-[0.14em] text-gold">
+        <h2 id="overview-heading" className="text-step--1 font-bold uppercase tracking-[0.14em] text-gold-ink">
           The journey
         </h2>
         <p className="mt-3 max-w-[38ch] font-display text-step-3 leading-snug text-ink">{it.summary}</p>
         <ul className="mt-10 flex max-w-4xl flex-wrap justify-center gap-x-8 gap-y-3 text-ink/85">
           {it.highlights.map((h) => (
             <li key={h} className="flex items-center gap-3">
-              <span aria-hidden="true" className="size-1.5 shrink-0 rounded-full bg-sun" />
+              <span aria-hidden="true" className="size-1.5 shrink-0 rounded-full bg-gold" />
               {h}
             </li>
           ))}
@@ -135,7 +135,7 @@ export default async function ItineraryPage({ params }: Props) {
             <ul className="mt-4 space-y-2">
               {it.included.map((x) => (
                 <li key={x} className="flex gap-3">
-                  <svg aria-hidden="true" viewBox="0 0 16 16" className="mt-1 size-4 shrink-0 fill-gold">
+                  <svg aria-hidden="true" viewBox="0 0 16 16" className="mt-1 size-4 shrink-0 fill-gold-ink">
                     <path d="M6.2 11.6 2.6 8l1.1-1.1 2.5 2.5 6.1-6.1L13.4 4.4z" />
                   </svg>
                   {x}

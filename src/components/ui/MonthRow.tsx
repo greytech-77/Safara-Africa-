@@ -2,9 +2,9 @@ import type { MonthRating } from '@/types/content';
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const STYLE: Record<MonthRating, { label: string; cls: string }> = {
-  best: { label: 'Best', cls: 'bg-gold text-white' },
-  good: { label: 'Good', cls: 'bg-sun/35 text-ink' },
-  mixed: { label: 'Mixed', cls: 'bg-salt-deep text-slate' },
+  best: { label: 'Best', cls: 'bg-gold text-on-gold' },
+  good: { label: 'Good', cls: 'bg-gold/35 text-ink' },
+  mixed: { label: 'Mixed', cls: 'bg-sand text-slate' },
 };
 
 // January–December strip rated Best / Good / Mixed, with a legend.

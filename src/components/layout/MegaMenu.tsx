@@ -156,7 +156,7 @@ function Panel({ item }: { item: MenuItem }) {
                 {group.links.map((link) => (
                   <li key={link.href + link.label}>
                     <Link href={link.href} className="sub-link group/link block">
-                      <span className="font-sans text-step--1 font-bold uppercase tracking-[0.06em] text-deep-teal transition-colors duration-300 group-hover/link:text-gold">
+                      <span className="font-sans text-step--1 font-bold uppercase tracking-[0.06em] text-deep-teal transition-colors duration-300 group-hover/link:text-gold-ink">
                         {link.label}
                       </span>
                       {link.note && <span className="mt-0.5 block text-step--1 font-normal text-ink">{link.note}</span>}
@@ -174,7 +174,7 @@ function Panel({ item }: { item: MenuItem }) {
           {item.cards.map((card) => (
             <li key={card.href}>
               <Link href={card.href} className="glass-card group/card block">
-                <div className="relative aspect-[16/10] overflow-hidden rounded-[4px] bg-salt-deep">
+                <div className="relative aspect-[16/10] overflow-hidden rounded-[4px] bg-sand">
                   <Image
                     src={card.image.src}
                     alt=""
@@ -183,10 +183,10 @@ function Panel({ item }: { item: MenuItem }) {
                     className="object-cover transition-transform duration-800 group-hover/card:scale-[1.05]"
                   />
                 </div>
-                <p className="mt-3 px-1 font-sans text-step--1 font-bold uppercase tracking-[0.06em] text-deep-teal group-hover/card:text-gold">
+                <p className="mt-3 px-1 font-sans text-step--1 font-bold uppercase tracking-[0.06em] text-deep-teal group-hover/card:text-gold-ink">
                   {card.title}
                 </p>
-                <p className="px-1 pb-1 text-step--1 font-bold text-gold">
+                <p className="px-1 pb-1 text-step--1 font-bold text-gold-ink">
                   {card.cta} <span className="arrow group-hover/card:translate-x-1">→</span>
                 </p>
               </Link>
@@ -213,7 +213,7 @@ function TilesPanel({ tiles }: { tiles: NonNullable<MenuItem['tiles']> }) {
               href={tile.href}
               tabIndex={-1}
               aria-hidden="true"
-              className="group/tile relative block h-[136px] overflow-hidden rounded-[4px] bg-salt-deep"
+              className="group/tile relative block h-[136px] overflow-hidden rounded-[4px] bg-sand"
             >
               <Image
                 src={tile.image.src}
@@ -250,7 +250,7 @@ function CompactTilesPanel({ tiles }: { tiles: NonNullable<MenuItem['tiles']> })
         {tiles.items.map((tile) => (
           <li key={tile.href}>
             <Link href={tile.href} className="glass-card group/tile block h-full">
-              <div className="relative h-[124px] overflow-hidden rounded-[4px] bg-salt-deep">
+              <div className="relative h-[124px] overflow-hidden rounded-[4px] bg-sand">
                 <Image
                   src={tile.image.src}
                   alt=""
@@ -259,7 +259,7 @@ function CompactTilesPanel({ tiles }: { tiles: NonNullable<MenuItem['tiles']> })
                   className="object-cover transition-transform duration-800 group-hover/tile:scale-[1.05]"
                 />
               </div>
-              <p className="px-1 pt-2 pb-1 text-center font-sans text-[0.75rem] leading-snug font-bold uppercase tracking-[0.06em] text-deep-teal group-hover/tile:text-gold">
+              <p className="px-1 pt-2 pb-1 text-center font-sans text-[0.75rem] leading-snug font-bold uppercase tracking-[0.06em] text-deep-teal group-hover/tile:text-gold-ink">
                 {tile.title}
               </p>
             </Link>
@@ -278,7 +278,7 @@ function TilesHeader({ tiles, arrows = true }: { tiles: NonNullable<MenuItem['ti
       <ul className="flex gap-6 text-step--1 font-bold">
         {(tiles.links ?? []).map((link) => (
           <li key={link.href}>
-            <Link href={link.href} className="text-gold hover:text-gold-dark">
+            <Link href={link.href} className="text-gold-ink hover:text-deep-teal">
               {link.label}
               {arrows && (
                 <>

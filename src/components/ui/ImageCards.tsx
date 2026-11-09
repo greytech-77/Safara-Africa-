@@ -12,7 +12,7 @@ export default function ImageCards({ items, columns = 3 }: { items: ImageCardIte
       {items.map((item) => {
         const body = (
           <>
-            <div className="relative aspect-[3/2] overflow-hidden bg-salt-deep">
+            <div className="relative aspect-[3/2] overflow-hidden bg-sand">
               <Image
                 src={item.image.src}
                 alt={item.image.alt}
@@ -23,7 +23,7 @@ export default function ImageCards({ items, columns = 3 }: { items: ImageCardIte
             </div>
             {item.meta && <p className="mt-4 text-step--1 font-semibold uppercase tracking-[0.08em] text-ink">{item.meta}</p>}
             <h3
-              className={`${item.meta ? 'mt-1' : 'mt-4'} text-step-2 text-ink ${item.href ? 'transition-colors duration-300 group-hover:text-gold' : ''}`}
+              className={`${item.meta ? 'mt-1' : 'mt-4'} text-step-2 text-ink ${item.href ? 'transition-colors duration-300 group-hover:text-gold-ink' : ''}`}
             >
               {item.title}
             </h3>

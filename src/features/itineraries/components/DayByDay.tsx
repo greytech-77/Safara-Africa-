@@ -35,19 +35,19 @@ export default function DayByDay({ days, stays, places, images }: Props) {
           <li key={d.day} id={`day-${d.day}`} className="scroll-mt-8">
             <details className="group py-5" open={i === 0}>
               <summary className="flex cursor-pointer list-none items-start gap-4">
-                <span className="mt-0.5 shrink-0 rounded-full bg-deep-teal px-3 py-1 text-step--1 font-bold text-salt">Day {d.day}</span>
+                <span className="mt-0.5 shrink-0 rounded-full bg-deep-teal px-3 py-1 text-step--1 font-bold text-cream">Day {d.day}</span>
                 <span className="flex-1">
                   <span className="block text-step-1 font-semibold text-deep-teal">{d.title}</span>
                   <span className="block text-step--1 text-slate">{stay ? `Overnight: ${stay.name}` : 'End of the trip'}</span>
                 </span>
-                <span aria-hidden="true" className="mt-1 text-gold transition-transform group-open:rotate-45">
+                <span aria-hidden="true" className="mt-1 text-gold-ink transition-transform group-open:rotate-45">
                   +
                 </span>
               </summary>
 
               <div className="mt-5 space-y-6">
                 {image && (
-                  <div className="relative aspect-[16/9] overflow-hidden rounded-xl bg-salt-deep">
+                  <div className="relative aspect-[16/9] overflow-hidden rounded-xl bg-sand">
                     <Image src={image.src} alt={image.alt} fill sizes="(min-width: 1024px) 55vw, 100vw" className="object-cover" />
                   </div>
                 )}
@@ -64,7 +64,7 @@ export default function DayByDay({ days, stays, places, images }: Props) {
                   <p className="measure text-ink">{d.description}</p>
 
                   {d.trek && (
-                    <dl className="grid grid-cols-2 gap-3 rounded-lg bg-salt-deep p-4 text-step--1 sm:grid-cols-4">
+                    <dl className="grid grid-cols-2 gap-3 rounded-lg bg-sand p-4 text-step--1 sm:grid-cols-4">
                       {[
                         ['Highest point', `${d.trek.maxAltM.toLocaleString('en-GB')} m`],
                         ['Sleep at', `${d.trek.sleepAltM.toLocaleString('en-GB')} m`],
@@ -82,7 +82,7 @@ export default function DayByDay({ days, stays, places, images }: Props) {
                   {d.activities.length > 0 && (
                     <ul className="flex flex-wrap gap-2" aria-label="Activities">
                       {d.activities.map((a) => (
-                        <li key={a} className="rounded-full bg-salt-deep px-3 py-1 text-step--1 font-semibold text-deep-teal">
+                        <li key={a} className="rounded-full bg-sand px-3 py-1 text-step--1 font-semibold text-deep-teal">
                           {a}
                         </li>
                       ))}
@@ -103,7 +103,7 @@ export default function DayByDay({ days, stays, places, images }: Props) {
                       {stay.accommodation && (
                         <Link
                           href={`/accommodations/${stay.accommodation}`}
-                          className="mt-3 inline-block font-bold text-deep-teal underline underline-offset-4 transition-colors duration-300 hover:text-gold"
+                          className="mt-3 inline-block font-bold text-deep-teal underline underline-offset-4 transition-colors duration-300 hover:text-gold-ink"
                         >
                           See more about this lodge <span className="arrow">→</span>
                         </Link>
@@ -117,7 +117,7 @@ export default function DayByDay({ days, stays, places, images }: Props) {
                         <li
                           key={key}
                           title={long}
-                          className={`grid size-8 place-items-center rounded-full text-step--1 font-bold ${d.meals[key] ? 'bg-gold text-white' : 'bg-salt-deep text-slate line-through'}`}
+                          className={`grid size-8 place-items-center rounded-full text-step--1 font-bold ${d.meals[key] ? 'bg-gold text-on-gold' : 'bg-sand text-slate line-through'}`}
                         >
                           <span aria-hidden="true">{short}</span>
                           <span className="sr-only">

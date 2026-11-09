@@ -20,7 +20,7 @@ export default function MonthPicker({ months }: { months: { text: string; tags: 
             type="button"
             aria-pressed={active === i}
             onClick={() => setActive(i)}
-            className={`rounded-lg border py-2.5 text-step--1 font-bold transition-colors ${active === i ? 'border-deep-teal bg-deep-teal text-salt' : 'border-deep-teal/20 bg-white text-deep-teal hover:border-deep-teal'}`}
+            className={`rounded-lg border py-2.5 text-step--1 font-bold transition-colors ${active === i ? 'border-deep-teal bg-deep-teal text-cream' : 'border-deep-teal/20 bg-white text-deep-teal hover:border-deep-teal'}`}
           >
             {label}
           </button>
@@ -31,7 +31,7 @@ export default function MonthPicker({ months }: { months: { text: string; tags: 
         <p className="measure mt-2 text-ink">{m.text}</p>
         <ul className="mt-4 flex flex-wrap gap-2">
           {m.tags.map((t) => (
-            <li key={t} className="rounded-full bg-salt-deep px-3 py-1 text-step--1 font-semibold text-deep-teal">
+            <li key={t} className="rounded-full bg-sand px-3 py-1 text-step--1 font-semibold text-deep-teal">
               {t}
             </li>
           ))}

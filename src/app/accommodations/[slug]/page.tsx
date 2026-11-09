@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 function Tick() {
   return (
-    <svg aria-hidden="true" viewBox="0 0 16 16" className="mt-1 size-4 shrink-0 fill-gold">
+    <svg aria-hidden="true" viewBox="0 0 16 16" className="mt-1 size-4 shrink-0 fill-gold-ink">
       <path d="M6.2 11.6 2.6 8l1.1-1.1 2.5 2.5 6.1-6.1L13.4 4.4z" />
     </svg>
   );
@@ -115,7 +115,7 @@ export default async function AccommodationPage({ params }: Props) {
 
       <section className="band" aria-labelledby="rooms-heading">
         <div className="wrap">
-          <p className="text-step--1 font-bold uppercase tracking-[0.14em] text-gold">Unwind and relax</p>
+          <p className="text-step--1 font-bold uppercase tracking-[0.14em] text-gold-ink">Unwind and relax</p>
           <h2 id="rooms-heading" className="mt-1 text-step-4 text-ink">
             Rooms at {a.name}
           </h2>

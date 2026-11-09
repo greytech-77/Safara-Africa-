@@ -8,7 +8,7 @@ export default function EnquiryPanel({ slug, title, days, price }: Props) {
   const quote = `/contact?tour=${slug}#enquire`;
   const wa = whatsappLink(tripMessage(title, days));
   return (
-    <div className="fixed inset-x-0 bottom-0 z-20 border-t border-deep-teal/10 bg-salt/95 px-4 py-3 backdrop-blur-sm lg:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-20 border-t border-deep-teal/10 bg-cream/95 px-4 py-3 backdrop-blur-sm lg:hidden">
       <div className="mx-auto flex max-w-md items-center gap-3">
         <div className="min-w-0 flex-1">
           {price ? (

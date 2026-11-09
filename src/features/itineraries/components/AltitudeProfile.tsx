@@ -46,7 +46,7 @@ export default function AltitudeProfile({ days }: { days: ItineraryDay[] }) {
               x2={x(i)}
               y1={y(d.trek!.sleepAltM)}
               y2={y(d.trek!.maxAltM)}
-              stroke="var(--color-sun)"
+              stroke="var(--color-gold)"
               strokeWidth="4"
               strokeLinecap="round"
             />
@@ -82,7 +82,7 @@ export default function AltitudeProfile({ days }: { days: ItineraryDay[] }) {
           Altitude where you sleep (m)
         </span>
         <span>
-          <span aria-hidden="true" className="mr-1.5 inline-block h-3 w-1 align-middle rounded bg-sun" />
+          <span aria-hidden="true" className="mr-1.5 inline-block h-3 w-1 align-middle rounded bg-gold" />
           Highest point that day
         </span>
       </figcaption>

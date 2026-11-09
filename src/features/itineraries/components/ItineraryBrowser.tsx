@@ -86,7 +86,7 @@ export default function ItineraryBrowser({ tours, options }: { tours: TourCardDa
 
   return (
     <>
-      <form role="search" aria-label="Filter journeys" onSubmit={(e) => e.preventDefault()} className="rounded-xl bg-salt-deep p-4 sm:p-6">
+      <form role="search" aria-label="Filter journeys" onSubmit={(e) => e.preventDefault()} className="rounded-xl bg-sand p-4 sm:p-6">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {select('kind', 'Type of trip', 'All types', options.kinds)}
           {select('length', 'Length', 'Any length', LENGTHS)}

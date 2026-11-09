@@ -64,7 +64,7 @@ export default function RouteProgressMap({ points, dayEnds, days }: Props) {
         <span className="text-step--1 font-bold text-deep-teal">{current ? `Day ${current.day} of ${days.length}` : 'Start'}</span>
       </figcaption>
 
-      <svg viewBox={`0 0 ${W} ${g.H}`} role="img" aria-label={label} className="mt-3 h-auto w-full rounded-lg bg-salt-deep">
+      <svg viewBox={`0 0 ${W} ${g.H}`} role="img" aria-label={label} className="mt-3 h-auto w-full rounded-lg bg-sand">
         <title>{label}</title>
         {/* The whole route, faint, then the part travelled so far drawn over it. */}
         <polyline points={g.path} fill="none" stroke="var(--color-deep-teal)" strokeOpacity="0.3" strokeWidth="2" strokeDasharray="5 5" />
@@ -96,7 +96,7 @@ export default function RouteProgressMap({ points, dayEnds, days }: Props) {
                 cx={x}
                 cy={y}
                 r="11"
-                fill={visited ? 'var(--color-sun)' : 'white'}
+                fill={visited ? 'var(--color-gold)' : 'white'}
                 stroke={visited ? 'white' : 'var(--color-deep-teal)'}
                 strokeWidth="2"
                 style={{ transition: 'fill 0.3s' }}
@@ -118,7 +118,7 @@ export default function RouteProgressMap({ points, dayEnds, days }: Props) {
             fontSize="15"
             fontWeight="600"
             fill="var(--color-ink)"
-            stroke="var(--color-salt-deep)"
+            stroke="var(--color-sand)"
             strokeWidth="4"
             strokeLinejoin="round"
             paintOrder="stroke"

@@ -45,7 +45,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section id="why" className="band scroll-mt-8 bg-deep-teal text-[#f4f5f0]" aria-labelledby="why-heading">
+      <section id="why" className="band scroll-mt-8 bg-deep-teal text-cream" aria-labelledby="why-heading">
         <div className="wrap">
           <h2 id="why-heading" className="text-step-4">
             Why travel with us
@@ -54,7 +54,7 @@ export default function AboutPage() {
             {reasons.map((r) => (
               <li key={r.title} className="border-t border-white/25 pt-4">
                 <h3 className="font-sans text-step-0 font-bold">{r.title}</h3>
-                <p className="mt-1 text-[#c7d0d8]">{r.body}</p>
+                <p className="mt-1 text-cream/85">{r.body}</p>
               </li>
             ))}
           </ul>

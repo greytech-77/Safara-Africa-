@@ -6,16 +6,16 @@ export default function RouteLine({ route, tone = 'dark', size = 'sm' }: { route
   return (
     <ol
       aria-label="Route"
-      className={`flex flex-wrap gap-y-4 ${size === 'lg' ? 'text-step-0' : 'text-step--1'} ${light ? 'text-[#f4f5f0]' : 'text-ink'}`}
+      className={`flex flex-wrap gap-y-4 ${size === 'lg' ? 'text-step-0' : 'text-step--1'} ${light ? 'text-cream' : 'text-ink'}`}
     >
       {route.map((stop, i) => (
         <li key={`${stop.place}-${i}`} className="flex items-start">
           <span className="flex flex-col">
             <span className="flex items-center gap-2 font-bold">
-              <span aria-hidden="true" className="inline-block size-2.5 rounded-full bg-sun ring-4 ring-sun/25" />
+              <span aria-hidden="true" className="inline-block size-2.5 rounded-full bg-gold ring-4 ring-gold/25" />
               {stop.place}
             </span>
-            <span className={`pl-[1.15rem] ${light ? 'text-[#dce2e6]' : 'text-slate'}`}>
+            <span className={`pl-[1.15rem] ${light ? 'text-cream/80' : 'text-slate'}`}>
               {stop.nights > 0
                 ? `${stop.nights} night${stop.nights > 1 ? 's' : ''}`
                 : i === 0
