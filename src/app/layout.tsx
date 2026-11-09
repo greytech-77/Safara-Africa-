@@ -47,7 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${figtree.variable} ${instrument.variable} ${fraunces.variable}`}>
       <body className="flex min-h-screen flex-col">
-        <a href="#main" className="btn btn-primary sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-50">
+        <a href="#main" className="btn bg-deep-teal text-cream sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-50">
           Skip to content
         </a>
         <JsonLd data={orgLd} />

@@ -12,7 +12,7 @@ export default function NotFound() {
         <div className="wrap">
           <p className="measure text-ink">The page may have moved when we rebuilt the site. Try the journeys or get in touch.</p>
           <div className="mt-8 flex flex-wrap gap-4">
-            <Link href="/tours" className="btn btn-primary">
+            <Link href="/tours" className="btn btn-outline text-deep-teal">
               See journeys
             </Link>
             <Link href="/contact" className="btn btn-outline text-deep-teal">

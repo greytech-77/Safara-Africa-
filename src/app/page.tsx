@@ -109,7 +109,7 @@ export default function HomePage() {
             <TourGrid tours={tours} />
           </div>
           <div className="mt-10 text-center">
-            <Link href="/tours" className="btn btn-primary">
+            <Link href="/tours" className="btn btn-outline text-deep-teal">
               View all journeys
             </Link>
           </div>

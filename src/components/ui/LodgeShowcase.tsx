@@ -78,7 +78,10 @@ export default function LodgeShowcase({
 
       {limit && lodges.length > limit && (
         <div className="mt-10 text-center">
-          <Link href={country === 'all' ? '/accommodations' : `/accommodations?country=${country}`} className="btn btn-primary">
+          <Link
+            href={country === 'all' ? '/accommodations' : `/accommodations?country=${country}`}
+            className="btn btn-outline text-deep-teal"
+          >
             Show all {lodges.length} lodges and camps
           </Link>
         </div>
