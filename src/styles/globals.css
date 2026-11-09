@@ -190,12 +190,6 @@
     color: var(--color-deep-teal);
   }
 
-  /* Metallic ash silver: a diagonal sheen around the ash-silver token. Use dark text on it. */
-  .metallic-silver {
-    background-color: var(--color-ash-silver);
-    background-image: linear-gradient(135deg, #e3e6e7 0%, #c3c7c9 42%, #aeb3b6 68%, #d5d8da 100%);
-  }
-
   .prose-safara {
     max-width: 66ch;
   }
