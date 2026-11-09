@@ -48,7 +48,7 @@ export default function HeaderShell({
     <header
       data-solid={solid || undefined}
       data-dropped={(pinAfterHero && pinned) || undefined}
-      className={`site-header inset-x-0 top-0 z-30 data-solid:bg-white data-solid:text-deep-teal ${position} ${overlay ? 'text-white' : 'text-deep-teal'}`}
+      className={`site-header inset-x-0 top-0 z-30 data-solid:bg-cream data-solid:text-deep-teal ${position} ${overlay ? 'text-white' : 'text-deep-teal'}`}
     >
       {children}
     </header>
