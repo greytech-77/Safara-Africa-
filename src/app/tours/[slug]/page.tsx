@@ -11,7 +11,6 @@ import DayByDay from '@/features/itineraries/components/DayByDay';
 import EnquiryPanel from '@/features/itineraries/components/EnquiryPanel';
 import RouteProgressMap from '@/features/itineraries/components/RouteProgressMap';
 import { dayImage, getItinerary, getItineraries, getPlace, getStays, getTours, routePath, routeStops } from '@/features/itineraries/data';
-import { kindLabel, tierLabel } from '@/features/itineraries/labels';
 import { formatUsd, fromPrice } from '@/features/itineraries/pricing';
 import TourGrid from '@/features/tours/components/TourGrid';
 
@@ -86,7 +85,6 @@ export default async function ItineraryPage({ params }: Props) {
 
       <Hero
         image={it.hero}
-        eyebrow={`${it.days} ${it.days === 1 ? 'day' : 'days'} · ${tierLabel[it.tier]} · ${kindLabel[it.kind]}`}
         title={it.title}
         cta={{ label: 'Enquire about this trip', href: `/contact?tour=${it.slug}#enquire` }}
         breadcrumbs={[{ label: 'Journeys', href: '/tours' }, { label: it.title }]}
