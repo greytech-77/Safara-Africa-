@@ -624,6 +624,13 @@
   .hero--home .hero__title em {
     display: block;
   }
+  /* Itinerary pages: the title sits further below the breadcrumb (about 40px lower; the content is centred).
+     Phones already place it at the bottom of the hero. */
+  @media (min-width: 768px) {
+    .hero--itinerary .hero__content {
+      margin-top: 80px;
+    }
+  }
   .hero__subtitle {
     max-width: 40ch;
     margin: -12px 0 32px;

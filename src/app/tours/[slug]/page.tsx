@@ -85,6 +85,7 @@ export default async function ItineraryPage({ params }: Props) {
 
       <Hero
         image={it.hero}
+        className="hero--itinerary"
         title={it.title}
         cta={{ label: 'Enquire about this trip', href: `/contact?tour=${it.slug}#enquire` }}
         breadcrumbs={[{ label: 'Journeys', href: '/tours' }, { label: it.title }]}
