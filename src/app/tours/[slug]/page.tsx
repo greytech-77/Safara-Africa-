@@ -88,7 +88,6 @@ export default async function ItineraryPage({ params }: Props) {
         image={it.hero}
         eyebrow={`${it.days} ${it.days === 1 ? 'day' : 'days'} · ${tierLabel[it.tier]} · ${kindLabel[it.kind]}`}
         title={it.title}
-        hideTitle
         cta={{ label: 'Enquire about this trip', href: `/contact?tour=${it.slug}#enquire` }}
         breadcrumbs={[{ label: 'Journeys', href: '/tours' }, { label: it.title }]}
       />
