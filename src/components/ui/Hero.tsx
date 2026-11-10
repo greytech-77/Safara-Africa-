@@ -8,6 +8,8 @@ type Props = {
   title: string;
   // Words shown in italic at the end of the title.
   titleAccent?: string;
+  // Keeps the <h1> for screen readers and search engines but hides it on screen (itinerary pages).
+  hideTitle?: boolean;
   // Small uppercase label above the title.
   eyebrow?: string;
   subtitle?: string;
@@ -34,6 +36,7 @@ const enquire = { label: 'Plan your journey', href: '/contact#enquire' };
 export default function Hero({
   title,
   titleAccent,
+  hideTitle = false,
   eyebrow,
   subtitle,
   image,
@@ -59,7 +62,7 @@ export default function Hero({
 
       <div className="hero__content wrap">
         {eyebrow && <p className="hero__eyebrow">{eyebrow}</p>}
-        <h1 className="hero__title">
+        <h1 className={hideTitle ? 'sr-only' : 'hero__title'}>
           {keepWhole(title)}
           {titleAccent && (
             <>
