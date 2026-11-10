@@ -624,9 +624,20 @@
   .hero--home .hero__title em {
     display: block;
   }
-  /* Itinerary pages: the title sits further below the breadcrumb (about 40px lower; the content is centred).
-     Phones already place it at the bottom of the hero. */
+  /* Itinerary pages: every hero is the same fixed height (the 7-Day Northern Circuit Classic's), whatever the title length.
+     Titles may run wider (1040px) so even the longest (about 50 characters) fits on two lines within that height. */
+  .hero--itinerary {
+    height: max(420px, 70svh);
+    min-height: 0;
+  }
   @media (min-width: 768px) {
+    .hero--itinerary {
+      height: 560px;
+    }
+    .hero--itinerary .hero__title {
+      max-width: 1040px;
+    }
+    /* The title sits further below the breadcrumb (about 40px lower; the content is centred). */
     .hero--itinerary .hero__content {
       margin-top: 80px;
     }
