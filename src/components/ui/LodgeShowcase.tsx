@@ -1,14 +1,10 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-import type { Img } from '@/types/content';
+import LodgeCards, { type LodgeTile } from './LodgeCards';
 
-export type LodgeTile = { slug: string; name: string; area: string; country: string; countryName: string; image: Img };
-
-// Lodges and camps: country filters above a grid of photo tiles.
-// Each tile is a single link with the place and the lodge name under the photo.
+// Lodges and camps: country filters above the shared lodge grid (LodgeCards).
 // With `limit` (home page) only that many show, and "Show all" opens /accommodations on the same country.
 export default function LodgeShowcase({
   lodges,
@@ -57,24 +53,7 @@ export default function LodgeShowcase({
       </p>
 
       {/* The key replays the fade-in when the filter changes. */}
-      {/* Tall photos with square corners, then the place and the name. On hover a fine line draws under the name. */}
-      <ul key={country} className="crossfade mt-10 grid grid-cols-1 gap-x-8 gap-y-12 lg:grid-cols-3">
-        {shown.map((l) => (
-          <li key={l.slug}>
-            <Link href={`/accommodations/${l.slug}`} className="lodge-card">
-              <div className="lodge-card__photo">
-                <Image src={l.image.src} alt={l.image.alt} fill sizes="(min-width: 1024px) 33vw, 100vw" className="object-cover" />
-              </div>
-              <div className="lodge-card__text">
-                <p className="lodge-card__place">
-                  {l.area}, {l.countryName}
-                </p>
-                <h3 className="lodge-card__name">{l.name}</h3>
-              </div>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <LodgeCards key={country} lodges={shown} className="crossfade mt-10" />
 
       {limit && lodges.length > limit && (
         <div className="mt-10 text-center">

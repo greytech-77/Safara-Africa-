@@ -12,7 +12,8 @@ import PhotoRail from '@/components/ui/PhotoRail';
 import PillarArt, { type PillarArtName } from '@/components/ui/PillarArt';
 import SectionNav, { type SectionLink } from '@/components/ui/SectionNav';
 import TourGrid from '@/features/tours/components/TourGrid';
-import { accommodations } from '@/content/accommodations';
+import { lodgeTiles } from '@/content/accommodations';
+import LodgeCards from '@/components/ui/LodgeCards';
 import { countries, getCountry } from '@/content/countries';
 import { parkHref, parks } from '@/content/parks';
 import { formatDate, getPosts, getTours } from '@/lib/content';
@@ -148,14 +149,7 @@ export default async function CountryPage({ params }: Props) {
           <h2 id="stay-heading" className={h2}>
             Popular accommodations
           </h2>
-          <div className="mt-8">
-            <ImageCards
-              columns={4}
-              items={accommodations
-                .filter((a) => a.country === c.slug)
-                .map((a) => ({ title: a.name, meta: a.area, text: a.teaser, image: a.image, href: `/accommodations/${a.slug}` }))}
-            />
-          </div>
+          <LodgeCards lodges={lodgeTiles.filter((l) => l.country === c.slug)} className="mt-8" />
         </div>
       </section>
 

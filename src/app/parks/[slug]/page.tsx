@@ -4,13 +4,13 @@ import { notFound } from 'next/navigation';
 import CtaBlock from '@/components/ui/CtaBlock';
 import Header from '@/components/layout/Header';
 import Hero from '@/components/ui/Hero';
-import ImageCards from '@/components/ui/ImageCards';
 import MonthRow from '@/components/ui/MonthRow';
 import PhotoList from '@/components/ui/PhotoList';
 import PhotoRail from '@/components/ui/PhotoRail';
 import SectionNav, { type SectionLink } from '@/components/ui/SectionNav';
 import TourGrid from '@/features/tours/components/TourGrid';
-import { accommodations } from '@/content/accommodations';
+import { accommodations, lodgeTiles } from '@/content/accommodations';
+import LodgeCards from '@/components/ui/LodgeCards';
 import { getCountry } from '@/content/countries';
 import { getParkGuide } from '@/content/park-guides';
 import { getPark, parkHref, parks } from '@/content/parks';
@@ -209,19 +209,7 @@ export default async function ParkPage({ params }: Props) {
               Where to stay
             </h2>
             {guide.stayNote && <p className="measure mt-3 text-ink">{guide.stayNote}</p>}
-            {stays.length > 0 && (
-              <div className="mt-8">
-                <ImageCards
-                  items={stays.map((a) => ({
-                    title: a.name,
-                    meta: a.area,
-                    text: a.teaser,
-                    image: a.image,
-                    href: `/accommodations/${a.slug}`,
-                  }))}
-                />
-              </div>
-            )}
+            {stays.length > 0 && <LodgeCards lodges={lodgeTiles.filter((l) => stays.some((s) => s.slug === l.slug))} className="mt-8" />}
           </div>
         </section>
       )}
