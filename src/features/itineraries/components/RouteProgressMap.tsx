@@ -37,12 +37,16 @@ export default function RouteProgressMap({ points, dayEnds, days }: Props) {
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);
     };
+    // Opening a day in the list (DayControls sends this) moves the map straight to that day.
+    const onDay = (e: Event) => setReached(Number((e as CustomEvent<number>).detail) || 0);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
+    window.addEventListener('itinerary:day', onDay);
     return () => {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onScroll);
+      window.removeEventListener('itinerary:day', onDay);
       cancelAnimationFrame(frame);
     };
   }, [days]);

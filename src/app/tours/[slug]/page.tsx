@@ -1,18 +1,20 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Header from '@/components/layout/Header';
-import CtaBlock from '@/components/ui/CtaBlock';
 import FaqList from '@/components/ui/FaqList';
 import Hero from '@/components/ui/Hero';
 import JsonLd from '@/components/ui/JsonLd';
 import { site } from '@/config/site';
 import AltitudeProfile from '@/features/itineraries/components/AltitudeProfile';
 import DayByDay from '@/features/itineraries/components/DayByDay';
+import BookTripForm from '@/features/itineraries/components/BookTripForm';
 import EnquiryPanel from '@/features/itineraries/components/EnquiryPanel';
-import RouteProgressMap from '@/features/itineraries/components/RouteProgressMap';
-import { dayImage, getItinerary, getItineraries, getPlace, getStays, getTours, routePath, routeStops } from '@/features/itineraries/data';
+import TripOverview, { type StayRun } from '@/features/itineraries/components/TripOverview';
+import TripSidebar from '@/features/itineraries/components/TripSidebar';
+import { getItinerary, getItineraries, getPlace, getStays, getTours, routeStops } from '@/features/itineraries/data';
 import { formatUsd, fromPrice } from '@/features/itineraries/pricing';
 import TourGrid from '@/features/tours/components/TourGrid';
+import { GuestQuote, RatingLine } from '@/features/itineraries/components/TripProof';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -40,10 +42,17 @@ export default async function ItineraryPage({ params }: Props) {
   const stays = getStays();
   const placeMap = new Map(it.itinerary.flatMap((d) => d.places).map((p) => [p, getPlace(p)!]));
   const route = routeStops(it);
-  const { points, dayEnds } = routePath(it);
-  const dayImages = new Map(it.itinerary.map((d) => [d.day, dayImage(it, d)]));
-  // PLACEHOLDER map drawn from place coordinates; swap for a tiled map (Mapbox, MapTiler…) once there is an API key.
-  const routeMap = <RouteProgressMap points={points} dayEnds={dayEnds} days={it.itinerary.map((d) => ({ day: d.day, title: d.title }))} />;
+  // Where you'll stay: consecutive nights at the same lodge grouped into one line.
+  const stayRuns: StayRun[] = [];
+  for (const d of it.itinerary) {
+    const stay = d.stay ? stays.get(d.stay) : undefined;
+    if (!stay) continue;
+    const last = stayRuns.at(-1);
+    if (last && last.stay.slug === stay.slug) last.nights += 1;
+    else stayRuns.push({ stay, place: getPlace(stay.place)?.name ?? stay.place, nights: 1 });
+  }
+  const startPlace = placeMap.get(it.itinerary[0].places[0])?.name;
+  const endPlace = placeMap.get(it.itinerary.at(-1)!.places.at(-1)!)?.name;
   const price = fromPrice(it);
   const priceLabel = price && { label: formatUsd(price.amountUsd), groupSize: price.groupSize, isPlaceholder: price.isPlaceholder };
   const isTrek = it.itinerary.some((d) => d.trek);
@@ -79,7 +88,7 @@ export default async function ItineraryPage({ params }: Props) {
   const h2 = 'text-step-4 text-ink';
 
   return (
-    <div data-theme={it.kind === 'trek' ? 'trekking' : undefined} className="pb-24 lg:pb-0">
+    <div className="tour-page bg-off-white pb-24 lg:pb-0">
       <JsonLd data={ld} />
       <Header overlay current="/tours" />
 
@@ -91,42 +100,79 @@ export default async function ItineraryPage({ params }: Props) {
         breadcrumbs={[{ label: 'Journeys', href: '/tours' }, { label: it.title }]}
       />
 
-      {/* The journey in a few lines, centred, before the detail. */}
-      <section aria-labelledby="overview-heading" className="wrap flex flex-col items-center py-section text-center">
-        <h2 id="overview-heading" className="text-step--1 font-bold uppercase tracking-[0.14em] text-gold-ink">
-          The journey
-        </h2>
-        <p className="mt-3 max-w-[38ch] font-display text-step-3 leading-snug text-ink">{it.summary}</p>
-        <ul className="mt-10 flex max-w-4xl flex-wrap justify-center gap-x-8 gap-y-3 text-ink/85">
-          {it.highlights.map((h) => (
-            <li key={h} className="flex items-center gap-3">
-              <span aria-hidden="true" className="size-1.5 shrink-0 rounded-full bg-gold" />
-              {h}
-            </li>
-          ))}
-        </ul>
-        {it.idealFor.length > 0 && <p className="mt-8 text-step--1 text-ink">Ideal for: {it.idealFor.join(' · ')}</p>}
-      </section>
+      <TripOverview
+        it={it}
+        stops={route}
+        stayRuns={stayRuns}
+        start={startPlace}
+        end={endPlace}
+        price={priceLabel ? { label: priceLabel.label, isPlaceholder: priceLabel.isPlaceholder } : undefined}
+      />
 
-      {/* Day by day on the left; the route map stays pinned on the right while the days scroll by. */}
-      <div className="wrap grid gap-12 pb-section lg:grid-cols-[1fr_24rem] lg:gap-16">
-        <section aria-labelledby="days-heading" className="min-w-0">
+      {/* Day by day on the left, the booking form on the right.
+          Below 1024px: the days, then the form. */}
+      <div className="wrap grid grid-cols-1 gap-10 pb-section lg:grid-cols-[1fr_24rem] lg:gap-x-16">
+        <section aria-labelledby="days-heading" className="order-2 min-w-0 lg:col-start-1 lg:row-start-1">
           <h2 id="days-heading" className={h2}>
             Day by day
           </h2>
-          {/* Phones and tablets have no sidebar, so the map sits above the days instead. */}
-          <div className="mt-6 max-w-md lg:hidden">{routeMap}</div>
-          <div className="mt-6">
-            <DayByDay days={it.itinerary} stays={stays} places={placeMap} images={dayImages} />
+          <div className="mt-4">
+            {it.seasonNote && (
+              <p className="mb-5 flex gap-3 rounded-lg border border-gold-ink/30 bg-white px-4 py-3 text-step--1 text-ink">
+                <span aria-hidden="true" className="text-gold-ink">
+                  ◷
+                </span>
+                <span>
+                  <span className="font-medium text-heading">When to go: </span>
+                  {it.seasonNote}
+                </span>
+              </p>
+            )}
+            {/* A guest quote about halfway through longer trips (shown only once real reviews exist). */}
+            <DayByDay
+              days={it.itinerary}
+              stays={stays}
+              places={placeMap}
+              quoteAfterDay={it.days >= 4 ? Math.ceil(it.days / 2) + 1 : undefined}
+              quote={<GuestQuote />}
+            />
           </div>
+
+          {it.whyLove.length > 0 && (
+            <div className="mt-10 rounded-2xl bg-sand/50 p-6 sm:p-8">
+              <h3 className="text-step-2 text-ink">Why you&apos;ll love this journey</h3>
+              <ul className="mt-4 space-y-2">
+                {it.whyLove.map((x) => (
+                  <li key={x} className="flex gap-3">
+                    <span aria-hidden="true" className="text-gold-ink">
+                      ✦
+                    </span>
+                    {x}
+                  </li>
+                ))}
+              </ul>
+              <a href="#book" className="btn btn-primary mt-6">
+                Request to book
+              </a>
+            </div>
+          )}
         </section>
-        <aside aria-label="Route map" className="hidden lg:block">
-          <div className="sticky top-[calc(var(--header-h)+1rem)]">{routeMap}</div>
-        </aside>
+        <TripSidebar
+          form={
+            <>
+              <BookTripForm
+                slug={it.slug}
+                title={it.title}
+                price={priceLabel ? { label: priceLabel.label, isPlaceholder: priceLabel.isPlaceholder } : undefined}
+              />
+              <RatingLine />
+            </>
+          }
+        />
       </div>
 
       <div className="wrap space-y-16 pb-section">
-        <section aria-labelledby="included-heading" className="grid gap-8 md:grid-cols-2">
+        <section id="included" aria-labelledby="included-heading" className="scroll-mt-28 grid gap-8 md:grid-cols-2">
           <div>
             <h2 id="included-heading" className="text-step-2 text-ink">
               Included
@@ -193,8 +239,6 @@ export default async function ItineraryPage({ params }: Props) {
           </div>
         </section>
       )}
-
-      <CtaBlock title="Want to change this trip?" topic={it.title} />
     </div>
   );
 }

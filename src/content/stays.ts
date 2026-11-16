@@ -11,7 +11,14 @@ const hut = (park: string) => ({ park, feeType: 'hut' as const });
 export const stays: Stay[] = [
   // Arusha and Moshi
   { slug: 'kibo-palace-arusha', name: 'Kibo Palace Hotel', level: 'mid', type: 'hotel', place: 'arusha' },
-  { slug: 'gran-melia-arusha', name: 'Gran Meliá Arusha', level: 'luxury', type: 'hotel', place: 'arusha' },
+  {
+    slug: 'gran-melia-arusha',
+    name: 'Gran Meliá Arusha',
+    level: 'luxury',
+    type: 'hotel',
+    place: 'arusha',
+    benefit: 'a calm, comfortable first night after the flight',
+  },
   { slug: 'moshi-town-hotel', name: 'Moshi town hotel (3★)', level: 'mid', type: 'hotel', place: 'moshi' },
 
   // Tarangire, Manyara, Karatu and Ngorongoro
@@ -30,10 +37,19 @@ export const stays: Stay[] = [
     type: 'lodge',
     place: 'tarangire',
     accommodation: 'tarangire-treetops',
+    benefit: 'treehouse rooms raised among baobab and marula trees',
   },
   { slug: 'marera-valley-lodge', name: 'Marera Valley Lodge', level: 'budget', type: 'lodge', place: 'karatu' },
   { slug: 'ngorongoro-farm-house', name: 'Ngorongoro Farm House', level: 'mid', type: 'lodge', place: 'karatu' },
-  { slug: 'gibbs-farm', name: 'Gibbs Farm', level: 'luxury', type: 'lodge', place: 'karatu', accommodation: 'gibbs-farm' },
+  {
+    slug: 'gibbs-farm',
+    name: 'Gibb’s Farm',
+    level: 'luxury',
+    type: 'lodge',
+    place: 'karatu',
+    accommodation: 'gibbs-farm',
+    benefit: 'cottages on a working coffee farm near Karatu',
+  },
   {
     slug: 'ngorongoro-serena',
     name: 'Ngorongoro Serena Safari Lodge',
@@ -49,6 +65,7 @@ export const stays: Stay[] = [
     type: 'lodge',
     place: 'ngorongoro',
     accommodation: 'andbeyond-ngorongoro-crater-lodge',
+    benefit: 'ornate suites on the rim with views into the crater',
     nightlyFee: concession('ngorongoro'),
   },
 
@@ -68,6 +85,7 @@ export const stays: Stay[] = [
     type: 'lodge',
     place: 'central-serengeti',
     accommodation: 'four-seasons-safari-lodge-serengeti',
+    benefit: 'a large lodge with a pool overlooking a busy waterhole',
     nightlyFee: concession('serengeti'),
   },
   {
@@ -219,12 +237,44 @@ export const stays: Stay[] = [
 
   // Kenya
   { slug: 'nairobi-hotel', name: 'Nairobi boutique hotel', level: 'mid', type: 'hotel', place: 'nairobi' },
-  { slug: 'giraffe-manor', name: 'Giraffe Manor', level: 'luxury', type: 'hotel', place: 'nairobi', accommodation: 'giraffe-manor' },
-  { slug: 'tortilis-camp', name: 'Tortilis Camp', level: 'luxury', type: 'tented-camp', place: 'amboseli', accommodation: 'tortilis-camp' },
+  {
+    slug: 'giraffe-manor',
+    name: 'Giraffe Manor',
+    level: 'luxury',
+    type: 'hotel',
+    place: 'nairobi',
+    accommodation: 'giraffe-manor',
+    benefit: 'a historic manor where giraffes visit at breakfast',
+  },
+  {
+    slug: 'tortilis-camp',
+    name: 'Tortilis Camp',
+    level: 'luxury',
+    type: 'tented-camp',
+    place: 'amboseli',
+    accommodation: 'tortilis-camp',
+    benefit: 'a tented camp facing Kilimanjaro in a private conservancy',
+  },
   { slug: 'lake-nakuru-lodge', name: 'Lake Nakuru lodge', level: 'mid', type: 'lodge', place: 'lake-nakuru' },
   { slug: 'mara-tented-camp', name: 'Maasai Mara tented camp', level: 'mid', type: 'tented-camp', place: 'maasai-mara' },
-  { slug: 'angama-mara', name: 'Angama Mara', level: 'luxury', type: 'lodge', place: 'maasai-mara', accommodation: 'angama-mara' },
-  { slug: 'saruni-samburu', name: 'Saruni Samburu', level: 'luxury', type: 'lodge', place: 'samburu', accommodation: 'saruni-samburu' },
+  {
+    slug: 'angama-mara',
+    name: 'Angama Mara',
+    level: 'luxury',
+    type: 'lodge',
+    place: 'maasai-mara',
+    accommodation: 'angama-mara',
+    benefit: 'suites on the Oloololo escarpment with views over the Mara',
+  },
+  {
+    slug: 'saruni-samburu',
+    name: 'Saruni Samburu',
+    level: 'luxury',
+    type: 'lodge',
+    place: 'samburu',
+    accommodation: 'saruni-samburu',
+    benefit: 'villas on a hillside in the Kalama Conservancy',
+  },
 
   // Uganda and Rwanda
   { slug: 'entebbe-hotel', name: 'Entebbe lakeside hotel', level: 'mid', type: 'hotel', place: 'entebbe' },
@@ -235,11 +285,36 @@ export const stays: Stay[] = [
     type: 'lodge',
     place: 'kibale',
     accommodation: 'primate-lodge-kibale',
+    benefit: 'cottages and tents inside the forest, close to chimp tracking',
   },
-  { slug: 'bwindi-lodge', name: 'Bwindi Lodge', level: 'luxury', type: 'lodge', place: 'bwindi', accommodation: 'bwindi-lodge' },
+  {
+    slug: 'bwindi-lodge',
+    name: 'Bwindi Lodge',
+    level: 'luxury',
+    type: 'lodge',
+    place: 'bwindi',
+    accommodation: 'bwindi-lodge',
+    benefit: 'bandas looking straight into the forest',
+  },
   { slug: 'kigali-hotel', name: 'Kigali boutique hotel', level: 'mid', type: 'hotel', place: 'kigali' },
-  { slug: 'bisate-lodge', name: 'Bisate Lodge', level: 'luxury', type: 'lodge', place: 'volcanoes', accommodation: 'bisate-lodge' },
-  { slug: 'magashi', name: 'Magashi', level: 'luxury', type: 'tented-camp', place: 'akagera', accommodation: 'magashi' },
+  {
+    slug: 'bisate-lodge',
+    name: 'Bisate Lodge',
+    level: 'luxury',
+    type: 'lodge',
+    place: 'volcanoes',
+    accommodation: 'bisate-lodge',
+    benefit: 'forest villas on the slopes of an eroded volcanic cone',
+  },
+  {
+    slug: 'magashi',
+    name: 'Magashi',
+    level: 'luxury',
+    type: 'tented-camp',
+    place: 'akagera',
+    accommodation: 'magashi',
+    benefit: 'a tented camp on the shore of Lake Rwanyakazinga',
+  },
   {
     slug: 'nyungwe-house',
     name: 'One&Only Nyungwe House',
@@ -247,5 +322,6 @@ export const stays: Stay[] = [
     type: 'lodge',
     place: 'nyungwe',
     accommodation: 'one-and-only-nyungwe-house',
+    benefit: 'rooms on a tea plantation at the edge of the forest',
   },
 ];

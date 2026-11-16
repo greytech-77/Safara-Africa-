@@ -1,7 +1,23 @@
 import { NextResponse } from 'next/server';
 import { clientIp, isRateLimited, verifyTurnstile } from '@/lib/spam-guard';
 
-const FIELDS = ['name', 'email', 'phone', 'country', 'dates', 'travellers', 'tour', 'message'] as const;
+// The plan-your-journey wizard sends every field; older forms send a subset. Empty fields are left out of the email.
+const FIELDS = [
+  'name',
+  'email',
+  'phone',
+  'country',
+  'destinations',
+  'dates',
+  'travellers',
+  'interests',
+  'budget',
+  'tour',
+  'consultant',
+  'message',
+  'newsletter',
+  'consent',
+] as const;
 type Enquiry = Record<(typeof FIELDS)[number], string>;
 
 const LABELS: Record<keyof Enquiry, string> = {
@@ -9,10 +25,16 @@ const LABELS: Record<keyof Enquiry, string> = {
   email: 'Email',
   phone: 'Phone',
   country: 'Country',
+  destinations: 'Destinations',
   dates: 'Travel dates',
-  travellers: 'Travellers',
+  travellers: 'Travelling as',
+  interests: 'Most appealing',
+  budget: 'Budget',
   tour: 'Journey',
+  consultant: 'Asked to plan with',
   message: 'Message',
+  newsletter: 'Wants travel ideas by email',
+  consent: 'Agreed to be contacted',
 };
 
 const escapeHtml = (s: string) =>

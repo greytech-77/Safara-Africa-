@@ -129,9 +129,7 @@ function TrustBadge({ platform: p }: { platform: TrustPlatform }) {
         </span>
       )}
       {p.reviews !== undefined && <span className="text-step--1 text-slate">{p.reviews.toLocaleString('en-GB')} reviews</span>}
-      <span className="mt-2 text-step--1 font-bold text-gold-ink">
-        Read reviews <span className="arrow">→</span>
-      </span>
+      <span className="mt-2 text-step--1 font-bold text-gold-ink">Read reviews</span>
     </a>
   );
 }

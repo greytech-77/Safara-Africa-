@@ -1,97 +1,105 @@
 import Link from 'next/link';
 import Logo from './Logo';
+import FooterColumns from './FooterColumns';
+import { socialIcons } from './social-icons';
 import { site } from '@/config/site';
-import { whatsappLink, whatsappMessage } from '@/lib/whatsapp';
+import Image from 'next/image';
+import { footerColumns, legalLinks, publishedPartners, socialLinks } from '@/config/footer';
 
+// Centred footer: social icons, four link columns, a divider, the logo and tagline, then legal links and copyright.
+// Content comes from config/footer.ts and config/site.ts. Focus rings are white here.
 export default function Footer() {
   return (
-    <footer className="bg-deep-teal text-cream">
-      <div className="wrap grid gap-10 pb-8 pt-10 md:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
-        <div>
-          <Logo tone="white" height={72} />
-          <p className="mt-5 max-w-xs text-cream/75">
-            A licensed tour operator in Arusha, planning private safaris, climbs and beach stays across Tanzania.
-          </p>
+    <footer className="bg-footer py-16 text-center text-white [--focus-ring:#fff] lg:py-8">
+      <div className="mx-auto max-w-[1224px] px-6">
+        {socialLinks.length > 0 && (
+          <ul className="mb-16 flex flex-wrap justify-center gap-4 lg:mb-16">
+            {socialLinks.map((s) => (
+              <li key={s.platform}>
+                <a
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener"
+                  aria-label={`${site.name} on ${s.name}`}
+                  className="grid size-10 place-items-center rounded-full bg-white/50 text-footer transition-colors duration-200 hover:bg-white"
+                >
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true">
+                    <path d={socialIcons[s.platform]} />
+                  </svg>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <FooterColumns columns={footerColumns} />
+
+        {publishedPartners.length > 0 && <Partners />}
+
+        <hr className="mb-16 h-px border-0 bg-white/25 lg:mb-6" />
+
+        <div className="mb-10 flex flex-col items-center lg:mb-4">
+          <Link href="/" aria-label={`${site.name} home`} className="block w-[200px] lg:w-[170px]">
+            <Logo tone="white" height={65} />
+          </Link>
+          <p className="mt-3 text-[12px] lg:mt-1 font-light tracking-[0.35px] text-white/75">{site.tagline}</p>
           <TrustLines />
         </div>
 
-        <div>
-          <h2 className="mb-3 font-sans text-step-0 font-bold">Office</h2>
-          <address className="not-italic leading-relaxed text-cream/85">
-            {site.address.street}
-            <br />
-            {site.address.suburb}, {site.address.city}
-            <br />
-            {site.address.country}
-          </address>
-        </div>
-
-        <div>
-          <h2 className="mb-3 font-sans text-step-0 font-bold">Talk to us</h2>
-          <ul className="space-y-1 text-cream/85">
-            <li>
-              <a className="transition-colors duration-300 hover:text-gold" href={`mailto:${site.email}`}>
-                {site.email}
-              </a>
-            </li>
-            <li>
-              <a className="transition-colors duration-300 hover:text-gold" href={`tel:${site.phone.tel}`}>
-                {site.phone.display}
-              </a>
-            </li>
-            <li>
-              <a className="transition-colors duration-300 hover:text-gold" href={whatsappLink(whatsappMessage())}>
-                WhatsApp
-              </a>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <h2 className="mb-3 font-sans text-step-0 font-bold">Opening hours</h2>
-          <dl className="space-y-1 text-cream/85">
-            {site.hours.map((h) => (
-              <div key={h.days} className="flex justify-between gap-4">
-                <dt>{h.days}</dt>
-                <dd>{h.time}</dd>
-              </div>
-            ))}
-          </dl>
-          <p className="mt-2 text-step--1 text-cream/75">Tanzania time (EAT)</p>
-        </div>
-      </div>
-
-      <div className="border-t border-white/10">
-        <div className="wrap flex flex-wrap justify-between gap-6 pb-10 pt-8 text-step--1 text-cream/75">
-          <p>
-            © {new Date().getFullYear()} {site.legalName}. All rights reserved.
-          </p>
-          <ul className="flex flex-wrap gap-5">
-            <li>
-              <Link className="transition-colors duration-300 hover:text-gold" href="/privacy">
-                Privacy
+        <ul className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-[14px] font-light tracking-[0.35px]">
+          {legalLinks.map((l) => (
+            <li key={l.href}>
+              <Link href={l.href} className="transition-opacity duration-200 hover:opacity-60">
+                {l.label}
               </Link>
             </li>
-            <li>
-              <Link className="transition-colors duration-300 hover:text-gold" href="/terms">
-                Booking terms
-              </Link>
-            </li>
-          </ul>
-          {site.social.length > 0 && (
-            <ul className="flex gap-5">
-              {site.social.map((s) => (
-                <li key={s.href}>
-                  <a className="transition-colors duration-300 hover:text-gold" href={s.href}>
-                    {s.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          )}
-        </div>
+          ))}
+        </ul>
+        <p className="mt-10 text-[14px] font-light text-white/50 lg:mt-2">
+          © {new Date().getFullYear()} {site.legalName}. All rights reserved.
+        </p>
       </div>
     </footer>
+  );
+}
+
+// Partner logos in one centred row (wrapping on small screens), all shown as white marks so the black ones
+// (ATTA lettering, TATO) stay visible on the dark footer. A partner without a logo file shows its name.
+function Partners() {
+  return (
+    <section aria-labelledby="footer-partners" className="mb-16 lg:mb-6">
+      <h2 id="footer-partners" className="font-sans text-[20px] font-medium leading-tight text-[#d19f4d]">
+        Our partners
+      </h2>
+      <span aria-hidden="true" className="mx-auto mt-4 block h-px w-20 lg:mt-2 bg-white/25" />
+      <ul className="mt-8 lg:mt-[17px] flex flex-wrap items-center justify-center gap-x-12 gap-y-8 lg:justify-around">
+        {publishedPartners.map((p) => {
+          const mark = p.logo ? (
+            <Image
+              src={p.logo.src}
+              alt={p.name}
+              width={p.logo.width}
+              height={p.logo.height}
+              sizes="180px"
+              className="h-16 w-auto max-w-[180px] lg:h-12 object-contain opacity-80 brightness-0 invert"
+            />
+          ) : (
+            <span className="block max-w-[180px] font-display text-[18px] leading-snug text-white/75">{p.name}</span>
+          );
+          return (
+            <li key={p.name}>
+              {p.href ? (
+                <a href={p.href} target="_blank" rel="noopener" className="block transition-opacity duration-200 hover:opacity-60">
+                  {mark}
+                </a>
+              ) : (
+                mark
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    </section>
   );
 }
 
@@ -100,12 +108,12 @@ function TrustLines() {
   const { tala, tato, kpap } = site.licences;
   if (!tala && !tato && !kpap) return null;
   return (
-    <ul className="mt-5 space-y-1 text-step--1 text-cream/75">
+    <ul className="mt-4 space-y-1 text-[12px] font-light text-white/75">
       {tala && <li>TALA tour operator licence no. {tala}</li>}
       {tato && (
         <li>
           <a
-            className="underline underline-offset-4 transition-colors duration-300 hover:text-gold"
+            className="underline underline-offset-4 transition-opacity duration-200 hover:opacity-60"
             href="https://www.tatotz.org/"
             target="_blank"
             rel="noopener"

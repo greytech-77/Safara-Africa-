@@ -3,16 +3,21 @@ import type { Img } from '@/types/content';
 
 // Hero media for pages without a content image of their own.
 // PLACEHOLDERS: replace with your own photos (2400×1400) and videos (1920×1080, under 8 MB, 10–20 s, no sound).
-type PageHero = { image: Img; video?: string };
+type PageHero = { image: Img; video?: string; webm?: string; mobileVideo?: string };
 
-const migration = unsplash('1564101160531-4838e8a5f4e7', 'Wildebeest herd crossing a river during the Great Migration');
 const herdAndVehicles = unsplash(
   '1580145575237-75fec2a0320b',
   'A large herd of wildebeest grazing on grassy plains with safari vehicles nearby',
 );
 
 export const pageHeroes = {
-  home: { image: migration, video: '/videos/0519.mp4' },
+  home: {
+    // Calm 8s loop cut from the rhino shot in 0519.mp4 (slowed, seamless), compressed with ffmpeg. Poster = its first frame.
+    image: { src: '/images/hero/home-poster.jpg', alt: 'A black rhino standing among bare thorn bushes at dusk' },
+    video: '/videos/home-hero.mp4',
+    webm: '/videos/home-hero.webm',
+    mobileVideo: '/videos/home-hero-mobile.mp4',
+  },
   tours: { image: unsplash('1518459384564-ecfd8e80721f', 'A herd of wildebeest running across dry savanna with safari vehicles') },
   about: { image: herdAndVehicles },
   team: { image: herdAndVehicles },

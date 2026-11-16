@@ -28,9 +28,13 @@ export const northernCircuit: ItineraryInput[] = [
     itinerary: [
       {
         day: 1,
-        title: 'Arusha to Tarangire and back',
+        title: 'Arusha → Tarangire → Arusha',
         description:
-          'Pick-up from your Arusha hotel at about 6:30 and a two-hour drive to Tarangire. Spend the day on game drives along the river, where elephant, giraffe, zebra and lion gather in the dry season, with a picnic lunch at a viewpoint. Return to Arusha in the early evening.',
+          'Your private guide collects you from your Arusha hotel at about 6:30 and drives you through Maasai country to Tarangire. In the dry season the river draws elephant herds several hundred strong, along with giraffe, zebra and the lions that follow them. You eat a picnic lunch at a viewpoint above the river, spend the afternoon game driving among the ancient baobabs, and are back in Arusha in the early evening.',
+        hook: 'One day, a land of baobabs and elephants, and home by evening.',
+        highlight: 'Elephant herds crossing the Tarangire River',
+        practical: 'About 2 h each way from Arusha',
+        guideTip: 'The river viewpoints are busiest at midday, so we aim to be there early and late, when the herds come down to drink.',
         places: ['arusha', 'tarangire', 'arusha'],
         parks: ['tarangire'],
         driveHours: 4,
@@ -56,6 +60,13 @@ export const northernCircuit: ItineraryInput[] = [
     ],
     order: 20,
     lastReviewed: '2026-10-26',
+    seasonNote:
+      'June to October is Tarangire’s dry season, when its elephant herds gather along the river, the best time for this day trip.',
+    whyLove: [
+      'Some of the largest elephant herds in Africa, in a single day',
+      'A private guide and vehicle from your hotel door',
+      'A picnic lunch at a viewpoint above the Tarangire River',
+    ],
   },
   {
     slug: 'ngorongoro-crater-day-trip',
@@ -80,9 +91,13 @@ export const northernCircuit: ItineraryInput[] = [
     itinerary: [
       {
         day: 1,
-        title: 'Arusha to the Ngorongoro Crater and back',
+        title: 'Arusha → Ngorongoro Crater → Arusha',
         description:
-          'An early start from Arusha for the three-hour drive to the crater rim. Descend 600 metres to the crater floor for about six hours of game viewing, with lunch at a picnic site by a hippo pool, then drive back to Arusha in the evening.',
+          'You leave Arusha early with your private guide and climb into the green highlands to the crater rim. Then you descend 600 m into the Ngorongoro Crater, a UNESCO World Heritage Site and the largest unbroken volcanic caldera on Earth. For about six hours you explore its grasslands, swamps and soda lake, looking for lion, buffalo, hippo and black rhino, with lunch at a picnic site by a hippo pool, before driving back to Arusha in the evening.',
+        hook: 'A day inside a lost world of lions, rhino and flamingos.',
+        highlight: 'The first view down into the crater from the rim',
+        practical: 'About 3 h each way from Arusha; about 6 h on the crater floor',
+        guideTip: 'Bring a warm layer: the rim is often chilly early in the morning, even when the crater floor is hot.',
         places: ['arusha', 'ngorongoro', 'arusha'],
         parks: ['ngorongoro'],
         driveHours: 6,
@@ -112,6 +127,11 @@ export const northernCircuit: ItineraryInput[] = [
     ],
     order: 21,
     lastReviewed: '2026-10-26',
+    whyLove: [
+      'The largest unbroken volcanic caldera on Earth, in one day',
+      'One of the best chances in Tanzania to see black rhino',
+      'Picnic lunch by a hippo pool on the crater floor',
+    ],
   },
   {
     slug: 'tarangire-manyara-ngorongoro-3-days',
@@ -132,9 +152,12 @@ export const northernCircuit: ItineraryInput[] = [
     itinerary: [
       {
         day: 1,
-        title: 'Arusha to Tarangire',
+        title: 'Arusha → Tarangire → Karatu',
         description:
-          'Leave Arusha in the morning for Tarangire National Park. Spend the day on game drives among baobabs and elephant herds, then drive up to Karatu for the night.',
+          'Your private guide collects you in Arusha and drives you to Tarangire for a full day among its ancient baobabs. In the dry season, elephant herds several hundred strong come down to the river, and lions rest in the shade nearby. Late in the afternoon you climb the escarpment to the cool highland town of Karatu, where dinner and a warm bed are waiting.',
+        hook: 'Today you meet the elephants and baobabs of Tarangire.',
+        highlight: 'Elephant families walking beneath giant baobabs',
+        practical: 'About 2 h to Tarangire, then about 1.5 h to Karatu',
         places: ['arusha', 'tarangire', 'karatu'],
         parks: ['tarangire'],
         driveHours: 3.5,
@@ -144,9 +167,13 @@ export const northernCircuit: ItineraryInput[] = [
       },
       {
         day: 2,
-        title: 'Lake Manyara',
+        title: 'Karatu → Lake Manyara → Karatu',
         description:
-          'Drop down the Rift Valley escarpment into Lake Manyara National Park. Groundwater forest gives way to open shore where flamingos, hippos and tree-climbing lions are sometimes seen. Return to Karatu in the late afternoon.',
+          'You drop down the Rift Valley escarpment into Lake Manyara National Park, where a groundwater forest fed by springs gives way to an open lakeshore. Troops of baboons cross the road, hippos wallow in the pools, and flamingos sometimes colour the shallows pink. Your guide knows where the park’s famous tree-climbing lions have been seen, and in the late afternoon you can walk through the lively market town of Mto wa Mbu before returning to Karatu.',
+        hook: 'Forest, flamingos and, with luck, lions in the trees.',
+        highlight: 'Lions resting in the branches of an acacia, if you are lucky',
+        practical: 'About 45 min each way between Karatu and the park',
+        addOn: { text: 'Village walk in Mto wa Mbu' },
         places: ['lake-manyara', 'karatu'],
         parks: ['lake-manyara'],
         driveHours: 1.5,
@@ -156,9 +183,12 @@ export const northernCircuit: ItineraryInput[] = [
       },
       {
         day: 3,
-        title: 'Ngorongoro Crater and return to Arusha',
+        title: 'Karatu → Ngorongoro Crater → Arusha',
         description:
-          'Descend into the Ngorongoro Crater at first light for a morning on the crater floor, looking for lion, buffalo, hippo and black rhino. Picnic lunch, then drive back to Arusha.',
+          'You leave the rim before the day trippers, wind 600 m down the crater wall and roll out onto a floor that feels like a world of its own. Ngorongoro is the largest unbroken volcanic caldera on Earth and a UNESCO World Heritage Site, and its grasslands hold lion, buffalo, hippo and one of the few black rhino populations in Tanzania. Your guide finds a quiet picnic spot by the hippo pool for lunch, then you climb out and drive back to Arusha in the afternoon.',
+        hook: 'Down into the crater at first light, then home with a full heart.',
+        highlight: 'Scanning the crater floor for black rhino in the morning light',
+        practical: 'About 3.5 h from the crater to Arusha',
         places: ['ngorongoro', 'arusha'],
         parks: ['ngorongoro'],
         driveHours: 3.5,
@@ -180,6 +210,13 @@ export const northernCircuit: ItineraryInput[] = [
     ],
     order: 10,
     lastReviewed: '2026-10-26',
+    seasonNote:
+      'June to October is the dry season, when Tarangire’s elephants gather along the river and the crater’s grass is short for easy viewing.',
+    whyLove: [
+      'Three very different parks in three days',
+      'Elephant herds in Tarangire and black rhino in the crater',
+      'Your own private guide and vehicle throughout',
+    ],
   },
   {
     slug: 'serengeti-ngorongoro-4-days',
@@ -200,9 +237,12 @@ export const northernCircuit: ItineraryInput[] = [
     itinerary: [
       {
         day: 1,
-        title: 'Arusha to the central Serengeti',
+        title: 'Arusha → Central Serengeti',
         description:
-          'Drive west past the Ngorongoro highlands and down onto the Serengeti plains, with a game drive on the way to camp in the Seronera area.',
+          'You climb through the green Ngorongoro highlands, past Maasai herders and their cattle, then drop onto plains so wide the horizon seems to curve. The Serengeti covers some 14,750 km² and has been a UNESCO World Heritage Site since 1981. Your guide game drives the rest of the way, reading the grass for lion and cheetah, and you reach your tented camp in the Seronera area as the sky turns orange.',
+        hook: 'Today the land opens up and the Serengeti begins.',
+        highlight: 'Crossing onto the endless short-grass plains of the Serengeti',
+        practical: 'About 7 h from Arusha, game viewing on the way',
         places: ['arusha', 'central-serengeti'],
         parks: ['ngorongoro', 'serengeti'],
         driveHours: 7,
@@ -212,9 +252,14 @@ export const northernCircuit: ItineraryInput[] = [
       },
       {
         day: 2,
-        title: 'Full day in the Serengeti',
+        title: 'Central Serengeti',
         description:
-          'Morning and afternoon game drives around the Seronera valley, where lion, leopard and cheetah are resident all year. Your guide plans the route around recent sightings and, in season, the migration herds.',
+          'You set out at sunrise, when lions are still on the move and the grass glows gold. The Seronera valley has resident lion, leopard and cheetah all year, and your guide plans the route around the latest sightings and, in season, the migration herds. You return to camp through the heat of the day and head out again for the soft light of the late afternoon.',
+        hook: 'A full day in the home of the big cats.',
+        highlight: 'With luck, a cheetah scanning the plains from a termite mound',
+        practical: 'Morning and afternoon game drives',
+        guideTip: 'Cheetahs hunt by day, so the middle of the morning is often the best time to find one on the move.',
+        addOn: { text: 'Sunrise balloon flight over the Serengeti' },
         places: ['central-serengeti'],
         parks: ['serengeti'],
         activities: ['Morning and afternoon game drives', 'Optional balloon flight'],
@@ -223,8 +268,12 @@ export const northernCircuit: ItineraryInput[] = [
       },
       {
         day: 3,
-        title: 'Serengeti to the Ngorongoro rim',
-        description: 'A final morning drive in the Serengeti, then head back east to the rim of the Ngorongoro Crater for the night.',
+        title: 'Central Serengeti → Ngorongoro rim',
+        description:
+          'Your guide takes the long way out of the Serengeti for a final game drive, past kopjes where lions often rest on the warm rock. On the way east you may stop above Olduvai Gorge, where some of the oldest traces of our human ancestors were found. By late afternoon you climb into the cool highland forest of the Ngorongoro rim, where the air smells of wood smoke and the crater lies hidden 600 m below.',
+        hook: 'One last morning on the plains, then a night on the edge of a crater.',
+        highlight: 'The first view down into the Ngorongoro Crater from the rim',
+        practical: 'About 4 h from the central Serengeti, game viewing on the way',
         places: ['central-serengeti', 'ngorongoro'],
         parks: ['serengeti', 'ngorongoro'],
         driveHours: 4,
@@ -234,8 +283,12 @@ export const northernCircuit: ItineraryInput[] = [
       },
       {
         day: 4,
-        title: 'Ngorongoro Crater and return to Arusha',
-        description: 'Into the crater at first light for a morning game drive, then a picnic lunch and the drive back to Arusha.',
+        title: 'Ngorongoro Crater → Arusha',
+        description:
+          'You leave the rim before the day trippers, wind 600 m down the crater wall and roll out onto a floor that feels like a world of its own. Ngorongoro is the largest unbroken volcanic caldera on Earth and a UNESCO World Heritage Site, and its grasslands hold lion, buffalo, hippo and one of the few black rhino populations in Tanzania. Your guide finds a quiet picnic spot by the hippo pool for lunch, then you climb out and drive back to Arusha in the afternoon.',
+        hook: 'Down into the crater at first light, then home with a full heart.',
+        highlight: 'Scanning the crater floor for black rhino in the morning light',
+        practical: 'About 3.5 h from the crater rim to Arusha or Kilimanjaro Airport',
         places: ['ngorongoro', 'arusha'],
         parks: ['ngorongoro'],
         driveHours: 3.5,
@@ -251,6 +304,13 @@ export const northernCircuit: ItineraryInput[] = [
     addOns: ['serengeti-balloon-safari', 'maasai-village-visit'],
     order: 11,
     lastReviewed: '2026-10-26',
+    seasonNote:
+      'The Serengeti is rewarding all year; between December and March the herds are usually on the southern plains, and June to October brings dry, clear days.',
+    whyLove: [
+      'The Serengeti and the Ngorongoro Crater in four days',
+      'Resident lion, leopard and cheetah around Seronera',
+      'A private guide who plans each day around recent sightings',
+    ],
   },
   {
     slug: 'tarangire-serengeti-ngorongoro-5-days',
@@ -271,8 +331,12 @@ export const northernCircuit: ItineraryInput[] = [
     itinerary: [
       {
         day: 1,
-        title: 'Arusha to Tarangire',
-        description: 'Drive to Tarangire for an afternoon among baobabs and elephant herds, then on to Karatu for the night.',
+        title: 'Arusha → Tarangire → Karatu',
+        description:
+          'Your private guide collects you in Arusha and drives you to Tarangire, where ancient baobabs rise from the golden grass. In the afternoon you game drive along the river, where elephant herds several hundred strong gather in the dry season. As the light fades you climb the escarpment to Karatu, in the cool green highlands, for dinner and the night.',
+        hook: 'Today you meet the giants of Tarangire.',
+        highlight: 'Elephants crossing the Tarangire River in the afternoon light',
+        practical: 'About 2 h to Tarangire, then about 1.5 h to Karatu',
         places: ['arusha', 'tarangire', 'karatu'],
         parks: ['tarangire'],
         driveHours: 3.5,
@@ -282,9 +346,12 @@ export const northernCircuit: ItineraryInput[] = [
       },
       {
         day: 2,
-        title: 'Karatu to the central Serengeti',
+        title: 'Karatu → Central Serengeti',
         description:
-          'Cross the Ngorongoro highlands, past Maasai villages and the Olduvai area, and descend onto the open plains of the Serengeti with a game drive to camp.',
+          'You cross the Ngorongoro highlands, past Maasai villages and the Olduvai Gorge area, where some of the oldest traces of our human ancestors were found. Then the plains open out: the Serengeti covers some 14,750 km² and has been a UNESCO World Heritage Site since 1981. Your guide game drives all the way to camp, reading the grass for lion and cheetah as the sky turns orange.',
+        hook: 'Today the land opens up and the Serengeti begins.',
+        highlight: 'Crossing onto the endless short-grass plains of the Serengeti',
+        practical: 'About 5 h through the highlands, game viewing on the way',
         places: ['karatu', 'central-serengeti'],
         parks: ['ngorongoro', 'serengeti'],
         driveHours: 5,
@@ -294,9 +361,13 @@ export const northernCircuit: ItineraryInput[] = [
       },
       {
         day: 3,
-        title: 'Full day in the Serengeti',
+        title: 'Central Serengeti',
         description:
-          'A full day of game drives around the Seronera valley and kopjes, with a packed lunch or a return to camp in the heat of the day.',
+          'You set out early with your guide to explore the Seronera valley, where lion, leopard and cheetah live all year. Granite kopjes rise from the grass, often with a pride resting on the warm rock, and hippos crowd the river pools. You take a packed lunch or return to camp in the heat, then go out again for the long golden light of the evening.',
+        hook: 'A full day among the kopjes and rivers of Seronera.',
+        highlight: 'With luck, a lion pride resting on a granite kopje',
+        practical: 'Full day of game drives',
+        addOn: { text: 'Sunrise balloon flight over the Serengeti' },
         places: ['central-serengeti'],
         parks: ['serengeti'],
         activities: ['Full-day game drive', 'Optional balloon flight'],
@@ -305,8 +376,12 @@ export const northernCircuit: ItineraryInput[] = [
       },
       {
         day: 4,
-        title: 'Serengeti to the Ngorongoro rim',
-        description: 'A morning game drive on the way out of the Serengeti, then the drive up to the crater rim for the night.',
+        title: 'Central Serengeti → Ngorongoro rim',
+        description:
+          'Your guide takes the long way out of the Serengeti for a final game drive, past kopjes where lions often rest on the warm rock. On the way east you may stop above Olduvai Gorge, where some of the oldest traces of our human ancestors were found. By late afternoon you climb into the cool highland forest of the Ngorongoro rim, where the air smells of wood smoke and the crater lies hidden 600 m below.',
+        hook: 'One last morning on the plains, then a night on the edge of a crater.',
+        highlight: 'The first view down into the Ngorongoro Crater from the rim',
+        practical: 'About 4 h from the central Serengeti, game viewing on the way',
         places: ['central-serengeti', 'ngorongoro'],
         parks: ['serengeti', 'ngorongoro'],
         driveHours: 4,
@@ -316,8 +391,12 @@ export const northernCircuit: ItineraryInput[] = [
       },
       {
         day: 5,
-        title: 'Ngorongoro Crater and return to Arusha',
-        description: 'Descend to the crater floor for a morning game drive, then a picnic lunch and the drive back to Arusha.',
+        title: 'Ngorongoro Crater → Arusha',
+        description:
+          'You leave the rim before the day trippers, wind 600 m down the crater wall and roll out onto a floor that feels like a world of its own. Ngorongoro is the largest unbroken volcanic caldera on Earth and a UNESCO World Heritage Site, and its grasslands hold lion, buffalo, hippo and one of the few black rhino populations in Tanzania. Your guide finds a quiet picnic spot by the hippo pool for lunch, then you climb out and drive back to Arusha in the afternoon.',
+        hook: 'Down into the crater at first light, then home with a full heart.',
+        highlight: 'Scanning the crater floor for black rhino in the morning light',
+        practical: 'About 3.5 h from the crater rim to Arusha or Kilimanjaro Airport',
         places: ['ngorongoro', 'arusha'],
         parks: ['ngorongoro'],
         driveHours: 3.5,
@@ -333,6 +412,13 @@ export const northernCircuit: ItineraryInput[] = [
     addOns: ['serengeti-balloon-safari', 'maasai-village-visit', 'zanzibar-beach-extension'],
     order: 12,
     lastReviewed: '2026-10-26',
+    seasonNote:
+      'June to October is the dry season: Tarangire’s elephants gather along the river, and the clear days are ideal for the Serengeti.',
+    whyLove: [
+      'Tarangire, the Serengeti and the Ngorongoro Crater in five days',
+      'Elephants among baobabs, big cats on the plains, rhino in the crater',
+      'Your own private guide and vehicle throughout',
+    ],
   },
   {
     slug: 'northern-circuit-classic-7-days',
@@ -353,9 +439,13 @@ export const northernCircuit: ItineraryInput[] = [
     itinerary: [
       {
         day: 1,
-        title: 'Arusha to Tarangire',
+        title: 'Arusha → Tarangire',
         description:
-          'Meet your guide in Arusha and drive to Tarangire for an afternoon game drive among the elephant herds and baobabs. Overnight at a lodge inside the park.',
+          'Your private guide meets you in Arusha and drives you to Tarangire, where ancient baobabs rise from the golden grass. In the dry season, elephant herds several hundred strong gather along the river, while lions rest in the shade and more than 500 bird species fill the air. You spend the afternoon among them and sleep inside the park, with the sounds of the bush around you.',
+        hook: 'Today you meet the giants of Tarangire.',
+        highlight: 'Elephants crossing the Tarangire River at sunset',
+        practical: 'About 2 h / 120 km from Arusha',
+        guideTip: 'Keep your camera close on the afternoon drive: the elephants often come down to the river in the last hours of light.',
         places: ['arusha', 'tarangire'],
         parks: ['tarangire'],
         driveHours: 2,
@@ -365,9 +455,12 @@ export const northernCircuit: ItineraryInput[] = [
       },
       {
         day: 2,
-        title: 'Tarangire to Lake Manyara and Karatu',
+        title: 'Tarangire → Lake Manyara → Karatu',
         description:
-          'A morning drive in Tarangire, then on to Lake Manyara for an afternoon in its groundwater forest and along the lakeshore. Climb the escarpment to Karatu for the night.',
+          'After a morning drive in Tarangire, you continue to Lake Manyara National Park, where a groundwater forest fed by springs opens onto the lakeshore. Baboons, elephants and hippos share the park, flamingos sometimes gather in the shallows, and your guide keeps watch for the lions that are known to climb its trees. In the evening you climb the escarpment to Karatu, high in the cool green hills.',
+        hook: 'From baobab country to a forest by a Rift Valley lake.',
+        highlight: 'With luck, a lion resting in the branches above you',
+        practical: 'About 1.5 h to Lake Manyara, then 45 min to Karatu',
         places: ['tarangire', 'lake-manyara', 'karatu'],
         parks: ['tarangire', 'lake-manyara'],
         driveHours: 2.5,
@@ -377,8 +470,12 @@ export const northernCircuit: ItineraryInput[] = [
       },
       {
         day: 3,
-        title: 'Karatu to the central Serengeti',
-        description: 'Drive over the Ngorongoro highlands and down onto the Serengeti plains, game driving all the way to camp.',
+        title: 'Karatu → Central Serengeti',
+        description:
+          'You climb through the green Ngorongoro highlands, past Maasai herders and their cattle, then drop onto plains so wide the horizon seems to curve. The Serengeti covers some 14,750 km² and has been a UNESCO World Heritage Site since 1981. Your guide game drives the rest of the way, reading the grass for lion and cheetah, and you reach your tented camp near Seronera as the sky turns orange.',
+        hook: 'Today the land opens up and the Serengeti begins.',
+        highlight: 'Crossing onto the endless short-grass plains of the Serengeti',
+        practical: 'About 5 h through the highlands, game viewing on the way',
         places: ['karatu', 'central-serengeti'],
         parks: ['ngorongoro', 'serengeti'],
         driveHours: 5,
@@ -388,9 +485,13 @@ export const northernCircuit: ItineraryInput[] = [
       },
       {
         day: 4,
-        title: 'Serengeti',
+        title: 'Central Serengeti',
         description:
-          'A full day exploring the Seronera valley, its rivers and kopjes, where lion, leopard and cheetah are seen year-round.',
+          'You head out at first light, when the plains are cool and the lions are still active. The Seronera valley, with its rivers and granite kopjes, has resident lion, leopard and cheetah all year, and your guide reads every sign, from an alarm call to circling vultures, to find them. You return to camp for lunch and go out again in the gold of the late afternoon.',
+        hook: 'A full day in the valley of the big cats.',
+        highlight: 'With luck, a leopard in a sausage tree by the Seronera River',
+        practical: 'Morning and afternoon game drives',
+        addOn: { text: 'Sunrise balloon flight over the Serengeti' },
         places: ['central-serengeti'],
         parks: ['serengeti'],
         activities: ['Morning and afternoon game drives', 'Optional balloon flight'],
@@ -399,9 +500,12 @@ export const northernCircuit: ItineraryInput[] = [
       },
       {
         day: 5,
-        title: 'Serengeti',
+        title: 'Central Serengeti',
         description:
-          'Another full day in the Serengeti, heading wherever the wildlife is best: towards the migration herds in season, or along the rivers for leopard.',
+          'With a packed lunch on board, you spend the whole day exploring further afield. In season your guide heads for the migration herds, wildebeest and zebra spread to the horizon; at other times you follow the rivers for leopard and the open plains for cheetah. You picnic under an acacia and return to camp as the first stars appear.',
+        hook: 'Wherever the wildlife is best, that is where you go today.',
+        highlight: 'Lunch under an acacia with the plains all around you',
+        practical: 'Full-day game drive with a packed lunch',
         places: ['central-serengeti'],
         parks: ['serengeti'],
         activities: ['Full-day game drive with packed lunch'],
@@ -410,9 +514,13 @@ export const northernCircuit: ItineraryInput[] = [
       },
       {
         day: 6,
-        title: 'Serengeti to the Ngorongoro rim',
+        title: 'Central Serengeti → Ngorongoro rim',
         description:
-          'A last morning drive on the plains, then east to the Ngorongoro Crater rim. There is time for an optional Maasai village visit on the way.',
+          'Your guide takes the long way out of the Serengeti for a final game drive, past kopjes where lions often rest on the warm rock. On the way east you may stop above Olduvai Gorge, where some of the oldest traces of our human ancestors were found. By late afternoon you climb into the cool highland forest of the Ngorongoro rim, where the air smells of wood smoke and the crater lies hidden 600 m below.',
+        hook: 'One last morning on the plains, then a night on the edge of a crater.',
+        highlight: 'The first view down into the Ngorongoro Crater from the rim',
+        practical: 'About 4 h from the central Serengeti, game viewing on the way',
+        addOn: { text: 'Maasai village visit on the way to the rim' },
         places: ['central-serengeti', 'ngorongoro'],
         parks: ['serengeti', 'ngorongoro'],
         driveHours: 4,
@@ -422,9 +530,12 @@ export const northernCircuit: ItineraryInput[] = [
       },
       {
         day: 7,
-        title: 'Ngorongoro Crater and return to Arusha',
+        title: 'Ngorongoro Crater → Arusha',
         description:
-          'Into the crater at first light for the best of the morning, with a picnic lunch by the hippo pool, then the drive back to Arusha or Kilimanjaro Airport.',
+          'You leave the rim before the day trippers, wind 600 m down the crater wall and roll out onto a floor that feels like a world of its own. Ngorongoro is the largest unbroken volcanic caldera on Earth and a UNESCO World Heritage Site, and its grasslands hold lion, buffalo, hippo and one of the few black rhino populations in Tanzania. Your guide finds a quiet picnic spot by the hippo pool for lunch, then you climb out and drive back to Arusha in the afternoon.',
+        hook: 'Down into the crater at first light, then home with a full heart.',
+        highlight: 'Scanning the crater floor for black rhino in the morning light',
+        practical: 'About 3.5 h from the crater rim to Arusha or Kilimanjaro Airport',
         places: ['ngorongoro', 'arusha'],
         parks: ['ngorongoro'],
         driveHours: 3.5,
@@ -447,6 +558,13 @@ export const northernCircuit: ItineraryInput[] = [
     ],
     order: 3,
     lastReviewed: '2026-10-26',
+    seasonNote:
+      'June to October is the dry season, when Tarangire’s elephants gather along the river; the Serengeti herds are on the southern plains from December to March.',
+    whyLove: [
+      'Four great parks: Tarangire, Lake Manyara, the Serengeti and the Ngorongoro Crater',
+      'Two full days in the Serengeti, home of the big cats',
+      'Your own private guide and vehicle throughout',
+    ],
   },
   {
     slug: 'tanzania-luxury',
@@ -480,50 +598,78 @@ export const northernCircuit: ItineraryInput[] = [
     itinerary: [
       {
         day: 1,
-        title: 'Arrival in Arusha',
-        description: 'VIP meet-and-greet at Kilimanjaro Airport and transfer to your hotel in Arusha to rest after the flight.',
+        title: 'Kilimanjaro Airport → Arusha',
+        hook: 'Your journey begins gently, with a warm welcome and a quiet first night.',
+        description:
+          'A member of our team meets you at arrivals and takes care of your bags from there. The drive to Arusha takes about an hour, past farms and villages at the foot of the mountains. Arusha sits at around 1,400 m beneath Mount Meru, at 4,566 m the second-highest peak in Tanzania, so the air is pleasantly mild. Tonight is simply for rest: a long shower, an unhurried dinner and an early night before the safari begins.',
+        highlight: 'A first glimpse of Mount Meru above Arusha, clouds permitting',
+        practical: 'About 1 h / 50 km from Kilimanjaro Airport',
         places: ['kilimanjaro-airport', 'arusha'],
         driveHours: 1,
-        activities: ['Airport meet-and-greet'],
+        activities: ['VIP meet-and-greet at Kilimanjaro Airport', 'Private transfer to Arusha', 'Evening at leisure'],
         meals: meals.d,
         stay: 'gran-melia-arusha',
       },
       {
         day: 2,
-        title: 'Arusha to Tarangire',
-        description: 'Drive to Tarangire and settle into a treehouse lodge overlooking the bush, with an afternoon game drive.',
+        title: 'Arusha → Tarangire',
+        hook: 'Today you meet the giants of Tarangire.',
+        description:
+          'After breakfast, your private guide drives you south-west through Maasai country to Tarangire, where ancient baobabs rise from the golden grass. You settle into your treehouse over lunch, then head into the park as the heat softens. In the dry season, elephant herds several hundred strong gather along the Tarangire River, and your guide knows the places where they come down to drink. You return as the light turns gold, to the sound of the bush settling for the night.',
+        highlight: 'Elephants along the Tarangire River in the late-afternoon light',
+        practical: 'About 2.5 h / 120 km from Arusha',
+        // CONFIRM: guide tips should come from our guides; replace with their own words where they differ.
+        guideTip: 'Keep your camera close on the afternoon drive: the elephants often come down to the river in the last hours of light.',
         places: ['arusha', 'tarangire'],
         parks: ['tarangire'],
         driveHours: 2.5,
-        activities: ['Afternoon game drive'],
+        activities: ['Drive through Maasai country', 'Afternoon game drive in Tarangire National Park'],
         meals: meals.all,
         stay: 'tarangire-treetops',
       },
       {
         day: 3,
         title: 'Tarangire',
-        description: 'A full day in and around Tarangire, with the option of a guided walk or a night drive in the private concession.',
+        hook: 'A full, unhurried day among the baobabs and the elephants.',
+        description:
+          'You set out early, while the air is cool and smells of dry grass, to look for lions resting in the shade and giraffes browsing the acacias. Tarangire is home to more than 500 bird species, and your guide points out hornbills, kori bustards and the small yellow-collared lovebirds as you go. In the afternoon, choose how to spend the last hours: another drive in the park or, because the lodge sits in a private conservation area outside it, a guided walking safari or a night drive to find animals rarely seen by day.',
+        highlight: 'Walking the bush on foot, or watching it wake up after dark',
+        practical: 'Game drives in the park, a short drive from the lodge',
+        // CONFIRM: guide tip, as above.
+        guideTip: 'Bring binoculars: Tarangire’s birds are as rewarding as its elephants, and the lovebirds are easy to miss.',
         places: ['tarangire'],
         parks: ['tarangire'],
-        activities: ['Game drives', 'Optional walking safari or night drive'],
+        activities: [
+          'Morning game drive in Tarangire National Park',
+          'Birdwatching with your guide',
+          'Optional walking safari or night drive',
+        ],
         meals: meals.all,
         stay: 'tarangire-treetops',
       },
       {
         day: 4,
-        title: 'Tarangire to the Ngorongoro highlands',
+        title: 'Tarangire → Ngorongoro highlands',
         description:
-          'Drive to the green coffee hills of the Ngorongoro highlands, with time to explore the farm gardens or walk to a waterfall.',
+          'You leave Tarangire after breakfast and climb the Rift Valley escarpment into the cool, green highlands above Karatu. Gibb’s Farm is a working coffee farm, and the afternoon is yours: walk the vegetable gardens that feed the kitchen, follow a forest path to a waterfall, or simply sit on your veranda with a cup of the farm’s own coffee. After three days of dust and heat, the soft mountain air feels like a gift.',
+        hook: 'Green hills, coffee farms and a slower rhythm for a day.',
+        highlight: 'A cup of coffee grown on the farm, looking out over the highlands',
+        practical: 'About 2.5 h from Tarangire',
         places: ['tarangire', 'karatu'],
         driveHours: 2.5,
-        activities: ['Farm and garden walk'],
+        activities: ['Farm and garden walk', 'Optional walk to a forest waterfall'],
         meals: meals.all,
         stay: 'gibbs-farm',
       },
       {
         day: 5,
         title: 'Ngorongoro Crater',
-        description: 'An unhurried full day on the crater floor with a gourmet picnic, then a night on the crater rim.',
+        description:
+          'You descend 600 m into the crater early and take it slowly, with no need to hurry back. Ngorongoro is a UNESCO World Heritage Site, and its floor holds lion, buffalo, hippo, flamingos on the soda lake and some of the last black rhino in Tanzania. Your guide sets out a gourmet picnic in the shade, then brings you up to the rim for a night with the whole crater spread below your suite.',
+        hook: 'A whole day inside the largest unbroken caldera on Earth.',
+        highlight: 'Black rhino grazing on the crater floor, if luck is with you',
+        practical: 'Crater descent from the rim; full day on the crater floor',
+        guideTip: 'Ask for the window seat on the drive down: the view into the crater is best on the descent road in the early light.',
         places: ['ngorongoro'],
         parks: ['ngorongoro'],
         activities: ['Full-day crater game drive'],
@@ -533,9 +679,12 @@ export const northernCircuit: ItineraryInput[] = [
       },
       {
         day: 6,
-        title: 'Ngorongoro to the Serengeti',
+        title: 'Ngorongoro → Central Serengeti',
         description:
-          'Cross the highlands and descend onto the Serengeti plains, with a game drive to a camp placed for the wildlife in your month of travel.',
+          'You cross the highlands with the crater behind you, passing Maasai herders and the edge of Olduvai Gorge, where some of the oldest traces of our human ancestors were found. Then the plains open out, some 14,750 km² of the Serengeti, a UNESCO World Heritage Site since 1981. Your guide game drives all the way to camp, where a pool looks out over a waterhole and the evening brings elephants down to drink.',
+        hook: 'Today the land opens up and the Serengeti begins.',
+        highlight: 'The moment the Serengeti plains open out ahead of you',
+        practical: 'About 4 h from the crater rim, game viewing on the way',
         places: ['ngorongoro', 'central-serengeti'],
         parks: ['ngorongoro', 'serengeti'],
         driveHours: 4,
@@ -545,8 +694,12 @@ export const northernCircuit: ItineraryInput[] = [
       },
       {
         day: 7,
-        title: 'Serengeti: balloon safari',
-        description: 'Float over the plains at sunrise in a hot-air balloon, followed by a bush breakfast and an afternoon game drive.',
+        title: 'Central Serengeti',
+        description:
+          'In the dark, you are driven to the launch site, and as the burners roar the balloon lifts into the dawn. For about an hour you float low over the plains, watching giraffes and herds below, with only the occasional roar of the flame breaking the quiet. You land to a bush breakfast on the grass, then spend the afternoon with your guide on a game drive, looking for the cats that rest in the kopjes.',
+        hook: 'You rise before the sun and drift over the Serengeti in silence.',
+        highlight: 'Floating above the Serengeti as the sun comes up',
+        practical: 'Early pick-up for the balloon; afternoon game drive',
         places: ['central-serengeti'],
         parks: ['serengeti'],
         activities: ['Sunrise balloon flight', 'Bush breakfast', 'Afternoon game drive'],
@@ -555,8 +708,14 @@ export const northernCircuit: ItineraryInput[] = [
       },
       {
         day: 8,
-        title: 'Serengeti',
-        description: 'A full day following the big cats and, in season, the migration herds, with a private picnic in the bush.',
+        title: 'Central Serengeti',
+        description:
+          'You head out early, when lions are still active and the light is soft on the grass. The Seronera valley has resident lion, leopard and cheetah all year, and your guide reads the signs, from circling vultures to an alarm call, to find them. In the migration months the herds may be close; whatever the season, a private picnic in the bush breaks up the day before you follow the late light home.',
+        hook: 'A full day following the big cats across the plains.',
+        highlight: 'A leopard draped along a sausage-tree branch, if you are lucky',
+        practical: 'Full-day game drive with a picnic lunch',
+        guideTip:
+          'Leopards often rest in the trees along the Seronera River; we scan the branches slowly, so tell your guide if you spot a dangling tail.',
         places: ['central-serengeti'],
         parks: ['serengeti'],
         activities: ['Full-day game drive'],
@@ -565,8 +724,12 @@ export const northernCircuit: ItineraryInput[] = [
       },
       {
         day: 9,
-        title: 'Serengeti',
-        description: 'A slower day: an early drive for the best light, time at the camp pool, and a sundowner on a kopje.',
+        title: 'Central Serengeti',
+        description:
+          'You set out at first light for the best of the morning, then come back to camp to swim and rest through the heat of the day. In the late afternoon your guide drives you to a kopje, one of the granite outcrops that rise from the plains, for a sundowner as the sky turns red and the first calls of the night begin.',
+        hook: 'A slower day: early light, a quiet pool and a sundowner on the rocks.',
+        highlight: 'A sundowner on a granite kopje as the sun sets over the plains',
+        practical: 'Morning game drive; afternoon at leisure; sundowner',
         places: ['central-serengeti'],
         parks: ['serengeti'],
         activities: ['Morning game drive', 'Sundowner'],
@@ -575,9 +738,12 @@ export const northernCircuit: ItineraryInput[] = [
       },
       {
         day: 10,
-        title: 'Fly back to Arusha',
+        title: 'Central Serengeti → Arusha',
         description:
-          'A final morning drive, then a light-aircraft flight from the Serengeti airstrip to Arusha for your onward connection.',
+          'You enjoy a final morning on the plains, then your guide drives you to the airstrip for a light-aircraft flight back to Arusha. From the air, the Serengeti, the highlands and the crater you crossed by road slide past below in a little over an hour, ready for your onward connection.',
+        hook: 'One last morning drive, then the Serengeti from the air.',
+        highlight: 'Seeing the plains, highlands and crater from the air',
+        practical: 'Light-aircraft flight from the Serengeti to Arusha',
         places: ['central-serengeti', 'arusha'],
         parks: ['serengeti'],
         activities: ['Morning game drive', 'Light-aircraft flight'],
@@ -598,5 +764,12 @@ export const northernCircuit: ItineraryInput[] = [
     addOns: ['zanzibar-beach-extension', 'maasai-village-visit'],
     order: 1,
     lastReviewed: '2026-10-26',
+    seasonNote:
+      'June to October is Tarangire’s dry season, when its elephant herds gather along the river. It is also the busiest time on the northern circuit, so the lodges book up first.',
+    whyLove: [
+      'Your own private guide and vehicle, from the first day to the last',
+      'Treehouses in Tarangire, a night on the Ngorongoro Crater rim and four nights in the Serengeti',
+      'A sunrise balloon flight over the Serengeti, then a light-aircraft flight back instead of a long drive',
+    ],
   },
 ];

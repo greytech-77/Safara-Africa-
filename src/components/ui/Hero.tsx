@@ -29,7 +29,7 @@ type Props = {
 
 const enquire = { label: 'Plan your journey', href: '/contact#enquire' };
 
-// The hero on every page: photo or video, breadcrumb, the page's only <h1> and one solid ember button.
+// The hero on every page: photo or video, breadcrumb, the page's only <h1> and one solid terracotta button.
 // Pair with <Header overlay>; styles are in globals.css (.hero).
 export default function Hero({
   title,

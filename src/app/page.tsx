@@ -2,13 +2,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Logo from '@/components/layout/Logo';
-import Hero from '@/components/ui/Hero';
+import HomeHero from '@/components/ui/HomeHero';
 import LodgeShowcase from '@/components/ui/LodgeShowcase';
 import PillarArt, { type PillarArtName } from '@/components/ui/PillarArt';
 import Testimonials from '@/features/reviews/components/Testimonials';
 import TrustPlatforms from '@/features/reviews/components/TrustPlatforms';
 import TourGrid from '@/features/tours/components/TourGrid';
 import { pageHeroes } from '@/content/page-heroes';
+import { site } from '@/config/site';
+import { unsplash } from '@/lib/unsplash';
 import { publishedTestimonials } from '@/content/testimonials';
 import { publishedCredentials, publishedTrustPlatforms } from '@/content/trust-platforms';
 import { travelStyles } from '@/content/travel-styles';
@@ -49,62 +51,62 @@ const pillars: { title: string; body: string; art: PillarArtName }[] = [
   },
 ];
 
+// Photo beside the home intro (Unsplash, also used on the park and country pages).
+const introPhoto = unsplash('1787250230779-562abca4ddf5', 'A lone acacia tree on golden savanna under a cloudy sky');
+
 export default function HomePage() {
   const tours = getTours().slice(0, 3);
   const posts = getPosts().slice(0, 3);
 
   return (
     <>
-      <Header overlay pinAfterHero current="/" />
+      <Header overlay current="/" />
 
-      <Hero
-        size="xl"
-        className="hero--home"
-        align="center"
-        overlay="bottom"
-        image={pageHeroes.home.image}
-        video={pageHeroes.home.video}
-        title="Tailor-made East Africa safaris"
-        titleAccent="made for you"
-        subtitle="Where your Africa story begins."
-        cta={{ label: 'Discover our journeys', href: '/tours' }}
+      <HomeHero
+        title="Where the story rewilds"
+        tagline="and wonder begins again"
+        poster={pageHeroes.home.image}
+        video={{ mp4: pageHeroes.home.video!, webm: pageHeroes.home.webm, mobileMp4: pageHeroes.home.mobileVideo }}
       />
 
-      {/* Why book with us */}
-      <section className="band" aria-labelledby="why-heading">
-        <div className="wrap">
-          <h2 data-reveal id="why-heading" className="text-center text-step-4 text-ink">
-            Why book with us?
-          </h2>
-          <ul data-reveal-stagger className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {pillars.map((p) => (
-              <li key={p.title} className="flex flex-col items-center text-center">
-                <PillarArt name={p.art} className="h-20 w-auto text-ink sm:h-24" />
-                <h3 className="mt-3 text-step-2 text-ink">{p.title}</h3>
-                <p className="mt-1.5 max-w-[34ch] text-step--1 text-ink">{p.body}</p>
-              </li>
-            ))}
-          </ul>
+      {/* Intro: the spirit of the place and a link to our story on the left, a photo on the right (below on phones). */}
+      <section className="band py-[72px] lg:py-[44px]" aria-labelledby="intro-heading">
+        <div className="wrap grid items-center gap-10 lg:grid-cols-[1.15fr_1fr] lg:gap-16">
+          <div data-reveal className="mx-auto max-w-[720px] text-center lg:mx-0 lg:text-left">
+            <p className="mb-6 text-[13px] font-medium uppercase tracking-[0.2em] text-gold-ink lg:mb-4">The spirit of the wild</p>
+            <h2 id="intro-heading" className="text-[clamp(32px,4.5vw,52px)] leading-[1.2] text-balance text-ink lg:text-[40px]">
+              Africa moves to an <em>older rhythm</em>. Come and hear it.
+            </h2>
+            <span aria-hidden="true" className="mx-auto my-8 block h-px w-[60px] bg-gold lg:mx-0 lg:my-6" />
+            <div className="space-y-5 text-[17px] leading-[1.8] text-pretty text-slate md:text-[18px] lg:space-y-4 lg:text-[17px]">
+              <p>
+                From the thunder of the Great Migration across golden plains to the hush of misty mountain forests where gorillas live, East
+                Africa shows itself slowly, to those who take the time.
+              </p>
+              <p>
+                At {site.legalName}, we create private, unhurried safaris led by guides who read the land like an old friend. All you have
+                to do is be there.
+              </p>
+            </div>
+            <Link
+              href="/about"
+              className="mt-10 inline-block text-[14px] font-semibold uppercase tracking-[0.1em] text-gold-ink transition-colors duration-300 hover:text-ink lg:mt-8"
+            >
+              Discover our story
+            </Link>
+          </div>
+          <div data-reveal className="relative aspect-[4/3] overflow-hidden bg-sand lg:aspect-auto lg:h-[550px]">
+            <Image src={introPhoto.src} alt={introPhoto.alt} fill sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover" />
+          </div>
         </div>
       </section>
 
       {/* Journeys */}
       <section className="band" aria-labelledby="journeys">
         <div className="wrap">
-          <div data-reveal className="flex flex-wrap items-end justify-between gap-6">
-            <div>
-              <h2 id="journeys" className="text-step-4 text-ink">
-                Popular journeys
-              </h2>
-              <p className="mt-3 max-w-[48ch] text-ink">Starting points we rebuild around you.</p>
-            </div>
-            <Link
-              href="/tours"
-              className="font-bold text-deep-teal underline underline-offset-4 transition-colors duration-300 hover:text-gold-ink"
-            >
-              View all journeys <span className="arrow">→</span>
-            </Link>
-          </div>
+          <h2 data-reveal id="journeys" className="text-center text-step-4 text-ink">
+            Most featured safaris
+          </h2>
           <div className="mt-8">
             <TourGrid tours={tours} />
           </div>
@@ -113,6 +115,24 @@ export default function HomePage() {
               View all journeys
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Why book with us */}
+      <section className="band lg:py-[32px]" aria-labelledby="why-heading">
+        <div className="wrap">
+          <h2 data-reveal id="why-heading" className="text-center text-step-4 text-ink">
+            Why book with us?
+          </h2>
+          <ul data-reveal-stagger className="mt-12 grid gap-6 sm:grid-cols-2 lg:mt-6 lg:grid-cols-3 lg:gap-y-4">
+            {pillars.map((p) => (
+              <li key={p.title} className="flex flex-col items-center text-center">
+                <PillarArt name={p.art} className="h-20 w-auto text-ink sm:h-24 lg:h-20" />
+                <h3 className="mt-3 text-step-2 text-ink">{p.title}</h3>
+                <p className="mt-1.5 max-w-[34ch] text-step--1 text-ink lg:max-w-[46ch]">{p.body}</p>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
@@ -180,9 +200,7 @@ export default function HomePage() {
                   <div className="relative p-6 sm:p-8">
                     <h3 className="text-step-3">{s.name}</h3>
                     <p className="mt-2 max-w-[40ch] text-cream/80">{s.teaser}</p>
-                    <span className="mt-4 inline-block font-bold text-gold">
-                      Discover more <span className="arrow">→</span>
-                    </span>
+                    <span className="mt-4 inline-block font-bold text-gold">Discover more</span>
                   </div>
                 </Link>
               </li>
@@ -219,7 +237,7 @@ export default function HomePage() {
                 href="/journal"
                 className="font-bold text-deep-teal underline underline-offset-4 transition-colors duration-300 hover:text-gold-ink"
               >
-                All articles <span className="arrow">→</span>
+                All articles
               </Link>
             </div>
             <ul data-reveal-stagger className="mt-8 grid gap-8 md:grid-cols-3">

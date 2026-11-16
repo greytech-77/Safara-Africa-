@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function TrekkingIndexPage() {
   return (
-    <div data-theme="trekking" className="contents">
+    <>
       <Header overlay current="/trekking" />
       <Hero image={treks[0].image} title="Trekking" titleAccent="in Tanzania" breadcrumbs={[{ label: 'Trekking' }]} />
       <section className="band">
@@ -30,6 +30,6 @@ export default function TrekkingIndexPage() {
         </div>
       </section>
       <CtaBlock title="Ready to plan your trek?" />
-    </div>
+    </>
   );
 }

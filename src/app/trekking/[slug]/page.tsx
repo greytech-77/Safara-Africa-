@@ -41,7 +41,7 @@ export default async function TrekPage({ params }: Props) {
   ];
 
   return (
-    <div data-theme="trekking" className="contents">
+    <>
       <Header overlay current={`/trekking/${t.slug}`} />
       <Hero
         image={t.image}
@@ -139,6 +139,6 @@ export default async function TrekPage({ params }: Props) {
       </div>
 
       <CtaBlock title="Ready to plan your trek?" topic={t.name} />
-    </div>
+    </>
   );
 }

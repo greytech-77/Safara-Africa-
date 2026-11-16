@@ -45,9 +45,7 @@ export default function PhotoRail({ items, label }: { items: PhotoRailItem[]; la
               <span className="absolute inset-x-0 bottom-0 p-6 text-white">
                 <span className="block font-display text-step-3 leading-tight">{item.title}</span>
                 {item.text && <span className="mt-2 block text-step--1 text-white/85">{item.text}</span>}
-                <span className="mt-3 inline-block text-step--1 font-bold text-gold">
-                  Explore <span className="arrow">→</span>
-                </span>
+                <span className="mt-3 inline-block text-step--1 font-bold text-gold">Explore</span>
               </span>
             </Link>
           </li>

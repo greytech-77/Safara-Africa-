@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 // Scroll behaviour for the site header: it stays pinned to the top of the window.
-// Over a hero it starts transparent and turns solid once the page scrolls; elsewhere it is always solid.
+// Over a hero it has no background; once the page scrolls (or the hero has passed) it turns solid #1a1a1a.
 // pinAfterHero (home page): the header scrolls away with the hero, then drops in pinned and solid once the hero has passed.
 export default function HeaderShell({
   overlay,
@@ -24,7 +24,7 @@ export default function HeaderShell({
       frame = 0;
       const y = window.scrollY;
       if (pinAfterHero) {
-        const hero = document.querySelector<HTMLElement>('.hero');
+        const hero = document.querySelector<HTMLElement>('.hero, [data-hero]');
         const pin = y >= (hero ? hero.offsetTop + hero.offsetHeight : 0);
         setPinned(pin);
         setSolid(pin);
@@ -48,7 +48,7 @@ export default function HeaderShell({
     <header
       data-solid={solid || undefined}
       data-dropped={(pinAfterHero && pinned) || undefined}
-      className={`site-header inset-x-0 top-0 z-30 data-solid:bg-cream data-solid:text-deep-teal ${position} ${overlay ? 'text-white' : 'text-deep-teal'}`}
+      className={`site-header inset-x-0 top-0 z-30 text-white ${position}`}
     >
       {children}
     </header>

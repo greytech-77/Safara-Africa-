@@ -20,7 +20,18 @@ export type Accommodation = {
   activities: string[];
   amenities: string[];
   image: Img;
+  // Photos of this lodge for the "Unwind and relax" showcase on its page, shown with the main image first.
+  // Only real photos of this property, licensed or supplied by the lodge (a trade/media library), each with
+  // its `credit` if the licence needs one. With none, the rooms show as text.
+  gallery?: Img[];
 };
+
+// A Wikimedia Commons photo of a lodge by Richard Mortel (CC BY 2.0), saved in public/images/lodges/.
+const mortel = (name: string, alt: string, file: string): Img => ({
+  src: `/images/lodges/${name}.jpg`,
+  alt,
+  credit: { author: 'Richard Mortel', licence: 'CC BY 2.0', source: `https://commons.wikimedia.org/wiki/File:${file}` },
+});
 
 const lodge = unsplash('1779218449605-792bf0bef5e0', 'Open-air lodge lounge under a thatched roof');
 const tent = unsplash('1588445599591-efe468e9c3ce', 'A white tent on open ground below a mountain');
@@ -99,6 +110,33 @@ export const accommodations: Accommodation[] = [
         source: 'https://commons.wikimedia.org/wiki/File:Tarangire_Treetops_Lodge_(28715784605).jpg',
       },
     },
+    gallery: [
+      mortel(
+        'tarangire-treetops-grounds',
+        'The lodge grounds above the bush, with an elephant at the waterhole',
+        'Elephant_visitor_at_Tarangire_Treetops_(3)_(28645903276).jpg',
+      ),
+      mortel(
+        'tarangire-treetops-sunset',
+        'The sun setting over distant hills, seen from the lodge',
+        'Sunset_at_Tarangire_Treetops_Lodge_(2)_(28610165222).jpg',
+      ),
+      mortel(
+        'tarangire-treetops-elephant',
+        'An elephant drinking at the lodge waterhole',
+        'Elephant_visitor_at_Tarangire_Treetops_(2)_(28060955354).jpg',
+      ),
+      mortel(
+        'tarangire-treetops-twilight',
+        'Twilight over the bush from the lodge',
+        'Twilight_at_Tarangire_Treetops_Lodge_(2)_(28098124754).jpg',
+      ),
+      mortel(
+        'tarangire-treetops-dusk-elephant',
+        'An elephant feeding beside the lodge at dusk',
+        'Elephant_visitor_at_dusk_at_Tarangire_Treetops_Lodge_(2)_(28646864626).jpg',
+      ),
+    ],
   },
   {
     slug: 'gibbs-farm',

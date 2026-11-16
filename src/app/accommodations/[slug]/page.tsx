@@ -4,10 +4,13 @@ import { notFound } from 'next/navigation';
 import CtaBlock from '@/components/ui/CtaBlock';
 import Header from '@/components/layout/Header';
 import Hero from '@/components/ui/Hero';
+import LodgeGallery from '@/components/ui/LodgeGallery';
 import TourGrid from '@/features/tours/components/TourGrid';
 import { accommodations, getAccommodation } from '@/content/accommodations';
 import { getCountry } from '@/content/countries';
 import { parks } from '@/content/parks';
+import { getParkGuide } from '@/content/park-guides';
+import { wildlifePhotos } from '@/content/wildlife-photos';
 import { getToursStayingAt } from '@/features/itineraries/data';
 import { getTours } from '@/lib/content';
 
@@ -51,6 +54,19 @@ export default async function AccommodationPage({ params }: Props) {
   const tours = (own.length > 0 ? own : all.filter((t) => t.country === a.country)).slice(0, 4);
   const card = 'bg-white p-6 shadow-[0_4px_3px_rgb(0_0_0/.08)]';
 
+  // Photos for "Unwind and relax": the lodge's own gallery when it has one. Until then, its setting: the lodge's
+  // real main photo (if any), the park it stands in and that park's wildlife (one photo per species).
+  const ownPhotos = a.gallery?.length ? [a.image, ...a.gallery] : null;
+  const settingPhotos = [
+    // The main photo only when it is a real, credited photo of this lodge (the rest are generic placeholders).
+    ...(a.image.credit ? [a.image] : []),
+    ...(park ? [park.image] : []),
+    ...(getParkGuide(a.park).wildlife ?? []).flatMap((s) => wildlifePhotos[s]?.slice(0, 1) ?? []),
+  ]
+    .filter((p, i, all) => all.findIndex((q) => q.src === p.src) === i)
+    .slice(0, 6);
+  const photos = ownPhotos ?? (settingPhotos.length >= 3 ? settingPhotos : null);
+
   return (
     <>
       <Header overlay current={`/destinations/${country.slug}`} />
@@ -65,15 +81,6 @@ export default async function AccommodationPage({ params }: Props) {
           { label: a.name },
         ]}
       />
-      {a.image.credit && (
-        <p className="wrap pt-3 text-right text-[0.75rem] text-slate">
-          Photo:{' '}
-          <a href={a.image.credit.source} target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-ink">
-            {a.image.credit.author}
-          </a>
-          , {a.image.credit.licence}
-        </p>
-      )}
 
       <div className="band">
         <div className="wrap grid gap-16 lg:grid-cols-[1fr_22rem]">
@@ -115,18 +122,24 @@ export default async function AccommodationPage({ params }: Props) {
 
       <section className="band" aria-labelledby="rooms-heading">
         <div className="wrap">
-          <p className="text-step--1 font-bold uppercase tracking-[0.14em] text-gold-ink">Unwind and relax</p>
-          <h2 id="rooms-heading" className="mt-1 text-step-4 text-ink">
-            Rooms at {a.name}
+          <h2 id="rooms-heading" className="text-step-4 text-gold-ink">
+            Unwind and relax
           </h2>
-          <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {a.rooms.map((r) => (
-              <li key={r.name} className={card}>
-                <h3 className="text-step-2 text-ink">{r.name}</h3>
-                <p className="mt-2 text-ink">{r.text}</p>
-              </li>
-            ))}
-          </ul>
+          {photos ? (
+            // Just the photos: the lodge's own, or its setting.
+            <div className="mt-8">
+              <LodgeGallery photos={photos} />
+            </div>
+          ) : (
+            <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {a.rooms.map((r) => (
+                <li key={r.name} className={card}>
+                  <h3 className="text-step-2 text-ink">{r.name}</h3>
+                  <p className="mt-2 text-ink">{r.text}</p>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </section>
 

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Figtree, Fraunces, Instrument_Serif } from 'next/font/google';
+import { Poppins, Source_Serif_4 } from 'next/font/google';
 import Analytics from '@/components/layout/Analytics';
 import FloatingCta from '@/components/layout/FloatingCta';
 import Footer from '@/components/layout/Footer';
@@ -8,11 +8,23 @@ import Reveal from '@/components/ui/Reveal';
 import { site } from '@/config/site';
 import '@/styles/globals.css';
 
-const figtree = Figtree({ subsets: ['latin'], variable: '--font-figtree', display: 'swap' });
-// Every heading below the hero: a narrow serif.
-const instrument = Instrument_Serif({ subsets: ['latin'], weight: '400', variable: '--font-instrument', display: 'swap' });
-// Hero titles only: light 300 with an italic accent.
-const fraunces = Fraunces({ subsets: ['latin'], weight: '300', style: ['normal', 'italic'], variable: '--font-hero', display: 'swap' });
+// The site's two typefaces (the home hero's handwriting, Allura, is loaded in HomeHero only).
+// Headings: Source Serif 4, a variable font, so every weight (400–700) and the italic come from one file each.
+const serif = Source_Serif_4({
+  subsets: ['latin'],
+  style: ['normal', 'italic'],
+  variable: '--font-source-serif',
+  display: 'swap',
+  fallback: ['Georgia', 'Times New Roman', 'serif'],
+});
+// Everything else: Poppins.
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600'],
+  variable: '--font-poppins',
+  display: 'swap',
+  fallback: ['system-ui', 'Helvetica', 'Arial', 'sans-serif'],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -45,7 +57,7 @@ const orgLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${figtree.variable} ${instrument.variable} ${fraunces.variable}`}>
+    <html lang="en" className={`${serif.variable} ${poppins.variable}`}>
       <body className="flex min-h-screen flex-col">
         <a href="#main" className="btn bg-deep-teal text-cream sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-50">
           Skip to content

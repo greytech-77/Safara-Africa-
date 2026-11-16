@@ -53,8 +53,14 @@ export const site = {
     isPlaceholder: true as boolean,
   },
 
-  // Add real profiles; an empty list hides the row.
-  social: [] as { label: string; href: string }[],
+  // CONFIRM: paste each profile's full URL. An empty value hides that icon; all empty hides the row.
+  social: {
+    facebook: '',
+    instagram: '',
+    linkedin: '',
+    tiktok: '',
+    x: '',
+  } as Record<'facebook' | 'instagram' | 'linkedin' | 'tiktok' | 'x', string>,
 
   // The main menu lives in src/config/menu.ts.
 } as const;

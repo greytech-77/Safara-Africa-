@@ -13,7 +13,7 @@ export default function CtaBlock({
 }) {
   return (
     <section className="band" aria-labelledby="cta-heading">
-      <div className="wrap flex flex-col items-center rounded-2xl bg-deep-teal px-6 py-16 text-center text-cream sm:px-12">
+      <div className="wrap flex flex-col items-center rounded-2xl bg-charcoal px-6 py-16 text-center text-cream sm:px-12">
         <h2 id="cta-heading" className="max-w-[22ch] text-step-4">
           {title}
         </h2>

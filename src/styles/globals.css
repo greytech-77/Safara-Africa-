@@ -1,34 +1,51 @@
 @import 'tailwindcss';
 
 /*
-  Brand tokens: "Serengeti sunset". Roughly 60% cream/sand, 30% teal, 10% ember.
+  Brand tokens: "Serengeti sunset". Roughly 60% cream/sand, 30% teal, 10% terracotta (action).
   Contrast pairs are checked by scripts/check-contrast.mjs (npm run check:contrast).
   cream       main page ground
-  sand        every other section
-  ink         body text
+  paper       soft white (not pure white): every other section
+  sand        small panels, chips and image placeholders inside sections
+  ink         body text (#47475F, never pure black)
+  heading     h1–h3 (#1F1F2E)
   slate       secondary text, warm grey (6.7:1 on cream)
   deep-teal   brand dark (the brief's --teal): footer, card overlays, CTA panels, links, outline buttons
   teal-soft   hover / secondary dark
   teal-deep   darker teal for photo shades
-  ember       BOOKING ACTIONS ONLY: enquire, quote, send, the main hero button
-  on-ember    text on ember
+  action      BOOKING ACTIONS ONLY (terracotta): enquire, quote, send, the main hero button
+  on-action   text on action
   gold        decoration only: badges, stars, map pins, nav underline, links on dark. Never text on light grounds.
   gold-ink    gold-family text and small icons on light grounds (5.3:1 on cream)
   on-gold     text on gold
   badge       day/duration badges, meal and "best month" chips (gold by default), with on-badge text
-  Section themes ([data-theme] below) override only the accent tokens.
+  Every page uses this one palette.
 */
 @theme {
-  --color-cream: #f7f1e6;
+  --color-cream: #f4f1ec;
+  --color-paper: #fcfaf6;
   --color-sand: #efe4d0;
-  --color-ink: #1a1a1a;
+  --color-ink: #47475f;
+  /* Headings (h1–h3). Body text uses ink. */
+  --color-heading: #1f1f2e;
   --color-slate: #5c5348;
   --color-deep-teal: #012f36;
   --color-teal-soft: #0a4a52;
   --color-teal-deep: #00232a;
-  --color-ember: #c8461a;
-  --color-ember-hover: #a8380f;
-  --color-on-ember: #ffffff;
+  /* Warm charcoal: footer and the closing call-to-action panel. Also available as --frame-bg-charcoal. */
+  --color-charcoal: #2b2a27;
+  /* Plan-your-journey wizard: its page ground and the fine gold lines around options. */
+  --color-ivory: #faf8f5;
+  /* Itinerary (tour) pages: an off-white ground instead of cream. */
+  --color-off-white: #faf9f6;
+  --color-hairline: #c1aa7f;
+  /* Menu gold: current section, hover, the dropdown top line (on dark only). */
+  --color-nav-gold: #d19f4d;
+  /* Footer only: a deeper warm near-black. */
+  --color-footer: #221f20;
+  /* Terracotta: the primary call-to-action colour (Plan your journey, Request to book, Enquire), white text. */
+  --color-action: #a9542f;
+  --color-action-hover: #8e4426;
+  --color-on-action: #ffffff;
   --color-gold: #e9a23b;
   --color-gold-ink: #8a5a10;
   --color-on-gold: #1a1a1a;
@@ -41,7 +58,7 @@
   --text-step-1: 1.33rem;
   --text-step-2: 1.66rem;
   --text-step-3: 2rem;
-  --text-step-4: 2.333rem;
+  --text-step-4: clamp(1.75rem, 3.2vw, 2.5rem);
   --text-step-5: clamp(2.5rem, 5vw, 4rem);
   --text-step-6: clamp(3.4rem, 8vw, 7.25rem);
 
@@ -50,42 +67,25 @@
   --spacing-section-tight: 3rem;
 }
 
-/*
-  Section themes, set with data-theme on a page wrapper (display: contents). Only accent tokens change;
-  bright gold stays for stars and map pins, and the footer (outside the wrapper) stays teal.
-  beaches   turquoise labels and badges, coral booking buttons with dark navy text, navy darks
-  trekking  volcanic labels and badges; booking buttons stay ember
-*/
-[data-theme='beaches'] {
-  --color-deep-teal: #0b2a3c;
-  --color-gold-ink: #0a6870;
-  --color-badge: #0e7c86;
-  --color-on-badge: #ffffff;
-  --color-ember: #ff6f59;
-  --color-ember-hover: #ff8a78;
-  --color-on-ember: #0b2a3c;
-}
-[data-theme='trekking'] {
-  --color-gold-ink: #8c3b22;
-  --color-badge: #8c3b22;
-  --color-on-badge: #ffffff;
-}
-
 @theme inline {
-  --font-display: var(--font-instrument), Georgia, serif;
-  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-source-serif), Georgia, 'Times New Roman', serif;
+  --font-body: var(--font-poppins), system-ui, Helvetica, Arial, sans-serif;
+  --font-display: var(--font-heading);
+  --font-sans: var(--font-body);
 }
 
 /* Motion: everything moves at .2–.3s ease-in-out; only image zooms are slow. */
 :root {
+  /* The name you asked for, pointing at the charcoal token. */
+  --frame-bg-charcoal: var(--color-charcoal);
   --ease: ease-in-out;
   --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
   --dur-fast: 0.2s;
   --dur: 0.3s;
   --dur-slow: 0.5s;
   --dur-image: 0.8s;
-  /* Header height: 56px logo + py-5. Heroes and the section menu clear it. */
-  --header-h: 6rem;
+  /* Header bar height. Heroes and the section menu clear it. */
+  --header-h: 85px;
   interpolate-size: allow-keywords;
 }
 
@@ -98,24 +98,43 @@
     /* Anchor targets clear the sticky header. */
     scroll-padding-top: 6.5rem;
   }
+  /* Body: Poppins 16px (17px on desktop), line-height 1.8, #47475F. */
   body {
-    font-family: var(--font-sans);
-    font-size: var(--text-step-0);
-    line-height: 1.667;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.8;
+    color: var(--color-ink);
   }
+  @media (min-width: 1024px) {
+    body {
+      font-size: 1.0625rem;
+    }
+  }
+  /* Headings: Source Serif 4, kept simple: regular weight (card titles h3 a touch firmer at 500). They keep the colour of what they sit on (white on photos and dark
+     panels); on light grounds, where components mark them text-ink, they turn the dark heading colour (rule at the end). */
   h1,
   h2,
   h3 {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     font-weight: 400;
-    line-height: 1.08;
-    letter-spacing: -0.01em;
+    line-height: 1.1;
+    letter-spacing: -0.005em;
   }
   h2 {
-    line-height: 1.14;
+    line-height: 1.15;
   }
   h3 {
+    font-weight: 500;
     line-height: 1.25;
+  }
+  /* Small headings: Poppins 18px, medium, gold. */
+  h4 {
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--color-gold-ink);
   }
   /* Focus ring: dark gold on light grounds, bright gold on dark ones (both pass 3:1). */
   :focus-visible {
@@ -124,8 +143,12 @@
     border-radius: 2px;
   }
   .hero,
+  .site-header,
+  .mobile-nav,
   footer,
-  .bg-deep-teal {
+  .bg-deep-teal,
+  .bg-charcoal,
+  .bg-footer {
     --focus-ring: var(--color-gold);
   }
   ::selection {
@@ -146,7 +169,7 @@
 }
 
 @layer components {
-  /* Section rhythm: bands below the hero sit edge to edge, padded, alternating cream (the page ground) and sand.
+  /* Section rhythm: bands below the hero sit edge to edge, padded, alternating cream (the page ground) and paper (soft white).
      The first band is cream. Sections that only render when they have content keep the order right.
      A background utility (bg-deep-teal) wins. Cards and forms stay white on either ground. */
   .band {
@@ -156,7 +179,7 @@
     padding-block: var(--spacing-section-tight);
   }
   :where(.band:nth-child(even of .band)) {
-    background: var(--color-sand);
+    background: var(--color-paper);
   }
 
   .wrap {
@@ -175,8 +198,8 @@
     min-height: 44px;
     padding: 0.8rem 1.5rem;
     border-radius: 999px;
-    font-weight: 700;
-    font-size: var(--text-step--1);
+    font-weight: 500;
+    font-size: 1rem;
     transition:
       background-color var(--dur) var(--ease),
       color var(--dur) var(--ease),
@@ -184,15 +207,35 @@
   }
   /* Booking actions only (enquire, quote, send, the main hero button). Everything else uses an outline. */
   .btn-primary {
-    background: var(--color-ember);
-    color: var(--color-on-ember);
-    box-shadow: 0 4px 14px color-mix(in srgb, var(--color-ember) 28%, transparent);
+    background: var(--color-action);
+    color: var(--color-on-action);
+    box-shadow: 0 4px 14px color-mix(in srgb, var(--color-action) 28%, transparent);
   }
   .btn-primary:hover {
-    background: var(--color-ember-hover);
+    background: var(--color-action-hover);
   }
   .btn-primary:focus-visible {
     outline-width: 3px;
+  }
+  /* Header "Plan your journey": the terracotta pill, 51px tall, regular 15px text; darkens on hover. */
+  .btn.header-cta {
+    min-height: 51px;
+    padding: 13px 24px;
+    border: 0;
+    border-radius: 60px;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 25px;
+    transition:
+      background-color 0.3s var(--ease),
+      color 0.3s var(--ease),
+      box-shadow 0.3s var(--ease);
+  }
+  .btn.header-cta:hover {
+    background: var(--color-action-hover);
+    color: #fff;
+    box-shadow: none;
   }
   .btn-outline {
     border: 1px solid currentColor;
@@ -203,7 +246,7 @@
     color: var(--color-cream);
   }
   .btn-outline-light {
-    border: 1px solid rgb(247 241 230 / 0.7);
+    border: 1px solid rgb(244 241 236 / 0.7);
     color: var(--color-cream);
   }
   .btn-outline-light:hover {
@@ -247,10 +290,12 @@
   }
 
   /* ---------- Header ---------- */
+  /* 85px bar, white text. Over a hero: no background, the photo or video shows straight through. Once scrolled past
+     (or on a page without a hero): solid near-black. */
   .site-header {
+    background: transparent;
     transition:
       background-color var(--dur) var(--ease),
-      color 0.4s var(--ease) 0.1s,
       box-shadow var(--dur) var(--ease);
   }
   /* Home page: once the hero has scrolled past, the pinned header slides down into place. */
@@ -258,218 +303,97 @@
     animation: header-drop var(--dur) var(--ease-out);
   }
   .site-header[data-solid] {
-    background: var(--color-cream);
-    color: var(--color-deep-teal);
-    box-shadow: 0 1px 0 rgb(1 47 54 / 0.1);
-  }
-  /* Both logo tones are rendered; the header state picks one. */
-  .site-header .logo-solid {
-    display: none;
-  }
-  .site-header[data-solid] .logo-overlay {
-    display: none;
-  }
-  .site-header[data-solid] .logo-solid {
-    display: block;
-  }
-  .site-header[data-solid] .btn-outline-light {
-    border-color: currentColor;
-    color: var(--color-deep-teal);
-  }
-  .site-header[data-solid] .btn-outline-light:hover {
-    background: var(--color-deep-teal);
-    color: var(--color-cream);
+    background: #1a1a1a;
+    box-shadow: 0 1px 0 rgb(255 255 255 / 0.06);
   }
 
-  /* Liquid glass: a blurred, tinted pane that takes on the colour of whatever is behind it.
-     The blur sits on ::before so the content stays sharp. Used by the open header bar and the dropdown panels. */
-  .glass {
-    position: relative;
-    isolation: isolate;
-    border: 1px solid rgb(255 255 255 / 0.2);
-    box-shadow:
-      0 10px 30px rgb(0 0 0 / 0.18),
-      inset 0 1px 0 rgb(255 255 255 / 0.55);
-  }
-  .glass::before,
-  .site-header:has(.mega-panel:not([hidden]))::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    border-radius: inherit;
-    /* Mostly cream: reads as a cream background behind the cards, with a hint of the page showing through. */
-    background: linear-gradient(135deg, rgb(247 241 230 / 0.94), rgb(247 241 230 / 0.86));
-    -webkit-backdrop-filter: blur(30px) saturate(1.85);
-    backdrop-filter: blur(30px) saturate(1.85);
-  }
-  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-    .glass::before,
-    .site-header:has(.mega-panel:not([hidden]))::before {
-      background: rgb(247 241 230 / 0.97);
-    }
-  }
-  /* The dropdown panel can scroll on short screens, and a ::before layer would scroll away with the
-     content and leave the lower cards bare. So the panel carries the glass on itself, covering its whole box. */
-  .mega-panel.glass {
-    background: linear-gradient(135deg, rgb(247 241 230 / 0.94), rgb(247 241 230 / 0.86));
-    -webkit-backdrop-filter: blur(30px) saturate(1.85);
-    backdrop-filter: blur(30px) saturate(1.85);
-  }
-  .mega-panel.glass::before {
-    content: none;
-  }
-  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-    .mega-panel.glass {
-      background: rgb(247 241 230 / 0.97);
-    }
-  }
-  /* While a menu is open the header bar is glass too (square edges), with the dark logo and text. */
-  .site-header:has(.mega-panel:not([hidden])) {
-    background: transparent;
-    color: var(--color-deep-teal);
-    box-shadow: inset 0 -1px 0 rgb(255 255 255 / 0.35);
-  }
-  .site-header:has(.mega-panel:not([hidden])) .logo-overlay {
-    display: none;
-  }
-  .site-header:has(.mega-panel:not([hidden])) .logo-solid {
-    display: block;
-  }
-  .site-header:has(.mega-panel:not([hidden])) .nav-link {
-    text-shadow: none;
-  }
-  /* The open item is muted so you can tell which menu you are in. */
-  .site-header .nav-link[aria-expanded='true'] {
-    color: var(--color-slate);
-  }
-
-  /* Cards inside a glass panel: half-white so the glass shows through; lift on hover. */
-  .glass-card {
-    position: relative;
-    isolation: isolate;
-    border-radius: 10px;
-    padding: 5px;
-    box-shadow: 0 0 4px rgb(0 0 0 / 0.13);
-    transition:
-      transform 0.2s var(--ease),
-      box-shadow 0.2s var(--ease);
-  }
-  .glass-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    border-radius: inherit;
-    background: #fff;
-    opacity: 0.5;
-  }
-  .glass-card:hover,
-  .glass-card:focus-within {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgb(0 0 0 / 0.15);
-  }
-  .glass-card__action {
-    border-radius: 3px;
-    padding: 12px 24px;
-    background: rgb(255 255 255 / 0.08);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    transition: background-color 0.2s var(--ease);
-  }
-  .glass-card__action:hover,
-  .glass-card__action:focus-visible {
-    background: rgb(255 255 255 / 0.35);
-  }
-
-  /* Menu links: small spaced capitals; the underline grows left to right. */
+  /* Top-level items: 14px capitals, white; gold on hover, while open, and for the current section. No underline. */
   .nav-link {
-    position: relative;
-    font-size: 0.875rem;
+    font-size: 14px;
     font-weight: 400;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
+    line-height: 1;
     text-transform: uppercase;
-    transition: color var(--dur) var(--ease);
+    white-space: nowrap;
+    transition: color var(--dur-fast) var(--ease);
   }
-  /* Over a hero: a touch heavier with a soft shadow, so the white reads bright on the photo or video. */
   .site-header:not([data-solid]) .nav-link {
-    font-weight: 500;
-    text-shadow: 0 1px 10px rgb(0 0 0 / 0.45);
+    text-shadow: 0 1px 8px rgb(0 0 0 / 0.4);
   }
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 2px;
-    width: 100%;
-    background: currentColor;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform var(--dur) var(--ease-out);
+  .nav-link:hover,
+  .nav-link[data-active],
+  .nav-link[aria-expanded='true'] {
+    color: var(--color-nav-gold);
   }
-  .nav-link:hover::after,
-  .nav-link[aria-expanded='true']::after {
-    transform: scaleX(1);
+  /* The 10px chevron turns over while its dropdown is open. */
+  .nav-chevron {
+    transition: transform var(--dur-fast) var(--ease);
   }
-  .nav-link[data-active]::after {
-    transform: scaleX(1);
-    background: var(--color-gold);
+  .nav-link[aria-expanded='true'] .nav-chevron {
+    transform: rotate(180deg);
   }
 
-  /* The panel fades in with a slight drop. Switching straight to another item (data-swap) shows it at once. */
-  .mega-panel:not([hidden]) {
-    animation: panel-drop 0.25s var(--ease-out);
+  /* Dropdown: deliberately plain. 240px, see-through dark with a light blur, a 3px gold top line, single-line
+     capital links. It hangs from the bottom of the header bar, lined up with its item. */
+  .nav-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 40;
+    width: 240px;
+    padding: 20px 0;
+    background: rgb(0 0 0 / 0.4);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    border-top: 3px solid var(--color-nav-gold);
+    box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
   }
-  .mega-panel[data-swap] {
-    animation: none;
+  /* Over page content (header scrolled to solid) the panel matches the solid bar, so the text stays readable. */
+  .site-header[data-solid] .nav-dropdown {
+    background: rgb(26 26 26 / 0.94);
+  }
+  .nav-dropdown:not([hidden]) {
+    animation: nav-drop 0.15s var(--ease-out);
   }
   @media (prefers-reduced-motion: reduce) {
-    .mega-panel:not([hidden]) {
-      animation: fade-in 0.2s linear;
+    .nav-dropdown:not([hidden]) {
+      animation: none;
     }
   }
-  .mega-backdrop {
-    animation: fade-in var(--dur) var(--ease);
+  .nav-dropdown__link {
+    display: block;
+    padding: 6px 20px;
+    font-size: 14px;
+    line-height: 28px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #fff;
+    transition: opacity var(--dur-fast) var(--ease);
+  }
+  .nav-dropdown__link:hover {
+    opacity: 0.6;
   }
 
-  /* Submenu links: a short line fades in on the left. */
-  .sub-link {
-    position: relative;
+  /* Phone and tablet menu panel. */
+  .mobile-nav {
+    background: #111;
+    color: #fff;
   }
-  .sub-link::before {
-    content: '';
-    position: absolute;
-    left: -1rem;
-    top: 0.85em;
-    width: 0.5rem;
-    height: 2px;
-    background: var(--color-gold);
-    opacity: 0;
-    transform: translateX(-4px);
-    transition:
-      opacity var(--dur-fast) var(--ease),
-      transform var(--dur-fast) var(--ease);
+  .mobile-nav__link {
+    font-size: 16px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
   }
-  .sub-link:hover::before,
-  .sub-link:focus-visible::before {
-    opacity: 1;
-    transform: none;
+  .mobile-nav__sublink {
+    font-size: 14px;
+    color: rgb(255 255 255 / 0.8);
+  }
+  .mobile-nav__link:hover,
+  .mobile-nav__sublink:hover {
+    color: var(--color-nav-gold);
   }
 
-  /* ---------- Links, arrows, images ---------- */
-  .arrow {
-    display: inline-block;
-    transition: transform var(--dur) var(--ease);
-  }
-  :is(a, button):hover > .arrow,
-  :is(a, button):hover .arrow,
-  .group:hover .arrow {
-    transform: translateX(4px);
-  }
-  :is(a, button):hover > .arrow-back {
-    transform: translateX(-4px);
-  }
+  /* ---------- Images ---------- */
   .zoom {
     transition: transform var(--dur-image) var(--ease);
   }
@@ -529,12 +453,6 @@
   .hero--sm {
     min-height: 320px;
   }
-  /* Homepage only: taller than a screen so the video has room. Phones keep the xl height so the title stays in view. */
-  @media (min-width: 768px) {
-    .hero--home {
-      min-height: 200svh;
-    }
-  }
   .hero__media {
     position: absolute;
     inset: 0;
@@ -551,7 +469,7 @@
     z-index: -1;
     pointer-events: none;
   }
-  /* Each photo hero also gets a dark bottom scrim so the title and the ember button read on bright photos. */
+  /* Each photo hero also gets a dark bottom scrim so the title and the action button read on bright photos. */
   .hero--overlay-left::before {
     background:
       linear-gradient(0deg, rgb(0 0 0 / 0.45) 0%, rgb(0 0 0 / 0) 45%), linear-gradient(90deg, rgb(0 0 0 / 0.55) 15%, rgb(0 0 0 / 0) 70%);
@@ -561,10 +479,6 @@
   }
   .hero--overlay-full::before {
     background: rgb(0 0 0 / 0.35);
-  }
-  /* Homepage video: an even 60% black over the whole frame. */
-  .hero--home::before {
-    background: rgb(0 0 0 / 0.6);
   }
   /* A short fade behind the transparent header so its links stay readable on bright photos. */
   .hero::after {
@@ -590,16 +504,17 @@
   .hero__eyebrow {
     margin-bottom: 16px;
     font-size: 13px;
-    letter-spacing: 0.18em;
+    font-weight: 500;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
   }
   .hero__title {
     max-width: 700px;
     margin: 0 0 32px;
-    font-family: var(--font-hero);
-    font-weight: 300;
-    font-size: clamp(40px, 5.5vw, 70px);
-    line-height: 1.2;
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: clamp(36px, 4.6vw, 56px);
+    line-height: 1.1;
     letter-spacing: 0;
     /* Even line lengths; words never split across lines. */
     text-wrap: balance;
@@ -608,21 +523,13 @@
   }
   .hero--md .hero__title,
   .hero--sm .hero__title {
-    font-size: clamp(36px, 4.5vw, 56px);
+    font-size: clamp(32px, 3.8vw, 46px);
   }
   .hero--sm .hero__title {
     margin-bottom: 0;
   }
   .hero__title em {
     font-style: italic;
-  }
-  /* Homepage: the title on one line, "made for you" on the line below. */
-  .hero--home .hero__title {
-    max-width: none;
-    margin-top: 15px;
-  }
-  .hero--home .hero__title em {
-    display: block;
   }
   /* Itinerary pages: every hero is the same fixed height (the 7-Day Northern Circuit Classic's), whatever the title length.
      Titles may run wider (1040px) so even the longest (about 50 characters) fits on two lines within that height. */
@@ -646,9 +553,9 @@
     max-width: 40ch;
     margin: -12px 0 32px;
     font-size: var(--text-step-1);
-    color: rgb(247 241 230 / 0.88);
+    color: rgb(244 241 236 / 0.88);
   }
-  /* The hero button is a .btn-primary (solid ember pill), a touch larger. */
+  /* The hero button is a .btn-primary (solid terracotta pill), a touch larger. */
   .hero__cta {
     padding: 14px 28px;
     border-radius: 60px;
@@ -682,6 +589,91 @@
     .hero--md .hero__title,
     .hero--sm .hero__title {
       font-size: 36px;
+    }
+  }
+
+  /* ---------- Home hero (components/ui/HomeHero.tsx) ----------
+     Exactly one screen tall, the footage untouched except a short fade at the top for the header. */
+  .home-hero {
+    position: relative;
+    height: 100svh;
+    overflow: hidden;
+    background: #000;
+    color: #fff;
+    --focus-ring: var(--color-gold);
+  }
+  @media (min-width: 768px) {
+    .home-hero {
+      height: 100vh;
+    }
+  }
+  .home-hero__media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .home-hero__video {
+    opacity: 0;
+    transition: opacity 0.7s var(--ease);
+  }
+  .home-hero__video[data-ready] {
+    opacity: 1;
+  }
+  .home-hero__scrim {
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 1;
+    height: 130px;
+    background: linear-gradient(to bottom, rgb(0 0 0 / 0.5) 0%, rgb(0 0 0 / 0.12) 50%, transparent 100%);
+    pointer-events: none;
+  }
+  .home-hero__content {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-inline: 1rem;
+    pointer-events: none;
+    text-align: center;
+  }
+  /* Readability: one even 55% black overlay over the whole video, under the text. */
+  .home-hero__content::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgb(0 0 0 / 0.55);
+    pointer-events: none;
+  }
+  /* A tight shadow to edge the thin handwriting strokes, plus a soft wide one. */
+  .home-hero__title,
+  .home-hero__tagline {
+    text-shadow:
+      0 1px 2px rgb(0 0 0 / 0.5),
+      0 2px 28px rgb(0 0 0 / 0.6);
+  }
+  .home-hero__title {
+    font-weight: 400;
+    font-size: clamp(48px, 8vw, 100px);
+    line-height: 1;
+    letter-spacing: 0;
+    text-wrap: balance;
+  }
+  .home-hero__tagline {
+    position: absolute;
+    inset: auto 1rem 60px;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 15px;
+    letter-spacing: 0.06em;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .home-hero__title {
+      animation: rise 1s var(--ease-out) both;
     }
   }
 
@@ -788,6 +780,104 @@
     border-color: rgb(26 26 26 / 0.75);
   }
 
+  /* ---------- Wildlife strip on park pages (components/ui/WildlifeStrip.tsx) ----------
+     A dark band with one row of photos at their natural shape. Heights follow a repeating 5-step rhythm, and the
+     row is vertically centred, so the photos stagger up and down. The row runs edge to edge, with side padding
+     that lines its first photo up with the page container (.wrap). */
+  .wildlife-band {
+    padding-block: 3rem;
+  }
+  .wildlife-strip {
+    position: relative;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+  .wildlife-strip::-webkit-scrollbar {
+    display: none;
+  }
+  .wildlife-strip__row {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    width: max-content;
+    min-width: 100%;
+    /* % padding resolves against the full-width scroller, matching .wrap's side space exactly. */
+    padding-inline: max(1rem, calc((100% - 77.5rem) / 2));
+  }
+  /* Too few photos to fill the screen: centre them. */
+  .wildlife-strip[data-fits] .wildlife-strip__row {
+    justify-content: center;
+  }
+  .wildlife-strip__item {
+    position: relative;
+    flex: none;
+    height: 210px;
+    overflow: hidden;
+    background: var(--color-teal-deep);
+  }
+  .wildlife-strip__item:nth-child(5n + 2) {
+    height: 320px;
+  }
+  .wildlife-strip__item:nth-child(5n + 3) {
+    height: 250px;
+  }
+  .wildlife-strip__item:nth-child(5n + 4) {
+    height: 280px;
+  }
+  .wildlife-strip__item:nth-child(5n + 5) {
+    height: 220px;
+  }
+  .wildlife-strip__img {
+    display: block;
+    height: 100%;
+    width: auto;
+    max-width: none;
+    object-fit: cover;
+  }
+  .wildlife-strip__caption {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 2.5rem 1rem 0.875rem;
+    background: linear-gradient(0deg, rgb(0 0 0 / 0.6), rgb(0 0 0 / 0));
+    color: #fff;
+    font-size: var(--text-step--1);
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .wildlife-strip__img {
+      transition: transform 0.5s var(--ease);
+    }
+    .wildlife-strip__item:hover .wildlife-strip__img {
+      transform: scale(1.02);
+    }
+  }
+  @media (min-width: 768px) {
+    .wildlife-band {
+      padding-block: 4rem;
+    }
+    .wildlife-strip__row {
+      gap: 40px;
+    }
+    .wildlife-strip__item {
+      height: 290px;
+    }
+    .wildlife-strip__item:nth-child(5n + 2) {
+      height: 420px;
+    }
+    .wildlife-strip__item:nth-child(5n + 3) {
+      height: 350px;
+    }
+    .wildlife-strip__item:nth-child(5n + 4) {
+      height: 380px;
+    }
+    .wildlife-strip__item:nth-child(5n + 5) {
+      height: 270px;
+    }
+  }
+
   /* ---------- Testimonials ---------- */
   .crossfade {
     animation: fade-in var(--dur-slow) var(--ease);
@@ -867,12 +957,6 @@
     opacity: 0;
   }
 }
-@keyframes panel-drop {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-}
 @keyframes slide-in {
   from {
     transform: translateX(100%);
@@ -889,8 +973,306 @@
     transform: rotate(360deg);
   }
 }
+@keyframes nav-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
 @keyframes header-drop {
   from {
     transform: translateY(-100%);
   }
+}
+
+/* ---------- Plan-your-journey wizard (features/enquiry/components/PlanWizard.tsx) ---------- */
+@layer components {
+  .wizard-title {
+    font-family: var(--font-heading);
+    font-size: 34px;
+    font-weight: 400;
+    line-height: 1.1;
+    text-align: center;
+    color: var(--color-heading);
+    text-wrap: balance;
+    outline: none;
+  }
+  @media (min-width: 768px) {
+    .wizard-title {
+      font-size: 42px;
+    }
+  }
+  .wizard-intro {
+    margin-top: 1.25rem;
+    font-size: 17px;
+    text-align: center;
+    color: var(--color-slate);
+  }
+  /* Square option box with a 1px gold line; white once hovered or chosen, with a small gold dot when chosen. */
+  .wizard-option {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding-inline: 1.25rem;
+    border: 1px solid var(--color-hairline);
+    background: transparent;
+    color: var(--color-ink);
+    cursor: pointer;
+    transition:
+      background-color 0.2s var(--ease),
+      border-color 0.2s var(--ease);
+  }
+  .wizard-option:hover,
+  .wizard-option:has(:checked) {
+    background: #fff;
+  }
+  .wizard-option:has(:checked) {
+    border-color: var(--color-gold-ink);
+  }
+  .wizard-option:has(:disabled) {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: transparent;
+  }
+  .wizard-option:has(:focus-visible) {
+    outline: 2px solid var(--color-gold-ink);
+    outline-offset: 2px;
+  }
+  .wizard-dot {
+    width: 8px;
+    height: 8px;
+    flex-shrink: 0;
+    border-radius: 999px;
+    background: var(--color-gold-ink);
+    display: none;
+  }
+  .wizard-option:has(:checked) .wizard-dot {
+    display: block;
+  }
+  /* Text fields: rounded outline on white. The line is a deeper gold so the field edge is clear (3:1). */
+  .wizard-input {
+    border: 1px solid #9c8452;
+    background: #fff;
+    color: var(--color-ink);
+    min-height: 48px;
+  }
+  .wizard-input:focus {
+    outline: 2px solid var(--color-gold-ink);
+    outline-offset: 1px;
+  }
+  .wizard-input[aria-invalid='true'] {
+    border-color: #b42318;
+  }
+  .wizard-add {
+    padding-inline: 1.5rem;
+    border-radius: 0 999px 999px 0;
+    background: var(--color-deep-teal);
+    color: var(--color-cream);
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s var(--ease);
+  }
+  .wizard-add:hover {
+    background: #000;
+  }
+  .wizard-label {
+    display: block;
+    font-size: var(--text-step--1);
+    font-weight: 600;
+  }
+  .wizard-error {
+    margin-top: 0.375rem;
+    font-size: var(--text-step--1);
+    color: #b42318;
+  }
+  .wizard-check {
+    width: 1.125rem;
+    height: 1.125rem;
+    margin-top: 0.3rem;
+    flex-shrink: 0;
+    accent-color: var(--color-deep-teal);
+  }
+  .wizard-year {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--color-hairline);
+    border-radius: 999px;
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+  .wizard-year:hover:not(:disabled) {
+    background: #fff;
+  }
+  .wizard-year:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  /* Budget: dots on a thin gold line, labels below. */
+  .wizard-budget {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: var(--color-slate);
+  }
+  .wizard-budget__dot {
+    width: 23px;
+    height: 23px;
+    border-radius: 999px;
+    border: 1px solid var(--color-hairline);
+    background: var(--color-ivory);
+    transition:
+      background-color 0.2s var(--ease),
+      border-color 0.2s var(--ease),
+      box-shadow 0.2s var(--ease);
+  }
+  .wizard-budget:hover .wizard-budget__dot {
+    background: #fff;
+    border-color: var(--color-gold-ink);
+  }
+  .wizard-budget:has(:checked) {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+  .wizard-budget:has(:checked) .wizard-budget__dot {
+    background: var(--color-gold-ink);
+    border-color: var(--color-gold-ink);
+    box-shadow: inset 0 0 0 4px #fff;
+  }
+  .wizard-budget:has(:focus-visible) .wizard-budget__dot {
+    outline: 2px solid var(--color-gold-ink);
+    outline-offset: 3px;
+  }
+  .wizard-prev {
+    color: var(--color-gold-ink);
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.75rem 0;
+  }
+  .wizard-prev:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  /* Next step / Submit: the brand booking colour, pill shaped. Faded until the step is answered. */
+  .wizard-next {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 13px 24px;
+    min-height: 48px;
+    border-radius: 999px;
+    background: var(--color-action);
+    color: var(--color-on-action);
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    transition:
+      background-color 0.3s var(--ease),
+      opacity 0.2s var(--ease);
+  }
+  .wizard-next:hover:not(:disabled) {
+    background: var(--color-action-hover);
+  }
+  .wizard-next:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  @media (max-width: 639px) {
+    .wizard-next {
+      width: 100%;
+    }
+  }
+  /* Each new step fades and slides in. */
+  @media (prefers-reduced-motion: no-preference) {
+    .wizard-step {
+      animation: wizard-in 0.25s var(--ease-out) both;
+    }
+  }
+}
+@keyframes wizard-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+/* Headings stay in the heading colour even when marked text-ink (the body text colour). */
+:where(h1, h2, h3).text-ink {
+  color: var(--color-heading);
+}
+/* Headings styled as small capital labels (eyebrows, "Day summary", "Accommodation") are labels, so they use Poppins. */
+:where(h1, h2, h3, h4).uppercase {
+  font-family: var(--font-body);
+}
+
+/* ---------- Tour page: "Where you'll go" route line and lodge links ---------- */
+/* Numbered dots on a thin gold line: a vertical list on phones, a horizontal row from 768px. */
+.route-line {
+  position: relative;
+  display: grid;
+  gap: 1rem;
+}
+.route-line__stop {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.875rem;
+}
+/* the line joining each dot to the next */
+.route-line__stop:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 13px;
+  top: 28px;
+  bottom: -1rem;
+  width: 1px;
+  background: var(--color-gold);
+}
+.route-line__dot {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  border: 1px solid var(--color-gold-ink);
+  background: var(--color-cream);
+  color: var(--color-gold-ink);
+  font-size: 13px;
+  font-weight: 500;
+}
+@media (min-width: 768px) {
+  .route-line {
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(7.5rem, 1fr);
+    gap: 0;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+  .route-line__stop {
+    flex-direction: column;
+    gap: 0.625rem;
+    padding-right: 0.75rem;
+  }
+  .route-line__stop:not(:last-child)::after {
+    left: 28px;
+    right: 0;
+    top: 13.5px;
+    bottom: auto;
+    width: auto;
+    height: 1px;
+  }
+}
+/* Lodge names in the overview and day by day: gold, underlined on hover, with a small arrow. */
+.trip-link {
+  color: var(--color-gold-ink);
+  text-underline-offset: 4px;
+}
+.trip-link:hover {
+  text-decoration: underline;
 }

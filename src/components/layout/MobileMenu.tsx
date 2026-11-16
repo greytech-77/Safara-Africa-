@@ -1,28 +1,26 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import Logo from './Logo';
 import type { MenuItem } from '@/config/menu';
-import { site } from '@/config/site';
-import { whatsappLink, whatsappMessage } from '@/lib/whatsapp';
 
 const FOCUSABLE = 'a[href], button:not([disabled])';
 
-// Phone and tablet menu: a full-screen dialog that drills down one level per item.
-export default function MobileMenu({ items, overlay }: { items: MenuItem[]; overlay: boolean }) {
+// Phones and tablets (below 1024px): a hamburger opens a full-height dark panel with a gold top line. Sections are
+// stacked; tapping one expands its links in place (accordion). "Plan your journey" sits at the bottom.
+// Page scroll is locked, Tab stays inside, and Escape or × closes it.
+export default function MobileMenu({ items, activeId }: { items: MenuItem[]; activeId?: string }) {
   const [open, setOpen] = useState(false);
-  const [levelId, setLevelId] = useState<string | null>(null);
+  const [expanded, setExpanded] = useState<string | null>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
-  const level = items.find((i) => i.id === levelId);
 
   const close = (returnFocus = true) => {
     setOpen(false);
-    setLevelId(null);
+    setExpanded(null);
     if (returnFocus) toggleRef.current?.focus();
   };
 
@@ -38,10 +36,10 @@ export default function MobileMenu({ items, overlay }: { items: MenuItem[]; over
     };
   }, [open]);
 
-  // Move focus to the first control on each level.
+  // Focus the close button when the panel opens.
   useEffect(() => {
-    if (open) dialogRef.current?.querySelector<HTMLElement>(`[data-level] ${FOCUSABLE}`)?.focus();
-  }, [open, levelId]);
+    if (open) dialogRef.current?.querySelector<HTMLElement>('[data-close]')?.focus();
+  }, [open]);
 
   function onKeyDown(e: React.KeyboardEvent) {
     if (e.key === 'Escape') {
@@ -49,7 +47,7 @@ export default function MobileMenu({ items, overlay }: { items: MenuItem[]; over
       close();
       return;
     }
-    // Keep Tab inside the dialog.
+    // Keep Tab inside the panel.
     if (e.key !== 'Tab' || !dialogRef.current) return;
     const nodes = [...dialogRef.current.querySelectorAll<HTMLElement>(FOCUSABLE)];
     const first = nodes[0];
@@ -70,10 +68,13 @@ export default function MobileMenu({ items, overlay }: { items: MenuItem[]; over
         type="button"
         aria-haspopup="dialog"
         aria-expanded={open}
+        aria-label="Open menu"
         onClick={() => setOpen(true)}
-        className={`btn cursor-pointer ${overlay ? 'btn-outline-light' : 'btn-outline'}`}
+        className="grid size-11 cursor-pointer place-items-center text-white"
       >
-        Menu
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+          <path d="M3 6.5h18M3 12h18M3 17.5h18" strokeLinecap="round" />
+        </svg>
       </button>
 
       {open && (
@@ -84,92 +85,79 @@ export default function MobileMenu({ items, overlay }: { items: MenuItem[]; over
           aria-label="Menu"
           onKeyDown={onKeyDown}
           onClick={(e) => (e.target as HTMLElement).closest('a') && close(false)}
-          className="slide-in fixed inset-0 z-50 flex flex-col overflow-y-auto bg-cream text-ink"
+          className="mobile-nav slide-in fixed inset-0 z-50 flex flex-col overflow-y-auto border-t-[3px] border-nav-gold"
         >
-          <div className="wrap flex items-center justify-between gap-4 border-b border-deep-teal/10 py-4">
-            <Logo tone="dark" height={48} />
-            <button type="button" onClick={() => close()} className="btn btn-outline cursor-pointer text-deep-teal">
-              Close
+          <div className="wrap flex h-[var(--header-h)] shrink-0 items-center justify-between gap-4">
+            <Logo tone="white" height={48} />
+            <button
+              type="button"
+              data-close
+              onClick={() => close()}
+              aria-label="Close menu"
+              className="grid size-11 cursor-pointer place-items-center text-white"
+            >
+              <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.6" aria-hidden="true">
+                <path d="M6 6l12 12M18 6 6 18" strokeLinecap="round" />
+              </svg>
             </button>
           </div>
 
-          <div data-level={levelId ?? 'root'} key={levelId ?? 'root'} className={`wrap flex-1 py-6 ${levelId ? 'slide-in-sm' : ''}`}>
-            {!level ? (
-              <ul className="divide-y divide-deep-teal/15 border-y border-deep-teal/15">
-                {items.map((item) => (
-                  <li key={item.id}>
+          <nav aria-label="Main" className="wrap flex-1 py-2">
+            <ul className="border-t border-white/10">
+              {items.map((item) => {
+                const isOpen = expanded === item.id;
+                // Plain link (Home, Kilimanjaro, Zanzibar).
+                if (!item.children)
+                  return (
+                    <li key={item.id} className="border-b border-white/10">
+                      <Link
+                        href={item.href}
+                        aria-current={activeId === item.id ? 'page' : undefined}
+                        className={`mobile-nav__link block py-3.5 ${activeId === item.id ? 'text-nav-gold' : ''}`}
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  );
+                return (
+                  <li key={item.id} className="border-b border-white/10">
                     <button
                       type="button"
-                      onClick={() => setLevelId(item.id)}
-                      className="flex w-full cursor-pointer items-center justify-between py-4 text-left font-display text-step-2 text-deep-teal"
+                      aria-expanded={isOpen}
+                      aria-controls={`m-nav-${item.id}`}
+                      onClick={() => setExpanded(isOpen ? null : item.id)}
+                      className={`mobile-nav__link flex w-full cursor-pointer items-center justify-between py-3.5 text-left ${
+                        activeId === item.id ? 'text-nav-gold' : ''
+                      }`}
                     >
                       {item.label}
-                      <span aria-hidden="true" className="arrow text-gold-ink">
-                        →
-                      </span>
+                      <svg
+                        viewBox="0 0 10 10"
+                        width="12"
+                        height="12"
+                        aria-hidden="true"
+                        className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+                      >
+                        <path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" strokeWidth="1.4" />
+                      </svg>
                     </button>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <>
-                <button
-                  type="button"
-                  onClick={() => setLevelId(null)}
-                  className="cursor-pointer py-2 text-step--1 font-bold text-deep-teal"
-                >
-                  <span aria-hidden="true" className="arrow arrow-back">
-                    ←
-                  </span>{' '}
-                  Back
-                </button>
-                <h2 className="mt-3 text-step-3 text-ink">{level.label}</h2>
-
-                {level.groups.map((group, i) => (
-                  <div key={group.heading ?? i} className="mt-6">
-                    {group.heading && (
-                      <h3 className="font-sans text-step--1 font-bold uppercase tracking-[0.12em] text-slate">{group.heading}</h3>
-                    )}
-                    <ul className="mt-2 divide-y divide-deep-teal/10">
-                      {group.links.map((link) => (
-                        <li key={link.href + link.label}>
-                          <Link href={link.href} className="block py-3">
-                            <span className="font-semibold text-deep-teal">{link.label}</span>
-                            {link.note && <span className="block text-step--1 text-slate">{link.note}</span>}
+                    <ul id={`m-nav-${item.id}`} hidden={!isOpen} className="pb-3 pl-4">
+                      {item.children.map((c) => (
+                        <li key={c.href + c.label}>
+                          <Link href={c.href} className="mobile-nav__sublink block py-2">
+                            {c.label}
                           </Link>
                         </li>
                       ))}
                     </ul>
-                  </div>
-                ))}
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
 
-                {level.cards.length > 0 && (
-                  <ul className="mt-8 grid gap-6 sm:grid-cols-2">
-                    {level.cards.map((card) => (
-                      <li key={card.href}>
-                        <Link href={card.href} className="block">
-                          <div className="relative aspect-[16/9] overflow-hidden bg-sand">
-                            <Image src={card.image.src} alt="" fill sizes="(min-width: 640px) 50vw, 100vw" className="object-cover" />
-                          </div>
-                          <p className="mt-2 font-display text-step-1 text-deep-teal">{card.title}</p>
-                          <p className="text-step--1 font-bold text-gold-ink">{card.cta} →</p>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </>
-            )}
-          </div>
-
-          <div className="wrap grid gap-3 border-t border-deep-teal/10 py-6 sm:grid-cols-3">
-            <a href={`tel:${site.phone.tel}`} className="btn btn-outline text-deep-teal">
-              Call {site.phone.display}
-            </a>
-            <a href={whatsappLink(whatsappMessage())} className="btn btn-outline text-deep-teal">
-              WhatsApp
-            </a>
-            <Link href="/contact#enquire" className="btn btn-primary">
+          <div className="wrap shrink-0 py-6">
+            <Link href="/contact#enquire" className="btn btn-primary w-full">
               Plan your journey
             </Link>
           </div>

@@ -1,18 +1,20 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import CtaBlock from '@/components/ui/CtaBlock';
 import Header from '@/components/layout/Header';
 import Hero from '@/components/ui/Hero';
-import MonthRow from '@/components/ui/MonthRow';
-import PhotoList from '@/components/ui/PhotoList';
+import ParkWhenToGo from '@/components/ui/ParkWhenToGo';
 import PhotoRail from '@/components/ui/PhotoRail';
 import SectionNav, { type SectionLink } from '@/components/ui/SectionNav';
+import WildlifeStrip from '@/components/ui/WildlifeStrip';
 import TourGrid from '@/features/tours/components/TourGrid';
 import { accommodations, lodgeTiles } from '@/content/accommodations';
 import LodgeCards from '@/components/ui/LodgeCards';
 import { getCountry } from '@/content/countries';
 import { getParkGuide } from '@/content/park-guides';
+import ParkHighlights from '@/components/park-highlights/ParkHighlights';
 import { getPark, parkHref, parks } from '@/content/parks';
 import { getTours } from '@/lib/content';
 
@@ -38,7 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 const section = 'band scroll-mt-32';
 const h2 = 'text-step-4 text-ink';
-const eyebrow = 'text-step--1 font-bold uppercase tracking-[0.14em] text-gold-ink';
+const eyebrow = 'font-sans text-[13px] font-medium uppercase tracking-[0.2em] text-gold-ink';
 
 export default async function ParkPage({ params }: Props) {
   const p = getPark((await params).slug);
@@ -51,19 +53,15 @@ export default async function ParkPage({ params }: Props) {
   const tours = (own.length > 0 ? own : all.filter((t) => t.country === p.country)).slice(0, 4);
   const stays = accommodations.filter((a) => a.park === p.slug);
   const related = parks.filter((o) => o.country === p.country && o.slug !== p.slug).slice(0, 6);
-  const hasWildlife = (guide.wildlife?.length ?? 0) > 0;
-  const hasActivities = (guide.activities?.length ?? 0) > 0;
-  const hasStay = stays.length > 0 || Boolean(guide.stayNote);
 
-  // The menu lists only the sections this park has.
+  // Every park and reserve page has the same five sections, in this order. A section with no content yet shows a
+  // short line inviting the traveller to ask the team, so nothing is invented.
   const tabs: SectionLink[] = [
     { id: 'overview', label: 'Overview' },
     { id: 'when', label: 'When to go' },
-    ...(hasWildlife ? [{ id: 'wildlife', label: 'Wildlife' }] : []),
-    ...(hasActivities ? [{ id: 'things-to-do', label: 'Things to do' }] : []),
-    ...(tours.length > 0 ? [{ id: 'journeys', label: 'Journeys' }] : []),
-    ...(hasStay ? [{ id: 'stay', label: 'Where to stay' }] : []),
-    ...(guide.drives?.length ? [{ id: 'getting-there', label: 'Getting there' }] : []),
+    { id: 'wildlife', label: 'Wildlife' },
+    { id: 'journeys', label: 'Journeys' },
+    { id: 'stay', label: 'Where to stay' },
   ];
 
   return (
@@ -96,16 +94,7 @@ export default async function ParkPage({ params }: Props) {
             ))}
           </div>
 
-          {guide.facts && (
-            <dl className="mx-auto mt-10 flex max-w-5xl flex-wrap justify-center gap-x-12 gap-y-6 border-y border-deep-teal/15 py-6 text-center">
-              {guide.facts.map((f) => (
-                <div key={f.label}>
-                  <dt className="text-step--1 font-semibold uppercase tracking-[0.08em] text-slate">{f.label}</dt>
-                  <dd className="mt-1 font-display text-step-2 text-deep-teal">{f.value}</dd>
-                </div>
-              ))}
-            </dl>
-          )}
+          {guide.facts && <ParkHighlights parkSlug={p.slug} items={guide.facts} />}
 
           <div className="mt-12 grid gap-10 md:grid-cols-2 md:items-center">
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-sand">
@@ -134,104 +123,43 @@ export default async function ParkPage({ params }: Props) {
         </div>
       </section>
 
-      <section id="when" className={section} aria-labelledby="when-heading">
+      <ParkWhenToGo parkName={p.name} months={p.months} bestTime={p.bestTime} content={guide.whenToGo} />
+
+      <WildlifeStrip
+        title="Wildlife you may see"
+        species={guide.wildlife ?? []}
+        note={guide.wildlifeNote}
+        empty={<AskUs dark>Our team can tell you what you are likely to see in {p.name} in the month you travel.</AskUs>}
+      />
+
+      <section id="journeys" className={section} aria-labelledby="tours-heading">
         <div className="wrap">
-          <p className={eyebrow}>Month by month</p>
-          <h2 id="when-heading" className={`mt-1 ${h2}`}>
-            When to go
+          <h2 id="tours-heading" className={h2}>
+            Journeys to inspire you
           </h2>
-          <p className="measure mt-3 text-ink">{p.bestTime}</p>
-          <div className="mt-6">
-            <MonthRow months={p.months} />
-          </div>
-          {guide.seasons && (
-            <div className="mt-10 grid gap-10 md:grid-cols-2">
-              {guide.seasons.map((s) => (
-                <div key={s.name} className="border-t border-deep-teal/20 pt-4">
-                  <h3 className="text-step-2 text-ink">{s.name}</h3>
-                  <p className="mt-1 text-step--1 font-bold text-gold-ink">{s.months}</p>
-                  <p className="mt-2 text-ink">{s.text}</p>
-                </div>
-              ))}
+          {tours.length > 0 ? (
+            <div className="mt-8">
+              <TourGrid tours={tours} />
             </div>
+          ) : (
+            <AskUs>We do not have a set journey here yet, but we can plan one around {p.name} for you.</AskUs>
           )}
         </div>
       </section>
 
-      {hasWildlife && (
-        <section id="wildlife" className={section} aria-labelledby="wildlife-heading">
-          <div className="wrap text-center">
-            <h2 id="wildlife-heading" className={h2}>
-              Wildlife you may see
-            </h2>
-            <ul className="mx-auto mt-8 flex max-w-4xl flex-wrap justify-center gap-3">
-              {guide.wildlife!.map((w) => (
-                <li key={w} className="rounded-full border border-deep-teal/25 px-4 py-2 text-deep-teal">
-                  {w}
-                </li>
-              ))}
-            </ul>
-            {guide.wildlifeNote && <p className="measure mx-auto mt-6 text-ink">{guide.wildlifeNote}</p>}
-          </div>
-        </section>
-      )}
-
-      {hasActivities && (
-        <section id="things-to-do" className={section} aria-labelledby="things-heading">
-          <div className="wrap">
-            <h2 id="things-heading" className={h2}>
-              Things to do
-            </h2>
-            <div className="mt-8">
-              <PhotoList items={guide.activities!} />
-            </div>
-          </div>
-        </section>
-      )}
-
-      {tours.length > 0 && (
-        <section id="journeys" className={section} aria-labelledby="tours-heading">
-          <div className="wrap">
-            <h2 id="tours-heading" className={h2}>
-              Journeys to inspire you
-            </h2>
-            <div className="mt-8">
-              <TourGrid tours={tours} />
-            </div>
-          </div>
-        </section>
-      )}
-
-      {hasStay && (
-        <section id="stay" className={section} aria-labelledby="stay-heading">
-          <div className="wrap">
-            <h2 id="stay-heading" className={h2}>
-              Where to stay
-            </h2>
-            {guide.stayNote && <p className="measure mt-3 text-ink">{guide.stayNote}</p>}
-            {stays.length > 0 && <LodgeCards lodges={lodgeTiles.filter((l) => stays.some((s) => s.slug === l.slug))} className="mt-8" />}
-          </div>
-        </section>
-      )}
-
-      {guide.drives && guide.drives.length > 0 && (
-        <section id="getting-there" className={section} aria-labelledby="getting-heading">
-          <div className="wrap">
-            <h2 id="getting-heading" className={h2}>
-              Getting there
-            </h2>
-            <p className="measure mt-3 text-ink">Typical drive times by road. We build them into your plan, with stops along the way.</p>
-            <dl className="mt-8 grid gap-x-10 gap-y-6 sm:grid-cols-3">
-              {guide.drives.map((d) => (
-                <div key={d.from} className="border-t border-deep-teal/20 pt-4">
-                  <dt className="text-step--1 font-semibold text-slate">From {d.from}</dt>
-                  <dd className="mt-1 font-display text-step-2 text-deep-teal">{d.time}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </section>
-      )}
+      <section id="stay" className={section} aria-labelledby="stay-heading">
+        <div className="wrap">
+          <h2 id="stay-heading" className={h2}>
+            Where to stay
+          </h2>
+          {guide.stayNote && <p className="measure mt-3 text-ink">{guide.stayNote}</p>}
+          {stays.length > 0 ? (
+            <LodgeCards lodges={lodgeTiles.filter((l) => stays.some((s) => s.slug === l.slug))} className="mt-8" />
+          ) : (
+            !guide.stayNote && <AskUs>Tell us your dates and budget, and we will suggest places to stay in or near {p.name}.</AskUs>
+          )}
+        </div>
+      </section>
 
       {related.length > 0 && (
         <section className="band" aria-labelledby="related-heading">
@@ -251,5 +179,20 @@ export default async function ParkPage({ params }: Props) {
 
       <CtaBlock title={`Ready to plan your ${country.name} safari?`} topic={p.name} />
     </>
+  );
+}
+
+// Stand-in for a section with no content yet: one line and a link to the travel team.
+function AskUs({ children, dark = false }: { children: React.ReactNode; dark?: boolean }) {
+  return (
+    <p className={`measure mt-3 ${dark ? 'text-cream/85' : 'text-ink'}`}>
+      {children}{' '}
+      <Link
+        href="/contact#enquire"
+        className={`font-bold underline underline-offset-4 transition-colors duration-300 ${dark ? 'text-gold hover:text-cream' : 'text-deep-teal hover:text-gold-ink'}`}
+      >
+        Talk to our travel team
+      </Link>
+    </p>
   );
 }

@@ -41,9 +41,12 @@ export const mountains: ItineraryInput[] = [
     itinerary: [
       {
         day: 1,
-        title: 'Machame Gate to Machame Camp',
+        title: 'Machame Gate → Machame Camp',
         description:
-          'Drive from Moshi to Machame Gate to register, then climb through dense rainforest to the first camp at the edge of the heath.',
+          'After registering at Machame Gate, you walk into a dense rainforest of moss-covered trees, ferns and birdsong, with your guides setting a slow, steady pace. Kilimanjaro, at 5,895 m the highest mountain in Africa and a UNESCO World Heritage Site, takes you through every climate zone, and today is the warmest and greenest. You reach Machame Camp at the edge of the heath, where your crew has the tents up and hot tea waiting.',
+        hook: 'The climb begins in the cool green shade of the rainforest.',
+        highlight: 'Walking through the mossy rainforest on the lower slopes',
+        practical: 'About 1 h from Moshi to the gate · about 6 h walking / 11 km · sleep at 2,835 m',
         places: ['moshi', 'kilimanjaro'],
         parks: ['kilimanjaro'],
         driveHours: 1,
@@ -54,8 +57,12 @@ export const mountains: ItineraryInput[] = [
       },
       {
         day: 2,
-        title: 'Machame Camp to Shira 2 Camp',
-        description: 'A steep climb out of the forest onto the heath and up to the Shira plateau, with the first wide views of Kibo.',
+        title: 'Machame Camp → Shira 2 Camp',
+        description:
+          'A steep climb takes you out of the forest onto open heath, where giant heathers grow taller than you. The path follows a rocky ridge up to the Shira plateau, the remains of an ancient collapsed volcano, and suddenly the snowfields of Kibo fill the skyline. At camp the air is cold and clear, and on a good evening the sunset over Mount Meru is unforgettable.',
+        hook: 'Out of the forest, and your first wide view of Kibo.',
+        highlight: 'Your first clear view of Kibo’s glaciers from the Shira plateau',
+        practical: 'About 5 h walking / 5 km · sleep at 3,850 m',
         places: ['kilimanjaro'],
         parks: ['kilimanjaro'],
         activities: ['Trek across the heath'],
@@ -65,9 +72,14 @@ export const mountains: ItineraryInput[] = [
       },
       {
         day: 3,
-        title: 'Lava Tower to Barranco Camp',
+        title: 'Lava Tower → Barranco Camp',
         description:
-          'Climb to the Lava Tower at 4,630 m for acclimatisation, then descend to sleep in the Barranco Valley among giant groundsels.',
+          'You climb steadily through alpine desert to the Lava Tower, a 4,630 m volcanic plug, where you rest and eat lunch in thin, bright air. Then you descend into the Barranco Valley to sleep lower, the way experienced guides help your body adjust to altitude. The valley is full of giant groundsels, strange tree-like plants found only on the high mountains of East Africa, and the Barranco Wall rises above camp.',
+        hook: 'Climb high, sleep low: the day that prepares you for the summit.',
+        highlight: 'Giant groundsels silhouetted against the evening sky in the Barranco Valley',
+        practical: 'About 7 h walking / 10 km · sleep at 3,960 m',
+        guideTip:
+          'Walk slowly from the very first step today, "pole pole", and drink often: it is the single best thing you can do for summit night.',
         places: ['kilimanjaro'],
         parks: ['kilimanjaro'],
         activities: ['Acclimatisation climb'],
@@ -77,8 +89,12 @@ export const mountains: ItineraryInput[] = [
       },
       {
         day: 4,
-        title: 'Barranco Wall to Karanga Camp',
-        description: 'Scramble up the Barranco Wall, a short hands-on section, then cross valleys to Karanga Camp.',
+        title: 'Barranco Wall → Karanga Camp',
+        description:
+          'Straight after breakfast you tackle the Barranco Wall, a hands-on scramble where your guides show you every foothold. It looks daunting from below but needs no climbing skills, and the view from the top, over the clouds to Kibo’s glaciers, is a reward in itself. Then you cross a series of valleys to Karanga Camp, arriving in time for an afternoon of rest.',
+        hook: 'A short scramble that turns out to be one of the trek’s best moments.',
+        highlight: 'Looking back over the clouds from the top of the Barranco Wall',
+        practical: 'About 4 h walking / 5 km · sleep at 4,035 m',
         places: ['kilimanjaro'],
         parks: ['kilimanjaro'],
         activities: ['Barranco Wall scramble'],
@@ -88,9 +104,12 @@ export const mountains: ItineraryInput[] = [
       },
       {
         day: 5,
-        title: 'Karanga Camp to Barafu Camp',
+        title: 'Karanga Camp → Barafu Camp',
         description:
-          'A short climb through alpine desert to the summit base camp. Rest, an early dinner and a briefing before summit night.',
+          'You climb through the stark alpine desert, where only lichen and a few hardy plants survive, to Barafu Camp on a rocky ridge below the summit. The afternoon is for rest, an early dinner and a careful briefing from your head guide, who checks your gear and explains the night ahead. You go to bed early, with the summit only hours away.',
+        hook: 'A short climb to base camp, and a quiet afternoon before the summit.',
+        highlight: 'The summit cone of Kibo glowing in the late afternoon',
+        practical: 'About 4 h walking / 4 km · sleep at 4,673 m',
         places: ['kilimanjaro'],
         parks: ['kilimanjaro'],
         activities: ['Summit briefing'],
@@ -100,9 +119,13 @@ export const mountains: ItineraryInput[] = [
       },
       {
         day: 6,
-        title: 'Summit day: Uhuru Peak, then down to Mweka',
+        title: 'Uhuru Peak → Mweka Camp',
         description:
-          'Start around midnight and climb to Stella Point on the crater rim, then on to Uhuru Peak at sunrise. Descend to Barafu for brunch and continue down to Mweka Camp.',
+          'You set off around midnight by headtorch, climbing slowly through the cold and the dark with your guides beside you. At Stella Point on the crater rim the sky begins to lighten, and an hour later you stand on Uhuru Peak at 5,895 m, the highest point in Africa, as the sun rises over the glaciers. Then you descend to Barafu for a rest and brunch and continue down to Mweka Camp, where the air feels thick and warm again.',
+        hook: 'The night you reach the Roof of Africa.',
+        highlight: 'Sunrise on Uhuru Peak, 5,895 m, the highest point in Africa',
+        practical: 'About 14 h walking / 17 km · summit, then sleep at 3,100 m',
+        guideTip: 'Keep your water bottle and phone inside your jacket on summit night, so they do not freeze before sunrise.',
         places: ['kilimanjaro'],
         parks: ['kilimanjaro'],
         activities: ['Summit attempt'],
@@ -112,9 +135,12 @@ export const mountains: ItineraryInput[] = [
       },
       {
         day: 7,
-        title: 'Mweka Camp to Mweka Gate and Moshi',
+        title: 'Mweka Camp → Mweka Gate → Moshi',
         description:
-          'Walk down through the rainforest to Mweka Gate to collect your summit certificate, then transfer to Moshi to celebrate.',
+          'You walk down through the rainforest, where the air is warm and damp again and colobus monkeys sometimes watch from the trees. At Mweka Gate your guides present your summit certificate, often with a song from the whole crew. A short drive takes you to Moshi for a long hot shower and a celebration dinner.',
+        hook: 'Down through the rainforest, and a celebration you have earned.',
+        highlight: 'Receiving your summit certificate with the crew who got you there',
+        practical: 'About 4 h walking / 10 km, then about 1 h to Moshi',
         places: ['kilimanjaro', 'moshi'],
         parks: ['kilimanjaro'],
         driveHours: 1,
@@ -134,6 +160,13 @@ export const mountains: ItineraryInput[] = [
     faqs: kiliFaqs,
     order: 6,
     lastReviewed: '2026-10-26',
+    seasonNote:
+      'The driest months on Kilimanjaro are January to early March and June to October, the most popular times to climb, so book early for these dates.',
+    whyLove: [
+      'The Machame Route, one of the most rewarding ways to the Roof of Africa',
+      'Experienced mountain guides and a full crew who carry, cook and set up camp',
+      'Every climate zone on one mountain, from rainforest to arctic summit',
+    ],
   },
   {
     slug: 'kilimanjaro-lemosho-8-days',
@@ -155,9 +188,12 @@ export const mountains: ItineraryInput[] = [
     itinerary: [
       {
         day: 1,
-        title: 'Londorossi Gate to Mti Mkubwa Camp',
+        title: 'Londorossi Gate → Mti Mkubwa Camp',
         description:
-          'A three to four-hour drive from Moshi to Londorossi Gate, then a gentle walk through rainforest, often with colobus monkeys, to Big Tree Camp.',
+          'You drive around the mountain to Londorossi Gate on the remote western side, where few climbers begin. After registering, you walk gently through rainforest where black-and-white colobus monkeys are often seen in the canopy. Kilimanjaro, at 5,895 m the highest mountain in Africa, takes you through every climate zone, and tonight you sleep beneath the giant trees that give Big Tree Camp its name.',
+        hook: 'A gentle start, deep in the quiet western forests.',
+        highlight: 'Colobus monkeys leaping through the canopy above the path',
+        practical: 'About 3.5 h drive from Moshi · about 3.5 h walking / 6 km · sleep at 2,780 m',
         places: ['moshi', 'kilimanjaro'],
         parks: ['kilimanjaro'],
         driveHours: 3.5,
@@ -168,8 +204,12 @@ export const mountains: ItineraryInput[] = [
       },
       {
         day: 2,
-        title: 'Mti Mkubwa to Shira 1 Camp',
-        description: 'Climb out of the forest through giant heather and onto the western edge of the Shira plateau.',
+        title: 'Mti Mkubwa → Shira 1 Camp',
+        description:
+          'You climb out of the forest through a band of giant heather, the trees thinning as the views widen. By lunch you are on the western rim of the Shira plateau, the remains of an ancient collapsed volcano, with Kibo’s snowfields ahead. Camp is set on the open moorland, and the night sky here, far from any town, is full of stars.',
+        hook: 'Through the giant heather and onto the edge of the plateau.',
+        highlight: 'Reaching the rim of the Shira plateau with Kibo ahead',
+        practical: 'About 5.5 h walking / 8 km · sleep at 3,610 m',
         places: ['kilimanjaro'],
         parks: ['kilimanjaro'],
         activities: ['Trek onto the Shira plateau'],
@@ -179,8 +219,13 @@ export const mountains: ItineraryInput[] = [
       },
       {
         day: 3,
-        title: 'Across the Shira plateau to Shira 2 Camp',
-        description: 'An easier day crossing the open plateau, with an optional detour to the Shira Cathedral ridge for acclimatisation.',
+        title: 'Across the Shira plateau → Shira 2 Camp',
+        description:
+          'Today is gentler: you cross the wide, open Shira plateau at an easy pace, giving your body time to adjust to the altitude. If you feel strong, your guide can take you on a detour up the Shira Cathedral ridge for views across the plateau and a little extra height. You reach Shira 2 Camp early, with time to rest and watch the sun set over Mount Meru.',
+        hook: 'An easier day across the open plateau, letting your body adjust.',
+        highlight: 'Sunset over Mount Meru from the Shira plateau',
+        practical: 'About 4 h walking / 10 km · sleep at 3,850 m',
+        addOn: { text: 'Shira Cathedral ridge walk' },
         places: ['kilimanjaro'],
         parks: ['kilimanjaro'],
         activities: ['Plateau crossing', 'Optional Shira Cathedral walk'],
@@ -190,8 +235,14 @@ export const mountains: ItineraryInput[] = [
       },
       {
         day: 4,
-        title: 'Lava Tower to Barranco Camp',
-        description: 'Climb to the Lava Tower at 4,630 m, then descend into the Barranco Valley to sleep lower.',
+        title: 'Lava Tower → Barranco Camp',
+        description:
+          'You climb steadily through alpine desert to the Lava Tower, a 4,630 m volcanic plug, where you rest and eat lunch in thin, bright air. Then you descend into the Barranco Valley to sleep lower, the way experienced guides help your body adjust to altitude. The valley is full of giant groundsels, strange tree-like plants found only on the high mountains of East Africa, and the Barranco Wall rises above camp.',
+        hook: 'Climb high, sleep low: the day that prepares you for the summit.',
+        highlight: 'Giant groundsels silhouetted against the evening sky in the Barranco Valley',
+        practical: 'About 7 h walking / 10 km · sleep at 3,960 m',
+        guideTip:
+          'Walk slowly from the very first step today, "pole pole", and drink often: it is the single best thing you can do for summit night.',
         places: ['kilimanjaro'],
         parks: ['kilimanjaro'],
         activities: ['Acclimatisation climb'],
@@ -201,8 +252,12 @@ export const mountains: ItineraryInput[] = [
       },
       {
         day: 5,
-        title: 'Barranco Wall to Karanga Camp',
-        description: 'The Barranco Wall scramble in the morning, then a shorter afternoon to Karanga Camp.',
+        title: 'Barranco Wall → Karanga Camp',
+        description:
+          'Straight after breakfast you tackle the Barranco Wall, a hands-on scramble where your guides show you every foothold. It looks daunting from below but needs no climbing skills, and the view from the top, over the clouds to Kibo’s glaciers, is a reward in itself. Then you cross a series of valleys to Karanga Camp, arriving in time for an afternoon of rest.',
+        hook: 'A short scramble that turns out to be one of the trek’s best moments.',
+        highlight: 'Looking back over the clouds from the top of the Barranco Wall',
+        practical: 'About 4 h walking / 5 km · sleep at 4,035 m',
         places: ['kilimanjaro'],
         parks: ['kilimanjaro'],
         activities: ['Barranco Wall scramble'],
@@ -212,8 +267,12 @@ export const mountains: ItineraryInput[] = [
       },
       {
         day: 6,
-        title: 'Karanga Camp to Barafu Camp',
-        description: 'Up through alpine desert to the summit base camp, with an afternoon to rest before summit night.',
+        title: 'Karanga Camp → Barafu Camp',
+        description:
+          'You climb through the stark alpine desert, where only lichen and a few hardy plants survive, to Barafu Camp on a rocky ridge below the summit. The afternoon is for rest, an early dinner and a careful briefing from your head guide, who checks your gear and explains the night ahead. You go to bed early, with the summit only hours away.',
+        hook: 'A short climb to base camp, and a quiet afternoon before the summit.',
+        highlight: 'The summit cone of Kibo glowing in the late afternoon',
+        practical: 'About 4 h walking / 4 km · sleep at 4,673 m',
         places: ['kilimanjaro'],
         parks: ['kilimanjaro'],
         activities: ['Summit briefing'],
@@ -223,8 +282,13 @@ export const mountains: ItineraryInput[] = [
       },
       {
         day: 7,
-        title: 'Summit day: Uhuru Peak, then down to Mweka',
-        description: 'A midnight start for Stella Point and Uhuru Peak at sunrise, then the long descent to Mweka Camp.',
+        title: 'Uhuru Peak → Mweka Camp',
+        description:
+          'You set off around midnight by headtorch, climbing slowly through the cold and the dark with your guides beside you. At Stella Point on the crater rim the sky begins to lighten, and an hour later you stand on Uhuru Peak at 5,895 m, the highest point in Africa, as the sun rises over the glaciers. Then you descend to Barafu for a rest and brunch and continue down to Mweka Camp, where the air feels thick and warm again.',
+        hook: 'The night you reach the Roof of Africa.',
+        highlight: 'Sunrise on Uhuru Peak, 5,895 m, the highest point in Africa',
+        practical: 'About 14 h walking / 17 km · summit, then sleep at 3,100 m',
+        guideTip: 'Keep your water bottle and phone inside your jacket on summit night, so they do not freeze before sunrise.',
         places: ['kilimanjaro'],
         parks: ['kilimanjaro'],
         activities: ['Summit attempt'],
@@ -234,8 +298,12 @@ export const mountains: ItineraryInput[] = [
       },
       {
         day: 8,
-        title: 'Mweka Gate and Moshi',
-        description: 'Down through the rainforest to Mweka Gate for your certificate, then transfer to Moshi.',
+        title: 'Mweka Camp → Mweka Gate → Moshi',
+        description:
+          'You walk down through the rainforest, where the air is warm and damp again and colobus monkeys sometimes watch from the trees. At Mweka Gate your guides present your summit certificate, often with a song from the whole crew. A short drive takes you to Moshi for a long hot shower and a celebration dinner.',
+        hook: 'Down through the rainforest, and a celebration you have earned.',
+        highlight: 'Receiving your summit certificate with the crew who got you there',
+        practical: 'About 4 h walking / 10 km, then about 1 h to Moshi',
         places: ['kilimanjaro', 'moshi'],
         parks: ['kilimanjaro'],
         driveHours: 1,
@@ -252,6 +320,13 @@ export const mountains: ItineraryInput[] = [
     faqs: kiliFaqs,
     order: 7,
     lastReviewed: '2026-10-26',
+    seasonNote:
+      'The driest months on Kilimanjaro are January to early March and June to October, the most popular times to climb, so book early for these dates.',
+    whyLove: [
+      'The Lemosho Route: quieter, more scenic, with an extra day to acclimatise',
+      'Experienced mountain guides and a full crew who carry, cook and set up camp',
+      'Every climate zone on one mountain, from rainforest to arctic summit',
+    ],
   },
   {
     slug: 'kilimanjaro-marangu-6-days',
@@ -273,8 +348,13 @@ export const mountains: ItineraryInput[] = [
     itinerary: [
       {
         day: 1,
-        title: 'Marangu Gate to Mandara Hut',
-        description: 'A short drive from Moshi to Marangu Gate, then a walk through rainforest to the A-frame huts at Mandara.',
+        title: 'Marangu Gate → Mandara Hut',
+        description:
+          'A short drive from Moshi brings you to Marangu Gate, where you walk into rainforest loud with birdsong. Kilimanjaro, at 5,895 m the highest mountain in Africa, takes you through every climate zone, and the Marangu Route is the only one with huts to sleep in. You reach the A-frame huts at Mandara in the afternoon, with time for a short walk to the rim of Maundi Crater.',
+        hook: 'Through the rainforest to the first huts on the mountain.',
+        highlight: 'The view from the rim of Maundi Crater, clouds permitting',
+        practical: 'About 1 h from Moshi · about 4 h walking / 8 km · sleep at 2,720 m',
+        addOn: { text: 'Short walk to Maundi Crater' },
         places: ['moshi', 'kilimanjaro'],
         parks: ['kilimanjaro'],
         driveHours: 1,
@@ -285,8 +365,12 @@ export const mountains: ItineraryInput[] = [
       },
       {
         day: 2,
-        title: 'Mandara Hut to Horombo Hut',
-        description: 'Out of the forest onto open moorland, with views of Kibo and Mawenzi, to Horombo Hut.',
+        title: 'Mandara Hut → Horombo Hut',
+        description:
+          'You leave the forest behind and climb onto open moorland, where giant groundsels and lobelias grow among the tussock grass. As the clouds lift, both summits come into view: Kibo with its glaciers and the jagged peaks of Mawenzi. Horombo Hut sits on a ridge above the clouds, and the sunset from here is often spectacular.',
+        hook: 'Out of the forest and onto the open moorland.',
+        highlight: 'Kibo and Mawenzi side by side above the moorland',
+        practical: 'About 6 h walking / 12 km · sleep at 3,720 m',
         places: ['kilimanjaro'],
         parks: ['kilimanjaro'],
         activities: ['Moorland trek'],
@@ -297,7 +381,12 @@ export const mountains: ItineraryInput[] = [
       {
         day: 3,
         title: 'Acclimatisation day at Horombo',
-        description: 'Walk up to Zebra Rocks or towards Mawenzi to gain height, then return to Horombo to sleep.',
+        description:
+          'Today you walk up to Zebra Rocks, striped cliffs of dark lava, or towards the saddle below Mawenzi, gaining height before returning to Horombo to sleep. Climbing high and sleeping low is the way experienced guides help your body adjust to altitude, and it noticeably improves your chances on summit night. The afternoon is for rest, reading and watching the clouds below you.',
+        hook: 'A day to climb a little higher and let your body adjust.',
+        highlight: 'The striped lava cliffs of Zebra Rocks',
+        practical: 'About 3 h walking / 5 km · sleep at 3,720 m',
+        guideTip: 'Use the rest day well: walk slowly, drink plenty and eat even if you are not hungry. It pays off on summit night.',
         places: ['kilimanjaro'],
         parks: ['kilimanjaro'],
         activities: ['Acclimatisation walk'],
@@ -307,8 +396,12 @@ export const mountains: ItineraryInput[] = [
       },
       {
         day: 4,
-        title: 'Horombo Hut to Kibo Hut',
-        description: 'Cross the high saddle between Mawenzi and Kibo to Kibo Hut. An early night before the summit.',
+        title: 'Horombo Hut → Kibo Hut',
+        description:
+          'You cross the Saddle, a wide high-altitude desert between Mawenzi and Kibo, where the air is thin and the silence is total. Kibo Hut sits at the foot of the summit cone, and the afternoon is for rest and an early dinner. Your head guide gives a careful briefing and checks your gear before you sleep for a few hours.',
+        hook: 'Across the high saddle to the foot of the summit cone.',
+        highlight: 'The vast, silent desert of the Saddle',
+        practical: 'About 6.5 h walking / 10 km · sleep at 4,703 m',
         places: ['kilimanjaro'],
         parks: ['kilimanjaro'],
         activities: ['Saddle crossing', 'Summit briefing'],
@@ -318,8 +411,13 @@ export const mountains: ItineraryInput[] = [
       },
       {
         day: 5,
-        title: 'Summit day: Uhuru Peak, then down to Horombo',
-        description: 'Climb through the night to Gilman’s Point and on to Uhuru Peak, then descend to Kibo Hut and continue to Horombo.',
+        title: 'Uhuru Peak → Horombo Hut',
+        description:
+          'You set off around midnight by headtorch, zigzagging up the scree with your guides beside you. At Gilman’s Point on the crater rim the sky begins to lighten, and you continue around the rim to Uhuru Peak at 5,895 m, the highest point in Africa, as the sun rises over the glaciers. Then you descend to Kibo Hut for a rest and on to Horombo, where the air feels warm and thick again.',
+        hook: 'The night you reach the Roof of Africa.',
+        highlight: 'Sunrise on Uhuru Peak, 5,895 m, the highest point in Africa',
+        practical: 'About 13 h walking / 21 km · summit, then sleep at 3,720 m',
+        guideTip: 'Keep your water bottle and phone inside your jacket on summit night, so they do not freeze before sunrise.',
         places: ['kilimanjaro'],
         parks: ['kilimanjaro'],
         activities: ['Summit attempt'],
@@ -329,8 +427,12 @@ export const mountains: ItineraryInput[] = [
       },
       {
         day: 6,
-        title: 'Horombo to Marangu Gate and Moshi',
-        description: 'The long walk down to Marangu Gate for your certificate, then transfer to Moshi.',
+        title: 'Horombo Hut → Marangu Gate → Moshi',
+        description:
+          'You walk down through the moorland and back into the rainforest, the air growing warmer with every hour. At Marangu Gate your guides present your summit certificate, often with a song from the whole crew. A short drive takes you to Moshi for a long hot shower and a celebration dinner.',
+        hook: 'The long walk down, and a celebration you have earned.',
+        highlight: 'Receiving your summit certificate with the crew who got you there',
+        practical: 'About 6 h walking / 20 km, then about 1 h to Moshi',
         places: ['kilimanjaro', 'moshi'],
         parks: ['kilimanjaro'],
         driveHours: 1,
@@ -347,6 +449,13 @@ export const mountains: ItineraryInput[] = [
     faqs: kiliFaqs,
     order: 8,
     lastReviewed: '2026-10-26',
+    seasonNote:
+      'The driest months on Kilimanjaro are January to early March and June to October, the most popular times to climb, so book early for these dates.',
+    whyLove: [
+      'The Marangu Route: the only route with huts to sleep in',
+      'An acclimatisation day at Horombo to help you reach the top',
+      'Experienced mountain guides and porters throughout',
+    ],
   },
   {
     slug: 'mount-meru-4-days',
@@ -376,9 +485,12 @@ export const mountains: ItineraryInput[] = [
     itinerary: [
       {
         day: 1,
-        title: 'Momella Gate to Miriakamba Hut',
+        title: 'Momella Gate → Miriakamba Hut',
         description:
-          'Drive from Arusha to Momella Gate and walk with an armed ranger through grassland and forest where buffalo and giraffe graze, to Miriakamba Hut.',
+          'You drive from Arusha to Momella Gate in Arusha National Park and set off on foot with your guide and an armed ranger, required here because buffalo, giraffe and elephants share the lower slopes. The path climbs through open grassland and into forest where colobus monkeys call from the trees. You reach Miriakamba Hut in the afternoon, with views up to the crater wall.',
+        hook: 'A walking safari on the slopes of a volcano.',
+        highlight: 'Walking past giraffe and buffalo on the lower slopes',
+        practical: 'About 1.5 h from Arusha · about 4.5 h walking / 10 km · sleep at 2,514 m',
         places: ['arusha', 'mount-meru'],
         parks: ['arusha-national-park'],
         driveHours: 1.5,
@@ -389,9 +501,13 @@ export const mountains: ItineraryInput[] = [
       },
       {
         day: 2,
-        title: 'Miriakamba Hut to Saddle Hut',
+        title: 'Miriakamba Hut → Saddle Hut',
         description:
-          'A steep climb through forest to Saddle Hut, with an optional afternoon walk up Little Meru for views of the crater and Kilimanjaro.',
+          'A steep climb through moss-hung forest brings you to Saddle Hut, below the ridge to the summit. If you feel strong, your guide takes you up Little Meru in the afternoon, where the view opens over the crater, the ash cone inside it and, on a clear day, Kilimanjaro rising above the clouds.',
+        hook: 'Up through the forest to the saddle below the summit.',
+        highlight: 'Kilimanjaro floating above the clouds from Little Meru',
+        practical: 'About 4 h walking / 5 km · sleep at 3,570 m',
+        addOn: { text: 'Afternoon climb of Little Meru' },
         places: ['mount-meru'],
         parks: ['arusha-national-park'],
         activities: ['Optional Little Meru climb'],
@@ -401,9 +517,13 @@ export const mountains: ItineraryInput[] = [
       },
       {
         day: 3,
-        title: 'Summit day: Socialist Peak, then down to Miriakamba',
+        title: 'Socialist Peak → Miriakamba Hut',
         description:
-          'Leave around 1 am along the crater rim to Socialist Peak for sunrise, then descend to Saddle Hut and on to Miriakamba.',
+          'You leave around 1 am and follow the narrow crater rim by headtorch, the drop into the crater beside you in the dark. You reach Socialist Peak, at 4,566 m the second-highest summit in Tanzania, as the sun rises behind Kilimanjaro. Then you descend all the way to Miriakamba Hut, tired, happy and warm again.',
+        hook: 'Along the crater rim to the summit for sunrise.',
+        highlight: 'Sunrise behind Kilimanjaro from Socialist Peak, 4,566 m',
+        practical: 'About 11 h walking / 13 km · summit, then sleep at 2,514 m',
+        guideTip: 'The crater rim is narrow in places: keep your headtorch on your feet and follow your guide’s steps closely.',
         places: ['mount-meru'],
         parks: ['arusha-national-park'],
         activities: ['Summit attempt'],
@@ -413,8 +533,12 @@ export const mountains: ItineraryInput[] = [
       },
       {
         day: 4,
-        title: 'Down to Momella Gate and Arusha',
-        description: 'Walk down to Momella Gate, often seeing more wildlife on the way, and drive back to Arusha.',
+        title: 'Miriakamba Hut → Momella Gate → Arusha',
+        description:
+          'You walk down through the forest and grassland to Momella Gate, often seeing more giraffe, buffalo and monkeys than on the way up. Your driver meets you at the gate for the short drive back to Arusha and a well-earned rest.',
+        hook: 'Down through the forest, often with wildlife along the way.',
+        highlight: 'Wildlife along the path on the final walk down',
+        practical: 'About 3 h walking / 10 km, then about 1.5 h to Arusha',
         places: ['mount-meru', 'arusha'],
         parks: ['arusha-national-park'],
         driveHours: 1.5,
@@ -435,6 +559,12 @@ export const mountains: ItineraryInput[] = [
     addOns: [],
     order: 9,
     lastReviewed: '2026-10-26',
+    seasonNote: 'The driest months on Mount Meru are June to October and December to February, the best times for clear summit views.',
+    whyLove: [
+      'Tanzania’s second-highest peak, with views straight across to Kilimanjaro',
+      'Walking among buffalo and giraffe with an armed ranger on the first day',
+      'A quieter mountain, ideal before Kilimanjaro or on its own',
+    ],
   },
   {
     slug: 'ol-doinyo-lengai-natron',
@@ -461,9 +591,12 @@ export const mountains: ItineraryInput[] = [
     itinerary: [
       {
         day: 1,
-        title: 'Arusha to Lake Natron',
+        title: 'Arusha → Lake Natron',
         description:
-          'Drive north through Mto wa Mbu and the Rift Valley to Lake Natron. In the afternoon, walk up the Ngare Sero gorge to a waterfall.',
+          'You drive north with your guide through Mto wa Mbu and down into the Rift Valley, where the land turns dry and dramatic and Maasai herders move their cattle across the plains. Lake Natron lies at the foot of Ol Doinyo Lengai, shimmering pink and white with soda. In the afternoon you walk up the Ngare Sero gorge, wading through clear water to a waterfall where you can swim.',
+        hook: 'Into the wild, hot heart of the Rift Valley.',
+        highlight: 'Swimming beneath the waterfall in the Ngare Sero gorge',
+        practical: 'About 5 h from Arusha',
         places: ['arusha', 'mto-wa-mbu', 'lake-natron'],
         driveHours: 5,
         activities: ['Waterfall walk'],
@@ -472,9 +605,14 @@ export const mountains: ItineraryInput[] = [
       },
       {
         day: 2,
-        title: 'Night climb of Ol Doinyo Lengai',
+        title: 'Ol Doinyo Lengai night climb',
         description:
-          'Leave camp around 11 pm for the climb up loose ash slopes to reach the crater rim for sunrise, then descend for a rest. In the late afternoon, walk to the lakeshore to see the flamingos.',
+          'You leave camp around 11 pm and climb the steep slopes of loose ash by headtorch with your guide. Ol Doinyo Lengai, the Maasai “Mountain of God”, is the only active volcano on Earth that erupts natrocarbonatite lava, which cools white rather than black. You reach the crater rim at sunrise, with the Rift Valley and Lake Natron far below, then descend to rest; in the late afternoon you walk to the lakeshore to see the flamingos.',
+        hook: 'You climb an active volcano by starlight to watch the sun rise.',
+        highlight: 'Sunrise from the crater rim of an active volcano',
+        practical: 'About 10 h walking / 9 km · summit at 2,962 m',
+        guideTip:
+          'Bring gaiters and an old pair of gloves: the ash is loose on the way down, and steadying yourself with your hands helps.',
         places: ['lake-natron'],
         activities: ['Volcano climb', 'Flamingo walk'],
         meals: meals.all,
@@ -483,8 +621,12 @@ export const mountains: ItineraryInput[] = [
       },
       {
         day: 3,
-        title: 'Maasai village and return to Arusha',
-        description: 'Visit a nearby Maasai village, then drive back to Arusha.',
+        title: 'Lake Natron → Arusha',
+        description:
+          'You visit a nearby Maasai village, where families share how they live alongside the herds in this hard, beautiful land. Lake Natron is the most important breeding ground in the world for lesser flamingos, and you may see them feeding in the shallows as you leave. Then your guide drives you back to Arusha.',
+        hook: 'A morning with the Maasai, then the road home.',
+        highlight: 'Time with a Maasai family in their village',
+        practical: 'About 5 h to Arusha',
         places: ['lake-natron', 'arusha'],
         driveHours: 5,
         activities: ['Maasai village visit'],
@@ -504,6 +646,12 @@ export const mountains: ItineraryInput[] = [
     addOns: [],
     order: 16,
     lastReviewed: '2026-10-26',
+    seasonNote: 'The dry months, June to October and December to February, are the best time for the climb.',
+    whyLove: [
+      'A night climb of Ol Doinyo Lengai, the Maasai “Mountain of God”',
+      'Lake Natron, the most important breeding ground for lesser flamingos',
+      'Rift Valley landscapes few travellers ever see',
+    ],
   },
   {
     slug: 'usambara-village-walk',
@@ -528,8 +676,12 @@ export const mountains: ItineraryInput[] = [
     itinerary: [
       {
         day: 1,
-        title: 'Arusha to Lushoto',
-        description: 'A scenic drive south-east along the Pare and Usambara ranges and up a winding road to Lushoto.',
+        title: 'Arusha → Lushoto',
+        description:
+          'You drive south-east along the foot of the Pare and Usambara ranges, then up a winding road into the mountains. Lushoto, once a German colonial hill station, sits at around 1,400 m among forests and terraced farms, and the air is fresh and cool after the plains. In the evening you can stroll through the small town and its market.',
+        hook: 'A long, scenic drive to a cool green world in the hills.',
+        highlight: 'The winding road up into the green Usambara Mountains',
+        practical: 'About 6 h from Arusha',
         places: ['arusha', 'lushoto'],
         driveHours: 6,
         activities: ['Evening walk in town'],
@@ -538,9 +690,12 @@ export const mountains: ItineraryInput[] = [
       },
       {
         day: 2,
-        title: 'Irente viewpoint',
+        title: 'Lushoto → Irente viewpoint',
         description:
-          'Walk through farmland and forest to the Irente viewpoint, a cliff edge with views across the plains, with lunch at a farm.',
+          'With your local guide you walk through farmland and forest to Irente, where the mountains end in a sheer cliff and the plains spread out far below. The Usambaras are part of the Eastern Arc Mountains, rich in plants found nowhere else, including the wild ancestors of the African violet. Lunch is at a farm, with fresh bread, cheese and fruit from the hills.',
+        hook: 'A walk to the edge of the mountains and a view to remember.',
+        highlight: 'The view from the cliff edge at Irente',
+        practical: 'A guided walk of a few hours, at an easy pace',
         places: ['lushoto'],
         activities: ['Guided walk', 'Farm lunch'],
         meals: meals.all,
@@ -548,8 +703,12 @@ export const mountains: ItineraryInput[] = [
       },
       {
         day: 3,
-        title: 'Villages and markets',
-        description: 'A longer walk between hill villages with your local guide, visiting a market, a blacksmith and a family farm.',
+        title: 'Usambara villages',
+        description:
+          'You walk a longer route between hill villages with your guide, stopping at a market, a blacksmith’s forge and a family farm. Children wave from doorways, and the smell of wood smoke and fresh bread drifts between the houses. It is an unhurried, genuine day in rural Tanzania.',
+        hook: 'A day of hill villages, markets and the people who live here.',
+        highlight: 'Watching a village blacksmith at work',
+        practical: 'A longer walk with your local guide',
         places: ['lushoto'],
         activities: ['Village walk', 'Market visit'],
         meals: meals.all,
@@ -557,11 +716,15 @@ export const mountains: ItineraryInput[] = [
       },
       {
         day: 4,
-        title: 'Return to Arusha or onward to the coast',
-        description: 'Drive back to Arusha, or on to Dar es Salaam or Tanga for the coast.',
+        title: 'Lushoto → Arusha or the coast',
+        description:
+          'You drive down from the mountains, either back to Arusha or onwards to Dar es Salaam or Tanga for the coast, with stops along the way whenever you like.',
+        hook: 'Down from the hills, back to Arusha or on to the sea.',
+        highlight: 'A last look back at the Usambara Mountains',
+        practical: 'About 6 h to Arusha',
         places: ['lushoto', 'arusha'],
         driveHours: 6,
-        activities: [],
+        activities: ['Scenic drive down from the mountains'],
         meals: meals.b,
         stay: null,
       },
@@ -572,5 +735,12 @@ export const mountains: ItineraryInput[] = [
     addOns: [],
     order: 17,
     lastReviewed: '2026-10-26',
+    seasonNote:
+      'The Usambara Mountains are pleasant most of the year; the drier months, June to October and December to February, are best for walking.',
+    whyLove: [
+      'Walking between hill villages with a local guide',
+      'Some of the best views in Tanzania from the Irente viewpoint',
+      'A quiet, green side of the country few visitors see',
+    ],
   },
 ];

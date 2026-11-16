@@ -31,8 +31,12 @@ export const eastAfrica: ItineraryInput[] = [
     itinerary: [
       {
         day: 1,
-        title: 'Arrival in Nairobi',
-        description: 'Meet at Jomo Kenyatta Airport and transfer to your hotel.',
+        title: 'Nairobi',
+        description:
+          'Your driver meets you at Jomo Kenyatta International Airport and takes you to your hotel in Nairobi, where the evening is yours to rest after the flight. Your guide meets you briefly to talk through the days ahead, so there is nothing left to arrange.',
+        hook: 'A warm welcome to Kenya and a restful first night.',
+        highlight: 'Meeting the guide who will share the whole safari with you',
+        practical: 'About 1 h from the airport, depending on traffic',
         places: ['nairobi'],
         driveHours: 1,
         activities: ['Airport transfer'],
@@ -41,9 +45,13 @@ export const eastAfrica: ItineraryInput[] = [
       },
       {
         day: 2,
-        title: 'Nairobi to Amboseli',
+        title: 'Nairobi → Amboseli',
         description:
-          'Drive south to Amboseli for an afternoon among its elephant families, with Kilimanjaro on the skyline when the clouds clear.',
+          'You drive south with your guide to Amboseli, a UNESCO Biosphere Reserve known for its elephant families. On the afternoon game drive you watch them move between the swamps and the dusty plains, and when the clouds clear, Kilimanjaro rises snow-capped behind them. Your camp faces the mountain from a private conservancy.',
+        hook: 'Elephants on the plains, Kilimanjaro on the horizon.',
+        highlight: 'Elephants walking in front of Kilimanjaro',
+        practical: 'About 4 h from Nairobi',
+        guideTip: 'Kilimanjaro is most often clear at dawn and just before sunset, so we plan drives to catch the mountain in those hours.',
         places: ['nairobi', 'amboseli'],
         parks: ['amboseli'],
         driveHours: 4,
@@ -54,7 +62,11 @@ export const eastAfrica: ItineraryInput[] = [
       {
         day: 3,
         title: 'Amboseli',
-        description: 'Morning and afternoon game drives around the swamps and plains.',
+        description:
+          'You head out early, when the mountain is most likely to be clear and the air is cool. Elephants, buffalo and hippos gather at the swamps fed by Kilimanjaro’s snowmelt, and lion and cheetah hunt on the open plains. You return to camp in the heat and go out again for the evening light.',
+        hook: 'A full day with the elephant families of Amboseli.',
+        highlight: 'Elephants wading through the swamps at dawn',
+        practical: 'Morning and afternoon game drives',
         places: ['amboseli'],
         parks: ['amboseli'],
         activities: ['Game drives'],
@@ -63,8 +75,12 @@ export const eastAfrica: ItineraryInput[] = [
       },
       {
         day: 4,
-        title: 'Amboseli to Lake Nakuru',
-        description: 'A long drive north into the Rift Valley to Lake Nakuru, known for rhino and, at times, flamingos.',
+        title: 'Amboseli → Lake Nakuru',
+        description:
+          'It is a long drive north, but the Rift Valley views make it worthwhile. Lake Nakuru National Park is a fenced sanctuary for both black and white rhino, and on the afternoon game drive your guide looks for them along with Rothschild’s giraffe and, at times, flamingos on the lakeshore.',
+        hook: 'North into the Rift Valley, to a lake known for its rhino.',
+        highlight: 'With luck, a white rhino grazing by the lakeshore',
+        practical: 'About 7 h, with stops on the way',
         places: ['amboseli', 'lake-nakuru'],
         parks: ['lake-nakuru'],
         driveHours: 7,
@@ -74,8 +90,12 @@ export const eastAfrica: ItineraryInput[] = [
       },
       {
         day: 5,
-        title: 'Lake Nakuru to the Maasai Mara',
-        description: 'Drive west to the Maasai Mara with a game drive on arrival.',
+        title: 'Lake Nakuru → Maasai Mara',
+        description:
+          'You drive west to the Maasai Mara, where rolling grasslands stretch to the Tanzanian border and join the Serengeti. On your first game drive you look for the big cats that make the Mara famous, lion, cheetah and leopard, as the sun sets over the plains.',
+        hook: 'West to the most famous plains in Kenya.',
+        highlight: 'Your first sunset over the Mara plains',
+        practical: 'About 5 h from Lake Nakuru',
         places: ['lake-nakuru', 'maasai-mara'],
         parks: ['maasai-mara'],
         driveHours: 5,
@@ -86,7 +106,11 @@ export const eastAfrica: ItineraryInput[] = [
       {
         day: 6,
         title: 'Maasai Mara',
-        description: 'A full day on the Mara plains; between July and October the migration herds are usually here.',
+        description:
+          'With a packed lunch on board, you spend the day exploring the Mara. Between July and October the migration herds are usually here, and your guide may head for the Mara River, where crossings are possible though never guaranteed. At any time of year the reserve’s lion prides and cheetahs are the stars.',
+        hook: 'A full day on the plains, following the big cats and the herds.',
+        highlight: 'With luck, a lion pride on the open plains of the Mara',
+        practical: 'Full-day game drive with a packed lunch',
         places: ['maasai-mara'],
         parks: ['maasai-mara'],
         activities: ['Full-day game drive'],
@@ -95,8 +119,12 @@ export const eastAfrica: ItineraryInput[] = [
       },
       {
         day: 7,
-        title: 'Return to Nairobi',
-        description: 'A morning game drive, then fly or drive back to Nairobi.',
+        title: 'Maasai Mara → Nairobi',
+        description:
+          'You enjoy a final early game drive, when the cats are most active, then fly or drive back to Nairobi for your onward connection.',
+        hook: 'One last morning drive, then back to Nairobi.',
+        highlight: 'A last early-morning drive on the Mara',
+        practical: 'A short flight or about 5–6 h by road to Nairobi',
         places: ['maasai-mara', 'nairobi'],
         parks: ['maasai-mara'],
         activities: ['Morning game drive'],
@@ -109,6 +137,13 @@ export const eastAfrica: ItineraryInput[] = [
     pricing: placeholderPricing(2890, 'Mid Range'),
     order: 30,
     lastReviewed: '2026-10-26',
+    seasonNote:
+      'July to October is when the migration herds are usually in the Maasai Mara, the most popular time to visit, so camps fill early.',
+    whyLove: [
+      'Amboseli’s elephants with Kilimanjaro behind them',
+      'Rhino at Lake Nakuru and big cats in the Maasai Mara',
+      'Three classic Kenyan parks with your own guide',
+    ],
   },
   {
     slug: 'kenya-samburu-mara-fly-in',
@@ -128,8 +163,12 @@ export const eastAfrica: ItineraryInput[] = [
     itinerary: [
       {
         day: 1,
-        title: 'Arrival in Nairobi',
-        description: 'Transfer to Giraffe Manor, where Rothschild’s giraffes visit at breakfast.',
+        title: 'Nairobi',
+        description:
+          'Your driver meets you at the airport and takes you to Giraffe Manor, a historic house in the green suburbs of Nairobi. Rothschild’s giraffes live in the surrounding sanctuary and visit the manor every morning, often leaning in through the windows at breakfast.',
+        hook: 'A night where giraffes come to breakfast.',
+        highlight: 'A giraffe leaning in through the window at breakfast',
+        practical: 'About 1 h from the airport, depending on traffic',
         places: ['nairobi'],
         driveHours: 1,
         activities: ['Airport transfer'],
@@ -138,8 +177,12 @@ export const eastAfrica: ItineraryInput[] = [
       },
       {
         day: 2,
-        title: 'Fly to Samburu',
-        description: 'Fly north to Samburu for an afternoon drive along the Ewaso Nyiro River.',
+        title: 'Nairobi → Samburu',
+        description:
+          'A light aircraft takes you north to Samburu, where red earth, doum palms and the Ewaso Nyiro River make a very different landscape from the south. Your guide meets you at the airstrip, and on the afternoon drive along the river you look for elephants coming to drink and the animals found only in the north.',
+        hook: 'North by air to a dry, beautiful land and its rare wildlife.',
+        highlight: 'Elephants drinking from the Ewaso Nyiro River',
+        practical: 'A light-aircraft flight north from Nairobi',
         places: ['nairobi', 'samburu'],
         parks: ['samburu'],
         activities: ['Light-aircraft flight', 'Afternoon game drive'],
@@ -149,7 +192,12 @@ export const eastAfrica: ItineraryInput[] = [
       {
         day: 3,
         title: 'Samburu',
-        description: 'Look for reticulated giraffe, Grevy’s zebra and Beisa oryx, found only in the north.',
+        description:
+          'You set out with your guide to find the Samburu Special Five: reticulated giraffe, Grevy’s zebra, Beisa oryx, gerenuk and Somali ostrich, all adapted to this dry country. Your Samburu guides also take you on a walk, reading tracks and showing you how the plants are used.',
+        hook: 'Today you look for the special animals of the north.',
+        highlight: 'With luck, a gerenuk standing on its hind legs to browse',
+        practical: 'Game drives and a guided walk',
+        guideTip: 'Gerenuk often feed standing on their hind legs; watch the acacia bushes closely in the early morning.',
         places: ['samburu'],
         parks: ['samburu'],
         activities: ['Game drives', 'Guided walk'],
@@ -159,7 +207,12 @@ export const eastAfrica: ItineraryInput[] = [
       {
         day: 4,
         title: 'Samburu',
-        description: 'A day with Samburu guides, with the option of a visit to a nearby community.',
+        description:
+          'You spend another day exploring with your Samburu guides, who know this land intimately. If you choose, you can visit a nearby community to learn about Samburu culture and how families live alongside the wildlife.',
+        hook: 'A day with Samburu guides, perhaps with a village visit.',
+        highlight: 'Learning about Samburu life from your guides',
+        practical: 'Game drives; optional community visit',
+        addOn: { text: 'Visit to a nearby Samburu community' },
         places: ['samburu'],
         parks: ['samburu'],
         activities: ['Game drives', 'Optional community visit'],
@@ -168,8 +221,12 @@ export const eastAfrica: ItineraryInput[] = [
       },
       {
         day: 5,
-        title: 'Fly to the Maasai Mara',
-        description: 'Fly to the Mara and settle into a camp on the escarpment.',
+        title: 'Samburu → Maasai Mara',
+        description:
+          'You fly south to the Maasai Mara and settle into your camp on the Oloololo escarpment, with views over the plains below. On the afternoon drive you look for the lion, cheetah and leopard the Mara is known for.',
+        hook: 'From the dry north to the green plains of the Mara.',
+        highlight: 'The view over the Mara from your escarpment camp',
+        practical: 'A light-aircraft flight to the Maasai Mara',
         places: ['samburu', 'maasai-mara'],
         parks: ['maasai-mara'],
         activities: ['Light-aircraft flight', 'Afternoon game drive'],
@@ -179,7 +236,11 @@ export const eastAfrica: ItineraryInput[] = [
       {
         day: 6,
         title: 'Maasai Mara',
-        description: 'A full day on the plains below the escarpment.',
+        description:
+          'You spend the whole day exploring the Mara with a packed lunch. Between July and October the migration herds are usually here, and your guide may head for the Mara River, where crossings are possible though never guaranteed. At any time of year the reserve’s lion prides are the stars.',
+        hook: 'A full day on the plains below the escarpment.',
+        highlight: 'With luck, a lion pride on the open plains of the Mara',
+        practical: 'Full-day game drive with a packed lunch',
         places: ['maasai-mara'],
         parks: ['maasai-mara'],
         activities: ['Full-day game drive'],
@@ -189,7 +250,12 @@ export const eastAfrica: ItineraryInput[] = [
       {
         day: 7,
         title: 'Maasai Mara',
-        description: 'Another day in the Mara, with the option of a balloon flight.',
+        description:
+          'If you choose, you rise before dawn for a balloon flight, drifting over the plains as the sun comes up, followed by a bush breakfast. Otherwise you enjoy game drives at the best hours and an afternoon at the camp.',
+        hook: 'Another day in the Mara, perhaps from the air at sunrise.',
+        highlight: 'The Mara plains at sunrise',
+        practical: 'Game drives; optional balloon flight at dawn',
+        addOn: { text: 'Sunrise balloon flight over the Maasai Mara' },
         places: ['maasai-mara'],
         parks: ['maasai-mara'],
         activities: ['Game drives', 'Optional balloon flight'],
@@ -198,8 +264,11 @@ export const eastAfrica: ItineraryInput[] = [
       },
       {
         day: 8,
-        title: 'Fly back to Nairobi',
-        description: 'A morning drive and the flight back to Nairobi.',
+        title: 'Maasai Mara → Nairobi',
+        description: 'You enjoy a final early game drive, then fly back to Nairobi for your onward connection.',
+        hook: 'One last morning drive, then a flight back to Nairobi.',
+        highlight: 'A last early-morning drive on the Mara',
+        practical: 'A light-aircraft flight to Nairobi',
         places: ['maasai-mara', 'nairobi'],
         parks: ['maasai-mara'],
         activities: ['Light-aircraft flight'],
@@ -217,6 +286,13 @@ export const eastAfrica: ItineraryInput[] = [
     pricing: placeholderPricing(7800, 'Luxury', { singleSupplementUsd: 1600 }),
     order: 31,
     lastReviewed: '2026-10-26',
+    seasonNote:
+      'July to October is when the migration herds are usually in the Maasai Mara, and January to February is dry and quieter in both Samburu and the Mara.',
+    whyLove: [
+      'Giraffes at breakfast at Giraffe Manor',
+      'Samburu’s rare northern species, then the Maasai Mara from an escarpment camp',
+      'Light-aircraft flights between them, with no long drives',
+    ],
   },
   {
     slug: 'uganda-gorillas-chimps',
@@ -236,8 +312,12 @@ export const eastAfrica: ItineraryInput[] = [
     itinerary: [
       {
         day: 1,
-        title: 'Arrival in Entebbe',
-        description: 'Transfer to a lakeside hotel in Entebbe.',
+        title: 'Entebbe',
+        description:
+          'Your driver meets you at Entebbe Airport and takes you to a lakeside hotel on the shore of Lake Victoria, the largest lake in Africa. The evening is yours to rest and watch the light fade over the water.',
+        hook: 'A quiet first night on the shore of Lake Victoria.',
+        highlight: 'Sunset over Lake Victoria',
+        practical: 'About 15 min from Entebbe Airport',
         places: ['entebbe'],
         driveHours: 0.5,
         activities: ['Airport transfer'],
@@ -246,8 +326,12 @@ export const eastAfrica: ItineraryInput[] = [
       },
       {
         day: 2,
-        title: 'Entebbe to Kibale',
-        description: 'A full day’s drive west to Kibale Forest.',
+        title: 'Entebbe → Kibale',
+        description:
+          'You drive west with your guide through tea plantations, banana groves and busy market towns to Kibale Forest. It is a long day, but the scenery changes constantly, and your guide stops for lunch and anything worth seeing. You reach your lodge in the forest by evening.',
+        hook: 'A long, green drive west to the forest of the chimpanzees.',
+        highlight: 'The tea plantations of western Uganda',
+        practical: 'About 6 h from Entebbe',
         places: ['entebbe', 'kibale'],
         driveHours: 6,
         activities: ['Scenic drive'],
@@ -256,8 +340,13 @@ export const eastAfrica: ItineraryInput[] = [
       },
       {
         day: 3,
-        title: 'Chimpanzee tracking',
-        description: 'Track a habituated chimpanzee community through the forest with a ranger, then walk the Bigodi wetland.',
+        title: 'Kibale',
+        description:
+          'You set out with a ranger to track a habituated chimpanzee community through the forest, following their calls and hooting until you find them feeding, grooming or moving through the trees. Kibale is home to 13 primate species, one of the highest concentrations in Africa. In the afternoon you walk the Bigodi Wetland, where monkeys and colourful birds live in the papyrus.',
+        hook: 'Today you follow the calls of the chimpanzees.',
+        highlight: 'An hour with a chimpanzee community in the forest',
+        practical: 'Chimpanzee tracking in the morning; wetland walk',
+        guideTip: 'Chimpanzees are most active early in the day, so morning tracking usually brings the liveliest encounters.',
         places: ['kibale'],
         parks: ['kibale'],
         activities: ['Chimpanzee tracking', 'Wetland walk'],
@@ -266,8 +355,12 @@ export const eastAfrica: ItineraryInput[] = [
       },
       {
         day: 4,
-        title: 'Kibale to Bwindi',
-        description: 'Drive south through Queen Elizabeth National Park to Bwindi.',
+        title: 'Kibale → Bwindi',
+        description:
+          'You drive south through Queen Elizabeth National Park, game viewing on the way. In the Ishasha sector, lions are sometimes found resting in the branches of fig trees. Then the road climbs into the steep, forested hills of Bwindi, where your lodge looks straight into the forest.',
+        hook: 'South through Queen Elizabeth National Park to the gorilla forest.',
+        highlight: 'Tree-climbing lions in Ishasha, if you are lucky',
+        practical: 'About 7 h, game viewing on the way',
         places: ['kibale', 'bwindi'],
         driveHours: 7,
         activities: ['Game drive en route'],
@@ -276,8 +369,14 @@ export const eastAfrica: ItineraryInput[] = [
       },
       {
         day: 5,
-        title: 'Gorilla trekking',
-        description: 'Trek into the forest to spend an hour with a mountain gorilla family. Treks take from one to several hours.',
+        title: 'Bwindi',
+        description:
+          'After a briefing from the rangers, you trek into the Bwindi Impenetrable Forest, a UNESCO World Heritage Site home to about half of the world’s mountain gorillas. Treks take from one to several hours, and when you find the family you spend an hour with them, watching the young play and the silverback rest just metres away.',
+        hook: 'The day you meet a mountain gorilla family.',
+        highlight: 'An hour with a mountain gorilla family',
+        practical: 'Gorilla trek of one to several hours',
+        guideTip:
+          'Wear long sleeves and gardening gloves on the trek: the forest is thick with nettles, and gloves help when you grab a branch.',
         places: ['bwindi'],
         parks: ['bwindi'],
         activities: ['Gorilla trek'],
@@ -286,8 +385,12 @@ export const eastAfrica: ItineraryInput[] = [
       },
       {
         day: 6,
-        title: 'Return to Entebbe',
-        description: 'Fly back to Entebbe from a nearby airstrip, or drive.',
+        title: 'Bwindi → Entebbe',
+        description:
+          'You fly back to Entebbe from a nearby airstrip, with views over the forested hills, or drive with your guide, for your onward connection.',
+        hook: 'Home with memories of the gorillas.',
+        highlight: 'A last look over the forested hills of Bwindi',
+        practical: 'A short flight from a nearby airstrip, or a long drive',
         places: ['bwindi', 'entebbe'],
         activities: ['Flight or drive'],
         meals: meals.b,
@@ -304,6 +407,13 @@ export const eastAfrica: ItineraryInput[] = [
     pricing: placeholderPricing(3890, 'Mid Range', { note: 'Includes gorilla and chimpanzee permits at the current published rates.' }),
     order: 32,
     lastReviewed: '2026-10-26',
+    seasonNote:
+      'June to September and December to February are the driest months for gorilla trekking, when forest paths are easier; permits are limited each day, so book early.',
+    whyLove: [
+      'An hour with a mountain gorilla family in Bwindi',
+      'Chimpanzee tracking in Kibale, home to 13 primate species',
+      'A guide who handles every permit and every mile of the journey',
+    ],
   },
   {
     slug: 'rwanda-gorilla-trek',
@@ -324,8 +434,12 @@ export const eastAfrica: ItineraryInput[] = [
     itinerary: [
       {
         day: 1,
-        title: 'Arrival and Kigali',
-        description: 'Arrive in Kigali for a city tour including the Kigali Genocide Memorial.',
+        title: 'Kigali',
+        description:
+          'You arrive in Kigali and your guide takes you on a tour of the city, including the Kigali Genocide Memorial, a moving place that helps you understand the country’s recent history. The evening is yours to rest at your hotel.',
+        hook: 'A first day in Rwanda’s calm, green capital.',
+        highlight: 'A thoughtful afternoon at the Kigali Genocide Memorial',
+        practical: 'About 30 min from Kigali Airport',
         places: ['kigali'],
         driveHours: 0.5,
         activities: ['City tour'],
@@ -334,8 +448,13 @@ export const eastAfrica: ItineraryInput[] = [
       },
       {
         day: 2,
-        title: 'Kigali to Volcanoes',
-        description: 'Drive about two and a half hours to Volcanoes National Park and settle into your lodge.',
+        title: 'Kigali → Volcanoes',
+        description:
+          'You drive north-west through terraced hills to Volcanoes National Park, where the Virunga volcanoes rise above the farmland. Your lodge’s forest villas sit on the slopes of an old volcanic cone, and the afternoon is free to rest or join a village walk.',
+        hook: 'Into the land of a thousand hills and the Virunga volcanoes.',
+        highlight: 'The Virunga volcanoes rising above the clouds',
+        practical: 'About 2.5 h from Kigali',
+        addOn: { text: 'Village walk near the lodge' },
         places: ['kigali', 'volcanoes'],
         driveHours: 2.5,
         activities: ['Optional village walk'],
@@ -344,8 +463,14 @@ export const eastAfrica: ItineraryInput[] = [
       },
       {
         day: 3,
-        title: 'Gorilla trek and return to Kigali',
-        description: 'An early briefing at park headquarters, then trek to a gorilla family for an hour, before the drive back to Kigali.',
+        title: 'Volcanoes → Kigali',
+        description:
+          'After an early briefing at park headquarters, you trek up through farmland and bamboo forest to find a mountain gorilla family. You spend an hour with them, watching the young play and the silverback rest just metres away, before walking down and driving back to Kigali.',
+        hook: 'The day you meet a mountain gorilla family.',
+        highlight: 'An hour with a mountain gorilla family',
+        practical: 'Gorilla trek, then about 2.5 h to Kigali',
+        guideTip:
+          'Wear long sleeves and gardening gloves on the trek: the forest is thick with nettles, and gloves help when you grab a branch.',
         places: ['volcanoes', 'kigali'],
         parks: ['volcanoes'],
         driveHours: 2.5,
@@ -367,6 +492,13 @@ export const eastAfrica: ItineraryInput[] = [
     }),
     order: 33,
     lastReviewed: '2026-10-26',
+    seasonNote:
+      'June to September and December to February are the driest months for gorilla trekking, when forest paths are easier; permits are limited each day, so book early.',
+    whyLove: [
+      'An hour with a mountain gorilla family in Volcanoes National Park',
+      'Forest villas on the slopes of a volcanic cone',
+      'A short, seamless journey from Kigali',
+    ],
   },
   {
     slug: 'rwanda-primates-akagera',
@@ -387,8 +519,12 @@ export const eastAfrica: ItineraryInput[] = [
     itinerary: [
       {
         day: 1,
-        title: 'Arrival in Kigali',
-        description: 'Arrive in Kigali and transfer to your hotel.',
+        title: 'Kigali',
+        description:
+          'Your driver meets you at Kigali Airport and takes you to your hotel, where the evening is yours to rest after the flight.',
+        hook: 'A warm welcome to Rwanda and a quiet first night.',
+        highlight: 'Your first evening in the land of a thousand hills',
+        practical: 'About 30 min from Kigali Airport',
         places: ['kigali'],
         driveHours: 0.5,
         activities: ['Airport transfer'],
@@ -397,8 +533,12 @@ export const eastAfrica: ItineraryInput[] = [
       },
       {
         day: 2,
-        title: 'Kigali to Akagera',
-        description: 'Drive east to Akagera for an afternoon game drive and a boat trip on Lake Ihema.',
+        title: 'Kigali → Akagera',
+        description:
+          'You drive east to Akagera National Park, where lions were reintroduced in 2015 and rhino in 2017, making it home to the Big Five again. On the afternoon game drive you look for elephant, giraffe and buffalo, then take a boat trip on Lake Ihema among hippos, crocodiles and water birds.',
+        hook: 'Savanna, lakes and the return of the Big Five.',
+        highlight: 'Hippos and crocodiles on a boat trip on Lake Ihema',
+        practical: 'About 2.5 h from Kigali',
         places: ['kigali', 'akagera'],
         parks: ['akagera'],
         driveHours: 2.5,
@@ -408,8 +548,12 @@ export const eastAfrica: ItineraryInput[] = [
       },
       {
         day: 3,
-        title: 'Akagera to Nyungwe',
-        description: 'A morning drive in Akagera, then a long drive across the country to Nyungwe Forest.',
+        title: 'Akagera → Nyungwe',
+        description:
+          'After a morning game drive in Akagera, you drive across the country to Nyungwe Forest, one of the oldest rainforests in Africa. It is a long day, but the views of hills, lakes and tea plantations make it a journey in itself. Your lodge sits on a tea plantation at the edge of the forest.',
+        hook: 'From savanna to one of Africa’s oldest rainforests.',
+        highlight: 'The tea plantations at the edge of Nyungwe Forest',
+        practical: 'About 7 h, with stops on the way',
         places: ['akagera', 'nyungwe'],
         parks: ['akagera'],
         driveHours: 7,
@@ -419,8 +563,13 @@ export const eastAfrica: ItineraryInput[] = [
       },
       {
         day: 4,
-        title: 'Chimpanzees and canopy walk',
-        description: 'Track chimpanzees at dawn, then walk the canopy bridge above the forest.',
+        title: 'Nyungwe',
+        description:
+          'You set out at dawn with a ranger to track chimpanzees through the forest, following their calls until you find them. Later you walk the canopy bridge, suspended high above the forest floor, with views over a sea of green and the calls of birds and monkeys all around.',
+        hook: 'Chimpanzees at dawn and a walk among the treetops.',
+        highlight: 'Walking the canopy bridge above the forest',
+        practical: 'Chimpanzee tracking at dawn; canopy walk',
+        guideTip: 'Chimpanzees move fast and early in Nyungwe, so wear good boots and be ready to walk briskly when they are found.',
         places: ['nyungwe'],
         parks: ['nyungwe'],
         activities: ['Chimpanzee tracking', 'Canopy walk'],
@@ -429,8 +578,12 @@ export const eastAfrica: ItineraryInput[] = [
       },
       {
         day: 5,
-        title: 'Nyungwe to Volcanoes',
-        description: 'Drive north along Lake Kivu to Volcanoes National Park.',
+        title: 'Nyungwe → Volcanoes',
+        description:
+          'You drive north along the shore of Lake Kivu, one of the African Great Lakes, with views over the water and the hills beyond. In the afternoon you reach Volcanoes National Park, where your lodge’s forest villas sit on the slopes of an old volcanic cone.',
+        hook: 'North along the shores of Lake Kivu.',
+        highlight: 'The shores of Lake Kivu on the drive north',
+        practical: 'About 6 h, with stops on the way',
         places: ['nyungwe', 'volcanoes'],
         driveHours: 6,
         activities: ['Scenic drive'],
@@ -439,8 +592,14 @@ export const eastAfrica: ItineraryInput[] = [
       },
       {
         day: 6,
-        title: 'Gorilla trek',
-        description: 'Trek to a mountain gorilla family for an hour, with an afternoon at leisure.',
+        title: 'Volcanoes',
+        description:
+          'After an early briefing at park headquarters, you trek up through farmland and bamboo forest to find a mountain gorilla family. You spend an hour with them, watching the young play and the silverback rest just metres away. The afternoon is yours to rest at the lodge.',
+        hook: 'The day you meet a mountain gorilla family.',
+        highlight: 'An hour with a mountain gorilla family',
+        practical: 'Gorilla trek of one to several hours',
+        guideTip:
+          'Wear long sleeves and gardening gloves on the trek: the forest is thick with nettles, and gloves help when you grab a branch.',
         places: ['volcanoes'],
         parks: ['volcanoes'],
         activities: ['Gorilla trek'],
@@ -449,8 +608,11 @@ export const eastAfrica: ItineraryInput[] = [
       },
       {
         day: 7,
-        title: 'Return to Kigali',
-        description: 'Drive back to Kigali for your flight.',
+        title: 'Volcanoes → Kigali',
+        description: 'You drive back to Kigali with your guide for your onward flight.',
+        hook: 'Back to Kigali, with the gorillas still in your thoughts.',
+        highlight: 'A last view of the Virunga volcanoes',
+        practical: 'About 2.5 h to Kigali',
         places: ['volcanoes', 'kigali'],
         driveHours: 2.5,
         activities: ['Airport transfer'],
@@ -468,5 +630,12 @@ export const eastAfrica: ItineraryInput[] = [
     pricing: placeholderPricing(5900, 'Luxury'),
     order: 34,
     lastReviewed: '2026-10-26',
+    seasonNote:
+      'June to September and December to February are the driest months for gorilla trekking, when forest paths are easier; permits are limited each day, so book early.',
+    whyLove: [
+      'Mountain gorillas in Volcanoes and chimpanzees in Nyungwe',
+      'The Big Five on a savanna safari in Akagera',
+      'A complete journey across Rwanda with your own guide',
+    ],
   },
 ];

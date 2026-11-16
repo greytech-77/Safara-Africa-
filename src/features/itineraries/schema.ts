@@ -36,6 +36,9 @@ export const staySchema = z.object({
   accommodation: slug.optional(),
   // Park fee charged per person per night for sleeping here (inside a park or on the mountain).
   nightlyFee: z.object({ park: slug, feeType: z.enum(nightlyFeeTypes) }).optional(),
+  // One short line on why it is a good place to sleep, shown after the lodge name ("Overnight: … — <benefit>").
+  // Lives on the stay, so every tour describes the lodge the same way.
+  benefit: z.string().max(90).optional(),
 });
 
 export const trekStageSchema = z.object({
@@ -63,6 +66,17 @@ export const daySchema = z.object({
   trek: trekStageSchema.optional(),
   // Photo shown when the day is opened. Falls back to the lodge, then the park, then the trip's hero photo.
   image: img.optional(),
+  // Booking-focused day copy (see docs/itinerary-writing.md). All optional: a day without them shows its description.
+  // Hook: the day's promise in one italic sentence, under 15 words.
+  hook: z.string().max(110).optional(),
+  // The single best moment of the day, shown with a ✦.
+  highlight: z.string().max(90).optional(),
+  // Driving time and distance, or flight time, e.g. "About 2.5 h / 120 km from Arusha".
+  practical: z.string().max(90).optional(),
+  // One sentence from our guides: best seat, best time for photos…
+  guideTip: z.string().max(200).optional(),
+  // An optional extra for this day, e.g. "Walking safari in the conservation area"; priceFromUsd only if confirmed.
+  addOn: z.object({ text: z.string(), priceFromUsd: z.number().positive().optional() }).optional(),
 });
 
 export const seasons = ['low', 'shoulder', 'high', 'peak'] as const;
@@ -126,6 +140,10 @@ export const itinerarySchema = z
     order: z.number().default(99),
     draft: z.boolean().default(false),
     lastReviewed: isoDate,
+    // An honest seasonal note shown above the day by day (no invented urgency).
+    seasonNote: z.string().max(220).optional(),
+    // "Why you'll love this journey": three short reasons after the last day.
+    whyLove: z.array(z.string()).max(3).default([]),
   })
   .superRefine((it, ctx) => {
     if (it.itinerary.length !== it.days) {

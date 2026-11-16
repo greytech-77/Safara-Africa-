@@ -36,18 +36,27 @@ export const coastAndCombos: ItineraryInput[] = [
     itinerary: [
       {
         day: 1,
-        title: 'Arrival in Arusha',
-        description: 'Transfer from Kilimanjaro Airport to your hotel in Arusha.',
+        title: 'Kilimanjaro Airport → Arusha',
+        description:
+          'Your driver meets you at arrivals and takes you to your hotel in Arusha, about an hour away past farms and villages. Arusha sits at around 1,400 m beneath Mount Meru, so the evenings are pleasantly mild. Tonight is simply for rest after the flight.',
+        hook: 'A warm welcome and a quiet first night before the adventure.',
+        highlight: 'Your first evening in Tanzania, beneath Mount Meru',
+        practical: 'About 1 h / 50 km from Kilimanjaro Airport',
         places: ['kilimanjaro-airport', 'arusha'],
         driveHours: 1,
-        activities: ['Airport transfer'],
+        activities: ['Airport meet-and-greet', 'Transfer to Arusha'],
         meals: meals.d,
         stay: 'kibo-palace-arusha',
       },
       {
         day: 2,
-        title: 'Tarangire',
-        description: 'Drive to Tarangire for an afternoon game drive and a night inside the park.',
+        title: 'Arusha → Tarangire',
+        description:
+          'Your guide drives you through Maasai country to Tarangire, where ancient baobabs rise from the golden grass. In the dry season, elephant herds several hundred strong gather along the river, and lions rest in the shade nearby. You spend the afternoon among them and sleep inside the park, with the sounds of the bush around your room.',
+        hook: 'Today you meet the giants of Tarangire.',
+        highlight: 'Elephants crossing the Tarangire River at sunset',
+        practical: 'About 2 h / 120 km from Arusha',
+        guideTip: 'Keep your camera close on the afternoon drive: the elephants often come down to the river in the last hours of light.',
         places: ['arusha', 'tarangire'],
         parks: ['tarangire'],
         driveHours: 2,
@@ -57,8 +66,13 @@ export const coastAndCombos: ItineraryInput[] = [
       },
       {
         day: 3,
-        title: 'Tarangire to Karatu',
-        description: 'A morning in Tarangire, then up to the Ngorongoro highlands, with an optional village walk in Mto wa Mbu on the way.',
+        title: 'Tarangire → Karatu',
+        description:
+          'You spend the morning game driving in Tarangire, then head north to the lively market town of Mto wa Mbu, where you can walk through banana groves and meet local families. From there the road climbs the Rift Valley escarpment to Karatu, in the cool, green highlands, for the night.',
+        hook: 'A last morning with the elephants, then up into the green hills.',
+        highlight: 'Walking through the banana groves of Mto wa Mbu',
+        practical: 'About 2.5 h, with stops on the way',
+        addOn: { text: 'Village walk in Mto wa Mbu' },
         places: ['tarangire', 'mto-wa-mbu', 'karatu'],
         parks: ['tarangire'],
         driveHours: 2.5,
@@ -68,8 +82,12 @@ export const coastAndCombos: ItineraryInput[] = [
       },
       {
         day: 4,
-        title: 'To the central Serengeti',
-        description: 'Over the highlands and onto the Serengeti plains, with a game drive to camp.',
+        title: 'Karatu → Central Serengeti',
+        description:
+          'You cross the Ngorongoro highlands, past Maasai herders and the Olduvai Gorge area, then drop onto plains so wide the horizon seems to curve. The Serengeti covers some 14,750 km² and has been a UNESCO World Heritage Site since 1981. Your guide game drives all the way to your tented camp near Seronera.',
+        hook: 'Today the land opens up and the Serengeti begins.',
+        highlight: 'The moment the Serengeti plains open out ahead of you',
+        practical: 'About 5 h through the highlands, game viewing on the way',
         places: ['karatu', 'central-serengeti'],
         parks: ['ngorongoro', 'serengeti'],
         driveHours: 5,
@@ -79,8 +97,13 @@ export const coastAndCombos: ItineraryInput[] = [
       },
       {
         day: 5,
-        title: 'Serengeti',
-        description: 'A full day following the big cats and, in season, the migration herds.',
+        title: 'Central Serengeti',
+        description:
+          'You set out early, when the lions are still active and the light is soft. The Seronera valley has resident lion, leopard and cheetah all year, and your guide reads every sign to find them. In the migration months the herds may be close, and you share a picnic lunch with the plains all around you.',
+        hook: 'A full day following the big cats across the plains.',
+        highlight: 'With luck, a lion pride resting on a granite kopje',
+        practical: 'Full-day game drive with a packed lunch',
+        addOn: { text: 'Sunrise balloon flight over the Serengeti' },
         places: ['central-serengeti'],
         parks: ['serengeti'],
         activities: ['Full-day game drive', 'Optional balloon flight'],
@@ -89,8 +112,12 @@ export const coastAndCombos: ItineraryInput[] = [
       },
       {
         day: 6,
-        title: 'Serengeti',
-        description: 'Another day on the plains, with early and late drives for the best light.',
+        title: 'Central Serengeti',
+        description:
+          'Another day on the plains, shaped around the best hours: out at dawn when the cats are moving, back to camp in the heat, and out again for the long golden light of evening. Your guide chooses the route around the latest sightings, looking for leopard in the riverside trees and cheetah on the open grass.',
+        hook: 'Early light, late light and the best of both.',
+        highlight: 'With luck, a cheetah watching from a termite mound',
+        practical: 'Morning and afternoon game drives',
         places: ['central-serengeti'],
         parks: ['serengeti'],
         activities: ['Morning and afternoon game drives'],
@@ -99,8 +126,12 @@ export const coastAndCombos: ItineraryInput[] = [
       },
       {
         day: 7,
-        title: 'Serengeti to the Ngorongoro rim',
-        description: 'A morning game drive, then east to the crater rim.',
+        title: 'Central Serengeti → Ngorongoro rim',
+        description:
+          'A final game drive takes you out of the Serengeti, past kopjes where lions often rest on the warm rock. By late afternoon you climb into the cool forest of the Ngorongoro rim, where the air smells of wood smoke and the crater lies 600 m below your lodge.',
+        hook: 'One last morning on the plains, then a night on the edge of a crater.',
+        highlight: 'The first view down into the Ngorongoro Crater from the rim',
+        practical: 'About 4 h, game viewing on the way',
         places: ['central-serengeti', 'ngorongoro'],
         parks: ['serengeti', 'ngorongoro'],
         driveHours: 4,
@@ -110,9 +141,12 @@ export const coastAndCombos: ItineraryInput[] = [
       },
       {
         day: 8,
-        title: 'Ngorongoro Crater, then fly to Zanzibar',
+        title: 'Ngorongoro Crater → Zanzibar',
         description:
-          'A morning on the crater floor, then a short drive to the Lake Manyara airstrip for an afternoon flight to Zanzibar and transfer to your beach hotel.',
+          'You descend 600 m into the Ngorongoro Crater, the largest unbroken volcanic caldera on Earth and a UNESCO World Heritage Site, for a morning looking for lion, buffalo, hippo and black rhino. Then your guide drives you to the Lake Manyara airstrip for an afternoon flight to Zanzibar. By evening you are by the sea, with the sound of the waves replacing the sounds of the bush.',
+        hook: 'From the crater floor to the Indian Ocean in a single day.',
+        highlight: 'Trading the crater floor for a sunset over the ocean',
+        practical: 'About 1.5 h to Lake Manyara airstrip, then a flight to Zanzibar',
         places: ['ngorongoro', 'zanzibar-east'],
         parks: ['ngorongoro'],
         driveHours: 1.5,
@@ -124,7 +158,12 @@ export const coastAndCombos: ItineraryInput[] = [
       {
         day: 9,
         title: 'Zanzibar',
-        description: 'A free day on the beach, or a snorkelling trip to the reef.',
+        description:
+          'Today is yours: swim in the warm, clear water, read in the shade or walk the white sand at low tide. If you would like to see the reef, a snorkelling trip shows you coral gardens full of colourful fish.',
+        hook: 'Warm sand, turquoise water and nowhere you need to be.',
+        highlight: 'Your first swim in the Indian Ocean',
+        practical: 'A free day at the beach',
+        addOn: { text: 'Snorkelling trip to the reef' },
         places: ['zanzibar-east'],
         activities: ['Beach', 'Optional snorkelling'],
         meals: meals.bd,
@@ -133,7 +172,12 @@ export const coastAndCombos: ItineraryInput[] = [
       {
         day: 10,
         title: 'Zanzibar',
-        description: 'Another day at your own pace: a Stone Town and spice tour, a dhow sunset cruise, or simply the beach.',
+        description:
+          'Spend the day at your own pace. You could explore Stone Town, a UNESCO World Heritage Site of carved doors and narrow lanes, and a spice farm where cloves and nutmeg grow, or take a dhow cruise at sunset. Or stay on the beach and let the days of the safari settle.',
+        hook: 'Spices, old stone streets or simply the sea: you choose.',
+        highlight: 'A traditional dhow sailing into the sunset',
+        practical: 'A free day, with optional excursions',
+        addOn: { text: 'Stone Town and spice tour, or a sunset dhow cruise' },
         places: ['zanzibar-east'],
         activities: ['Optional Stone Town and spice tour'],
         meals: meals.bd,
@@ -141,8 +185,12 @@ export const coastAndCombos: ItineraryInput[] = [
       },
       {
         day: 11,
-        title: 'Departure',
-        description: 'Transfer to Zanzibar Airport for your flight home.',
+        title: 'Zanzibar → home',
+        description:
+          'You have the morning to swim, pack and enjoy a slow breakfast by the ocean. At the agreed time your driver collects you from the hotel and takes you to Zanzibar Airport for your flight home, with nothing left to arrange.',
+        hook: 'A last swim, a last breakfast by the sea, and an easy journey home.',
+        highlight: 'A final swim in the Indian Ocean',
+        practical: 'About 1 h to Zanzibar Airport',
         places: ['zanzibar-east', 'stone-town'],
         driveHours: 1,
         activities: ['Airport transfer'],
@@ -156,6 +204,13 @@ export const coastAndCombos: ItineraryInput[] = [
     addOns: ['stone-town-and-spice-tour', 'serengeti-balloon-safari', 'maasai-village-visit'],
     order: 0,
     lastReviewed: '2026-10-26',
+    seasonNote:
+      'June to October and December to February are the driest months for both the safari and the beach; June to October is also when Tarangire’s elephants gather along the river.',
+    whyLove: [
+      'Tarangire, the Serengeti and the Ngorongoro Crater with your own guide',
+      'Three slow nights on the beach in Zanzibar to finish',
+      'A short flight from the safari straight to the coast, with no long drive back',
+    ],
   },
   {
     slug: 'tanzania-fly-in',
@@ -176,8 +231,12 @@ export const coastAndCombos: ItineraryInput[] = [
     itinerary: [
       {
         day: 1,
-        title: 'Arrival in Arusha',
-        description: 'Meet-and-greet at Kilimanjaro Airport and transfer to your hotel.',
+        title: 'Kilimanjaro Airport → Arusha',
+        description:
+          'Your driver meets you at arrivals and takes you to your hotel in Arusha, about an hour away past farms and villages at the foot of the mountains. Arusha sits at around 1,400 m beneath Mount Meru, so the evenings are pleasantly mild. Tonight is simply for rest, before the safari begins by air.',
+        hook: 'A warm welcome and a calm first night before you fly.',
+        highlight: 'Your first evening in Tanzania, beneath Mount Meru',
+        practical: 'About 1 h / 50 km from Kilimanjaro Airport',
         places: ['kilimanjaro-airport', 'arusha'],
         driveHours: 1,
         activities: ['Airport transfer'],
@@ -186,8 +245,12 @@ export const coastAndCombos: ItineraryInput[] = [
       },
       {
         day: 2,
-        title: 'Fly to the Serengeti',
-        description: 'A morning flight to the Serengeti, met at the airstrip by your camp guide for a game drive.',
+        title: 'Arusha → Central Serengeti',
+        description:
+          'A light aircraft lifts you over the Ngorongoro highlands, and the Serengeti spreads out below, some 14,750 km² of grassland and a UNESCO World Heritage Site since 1981. Your camp guide meets you at the airstrip and game drives you to the lodge, where a pool overlooks a busy waterhole. In the afternoon you go out again to look for the lion and cheetah of the Seronera area.',
+        hook: 'Today you fly over the highlands and land on the plains.',
+        highlight: 'Seeing the Serengeti from the air for the first time',
+        practical: 'A light-aircraft flight of about an hour from Arusha',
         places: ['arusha', 'central-serengeti'],
         parks: ['serengeti'],
         activities: ['Light-aircraft flight', 'Afternoon game drive'],
@@ -196,8 +259,12 @@ export const coastAndCombos: ItineraryInput[] = [
       },
       {
         day: 3,
-        title: 'Serengeti',
-        description: 'Full-day game drives with the camp’s guides.',
+        title: 'Central Serengeti',
+        description:
+          'You head out early with your guide, when the plains are cool and the lions are still on the move. The Seronera valley, with its rivers and granite kopjes, has resident lion, leopard and cheetah all year. You return to the lodge through the heat of the day and go out again for the soft late light.',
+        hook: 'A full day in the valley of the big cats.',
+        highlight: 'With luck, a leopard in a sausage tree by the Seronera River',
+        practical: 'Morning and afternoon game drives',
         places: ['central-serengeti'],
         parks: ['serengeti'],
         activities: ['Game drives'],
@@ -206,8 +273,13 @@ export const coastAndCombos: ItineraryInput[] = [
       },
       {
         day: 4,
-        title: 'Serengeti',
-        description: 'Another day on the plains, with the option of a sunrise balloon flight.',
+        title: 'Central Serengeti',
+        description:
+          'If you choose, you rise before dawn for a hot-air balloon flight, drifting low over the plains as the sun comes up and landing to a bush breakfast. Otherwise you enjoy a slower start, a swim by the waterhole and game drives in the best light of the day.',
+        hook: 'Another day on the plains, perhaps from the air.',
+        highlight: 'Elephants coming to drink at the lodge waterhole',
+        practical: 'Game drives; optional balloon flight at dawn',
+        addOn: { text: 'Sunrise balloon flight over the Serengeti' },
         places: ['central-serengeti'],
         parks: ['serengeti'],
         activities: ['Game drives', 'Optional balloon flight'],
@@ -216,9 +288,12 @@ export const coastAndCombos: ItineraryInput[] = [
       },
       {
         day: 5,
-        title: 'Fly to Ruaha',
+        title: 'Central Serengeti → Ruaha',
         description:
-          'Fly south to Ruaha, one of Tanzania’s largest and wildest parks, with an afternoon drive along the Great Ruaha River.',
+          'A light aircraft carries you south to Ruaha, one of Tanzania’s largest parks, where baobabs dot the hills and the Great Ruaha River winds through the valley. Your guide meets you at the airstrip, and in the afternoon you drive along the river, where elephants dig in the sand for water and crocodiles bask on the banks.',
+        hook: 'South to one of the wildest parks in Africa.',
+        highlight: 'Elephants digging for water in the Great Ruaha riverbed',
+        practical: 'A light-aircraft flight south to Ruaha',
         places: ['central-serengeti', 'ruaha'],
         parks: ['serengeti', 'ruaha'],
         activities: ['Light-aircraft flight', 'Afternoon game drive'],
@@ -228,7 +303,12 @@ export const coastAndCombos: ItineraryInput[] = [
       {
         day: 6,
         title: 'Ruaha',
-        description: 'Game drives and, where the camp offers it, a guided walk with an armed ranger.',
+        description:
+          'You head out early on a game drive, looking for the greater kudu with their spiralling horns, one of Ruaha’s special animals. Where the camp offers it, you also join a walking safari with an armed ranger, learning to read tracks and smell the bush up close. Few people visit Ruaha, and you often have sightings to yourselves.',
+        hook: 'On foot and by vehicle, in a park with few other visitors.',
+        highlight: 'Tracking animals on foot with an armed ranger',
+        practical: 'Game drives and a guided walk',
+        guideTip: 'On a walking safari, walk in single file and keep quiet: you will see and hear far more, and the animals stay relaxed.',
         places: ['ruaha'],
         parks: ['ruaha'],
         activities: ['Game drives', 'Walking safari'],
@@ -238,7 +318,11 @@ export const coastAndCombos: ItineraryInput[] = [
       {
         day: 7,
         title: 'Ruaha',
-        description: 'A full day looking for Ruaha’s large prides of lion, wild dog and kudu.',
+        description:
+          'Ruaha is known for its large lion prides, and today your guide follows them across the plains and along the river. You also look for wild dog, rare across Africa but present here, and for leopard in the riverside trees. A picnic lunch in the shade of a baobab breaks up the day.',
+        hook: 'A full day looking for Ruaha’s great lion prides.',
+        highlight: 'With luck, a large lion pride resting together in the shade',
+        practical: 'Full day of game drives',
         places: ['ruaha'],
         parks: ['ruaha'],
         activities: ['Game drives'],
@@ -247,8 +331,12 @@ export const coastAndCombos: ItineraryInput[] = [
       },
       {
         day: 8,
-        title: 'Fly to Zanzibar',
-        description: 'Fly from Ruaha to Zanzibar and transfer to your beach hotel on the north coast.',
+        title: 'Ruaha → Zanzibar',
+        description:
+          'You fly from Ruaha to Zanzibar and transfer to your beach hotel on the north coast, where the water is warm and clear all day. By the afternoon the dust of the safari has washed away in the Indian Ocean.',
+        hook: 'From the bush to the beach in one flight.',
+        highlight: 'Stepping from the plane onto white sand and blue water',
+        practical: 'Light-aircraft flight to Zanzibar, then about 1.5 h by road',
         places: ['ruaha', 'zanzibar-north'],
         parks: ['ruaha'],
         activities: ['Light-aircraft flight'],
@@ -258,7 +346,11 @@ export const coastAndCombos: ItineraryInput[] = [
       {
         day: 9,
         title: 'Zanzibar',
-        description: 'A free day by the sea.',
+        description:
+          'Swim, read, sleep in the shade or walk the beach at sunset. The north coast has less tide than the east, so the water stays close and swimmable through the day.',
+        hook: 'A whole day with nothing to do but enjoy the sea.',
+        highlight: 'Sunset over the ocean from the north coast',
+        practical: 'A free day at the beach',
         places: ['zanzibar-north'],
         activities: ['Beach'],
         meals: meals.bd,
@@ -267,7 +359,12 @@ export const coastAndCombos: ItineraryInput[] = [
       {
         day: 10,
         title: 'Zanzibar',
-        description: 'Snorkelling, a dhow cruise, or a day in Stone Town.',
+        description:
+          'Choose how to spend your last full day: snorkelling over the reef, a sunset sail on a traditional dhow, or a day in Stone Town, a UNESCO World Heritage Site of carved doors, spice markets and narrow lanes.',
+        hook: 'Coral reefs, a dhow cruise or the old lanes of Stone Town.',
+        highlight: 'The carved wooden doors of Stone Town',
+        practical: 'A free day, with optional excursions',
+        addOn: { text: 'Snorkelling, a dhow cruise or a Stone Town tour' },
         places: ['zanzibar-north'],
         activities: ['Optional excursions'],
         meals: meals.bd,
@@ -275,8 +372,12 @@ export const coastAndCombos: ItineraryInput[] = [
       },
       {
         day: 11,
-        title: 'Departure',
-        description: 'Transfer to Zanzibar Airport.',
+        title: 'Zanzibar → home',
+        description:
+          'You have the morning to swim, pack and enjoy a slow breakfast by the ocean. At the agreed time your driver collects you from the hotel and takes you to Zanzibar Airport for your flight home, with nothing left to arrange.',
+        hook: 'A last swim, a last breakfast by the sea, and an easy journey home.',
+        highlight: 'A final swim in the Indian Ocean',
+        practical: 'About 1.5 h to Zanzibar Airport',
         places: ['zanzibar-north', 'stone-town'],
         driveHours: 1.5,
         activities: ['Airport transfer'],
@@ -298,6 +399,13 @@ export const coastAndCombos: ItineraryInput[] = [
     addOns: ['serengeti-balloon-safari', 'stone-town-and-spice-tour'],
     order: 13,
     lastReviewed: '2026-10-26',
+    seasonNote:
+      'June to October is the dry season in both the Serengeti and Ruaha, when wildlife gathers near water and the flying weather is at its best.',
+    whyLove: [
+      'Three very different places: the Serengeti, wild Ruaha and Zanzibar',
+      'Light-aircraft flights between them, with no long drives',
+      'Ruaha’s big lion prides and kudu, far from the crowds',
+    ],
   },
   {
     slug: 'zanzibar-beach-escape',
@@ -318,8 +426,12 @@ export const coastAndCombos: ItineraryInput[] = [
     itinerary: [
       {
         day: 1,
-        title: 'Arrival in Stone Town',
-        description: 'Transfer from Zanzibar Airport to your boutique hotel in Stone Town, with dinner at the Forodhani night market.',
+        title: 'Zanzibar Airport → Stone Town',
+        description:
+          'Your driver meets you at Zanzibar Airport and takes you to your boutique hotel in the old heart of Stone Town. In the evening you walk to the Forodhani Gardens night market on the seafront, where grills smoke with fresh seafood and the call to prayer drifts over the water.',
+        hook: 'Spice-scented lanes and dinner by the sea on your first night.',
+        highlight: 'Dinner at the Forodhani night market by the sea',
+        practical: 'About 30 min from Zanzibar Airport',
         places: ['stone-town'],
         driveHours: 0.5,
         activities: ['Airport transfer'],
@@ -328,8 +440,12 @@ export const coastAndCombos: ItineraryInput[] = [
       },
       {
         day: 2,
-        title: 'Stone Town and spice farm',
-        description: 'A guided walk through Stone Town’s lanes, markets and old merchants’ houses, then a spice farm visit with lunch.',
+        title: 'Stone Town and a spice farm',
+        description:
+          'Your guide leads you through Stone Town, a UNESCO World Heritage Site, past carved wooden doors, busy markets and the houses of old merchants. In the afternoon you visit a spice farm, tasting cloves, cinnamon and nutmeg straight from the plant, with lunch cooked with the farm’s own spices.',
+        hook: 'Carved doors, old merchants’ houses and the smell of cloves.',
+        highlight: 'Tasting fresh spices straight from the plant',
+        practical: 'A guided walk in the morning; spice farm in the afternoon',
         places: ['stone-town'],
         activities: ['Stone Town walk', 'Spice farm tour'],
         meals: meals.bl,
@@ -337,8 +453,12 @@ export const coastAndCombos: ItineraryInput[] = [
       },
       {
         day: 3,
-        title: 'To the east coast',
-        description: 'Transfer to the east coast and the white sand and tidal lagoons around Paje.',
+        title: 'Stone Town → East coast',
+        description:
+          'You transfer across the island to the east coast, where palm-lined beaches face a wide turquoise lagoon. Here the tide goes far out and back each day, leaving warm pools and rippled sand to explore at low tide.',
+        hook: 'To the white sand and tidal lagoons of the east coast.',
+        highlight: 'Walking the lagoon at low tide',
+        practical: 'About 1.5 h from Stone Town',
         places: ['stone-town', 'zanzibar-east'],
         driveHours: 1.5,
         activities: ['Beach'],
@@ -347,8 +467,13 @@ export const coastAndCombos: ItineraryInput[] = [
       },
       {
         day: 4,
-        title: 'Beach day',
-        description: 'Swim, snorkel or try kitesurfing on the lagoon.',
+        title: 'East coast',
+        description:
+          'A free day by the sea. The lagoon around Paje is a popular place to learn kitesurfing, or you can snorkel the reef or simply swim and doze in the shade.',
+        hook: 'Swim, snorkel or try kitesurfing on the lagoon.',
+        highlight: 'A day in the warm, clear water of the lagoon',
+        practical: 'A free day at the beach',
+        addOn: { text: 'Snorkelling trip or kitesurfing lesson' },
         places: ['zanzibar-east'],
         activities: ['Beach', 'Optional snorkelling'],
         meals: meals.bd,
@@ -356,8 +481,13 @@ export const coastAndCombos: ItineraryInput[] = [
       },
       {
         day: 5,
-        title: 'Beach day',
-        description: 'A free day, with the option of a dolphin trip or a visit to Jozani Forest and its red colobus monkeys.',
+        title: 'East coast',
+        description:
+          'Spend your last full day as you like. You could visit Jozani Forest, home of the Zanzibar red colobus monkey, found nowhere else in the world, or take a boat trip to look for dolphins. Or simply stay on the beach.',
+        hook: 'A last full day, perhaps with dolphins or red colobus monkeys.',
+        highlight: 'Red colobus monkeys in Jozani Forest, found only on Zanzibar',
+        practical: 'A free day, with optional excursions',
+        addOn: { text: 'Jozani Forest visit or a dolphin trip' },
         places: ['zanzibar-east'],
         activities: ['Optional Jozani Forest visit'],
         meals: meals.bd,
@@ -365,8 +495,12 @@ export const coastAndCombos: ItineraryInput[] = [
       },
       {
         day: 6,
-        title: 'Departure',
-        description: 'Transfer to Zanzibar Airport.',
+        title: 'Zanzibar → home',
+        description:
+          'You have the morning to swim, pack and enjoy a slow breakfast by the ocean. At the agreed time your driver collects you from the hotel and takes you to Zanzibar Airport for your flight home, with nothing left to arrange.',
+        hook: 'A last swim, a last breakfast by the sea, and an easy journey home.',
+        highlight: 'A final swim in the Indian Ocean',
+        practical: 'About 1 h to Zanzibar Airport',
         places: ['zanzibar-east', 'stone-town'],
         driveHours: 1,
         activities: ['Airport transfer'],
@@ -380,6 +514,12 @@ export const coastAndCombos: ItineraryInput[] = [
     addOns: [],
     order: 12,
     lastReviewed: '2026-10-26',
+    seasonNote: 'June to October and December to February are Zanzibar’s driest, sunniest months.',
+    whyLove: [
+      'Stone Town, a UNESCO World Heritage Site, with a guide',
+      'A spice farm visit on the Spice Islands',
+      'Three relaxed days on the white sands of the east coast',
+    ],
   },
   {
     slug: 'zanzibar-nyerere-fly-in',
@@ -400,8 +540,12 @@ export const coastAndCombos: ItineraryInput[] = [
     itinerary: [
       {
         day: 1,
-        title: 'Fly from Zanzibar to Nyerere',
-        description: 'A morning flight from Zanzibar to Nyerere, transfer to a riverside camp and an afternoon game drive.',
+        title: 'Zanzibar → Nyerere',
+        description:
+          'A light aircraft carries you from Zanzibar over the coast to Nyerere National Park, once part of the vast Selous Game Reserve, a UNESCO World Heritage Site. Your guide meets you at the airstrip and takes you to a camp above the Rufiji River. In the afternoon you go out on a game drive, looking for elephant, giraffe, lion and wild dog.',
+        hook: 'From the beach to the bush in a short morning flight.',
+        highlight: 'Landing on a bush airstrip in Nyerere',
+        practical: 'A short light-aircraft flight from Zanzibar',
         places: ['stone-town', 'nyerere'],
         parks: ['nyerere'],
         activities: ['Light-aircraft flight', 'Afternoon game drive'],
@@ -410,8 +554,13 @@ export const coastAndCombos: ItineraryInput[] = [
       },
       {
         day: 2,
-        title: 'Boat safari and game drive',
-        description: 'A boat safari among hippos, crocodiles and birdlife on the Rufiji River, and an afternoon game drive.',
+        title: 'Nyerere',
+        description:
+          'You glide along the Rufiji River by boat, close to pods of hippos, sunning crocodiles and birds such as fish eagles and kingfishers. It is one of the few parks in Tanzania where boat safaris are possible. In the afternoon your guide takes you on a game drive through the woodland and lakes.',
+        hook: 'A boat safari on the Rufiji, then the bush by vehicle.',
+        highlight: 'Drifting past hippos on the Rufiji River',
+        practical: 'Boat safari and a game drive',
+        guideTip: 'Sit low and still on the boat: the hippos and crocodiles are calmer, and the birds let you get much closer.',
         places: ['nyerere'],
         parks: ['nyerere'],
         activities: ['Boat safari', 'Game drive'],
@@ -420,8 +569,12 @@ export const coastAndCombos: ItineraryInput[] = [
       },
       {
         day: 3,
-        title: 'Morning drive and fly back to Zanzibar',
-        description: 'A last early game drive, then the flight back to Zanzibar.',
+        title: 'Nyerere → Zanzibar',
+        description:
+          'You head out at first light for a final game drive, when the animals are most active and the air is cool. Then you fly back to Zanzibar, arriving in time for lunch by the sea.',
+        hook: 'A last morning in the bush, then back to the beach.',
+        highlight: 'A last early-morning game drive',
+        practical: 'Morning game drive, then a short flight to Zanzibar',
         places: ['nyerere', 'stone-town'],
         parks: ['nyerere'],
         activities: ['Morning game drive', 'Light-aircraft flight'],
@@ -440,6 +593,12 @@ export const coastAndCombos: ItineraryInput[] = [
     addOns: [],
     order: 14,
     lastReviewed: '2026-10-26',
+    seasonNote: 'June to October and January to February are the driest months in Nyerere, when wildlife gathers along the Rufiji River.',
+    whyLove: [
+      'A real safari from Zanzibar, with only a short flight',
+      'A boat safari on the Rufiji River among hippos and crocodiles',
+      'Nyerere, once part of the Selous Game Reserve, a UNESCO World Heritage Site',
+    ],
   },
   {
     slug: 'mafia-whale-sharks',
@@ -460,8 +619,12 @@ export const coastAndCombos: ItineraryInput[] = [
     itinerary: [
       {
         day: 1,
-        title: 'Fly from Dar es Salaam to Mafia',
-        description: 'A short flight to Mafia and transfer to a small lodge on Chole Bay.',
+        title: 'Dar es Salaam → Mafia Island',
+        description:
+          'A short flight from Dar es Salaam takes you to Mafia Island, where a driver meets you and takes you to a small lodge on Chole Bay. The waters around the island are part of the Mafia Island Marine Park, and the afternoon is for settling in, swimming and watching the dhows sail past.',
+        hook: 'A short flight to a quiet island in a protected sea.',
+        highlight: 'Dhows sailing across Chole Bay at sunset',
+        practical: 'A short flight from Dar es Salaam',
         places: ['dar-es-salaam', 'mafia'],
         activities: ['Flight to Mafia'],
         meals: meals.ld,
@@ -469,8 +632,12 @@ export const coastAndCombos: ItineraryInput[] = [
       },
       {
         day: 2,
-        title: 'Marine park',
-        description: 'Snorkel or dive the coral gardens of the marine park.',
+        title: 'Mafia Island Marine Park',
+        description:
+          'You head out by boat to snorkel or dive the coral gardens of the marine park, where reef fish, turtles and rays are often seen. The water is warm and clear, and your guide chooses the sites to suit the tide and your experience.',
+        hook: 'Coral gardens full of colour, just a short boat ride away.',
+        highlight: 'Snorkelling over coral gardens in the marine park',
+        practical: 'Boat trip for snorkelling or diving',
         places: ['mafia'],
         activities: ['Snorkelling or diving'],
         meals: meals.all,
@@ -479,7 +646,12 @@ export const coastAndCombos: ItineraryInput[] = [
       {
         day: 3,
         title: 'Whale sharks',
-        description: 'Head out by boat with a guide to swim with whale sharks, when they are present.',
+        description:
+          'With your guide, you head out by boat to look for whale sharks, which gather off Mafia in season to feed. When one is found, you slip into the water to swim alongside it at a respectful distance. It is a gentle, unforgettable encounter, though as with any wild animal, sightings cannot be guaranteed.',
+        hook: 'Today you may swim with the largest fish in the sea.',
+        highlight: 'Swimming alongside a whale shark, when they are present',
+        practical: 'Boat excursion of a few hours',
+        guideTip: 'Keep your distance and never touch the sharks: they stay calmer, and you get a longer, better encounter.',
         places: ['mafia'],
         activities: ['Whale shark excursion'],
         meals: meals.all,
@@ -488,7 +660,11 @@ export const coastAndCombos: ItineraryInput[] = [
       {
         day: 4,
         title: 'Chole Island',
-        description: 'Visit the ruins and villages of Chole Island by dhow, with a free afternoon.',
+        description:
+          'You sail by dhow to Chole Island, where ruins of old stone buildings stand among the trees and villagers go about their day. The afternoon is free to swim, rest or read on the lodge veranda.',
+        hook: 'Old ruins, island villages and a slow afternoon.',
+        highlight: 'Exploring the ruins of Chole Island',
+        practical: 'A short dhow trip; free afternoon',
         places: ['mafia'],
         activities: ['Dhow trip to Chole Island'],
         meals: meals.all,
@@ -496,8 +672,12 @@ export const coastAndCombos: ItineraryInput[] = [
       },
       {
         day: 5,
-        title: 'Fly back to Dar es Salaam',
-        description: 'Return flight to Dar es Salaam for your onward connection.',
+        title: 'Mafia Island → Dar es Salaam',
+        description:
+          'You enjoy a slow morning by the sea before your driver takes you to the airstrip for the short flight back to Dar es Salaam and your onward connection.',
+        hook: 'A last swim, then a short flight back to the mainland.',
+        highlight: 'A final swim in Chole Bay',
+        practical: 'A short flight to Dar es Salaam',
         places: ['mafia', 'dar-es-salaam'],
         activities: ['Flight'],
         meals: meals.b,
@@ -515,6 +695,13 @@ export const coastAndCombos: ItineraryInput[] = [
     addOns: [],
     order: 15,
     lastReviewed: '2026-10-26',
+    seasonNote:
+      'Whale sharks are usually around Mafia from about October to March; sightings depend on the sharks and are never guaranteed.',
+    whyLove: [
+      'Swimming alongside whale sharks with an experienced guide',
+      'The coral gardens of the Mafia Island Marine Park',
+      'A small, quiet island far from the crowds',
+    ],
   },
   {
     slug: 'pemba-island-escape',
@@ -534,8 +721,12 @@ export const coastAndCombos: ItineraryInput[] = [
     itinerary: [
       {
         day: 1,
-        title: 'Fly from Zanzibar to Pemba',
-        description: 'A short flight north to Pemba and transfer to a beach lodge.',
+        title: 'Zanzibar → Pemba Island',
+        description:
+          'A short flight takes you from Zanzibar north to Pemba, known as the Green Island for its forests and clove plantations. Your driver meets you at the airport and takes you to your beach lodge, where the afternoon is yours.',
+        hook: 'North to the quiet Green Island.',
+        highlight: 'Your first view of Pemba’s green hills from the air',
+        practical: 'A short flight from Zanzibar',
         places: ['stone-town', 'pemba'],
         activities: ['Flight to Pemba'],
         meals: meals.d,
@@ -543,8 +734,14 @@ export const coastAndCombos: ItineraryInput[] = [
       },
       {
         day: 2,
-        title: 'Diving or snorkelling',
-        description: 'Dive or snorkel the reef walls of the Pemba Channel.',
+        title: 'Pemba Channel',
+        description:
+          'You dive or snorkel the reefs along the Pemba Channel, a deep stretch of water where coral walls drop steeply away and the visibility is often excellent. Your guide chooses the sites to suit the tide and your experience.',
+        hook: 'Reef walls that drop away into deep blue water.',
+        highlight: 'Drifting along a coral wall in the Pemba Channel',
+        practical: 'Boat trip for diving or snorkelling',
+        guideTip:
+          'The currents in the Pemba Channel can be strong, so we choose sites with your guide each morning to match your experience.',
         places: ['pemba'],
         activities: ['Diving or snorkelling'],
         meals: meals.bd,
@@ -553,7 +750,11 @@ export const coastAndCombos: ItineraryInput[] = [
       {
         day: 3,
         title: 'Clove farms and villages',
-        description: 'Visit clove plantations and village life with a local guide.',
+        description:
+          'With a local guide you visit clove plantations, where much of Zanzibar’s clove harvest is grown, and walk through villages where daily life follows the season. In harvest time the cloves are laid out to dry along the roadsides, filling the air with their scent.',
+        hook: 'The smell of cloves and the rhythm of island life.',
+        highlight: 'The scent of cloves drying in the sun',
+        practical: 'A guided visit of a few hours',
         places: ['pemba'],
         activities: ['Village and clove farm visit'],
         meals: meals.bd,
@@ -561,8 +762,11 @@ export const coastAndCombos: ItineraryInput[] = [
       },
       {
         day: 4,
-        title: 'Beach day',
-        description: 'A free day on the island.',
+        title: 'Pemba Island',
+        description: 'Spend the day as you like: swim, snorkel from the beach, read in the shade or simply watch the sea.',
+        hook: 'A free day on a quiet island.',
+        highlight: 'An empty beach and a calm, warm sea',
+        practical: 'A free day at the beach',
         places: ['pemba'],
         activities: ['Beach'],
         meals: meals.bd,
@@ -570,8 +774,12 @@ export const coastAndCombos: ItineraryInput[] = [
       },
       {
         day: 5,
-        title: 'Fly back to Zanzibar',
-        description: 'Return flight to Zanzibar.',
+        title: 'Pemba Island → Zanzibar',
+        description:
+          'You have the morning to swim and pack before your driver takes you to the airport for the short flight back to Zanzibar.',
+        hook: 'A last swim, then a short flight back to Zanzibar.',
+        highlight: 'A last morning swim in the Pemba Channel',
+        practical: 'A short flight to Zanzibar',
         places: ['pemba', 'stone-town'],
         activities: ['Flight'],
         meals: meals.b,
@@ -584,5 +792,11 @@ export const coastAndCombos: ItineraryInput[] = [
     addOns: [],
     order: 15,
     lastReviewed: '2026-10-26',
+    seasonNote: 'Pemba is best in the drier months, roughly June to February, when the sea is calmer and clearer for diving.',
+    whyLove: [
+      'Some of the best diving and snorkelling in East Africa, in the Pemba Channel',
+      'The clove farms and villages of the Green Island',
+      'A quiet island with few other visitors',
+    ],
   },
 ];

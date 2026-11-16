@@ -38,7 +38,7 @@ export default async function BeachPage({ params }: Props) {
   const others = beaches.filter((o) => o.slug !== b.slug);
 
   return (
-    <div data-theme="beaches" className="contents">
+    <>
       <Header overlay current={`/beaches/${b.slug}`} />
       <Hero
         image={b.image}
@@ -130,6 +130,6 @@ export default async function BeachPage({ params }: Props) {
       </section>
 
       <CtaBlock title="Ready to plan your beach escape?" topic={b.name} />
-    </div>
+    </>
   );
 }
