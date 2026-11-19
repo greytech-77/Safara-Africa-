@@ -166,7 +166,7 @@ export default function DayByDay({ days, stays, places, quoteAfterDay, quote }: 
                     <p className="text-step--1 text-slate">
                       <span className="font-medium text-heading">Add-on:</span> {d.addOn.text}
                       {d.addOn.priceFromUsd ? ` (from $${d.addOn.priceFromUsd.toLocaleString('en-US')} pp)` : ''}{' '}
-                      <a href="#book" className="trip-link">
+                      <a href="#enquire" className="trip-link">
                         ask us
                       </a>
                     </p>

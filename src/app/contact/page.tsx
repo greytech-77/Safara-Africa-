@@ -1,10 +1,6 @@
 import type { Metadata } from 'next';
 import Header from '@/components/layout/Header';
-import { countries } from '@/content/countries';
-import { parks } from '@/content/parks';
-import { beaches } from '@/content/beaches';
-import { treks } from '@/content/treks';
-import PlanWizard from '@/features/enquiry/components/PlanWizard';
+import EnquiryForm from '@/features/enquiry/components/EnquiryForm';
 import { site } from '@/config/site';
 import { whatsappLink, whatsappMessage } from '@/lib/whatsapp';
 import { getTours } from '@/lib/content';
@@ -12,36 +8,37 @@ import { getTeamMember } from '@/content/team';
 
 export const metadata: Metadata = {
   title: 'Plan your journey',
-  description: `Plan your journey with ${site.name}, based in ${site.address.city}, ${site.address.country}. Answer a few short questions and a travel consultant will reply within one working day.`,
+  description: `Plan your journey with ${site.name}, based in ${site.address.city}, ${site.address.country}. Tell us your dates and what you would love to see, and a travel consultant will reply within one working day.`,
   alternates: { canonical: '/contact' },
 };
 
 type Props = { searchParams: Promise<{ tour?: string; consultant?: string }> };
 
-// Contact page (no hero): the step-by-step "plan your journey" wizard straight under the header, then a short strip for people who
-// would rather talk. Journey pages link here with ?tour=<slug>, which the wizard shows and sends along.
+// Contact page (no hero): a single short enquiry form, then a short strip for people who would rather talk.
+// Tour pages link here with ?tour=<slug>; team profiles link with ?consultant=<slug>.
 export default async function ContactPage({ searchParams }: Props) {
   const { tour, consultant } = await searchParams;
-  const tourLabel = getTours().find((t) => t.slug === tour);
-  // From a team profile's "Plan a safari with …" button.
+  const tours = getTours().map((t) => ({ slug: t.slug, label: t.title }));
   const member = consultant ? getTeamMember(consultant) : undefined;
-  // Destination suggestions for the "Where" step: every country, park, beach and trek on the site.
-  const suggestions = [...new Set([...countries, ...parks, ...beaches, ...treks].map((p) => p.name))].sort();
+  const consultantLabel = member ? (member.name ? `${member.name}, ${member.role}` : member.role) : undefined;
 
   return (
     <>
       <Header current="/contact" />
 
-      <section className="bg-ivory px-4 pb-16 pt-8 sm:pb-20 sm:pt-10 lg:pb-24" aria-labelledby="contact-title">
-        {/* The page title for screen readers and search; the wizard's own questions are the visible headings. */}
-        <h1 id="contact-title" className="sr-only">
-          Plan your journey
-        </h1>
-        <PlanWizard
-          suggestions={suggestions}
-          tour={tourLabel?.title}
-          consultant={member ? (member.name ? `${member.name}, ${member.role}` : member.role) : undefined}
-        />
+      <section id="enquire" className="scroll-mt-28 bg-ivory px-4 pb-16 pt-8 sm:pb-20 sm:pt-10 lg:pb-24" aria-labelledby="contact-title">
+        <div className="wrap">
+          <h1 id="contact-title" className="text-center text-step-4 text-heading">
+            Plan your journey
+          </h1>
+          <p className="mx-auto mt-3 max-w-[52ch] text-center text-ink">
+            Tell us your dates and what you would love to see. A consultant in Arusha will reply within one working day with ideas and a
+            free, no-obligation quote.
+          </p>
+          <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-deep-teal/10 bg-white/70 p-6 sm:p-8">
+            <EnquiryForm tours={tours} preselect={tour} consultant={consultantLabel} />
+          </div>
+        </div>
       </section>
 
       <section className="band" aria-labelledby="talk-heading">
@@ -50,23 +47,21 @@ export default async function ContactPage({ searchParams }: Props) {
             <h2 id="talk-heading" className="text-step-3 text-ink">
               Prefer to talk to our travel team?
             </h2>
-            <ul className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:flex-wrap md:items-start">
-              <li>
-                <a className="btn btn-outline" href={whatsappLink(whatsappMessage())} target="_blank" rel="noopener">
-                  WhatsApp us
-                </a>
-              </li>
-              <li>
-                <a className="btn btn-outline" href={`tel:${site.phone.tel}`}>
-                  Call {site.phone.display}
-                </a>
-              </li>
-              <li>
-                <a className="btn btn-outline" href={`mailto:${site.email}`}>
+            <div className="mt-6 flex flex-col items-center gap-4 md:items-start">
+              <a className="btn btn-primary" href={whatsappLink(whatsappMessage())} target="_blank" rel="noopener">
+                WhatsApp us
+              </a>
+              <p className="text-ink">
+                Call{' '}
+                <a className="font-semibold text-deep-teal underline underline-offset-4" href={`tel:${site.phone.tel}`}>
+                  {site.phone.display}
+                </a>{' '}
+                or email{' '}
+                <a className="font-semibold text-deep-teal underline underline-offset-4" href={`mailto:${site.email}`}>
                   {site.email}
                 </a>
-              </li>
-            </ul>
+              </p>
+            </div>
           </div>
           <div className="grid gap-6 sm:grid-cols-2">
             <div>

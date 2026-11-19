@@ -1,7 +1,7 @@
 type Props = { slug: string; title: string; days: number; price?: { label: string; groupSize: number; isPlaceholder: boolean } };
 
 // Bottom bar on phones and tablets (the site-wide Call/Enquire bar hides on trip pages): the price and a
-// "Book this journey" button that scrolls to the booking form (#book, after the day by day).
+// "Plan your journey" button that scrolls to the enquiry form (#enquire, after the day by day).
 export default function EnquiryPanel({ price }: Props) {
   return (
     <div className="fixed inset-x-0 bottom-0 z-20 border-t border-deep-teal/10 bg-off-white/95 px-4 py-3 backdrop-blur-sm lg:hidden">
@@ -15,8 +15,8 @@ export default function EnquiryPanel({ price }: Props) {
             <p className="font-medium text-deep-teal">Price on request</p>
           )}
         </div>
-        <a href="#book" className="btn btn-primary">
-          Book this journey
+        <a href="#enquire" className="btn btn-primary">
+          Plan your journey
         </a>
       </div>
     </div>

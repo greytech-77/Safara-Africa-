@@ -3,53 +3,30 @@
 import { useEffect, useState } from 'react';
 
 // Scroll behaviour for the site header: it stays pinned to the top of the window.
-// Over a hero it has no background; once the page scrolls (or the hero has passed) it turns solid #1a1a1a.
-// pinAfterHero (home page): the header scrolls away with the hero, then drops in pinned and solid once the hero has passed.
-export default function HeaderShell({
-  overlay,
-  pinAfterHero = false,
-  children,
-}: {
-  overlay: boolean;
-  pinAfterHero?: boolean;
-  children: React.ReactNode;
-}) {
+// Over a hero it has no background; once the page scrolls past ~50px it turns solid #1a1a1a.
+export default function HeaderShell({ overlay, children }: { overlay: boolean; children: React.ReactNode }) {
   const [solid, setSolid] = useState(!overlay);
-  const [pinned, setPinned] = useState(!pinAfterHero);
 
   useEffect(() => {
     if (!overlay) return;
     let frame = 0;
     const update = () => {
       frame = 0;
-      const y = window.scrollY;
-      if (pinAfterHero) {
-        const hero = document.querySelector<HTMLElement>('.hero, [data-hero]');
-        const pin = y >= (hero ? hero.offsetTop + hero.offsetHeight : 0);
-        setPinned(pin);
-        setSolid(pin);
-      } else setSolid(y >= 50);
+      setSolid(window.scrollY >= 50);
     };
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update);
     };
     update();
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
     return () => {
       window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
       cancelAnimationFrame(frame);
     };
-  }, [overlay, pinAfterHero]);
+  }, [overlay]);
 
-  const position = overlay ? (pinned ? 'fixed' : 'absolute') : 'sticky';
   return (
-    <header
-      data-solid={solid || undefined}
-      data-dropped={(pinAfterHero && pinned) || undefined}
-      className={`site-header inset-x-0 top-0 z-30 text-white ${position}`}
-    >
+    <header data-solid={solid || undefined} className={`site-header inset-x-0 top-0 z-30 text-white ${overlay ? 'fixed' : 'sticky'}`}>
       {children}
     </header>
   );

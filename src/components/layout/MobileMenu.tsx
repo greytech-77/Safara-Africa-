@@ -8,19 +8,17 @@ import type { MenuItem } from '@/config/menu';
 
 const FOCUSABLE = 'a[href], button:not([disabled])';
 
-// Phones and tablets (below 1024px): a hamburger opens a full-height dark panel with a gold top line. Sections are
-// stacked; tapping one expands its links in place (accordion). "Plan your journey" sits at the bottom.
+// Phones and tablets (below 1024px): a hamburger opens a full-height dark panel with a gold top line.
+// Flat chapter links only (the footer carries the full directory). "Plan your journey" sits at the bottom.
 // Page scroll is locked, Tab stays inside, and Escape or × closes it.
 export default function MobileMenu({ items, activeId }: { items: MenuItem[]; activeId?: string }) {
   const [open, setOpen] = useState(false);
-  const [expanded, setExpanded] = useState<string | null>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
 
   const close = (returnFocus = true) => {
     setOpen(false);
-    setExpanded(null);
     if (returnFocus) toggleRef.current?.focus();
   };
 
@@ -104,55 +102,17 @@ export default function MobileMenu({ items, activeId }: { items: MenuItem[]; act
 
           <nav aria-label="Main" className="wrap flex-1 py-2">
             <ul className="border-t border-white/10">
-              {items.map((item) => {
-                const isOpen = expanded === item.id;
-                // Plain link (Home, Kilimanjaro, Zanzibar).
-                if (!item.children)
-                  return (
-                    <li key={item.id} className="border-b border-white/10">
-                      <Link
-                        href={item.href}
-                        aria-current={activeId === item.id ? 'page' : undefined}
-                        className={`mobile-nav__link block py-3.5 ${activeId === item.id ? 'text-nav-gold' : ''}`}
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  );
-                return (
-                  <li key={item.id} className="border-b border-white/10">
-                    <button
-                      type="button"
-                      aria-expanded={isOpen}
-                      aria-controls={`m-nav-${item.id}`}
-                      onClick={() => setExpanded(isOpen ? null : item.id)}
-                      className={`mobile-nav__link flex w-full cursor-pointer items-center justify-between py-3.5 text-left ${
-                        activeId === item.id ? 'text-nav-gold' : ''
-                      }`}
-                    >
-                      {item.label}
-                      <svg
-                        viewBox="0 0 10 10"
-                        width="12"
-                        height="12"
-                        aria-hidden="true"
-                        className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
-                      >
-                        <path d="M1.5 3.5 5 7l3.5-3.5" fill="none" stroke="currentColor" strokeWidth="1.4" />
-                      </svg>
-                    </button>
-                    <ul id={`m-nav-${item.id}`} hidden={!isOpen} className="pb-3 pl-4">
-                      {item.children.map((c) => (
-                        <li key={c.href + c.label}>
-                          <Link href={c.href} className="mobile-nav__sublink block py-2">
-                            {c.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                );
-              })}
+              {items.map((item) => (
+                <li key={item.id} className="border-b border-white/10">
+                  <Link
+                    href={item.href}
+                    aria-current={activeId === item.id ? 'page' : undefined}
+                    className={`mobile-nav__link block py-3.5 ${activeId === item.id ? 'text-nav-gold' : ''}`}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
 

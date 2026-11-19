@@ -48,8 +48,8 @@ export default function TripOverview({ it, stops, stayRuns, start, end, price }:
               .map((x) => x.charAt(0).toLowerCase() + x.slice(1))
               .join(', ')}
             .{' '}
-            <a href="#included" className="trip-link">
-              See everything included
+            <a href="#pricing" className="trip-link">
+              See the full price table
             </a>
           </p>
         )}

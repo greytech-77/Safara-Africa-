@@ -9,7 +9,6 @@ import ImageCards from '@/components/ui/ImageCards';
 import MonthPicker from '@/components/ui/MonthPicker';
 import PhotoList from '@/components/ui/PhotoList';
 import PhotoRail from '@/components/ui/PhotoRail';
-import PillarArt, { type PillarArtName } from '@/components/ui/PillarArt';
 import SectionNav, { type SectionLink } from '@/components/ui/SectionNav';
 import TourGrid from '@/features/tours/components/TourGrid';
 import { lodgeTiles } from '@/content/accommodations';
@@ -42,16 +41,8 @@ const tabs: SectionLink[] = [
   { id: 'safaris', label: 'Safaris' },
   { id: 'parks', label: 'Parks & Reserves' },
   { id: 'accommodations', label: 'Accommodations' },
-  { id: 'experiences', label: 'Experiences' },
   { id: 'guide', label: 'Travel Guide' },
   { id: 'faqs', label: 'FAQs' },
-];
-
-const why: { title: string; body: string; art: PillarArtName }[] = [
-  { title: 'Book direct', body: 'Plan with the local team who runs your trip, with no middlemen.', art: 'kilimanjaro' },
-  { title: 'Private and custom safaris', body: 'Every itinerary is built around your dates, pace and budget.', art: 'map' },
-  { title: 'Expert local guides', body: 'Experienced guides who know the parks, wildlife and people.', art: 'binoculars' },
-  { title: '24/7 WhatsApp support', body: 'Reach our team at any time while you travel.', art: 'vehicle' },
 ];
 
 export default async function CountryPage({ params }: Props) {
@@ -110,24 +101,6 @@ export default async function CountryPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Same design as "Why book with us" on the home page, with four pillars. */}
-      <section className="band" aria-labelledby="why-heading">
-        <div className="wrap">
-          <h2 data-reveal id="why-heading" className="text-center text-step-4 text-ink">
-            Why book with us?
-          </h2>
-          <ul data-reveal-stagger className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {why.map((w) => (
-              <li key={w.title} className="flex flex-col items-center text-center">
-                <PillarArt name={w.art} className="h-20 w-auto text-ink sm:h-24" />
-                <h3 className="mt-3 text-step-2 text-ink">{w.title}</h3>
-                <p className="mt-1.5 max-w-[34ch] text-step--1 text-ink">{w.body}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
       <section id="parks" className={section} aria-labelledby="parks-heading">
         <div className="wrap">
           <h2 id="parks-heading" className={h2}>
@@ -153,17 +126,6 @@ export default async function CountryPage({ params }: Props) {
         </div>
       </section>
 
-      <section id="experiences" className={section} aria-labelledby="exp-heading">
-        <div className="wrap">
-          <h2 id="exp-heading" className={h2}>
-            Experiences
-          </h2>
-          <div className="mt-12">
-            <PhotoList items={c.experiences} />
-          </div>
-        </div>
-      </section>
-
       <section id="guide" className={section} aria-labelledby="guide-heading">
         <div className="wrap">
           <h2 id="guide-heading" className={h2}>
@@ -172,6 +134,11 @@ export default async function CountryPage({ params }: Props) {
           <p className="measure mt-3 text-ink">Choose a month to see what to expect.</p>
           <div className="mt-8">
             <MonthPicker months={c.months} />
+          </div>
+
+          <h3 className="mt-16 text-step-3 text-ink">Experiences</h3>
+          <div className="mt-6">
+            <PhotoList items={c.experiences} />
           </div>
 
           {posts.length > 0 && (
