@@ -4,17 +4,19 @@ import Header from '@/components/layout/Header';
 import FaqList from '@/components/ui/FaqList';
 import Hero from '@/components/ui/Hero';
 import JsonLd from '@/components/ui/JsonLd';
+import EnquiryForm from '@/features/enquiry/components/EnquiryForm';
 import { site } from '@/config/site';
 import AltitudeProfile from '@/features/itineraries/components/AltitudeProfile';
 import DayByDay from '@/features/itineraries/components/DayByDay';
-import BookTripForm from '@/features/itineraries/components/BookTripForm';
 import EnquiryPanel from '@/features/itineraries/components/EnquiryPanel';
+import ParkFeeBreakdown from '@/features/itineraries/components/ParkFeeBreakdown';
+import PriceTable from '@/features/itineraries/components/PriceTable';
 import TripOverview, { type StayRun } from '@/features/itineraries/components/TripOverview';
-import TripSidebar from '@/features/itineraries/components/TripSidebar';
 import { getItinerary, getItineraries, getPlace, getStays, getTours, routeStops } from '@/features/itineraries/data';
+import { estimateParkFees } from '@/features/itineraries/park-fees';
 import { formatUsd, fromPrice } from '@/features/itineraries/pricing';
 import TourGrid from '@/features/tours/components/TourGrid';
-import { GuestQuote, RatingLine } from '@/features/itineraries/components/TripProof';
+import { GuestQuote } from '@/features/itineraries/components/TripProof';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -59,6 +61,8 @@ export default async function ItineraryPage({ params }: Props) {
   const others = getTours()
     .filter((t) => t.slug !== it.slug && t.country === it.country && t.kind === it.kind)
     .slice(0, 3);
+  const tours = getTours().map((t) => ({ slug: t.slug, label: t.title }));
+  const feeEstimate = estimateParkFees(it, stays, { adults: 2 });
 
   const ld: Record<string, unknown> = {
     '@context': 'https://schema.org',
@@ -96,7 +100,7 @@ export default async function ItineraryPage({ params }: Props) {
         image={it.hero}
         className="hero--itinerary"
         title={it.title}
-        cta={{ label: 'Enquire about this trip', href: `/contact?tour=${it.slug}#enquire` }}
+        cta={{ label: 'Plan your journey', href: '#enquire' }}
         breadcrumbs={[{ label: 'Journeys', href: '/tours' }, { label: it.title }]}
       />
 
@@ -109,123 +113,149 @@ export default async function ItineraryPage({ params }: Props) {
         price={priceLabel ? { label: priceLabel.label, isPlaceholder: priceLabel.isPlaceholder } : undefined}
       />
 
-      {/* Day by day on the left, the booking form on the right.
-          Below 1024px: the days, then the form. */}
-      <div className="wrap grid grid-cols-1 gap-10 pb-section lg:grid-cols-[1fr_24rem] lg:gap-x-16">
-        <section aria-labelledby="days-heading" className="order-2 min-w-0 lg:col-start-1 lg:row-start-1">
-          <h2 id="days-heading" className={h2}>
-            Day by day
-          </h2>
-          <div className="mt-4">
-            {it.seasonNote && (
-              <p className="mb-5 flex gap-3 rounded-lg border border-gold-ink/30 bg-white px-4 py-3 text-step--1 text-ink">
-                <span aria-hidden="true" className="text-gold-ink">
-                  ◷
-                </span>
-                <span>
-                  <span className="font-medium text-heading">When to go: </span>
-                  {it.seasonNote}
-                </span>
-              </p>
-            )}
-            {/* A guest quote about halfway through longer trips (shown only once real reviews exist). */}
-            <DayByDay
-              days={it.itinerary}
-              stays={stays}
-              places={placeMap}
-              quoteAfterDay={it.days >= 4 ? Math.ceil(it.days / 2) + 1 : undefined}
-              quote={<GuestQuote />}
-            />
-          </div>
-
-          {it.whyLove.length > 0 && (
-            <div className="mt-10 rounded-2xl bg-sand/50 p-6 sm:p-8">
-              <h3 className="text-step-2 text-ink">Why you&apos;ll love this journey</h3>
-              <ul className="mt-4 space-y-2">
-                {it.whyLove.map((x) => (
-                  <li key={x} className="flex gap-3">
-                    <span aria-hidden="true" className="text-gold-ink">
-                      ✦
-                    </span>
-                    {x}
-                  </li>
-                ))}
-              </ul>
-              <a href="#book" className="btn btn-primary mt-6">
-                Request to book
-              </a>
-            </div>
+      {/* Day by day */}
+      <section aria-labelledby="days-heading" className="wrap pb-section">
+        <h2 id="days-heading" className={h2}>
+          Day by day
+        </h2>
+        <div className="mt-4">
+          {it.seasonNote && (
+            <p className="mb-5 flex gap-3 rounded-lg border border-gold-ink/30 bg-white px-4 py-3 text-step--1 text-ink">
+              <span aria-hidden="true" className="text-gold-ink">
+                ◷
+              </span>
+              <span>
+                <span className="font-medium text-heading">When to go: </span>
+                {it.seasonNote}
+              </span>
+            </p>
           )}
-        </section>
-        <TripSidebar
-          form={
-            <>
-              <BookTripForm
-                slug={it.slug}
-                title={it.title}
-                price={priceLabel ? { label: priceLabel.label, isPlaceholder: priceLabel.isPlaceholder } : undefined}
-              />
-              <RatingLine />
-            </>
-          }
-        />
-      </div>
+          <DayByDay
+            days={it.itinerary}
+            stays={stays}
+            places={placeMap}
+            quoteAfterDay={it.days >= 4 ? Math.ceil(it.days / 2) + 1 : undefined}
+            quote={<GuestQuote />}
+          />
+        </div>
+      </section>
 
-      <div className="wrap space-y-16 pb-section">
-        <section id="included" aria-labelledby="included-heading" className="scroll-mt-28 grid gap-8 md:grid-cols-2">
-          <div>
-            <h2 id="included-heading" className="text-step-2 text-ink">
-              Included
-            </h2>
-            <ul className="mt-4 space-y-2">
-              {it.included.map((x) => (
-                <li key={x} className="flex gap-3">
-                  <svg aria-hidden="true" viewBox="0 0 16 16" className="mt-1 size-4 shrink-0 fill-gold-ink">
-                    <path d="M6.2 11.6 2.6 8l1.1-1.1 2.5 2.5 6.1-6.1L13.4 4.4z" />
-                  </svg>
-                  {x}
-                </li>
-              ))}
-            </ul>
+      {/* Pricing & park fees */}
+      {(it.pricing || feeEstimate.lines.length > 0) && (
+        <section id="pricing" aria-labelledby="pricing-heading" className="wrap scroll-mt-28 pb-section">
+          <h2 id="pricing-heading" className={h2}>
+            Pricing &amp; park fees
+          </h2>
+          <div className="mt-6">
+            {it.pricing && <PriceTable pricing={it.pricing} />}
+            {feeEstimate.lines.length > 0 && (
+              <details className="group mt-6">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 text-step-1 font-semibold text-deep-teal">
+                  Park and government fees in this price (example for 2 travellers)
+                  <span aria-hidden="true" className="mt-1 text-gold-ink transition-transform group-open:rotate-45">
+                    +
+                  </span>
+                </summary>
+                <div className="mt-4">
+                  <ParkFeeBreakdown estimate={feeEstimate} travellers={2} />
+                </div>
+              </details>
+            )}
           </div>
-          <div>
-            <h2 className="text-step-2 text-ink">Not included</h2>
-            <ul className="mt-4 space-y-2 text-ink/85">
-              {it.excluded.map((x) => (
+        </section>
+      )}
+
+      {/* Included / Not included */}
+      <section id="included" aria-labelledby="included-heading" className="wrap scroll-mt-28 grid gap-8 pb-section md:grid-cols-2">
+        <div>
+          <h2 id="included-heading" className="text-step-2 text-ink">
+            Included
+          </h2>
+          <ul className="mt-4 space-y-2">
+            {it.included.map((x) => (
+              <li key={x} className="flex gap-3">
+                <svg aria-hidden="true" viewBox="0 0 16 16" className="mt-1 size-4 shrink-0 fill-gold-ink">
+                  <path d="M6.2 11.6 2.6 8l1.1-1.1 2.5 2.5 6.1-6.1L13.4 4.4z" />
+                </svg>
+                {x}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h2 className="text-step-2 text-ink">Not included</h2>
+          <ul className="mt-4 space-y-2 text-ink/85">
+            {it.excluded.map((x) => (
+              <li key={x} className="flex gap-3">
+                <span aria-hidden="true" className="mt-0.5 shrink-0 font-bold text-slate">
+                  ×
+                </span>
+                {x}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* Why you'll love this journey */}
+      {it.whyLove.length > 0 && (
+        <div className="wrap pb-section">
+          <div className="rounded-2xl bg-sand/50 p-6 sm:p-8">
+            <h3 className="text-step-2 text-ink">Why you&apos;ll love this journey</h3>
+            <ul className="mt-4 space-y-2">
+              {it.whyLove.map((x) => (
                 <li key={x} className="flex gap-3">
-                  <span aria-hidden="true" className="mt-0.5 shrink-0 font-bold text-slate">
-                    ×
+                  <span aria-hidden="true" className="text-gold-ink">
+                    ✦
                   </span>
                   {x}
                 </li>
               ))}
             </ul>
+            <a href="#enquire" className="btn btn-primary mt-6">
+              Plan your journey
+            </a>
+          </div>
+        </div>
+      )}
+
+      {/* Altitude profile (treks) */}
+      {isTrek && (
+        <section aria-labelledby="altitude-heading" className="wrap pb-section">
+          <h2 id="altitude-heading" className={h2}>
+            Altitude profile
+          </h2>
+          {it.trek && <p className="measure mt-3 text-ink">{it.trek.successRateNote}</p>}
+          <div className="mt-6">
+            <AltitudeProfile days={it.itinerary} />
           </div>
         </section>
+      )}
 
-        {isTrek && (
-          <section aria-labelledby="altitude-heading">
-            <h2 id="altitude-heading" className={h2}>
-              Altitude profile
-            </h2>
-            {it.trek && <p className="measure mt-3 text-ink">{it.trek.successRateNote}</p>}
-            <div className="mt-6">
-              <AltitudeProfile days={it.itinerary} />
-            </div>
-          </section>
-        )}
+      {/* Enquiry form */}
+      <section id="enquire" aria-labelledby="enquire-heading" className="wrap scroll-mt-28 pb-section">
+        <h2 id="enquire-heading" className={h2}>
+          Plan your journey
+        </h2>
+        <p className="measure mt-3 text-ink">
+          Tell us your dates and we will tailor this trip to you and send a free, no-obligation quote.
+        </p>
+        <div className="mt-6 rounded-2xl border border-deep-teal/10 bg-white p-6 sm:p-8">
+          <EnquiryForm tours={tours} preselect={it.slug} />
+        </div>
+      </section>
 
-        {it.faqs.length > 0 && (
-          <section aria-labelledby="faq-heading">
-            <h2 id="faq-heading" className={h2}>
-              Questions
-            </h2>
-            <div className="mt-6">
-              <FaqList faqs={it.faqs} />
-            </div>
-          </section>
-        )}
-      </div>
+      {/* Questions */}
+      {it.faqs.length > 0 && (
+        <section aria-labelledby="faq-heading" className="wrap pb-section">
+          <h2 id="faq-heading" className={h2}>
+            Questions
+          </h2>
+          <div className="mt-6">
+            <FaqList faqs={it.faqs} />
+          </div>
+        </section>
+      )}
 
       <EnquiryPanel slug={it.slug} title={it.title} days={it.days} price={priceLabel || undefined} />
 

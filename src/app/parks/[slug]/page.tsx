@@ -191,7 +191,7 @@ function AskUs({ children, dark = false }: { children: React.ReactNode; dark?: b
         href="/contact#enquire"
         className={`font-bold underline underline-offset-4 transition-colors duration-300 ${dark ? 'text-gold hover:text-cream' : 'text-deep-teal hover:text-gold-ink'}`}
       >
-        Talk to our travel team
+        Plan your journey
       </Link>
     </p>
   );

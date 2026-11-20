@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Header from '@/components/layout/Header';
 import Hero from '@/components/ui/Hero';
+import CtaBlock from '@/components/ui/CtaBlock';
 import { pageHeroes } from '@/content/page-heroes';
 import { formatDate, getPost, getPosts } from '@/lib/content';
 
@@ -48,6 +49,7 @@ export default async function PostPage({ params }: Props) {
           <div className="prose-safara mx-auto mt-8" dangerouslySetInnerHTML={{ __html: post.html }} />
         </div>
       </article>
+      <CtaBlock topic={post.title} />
     </>
   );
 }

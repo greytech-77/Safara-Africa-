@@ -74,7 +74,7 @@ export default async function AccommodationPage({ params }: Props) {
         image={a.image}
         eyebrow={a.area}
         title={a.name}
-        cta={{ label: 'Ask about this lodge', href: '/contact#enquire' }}
+        cta={{ label: 'Plan your journey', href: '/contact#enquire' }}
         breadcrumbs={[
           { label: 'Destinations', href: '/destinations' },
           { label: country.name, href: `/destinations/${country.slug}#accommodations` },
@@ -113,9 +113,6 @@ export default async function AccommodationPage({ params }: Props) {
                 </div>
               )}
             </dl>
-            <Link href="/contact#enquire" className="btn btn-primary mt-4 w-full">
-              Ask about this lodge
-            </Link>
           </aside>
         </div>
       </div>

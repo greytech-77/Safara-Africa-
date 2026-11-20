@@ -20,7 +20,7 @@ export default function CtaBlock({
         <p className="mt-3 max-w-[52ch] text-cream/85">{text}</p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           <Link href="/contact#enquire" className="btn btn-primary">
-            Get Free Quote
+            Plan your journey
           </Link>
           <a href={whatsappLink(whatsappMessage(topic))} className="btn btn-outline-light">
             WhatsApp us

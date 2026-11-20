@@ -11,7 +11,15 @@ const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 type Status = { kind: 'idle' } | { kind: 'sending' } | { kind: 'sent' } | { kind: 'error'; message: string };
 
-export default function EnquiryForm({ tours, preselect }: { tours: { slug: string; label: string }[]; preselect?: string }) {
+export default function EnquiryForm({
+  tours,
+  preselect,
+  consultant,
+}: {
+  tours: { slug: string; label: string }[];
+  preselect?: string;
+  consultant?: string;
+}) {
   const [status, setStatus] = useState<Status>({ kind: 'idle' });
   const initialTour = tours.find((t) => t.slug === preselect)?.label ?? '';
 
@@ -51,6 +59,13 @@ export default function EnquiryForm({ tours, preselect }: { tours: { slug: strin
     <form onSubmit={onSubmit} className="grid gap-5 sm:grid-cols-2" noValidate={false}>
       {/* Honeypot: hidden from people, bots fill it */}
       <input type="text" name="company" tabIndex={-1} autoComplete="off" className="hidden" aria-hidden="true" />
+      {consultant && <input type="hidden" name="consultant" value={consultant} />}
+
+      {consultant && (
+        <p className="text-step--1 text-slate sm:col-span-2">
+          Planning with <span className="font-medium text-ink">{consultant}</span>
+        </p>
+      )}
 
       <label className={label}>
         Your name
@@ -104,6 +119,17 @@ export default function EnquiryForm({ tours, preselect }: { tours: { slug: strin
         </div>
       )}
 
+      <label className="flex cursor-pointer items-start gap-2 sm:col-span-2">
+        <input type="checkbox" name="consent" value="Yes" required className="mt-1 size-4 shrink-0 accent-deep-teal" />
+        <span className="text-step--1 text-ink">
+          I agree that {site.name} may contact me about this trip. See our{' '}
+          <Link href="/privacy" className="font-semibold text-deep-teal underline underline-offset-4">
+            privacy policy
+          </Link>
+          .
+        </span>
+      </label>
+
       <div className="flex flex-wrap items-center gap-4 sm:col-span-2">
         <button type="submit" className="btn btn-primary" disabled={status.kind === 'sending'}>
           {status.kind === 'sending' ? (
@@ -116,13 +142,6 @@ export default function EnquiryForm({ tours, preselect }: { tours: { slug: strin
           )}
         </button>
         <p className="text-step--1 text-ink">A travel consultant replies within one working day.</p>
-        <p className="w-full text-step--1 text-ink">
-          We use your details only to plan your trip. See our{' '}
-          <Link href="/privacy" className="font-semibold text-deep-teal underline underline-offset-4">
-            privacy policy
-          </Link>
-          .
-        </p>
       </div>
 
       {status.kind === 'error' && (

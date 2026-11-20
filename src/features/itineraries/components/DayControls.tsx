@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-// "Expand all / Collapse all" for the day-by-day list (#day-list), and the link to the route map: when a day is
-// opened, an `itinerary:day` event tells RouteProgressMap to move to that day.
+// "Expand all / Collapse all" for the day-by-day list (#day-list).
 export default function DayControls() {
   const [allOpen, setAllOpen] = useState(false);
 
@@ -15,23 +14,13 @@ export default function DayControls() {
       setAllOpen(all.length > 0 && all.every((d) => d.open));
     };
     // `toggle` does not bubble, so listen in the capture phase.
-    const onToggle = (e: Event) => {
-      const d = e.target as HTMLDetailsElement;
-      if (d.dataset.bulk !== undefined) delete d.dataset.bulk;
-      else if (d.open && d.dataset.day) window.dispatchEvent(new CustomEvent('itinerary:day', { detail: Number(d.dataset.day) }));
-      sync();
-    };
-    list.addEventListener('toggle', onToggle, true);
-    return () => list.removeEventListener('toggle', onToggle, true);
+    list.addEventListener('toggle', sync, true);
+    return () => list.removeEventListener('toggle', sync, true);
   }, []);
 
   const setAll = (open: boolean) => {
     document.querySelectorAll<HTMLDetailsElement>('#day-list details').forEach((d) => {
-      if (d.open !== open) {
-        // Opening many days at once should not jump the map around.
-        d.dataset.bulk = '';
-        d.open = open;
-      }
+      if (d.open !== open) d.open = open;
     });
     setAllOpen(open);
   };

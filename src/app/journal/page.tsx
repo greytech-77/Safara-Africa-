@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Hero from '@/components/ui/Hero';
+import CtaBlock from '@/components/ui/CtaBlock';
 import { pageHeroes } from '@/content/page-heroes';
 import { formatDate, getPosts } from '@/lib/content';
 
@@ -40,6 +41,7 @@ export default function JournalPage() {
           </ul>
         </div>
       </section>
+      <CtaBlock />
     </>
   );
 }

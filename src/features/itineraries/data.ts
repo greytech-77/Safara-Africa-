@@ -146,23 +146,6 @@ export function routeStops(it: Itinerary): Stop[] {
   return stops;
 }
 
-// Places in travel order, and the index of the place each day ends at. Feeds the scroll-driven route map.
-export function routePath(it: Itinerary) {
-  const { places, stays } = loadCatalogue();
-  const points: Pick<Place, 'slug' | 'name' | 'lat' | 'lng'>[] = [];
-  const dayEnds: number[] = [];
-  for (const day of it.itinerary) {
-    const stay = day.stay ? stays.get(day.stay) : undefined;
-    for (const slug of [...day.places, ...(stay ? [stay.place] : [])]) {
-      if (points.at(-1)?.slug === slug) continue;
-      const { name, lat, lng } = places.get(slug)!;
-      points.push({ slug, name, lat, lng });
-    }
-    dayEnds.push(points.length - 1);
-  }
-  return { points, dayEnds };
-}
-
 // Park pages (content/parks.ts slugs) this itinerary visits.
 export const parksVisited = (it: Itinerary) => [...new Set(routeStops(it).flatMap((s) => (s.park ? [s.park] : [])))];
 

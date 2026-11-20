@@ -70,9 +70,6 @@ export default async function TrekPage({ params }: Props) {
                 </div>
               ))}
             </dl>
-            <Link href="/contact#enquire" className="btn btn-primary mt-4 w-full">
-              Plan your trek
-            </Link>
           </aside>
         </div>
       </div>

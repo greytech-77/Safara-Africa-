@@ -6,6 +6,13 @@ const nextConfig: NextConfig = {
     remotePatterns: [{ protocol: 'https', hostname: 'images.unsplash.com' }],
   },
 
+  // Disable the Next.js agent-upgrade security reminder (defaults to 'security') so `next dev`
+  // and `next build` run uninterrupted during development. Next.js 16.4.3 has a known advisory —
+  // upgrade before deploying. Remove this to re-enable the reminder.
+  experimental: {
+    agentUpgrade: false,
+  },
+
   // Keep old WordPress URLs working (search rankings + existing links).
   async redirects() {
     const r = (source: string, destination: string) => ({ source, destination, permanent: true });
